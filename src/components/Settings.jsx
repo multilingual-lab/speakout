@@ -18,7 +18,18 @@ export default function Settings({ onClose }) {
       <div className="settings-panel" onClick={(e) => e.stopPropagation()}>
         <div className="settings-header">
           <h2>Settings</h2>
-          <button className="settings-close" onClick={onClose}>✕</button>
+          <div className="settings-header-actions">
+            <a
+              className="settings-github"
+              href="https://github.com/multilingual-lab/speekout"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="GitHub"
+            >
+              GitHub
+            </a>
+            <button className="settings-close" onClick={onClose}>✕</button>
+          </div>
         </div>
 
         <label className="settings-label">Azure Speech Key</label>
@@ -42,6 +53,7 @@ export default function Settings({ onClose }) {
         <button className="settings-save" onClick={handleSave}>
           {saved ? '✓ Saved' : 'Save'}
         </button>
+
       </div>
     </div>
   );
