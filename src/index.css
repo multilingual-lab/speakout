@@ -1,0 +1,42 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: 'Noto Sans KR', Inter, system-ui, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #e0e0e0;
+  background-color: #1a1a2e;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Unified color palette */
+  --color-primary: #4a6da8;
+  --color-primary-hover: #5b7fbf;
+  --color-primary-muted: #3d5a8a;
+  --color-surface: #16213e;
+  --color-surface-alt: #1e2d4d;
+  --color-danger: #a84f5a;
+  --color-danger-hover: #b8606c;
+  --color-text: #e0e0e0;
+  --color-text-muted: #8a9abc;
+  --color-border: #2a3550;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#root {
+  width: 100%;
+}
+
+button {
+  font-family: inherit;
+}
+
