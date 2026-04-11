@@ -9,9 +9,12 @@ A browser-based language speaking practice app, currently focused on Korean. The
 - **STT:** Web Speech API (`ko-KR`), Chrome required
 - **Styling:** Plain CSS under `src/styles/`, dark theme (`#1a1a2e` background). Unified design system using CSS custom properties (`--color-primary`, `--color-surface`, etc.) defined in `index.css`
 - **Color palette:** Slate-blue primary (`#4a6da8`) with hover/muted variants (`#5b7fbf`, `#3d5a8a`). Muted rose (`#a84f5a`) for record button, vivid rose (`#c0545f`) for active recording state. All UI tones stay in the blue-navy family — surfaces (`#16213e`, `#1e2d4d`), borders (`#2a3550`), and muted text (`#8a9abc`) share the same hue to maintain cohesion. WCAG AA contrast verified for all text-on-background pairings.
-- **No backend** — all runs in the browser. Azure key stored in `.env` (gitignored)
+- **No backend** — all runs in the browser. Azure key configurable via in-app Settings UI (stored in `localStorage`) with `.env` fallback
 
-## Environment Variables (`.env`)
+## Azure Speech Configuration
+Credentials are resolved in this order:
+1. **In-app Settings** (⚙️ gear icon, top-right) — saved to `localStorage`
+2. **Environment variables** (`.env` fallback):
 ```
 VITE_AZURE_SPEECH_KEY=<key>
 VITE_AZURE_SPEECH_ENDPOINT=<your-endpoint>
@@ -27,21 +30,24 @@ src/
 │   ├── TopicGrid.jsx         # Home page: section headers + topic cards with mode buttons
 │   ├── SceneView.jsx         # Per-topic wrapper: mode toggle bar + dialog picker
 │   ├── PracticeMode.jsx      # Dialog practice with scrolling chat history
-│   └── ShadowMode.jsx        # Listen & repeat with Levenshtein match scoring
+│   ├── ShadowMode.jsx        # Listen & repeat with Levenshtein match scoring
+│   └── Settings.jsx          # Azure key/endpoint config modal (localStorage)
 ├── hooks/
 │   └── useSpeech.js          # Azure TTS (primary) + Web Speech TTS (fallback) + STT
 ├── services/
 │   └── azureTts.js           # Azure TTS REST API: SSML builder, fetch, blob → Audio URL
+│                             # getAzureConfig/saveAzureConfig — localStorage with env fallback
 └── styles/
     ├── TopicGrid.css
     ├── SceneView.css
     ├── Shadow.css
-    └── Practice.css
+    ├── Practice.css
+    └── Settings.css
 ```
 
 ## UI Flow
 ```
-TopicGrid (home)
+TopicGrid (home)          ⚙️ Settings gear (always visible, top-right)
   └─ Topic card → [🎙️ 실전] or [🔄 쉐도잉] button
         └─ SceneView (mode toggle bar always visible)
               ├─ Practice mode → Dialog picker → PracticeMode (chat)
@@ -82,6 +88,7 @@ sections[]          // "여행 한국어" | "친구와 대화"
 - [x] Model answer TTS playback in practice feedback phase
 - [x] Unified slate-blue design system with CSS custom properties (WCAG AA verified)
 - [x] Recording UX: toggle button with pulse animation, auto-stop detection, processing phase
+- [x] In-app Settings UI for Azure key/endpoint (localStorage with .env fallback)
 
 ## Planned / Next Steps
 - [ ] Ambient audio per scene (café sounds, street sounds)

@@ -1,5 +1,22 @@
-const AZURE_KEY = import.meta.env.VITE_AZURE_SPEECH_KEY;
-const AZURE_ENDPOINT = import.meta.env.VITE_AZURE_SPEECH_ENDPOINT;
+const STORAGE_KEY = 'azure_speech_key';
+const STORAGE_ENDPOINT = 'azure_speech_endpoint';
+
+function getAzureKey() {
+  return localStorage.getItem(STORAGE_KEY) || import.meta.env.VITE_AZURE_SPEECH_KEY || '';
+}
+
+function getAzureEndpoint() {
+  return localStorage.getItem(STORAGE_ENDPOINT) || import.meta.env.VITE_AZURE_SPEECH_ENDPOINT || '';
+}
+
+export function getAzureConfig() {
+  return { key: getAzureKey(), endpoint: getAzureEndpoint() };
+}
+
+export function saveAzureConfig(key, endpoint) {
+  localStorage.setItem(STORAGE_KEY, key);
+  localStorage.setItem(STORAGE_ENDPOINT, endpoint);
+}
 
 // Sanitize text for safe SSML embedding
 function escapeXml(text) {
@@ -16,7 +33,9 @@ function escapeXml(text) {
  * Returns an Audio element that can be played.
  */
 export async function azureSpeak(text, { voice = 'ko-KR-SunHiNeural', rate = '0.9' } = {}) {
-  if (!AZURE_KEY || !AZURE_ENDPOINT) {
+  const key = getAzureKey();
+  const endpoint = getAzureEndpoint();
+  if (!key || !endpoint) {
     throw new Error('Azure Speech credentials not configured');
   }
 
@@ -26,10 +45,10 @@ export async function azureSpeak(text, { voice = 'ko-KR-SunHiNeural', rate = '0.
   </voice>
 </speak>`;
 
-  const response = await fetch(`${AZURE_ENDPOINT}/tts/cognitiveservices/v1`, {
+  const response = await fetch(`${endpoint}/tts/cognitiveservices/v1`, {
     method: 'POST',
     headers: {
-      'Ocp-Apim-Subscription-Key': AZURE_KEY,
+      'Ocp-Apim-Subscription-Key': key,
       'Content-Type': 'application/ssml+xml',
       'X-Microsoft-OutputFormat': 'audio-16khz-128kbitrate-mono-mp3',
     },
@@ -47,5 +66,5 @@ export async function azureSpeak(text, { voice = 'ko-KR-SunHiNeural', rate = '0.
 }
 
 export function isAzureConfigured() {
-  return !!(AZURE_KEY && AZURE_ENDPOINT);
+  return !!(getAzureKey() && getAzureEndpoint());
 }

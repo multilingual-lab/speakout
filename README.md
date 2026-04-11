@@ -23,12 +23,16 @@ npm run dev
 npm run build
 ```
 
-## Environment
-Create `.env` with:
+## Azure Speech Setup
+Option A — **In-app Settings** (recommended): click the ⚙️ gear icon (top-right) and enter your key + endpoint. Values are saved to `localStorage`.
+
+Option B — **Environment variables**: create `.env` with:
 
 ```bash
 VITE_AZURE_SPEECH_KEY=...
 VITE_AZURE_SPEECH_ENDPOINT=...
 ```
+
+localStorage values take priority over `.env`.
 
 Note: this is currently a frontend-only app. Do not deploy with exposed keys unless you move Azure calls to a backend proxy.
