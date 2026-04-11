@@ -1,7 +1,7 @@
 export default function TopicGrid({ sections, onSelect }) {
   return (
     <div className="topic-grid-container">
-      <h1 className="app-title">SpeekOut</h1>
+      <h1 className="app-title">SpeakOut</h1>
       <p className="app-subtitle">Language Speaking Practice</p>
 
       {sections.map((section) => (

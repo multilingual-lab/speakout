@@ -21,7 +21,7 @@ export default function Settings({ onClose }) {
           <div className="settings-header-actions">
             <a
               className="settings-github"
-              href="https://github.com/multilingual-lab/speekout"
+              href="https://github.com/multilingual-lab/speakout"
               target="_blank"
               rel="noopener noreferrer"
               title="GitHub"

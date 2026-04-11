@@ -1,4 +1,4 @@
-# SpeekOut
+# SpeakOut
 
 Language speaking practice app focused on immersive, scenario-based dialogs.
 

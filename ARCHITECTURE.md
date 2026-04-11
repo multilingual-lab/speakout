@@ -1,4 +1,4 @@
-# SpeekOut — Architecture & Context
+# SpeakOut — Architecture & Context
 
 ## Goal
 A browser-based language speaking practice app, currently focused on Korean. The core pain point: without an immersive environment it is hard to produce spoken language in real time (user freezes up). The app solves this with scenario-based forced production practice.
