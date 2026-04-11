@@ -23,7 +23,9 @@ npm run dev
 npm run build
 ```
 
-## Azure Speech Setup
+## Azure Speech Setup (Optional)
+Azure Speech improves TTS voice quality but is **not required** — without it, the app falls back to your browser's built-in speech synthesis.
+
 Option A — **In-app Settings** (recommended): click the ⚙️ gear icon (top-right) and enter your key + endpoint. Values are saved to `localStorage`.
 
 Option B — **Environment variables**: create `.env` with:

@@ -32,6 +32,10 @@ export default function Settings({ onClose }) {
           </div>
         </div>
 
+        <p className="settings-note">
+          Azure Speech is optional — it improves TTS voice quality. Without it, the app falls back to your browser's built-in speech.
+        </p>
+
         <label className="settings-label">Azure Speech Key</label>
         <input
           className="settings-input"

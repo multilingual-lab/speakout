@@ -120,6 +120,13 @@
   gap: 12px;
 }
 
+.settings-note {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  margin: 0 0 8px;
+  line-height: 1.5;
+}
+
 .settings-github {
   font-size: 0.85rem;
   color: var(--color-text-muted);
