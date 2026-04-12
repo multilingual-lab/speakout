@@ -52,15 +52,17 @@ TopicGrid (home)          ⚙️ Settings gear (always visible, top-right)
         └─ SceneView (mode toggle bar always visible)
               ├─ Practice mode → Dialog picker → PracticeMode (chat)
               │     └─ Feedback phase: model answers with per-answer 🔊 TTS buttons
-              └─ Shadow mode → ShadowMode (phrase drills)
+              └─ Shadow mode → Session picker → ShadowMode
+                    ├─ Quick Phrases (original phrase drills)
+                    └─ Dialog Shadow (shadow full conversations with context)
 ```
 
 ## Data Model (`src/data/scenarios.js`)
 ```js
-sections[]          // "여행 한국어" | "친구와 대화"
+sections[]          // "여행 한국어" | "친구와 대화" | "직장 한국어"
   └─ scenarios[]    // e.g. "카페에서", "인사하기"
-        ├─ shadow[] // { korean, english, romanization }  — for ShadowMode
-        └─ dialogs[]   // named dialog blocks
+        ├─ shadow[] // { korean, english }  — for ShadowMode quick phrases
+        └─ sessions[]   // named dialog sessions
               └─ exchanges[]
                     // { speaker: 'other' | 'you-initiate', korean, english,
                     //   expectedResponses[], hint }
@@ -68,15 +70,26 @@ sections[]          // "여행 한국어" | "친구와 대화"
 
 `you-initiate` exchanges show an English situation prompt and skip TTS playback — the user speaks first.
 
+**expectedResponses ordering rule:** `expectedResponses[0]` must be the response that flows naturally into the *next* exchange's prompt, because dialog shadowing uses `[0]` to build the conversation. Other responses are alternatives for practice mode (order doesn't matter there).
+
 ## Key Decisions
 - **No LLM in Phase 1** — all content is pre-written JSON. LLM evaluation is a planned Phase 2 addition.
 - **Dialogs over flat Q&A** — each practice dialog is a coherent multi-turn exchange (6–8 turns), not disconnected question/answer pairs.
 - **Two modes on home card** — clicking a topic goes directly into practice or shadow; no intermediate mode-selector page. A toggle bar inside the topic lets you switch modes.
 - **Azure TTS** — `ko-KR-SunHiNeural` neural voice. Falls back to `SpeechSynthesisUtterance` if Azure fails.
 - **Levenshtein similarity** in ShadowMode for match % scoring (character-level, normalised).
+- **Dialog shadowing** — shadow mode now has a session picker like practice mode. Users can choose "Quick Phrases" (original phrase drills, Korean-only — no romanization shown) or any dialog session. Dialog shadow flattens exchanges into sequential lines (both sides of the conversation), showing past lines as scrollable context above the current line. For `you-initiate` exchanges, the first expected response is used as the shadow target.
+- **Immersion-first** — shadow mode shows Korean only by default (romanization removed). English translation is behind a "Show English" toggle. Model answers in practice mode are Korean-only — no translations added to avoid creating a crutch. Users who need translation can use external tools.
+- **Pinned action bars** — both modes use a scroll-area + pinned-bottom-bar layout. In shadow mode, Listen/Record + Previous/Next are pinned at the bottom. In practice mode, Retry/Next are pinned at the bottom during feedback phase. Scrollbars are hidden (`scrollbar-width: none`) for cleaner appearance. The scene container uses `height: 100vh` with `overflow: hidden` to prevent full-page scrolling.
+- **Retry auto-records** — tapping Retry in practice feedback automatically starts recording after a brief delay, so users don't have to tap twice (Retry then Record).
 - **Model answer TTS** — each model answer in the feedback phase has an individual 🔊 button. Only the clicked button shows an active (pulsing) state; others remain idle. Clicks are no-op while audio is playing to prevent overlap.
 - **Recording UX** — single button toggles between "🎙️ Your turn — speak!" and "🎙️ Listening… tap to finish" with a pulsing ring animation. A `processing` phase prevents button flash on transition. Auto-detection: when the browser's speech recognition stops on its own (silence timeout), the app automatically transitions to feedback — no manual tap required.
 - **Consistent button sizing** — action buttons use `min-width: 220px` to maintain visual consistency across states.
+
+## Content Quality Rules
+- **Formality consistency:** Travel/service scenarios use 해요체 (polite conversational). Casual/friend scenarios use 반말. Work/interview scenarios use 합니다체 (formal). Never mix registers within a scenario.
+- **Response ordering:** `expectedResponses[0]` must connect naturally to the next exchange's prompt (see Data Model section).
+- **Dialog coherence:** Each session's exchanges must form a logical, flowing conversation from start to finish.
 
 ## Completed Phases
 - [x] Phase 1: Vite + React scaffold
@@ -89,6 +102,10 @@ sections[]          // "여행 한국어" | "친구와 대화"
 - [x] Unified slate-blue design system with CSS custom properties (WCAG AA verified)
 - [x] Recording UX: toggle button with pulse animation, auto-stop detection, processing phase
 - [x] In-app Settings UI for Azure key/endpoint (localStorage with .env fallback)
+- [x] Dialog shadowing mode (shadow full conversations with session picker)
+- [x] Pinned bottom bars for stable button positioning in both modes
+- [x] Retry auto-record in practice mode
+- [x] Content quality review: formality consistency (합니다체 for work, 해요체 for travel, 반말 for casual), response ordering for shadow flow
 
 ## Planned / Next Steps
 - [ ] Ambient audio per scene (café sounds, street sounds)

@@ -89,6 +89,8 @@ export default function PracticeMode({ exchanges }) {
     setTranscript('');
     setShowModel(false);
     setPhase('respond');
+    // Auto-start recording so user doesn't have to tap twice
+    setTimeout(() => startListening(), 100);
   };
 
   if (isFinished) {
@@ -114,126 +116,130 @@ export default function PracticeMode({ exchanges }) {
 
   return (
     <div className="practice-container">
-      <div className="practice-progress">
-        {currentIndex + 1} / {exchanges.length}
+      <div className="practice-scroll-area">
+        <div className="practice-progress">
+          {currentIndex + 1} / {exchanges.length}
+        </div>
+
+        {/* Past conversation history */}
+        {history.length > 0 && (
+          <div className="chat-history">
+            {history.map((msg, i) => (
+              <div key={i} className={`chat-bubble history-bubble ${msg.speaker === 'other' ? 'other-bubble' : 'user-bubble'}`}>
+                <div className="bubble-speaker">{msg.speaker === 'other' ? '상대방' : '나'}</div>
+                <p className="bubble-korean">{msg.korean}</p>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Current exchange */}
+        {isYouInitiate ? (
+          /* You-initiate: show the situation prompt */
+          <div className="initiate-prompt">
+            <span className="initiate-icon">💭</span>
+            <p className="initiate-text">{exchange.english}</p>
+          </div>
+        ) : (
+          /* Other person's speech bubble */
+          <div className="chat-bubble other-bubble">
+            <div className="bubble-speaker">상대방</div>
+            <p className="bubble-korean">{exchange.korean}</p>
+            <button className="replay-btn" onClick={handleReplay} disabled={isSpeaking}>
+              🔊
+            </button>
+          </div>
+        )}
+
+        {/* Response area */}
+        {phase === 'listen' && !isYouInitiate && (
+          <div className="practice-status">
+            <span className="status-icon">🔊</span>
+            <span>Listening to the other person...</span>
+          </div>
+        )}
+
+        {phase === 'respond' && (
+          <div className="respond-area">
+            <div className="respond-actions">
+              {!isListening ? (
+                <button className="action-btn record-btn large" onClick={handleRecord}>
+                  🎙️ Your turn — speak!
+                </button>
+              ) : (
+                <button className="action-btn record-btn large recording" onClick={handleStopAndCheck}>
+                  🎙️ Listening… tap to finish
+                </button>
+              )}
+            </div>
+
+            {!showHint ? (
+              <button className="hint-link" onClick={() => setShowHint(true)}>
+                💡 Show hint
+              </button>
+            ) : (
+              <div className="hint-text">{exchange.hint}</div>
+            )}
+          </div>
+        )}
+
+        {phase === 'processing' && (
+          <div className="practice-status">
+            <span className="status-icon">⏳</span>
+            <span>Processing…</span>
+          </div>
+        )}
+
+        {phase === 'feedback' && (
+          <div className="feedback-area">
+            {/* User's speech bubble */}
+            <div className="chat-bubble user-bubble">
+              <div className="bubble-speaker">나</div>
+              <p className="bubble-korean">{transcript || '(no speech detected)'}</p>
+            </div>
+
+            {!showModel && (
+              <button className="hint-btn" onClick={() => setShowModel(true)}>
+                Show model answers
+              </button>
+            )}
+
+            {showModel && (
+              <div className="model-answers">
+                <p className="model-label">Model answers:</p>
+                {exchange.expectedResponses.map((r, i) => (
+                  <div key={i} className="model-answer-row">
+                    <p className="model-answer">{r}</p>
+                    <button
+                      className={`replay-btn${speakingIdx === i ? ' speaking' : ''}`}
+                      onClick={() => {
+                        if (isSpeaking) return;
+                        setSpeakingIdx(i);
+                        speak(r).then(() => setSpeakingIdx(null));
+                      }}
+                    >
+                      🔊
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        <div ref={chatEndRef} />
       </div>
 
-      {/* Past conversation history */}
-      {history.length > 0 && (
-        <div className="chat-history">
-          {history.map((msg, i) => (
-            <div key={i} className={`chat-bubble history-bubble ${msg.speaker === 'other' ? 'other-bubble' : 'user-bubble'}`}>
-              <div className="bubble-speaker">{msg.speaker === 'other' ? '상대방' : '나'}</div>
-              <p className="bubble-korean">{msg.korean}</p>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {/* Current exchange */}
-      {isYouInitiate ? (
-        /* You-initiate: show the situation prompt */
-        <div className="initiate-prompt">
-          <span className="initiate-icon">💭</span>
-          <p className="initiate-text">{exchange.english}</p>
-        </div>
-      ) : (
-        /* Other person's speech bubble */
-        <div className="chat-bubble other-bubble">
-          <div className="bubble-speaker">상대방</div>
-          <p className="bubble-korean">{exchange.korean}</p>
-          <button className="replay-btn" onClick={handleReplay} disabled={isSpeaking}>
-            🔊
+      {phase === 'feedback' && (
+        <div className="practice-bottom-bar">
+          <button className="action-btn retry-btn" onClick={handleRetry}>
+            🔄 Retry
+          </button>
+          <button className="action-btn next-btn" onClick={handleNext}>
+            Next →
           </button>
         </div>
       )}
-
-      {/* Response area */}
-      {phase === 'listen' && !isYouInitiate && (
-        <div className="practice-status">
-          <span className="status-icon">🔊</span>
-          <span>Listening to the other person...</span>
-        </div>
-      )}
-
-      {phase === 'respond' && (
-        <div className="respond-area">
-          <div className="respond-actions">
-            {!isListening ? (
-              <button className="action-btn record-btn large" onClick={handleRecord}>
-                🎙️ Your turn — speak!
-              </button>
-            ) : (
-              <button className="action-btn record-btn large recording" onClick={handleStopAndCheck}>
-                🎙️ Listening… tap to finish
-              </button>
-            )}
-          </div>
-
-          {!showHint ? (
-            <button className="hint-link" onClick={() => setShowHint(true)}>
-              💡 Show hint
-            </button>
-          ) : (
-            <div className="hint-text">{exchange.hint}</div>
-          )}
-        </div>
-      )}
-
-      {phase === 'processing' && (
-        <div className="practice-status">
-          <span className="status-icon">⏳</span>
-          <span>Processing…</span>
-        </div>
-      )}
-
-      {phase === 'feedback' && (
-        <div className="feedback-area">
-          {/* User's speech bubble */}
-          <div className="chat-bubble user-bubble">
-            <div className="bubble-speaker">나</div>
-            <p className="bubble-korean">{transcript || '(no speech detected)'}</p>
-          </div>
-
-          {!showModel && (
-            <button className="hint-btn" onClick={() => setShowModel(true)}>
-              Show model answers
-            </button>
-          )}
-
-          {showModel && (
-            <div className="model-answers">
-              <p className="model-label">Model answers:</p>
-              {exchange.expectedResponses.map((r, i) => (
-                <div key={i} className="model-answer-row">
-                  <p className="model-answer">{r}</p>
-                  <button
-                    className={`replay-btn${speakingIdx === i ? ' speaking' : ''}`}
-                    onClick={() => {
-                      if (isSpeaking) return;
-                      setSpeakingIdx(i);
-                      speak(r).then(() => setSpeakingIdx(null));
-                    }}
-                  >
-                    🔊
-                  </button>
-                </div>
-              ))}
-            </div>
-          )}
-
-          <div className="feedback-actions">
-            <button className="action-btn retry-btn" onClick={handleRetry}>
-              🔄 Retry
-            </button>
-            <button className="action-btn next-btn" onClick={handleNext}>
-              Next →
-            </button>
-          </div>
-        </div>
-      )}
-
-      <div ref={chatEndRef} />
     </div>
   );
 }

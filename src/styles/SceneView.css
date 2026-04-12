@@ -1,10 +1,11 @@
 .scene-container {
-  min-height: 100vh;
+  height: 100vh;
   background: #1a1a2e;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem 1.5rem 2rem;
+  padding: 1rem 1.5rem 1rem;
+  overflow: hidden;
 }
 
 .scene-header {
@@ -282,4 +283,29 @@
   padding: 0.15rem 0.5rem;
   border-radius: 12px;
   white-space: nowrap;
+}
+
+/* Level badge */
+.level-badge {
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: 10px;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.level-beginner {
+  background: rgba(52, 211, 153, 0.15);
+  color: #34d399;
+}
+
+.level-intermediate {
+  background: rgba(251, 191, 36, 0.15);
+  color: #fbbf24;
+}
+
+.level-advanced {
+  background: rgba(248, 113, 113, 0.15);
+  color: #f87171;
 }
