@@ -173,8 +173,7 @@ function buildDialogLines(exchanges) {
       lines.push({
         speaker: 'you',
         korean: firstResponse,
-        english: ex.english,
-        context: ex.english, // the situation prompt
+        english: ex.englishResponse || ex.english,
       });
     } else {
       lines.push({
@@ -188,7 +187,7 @@ function buildDialogLines(exchanges) {
       lines.push({
         speaker: 'you',
         korean: ex.expectedResponses[0],
-        english: ex.hint || '',
+        english: ex.englishResponse || '',
       });
     }
   }

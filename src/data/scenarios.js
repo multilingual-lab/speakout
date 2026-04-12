@@ -50,6 +50,7 @@ const sections = [
             english: 'Welcome~ What can I get you?',
             expectedResponses: ['아이스 아메리카노 한 잔 주세요', '아메리카노 주세요', '커피 한 잔 주세요'],
             hint: 'Order a drink',
+            englishResponse: 'One iced americano, please.',
           },
           {
             speaker: 'other',
@@ -57,6 +58,7 @@ const sections = [
             english: 'What size would you like?',
             expectedResponses: ['톨 사이즈로 주세요', '큰 걸로 주세요', '그란데로 주세요'],
             hint: 'Choose a size',
+            englishResponse: 'Tall size, please.',
           },
           {
             speaker: 'other',
@@ -64,6 +66,7 @@ const sections = [
             english: 'Do you need anything else?',
             expectedResponses: ['아니요, 괜찮아요', '케이크도 하나 주세요', '이거면 됐어요'],
             hint: 'Anything else?',
+            englishResponse: 'No thanks, I\'m good.',
           },
           {
             speaker: 'other',
@@ -71,6 +74,7 @@ const sections = [
             english: 'For here or to go?',
             expectedResponses: ['여기서 먹고 갈게요', '포장해 주세요', '여기서 마실게요'],
             hint: 'Dine in or take out',
+            englishResponse: 'I\'ll eat here.',
           },
           {
             speaker: 'other',
@@ -78,6 +82,7 @@ const sections = [
             english: 'That will be 4,500 won. How would you like to pay?',
             expectedResponses: ['카드로 계산할게요', '현금으로 할게요', '카드로 주세요'],
             hint: 'Pay',
+            englishResponse: 'I\'ll pay by card.',
           },
           {
             speaker: 'other',
@@ -85,6 +90,7 @@ const sections = [
             english: "I'll call you when it's ready. Please wait a moment.",
             expectedResponses: ['네, 감사합니다', '알겠습니다', '네, 고마워요'],
             hint: 'Acknowledge',
+            englishResponse: 'Yes, thank you.',
           },
         ],
       },
@@ -100,6 +106,7 @@ const sections = [
             english: 'Your order is ready. Iced americano.',
             expectedResponses: ['감사합니다', '네, 감사합니다', '고마워요'],
             hint: 'Thank them',
+            englishResponse: 'Thank you.',
           },
           {
             speaker: 'you-initiate',
@@ -107,6 +114,7 @@ const sections = [
             english: 'You realize you wanted it hot, not iced. Tell the barista.',
             expectedResponses: ['저기요, 뜨거운 걸로 바꿀 수 있을까요?', '죄송한데 따뜻한 걸로 변경 가능할까요?', '아, 뜨거운 걸로 주문했는데요'],
             hint: 'Ask to change to hot',
+            englishResponse: 'Excuse me, could I get that hot instead?',
           },
           {
             speaker: 'other',
@@ -114,6 +122,7 @@ const sections = [
             english: 'Oh, sure! Please wait a moment. I will make it again.',
             expectedResponses: ['감사합니다, 죄송해요', '네, 고마워요', '감사합니다'],
             hint: 'Thank and apologize',
+            englishResponse: 'Thank you, I\'m sorry for the trouble.',
           },
           {
             speaker: 'other',
@@ -121,6 +130,7 @@ const sections = [
             english: 'Here you go, hot americano is ready!',
             expectedResponses: ['감사합니다! 좋은 하루 보내세요', '고마워요!', '네, 감사합니다'],
             hint: 'Thank and say goodbye',
+            englishResponse: 'Thank you! Have a great day!',
           },
         ],
       },
@@ -136,6 +146,7 @@ const sections = [
             english: 'Your drink tastes weird. Politely tell the barista.',
             expectedResponses: ['저기요, 이 음료가 좀 이상한 것 같은데요', '죄송한데, 맛이 좀 다른 것 같아서요', '실례지만 음료를 다시 확인해 주실 수 있을까요?'],
             hint: 'Politely raise the issue',
+            englishResponse: 'Excuse me, this drink tastes a bit off.',
           },
           {
             speaker: 'other',
@@ -143,6 +154,7 @@ const sections = [
             english: 'Oh, really? I am sorry. What seems off?',
             expectedResponses: ['원래보다 훨씬 쓴 것 같아요', '시럽이 안 들어간 것 같은데요', '우유 맛이 좀 이상해요'],
             hint: 'Describe the problem',
+            englishResponse: 'It tastes much more bitter than usual.',
           },
           {
             speaker: 'other',
@@ -150,6 +162,7 @@ const sections = [
             english: 'I see the order was entered incorrectly. Shall I remake it, or would you like a refund?',
             expectedResponses: ['다시 만들어 주시면 감사하겠습니다', '환불보다는 다시 만들어 주세요', '네, 다시 만들어 주세요'],
             hint: 'Choose remake or refund',
+            englishResponse: 'I\'d appreciate it if you could remake it for me.',
           },
           {
             speaker: 'other',
@@ -157,6 +170,7 @@ const sections = [
             english: 'Sure, I will prepare it right away. I am truly sorry for the inconvenience.',
             expectedResponses: ['아니에요, 감사합니다. 이런 일 있을 수 있죠', '괜찮아요, 빠르게 처리해 주셔서 오히려 감사해요', '신경 써 주셔서 감사합니다'],
             hint: 'Respond graciously',
+            englishResponse: 'No worries, thank you. These things happen.',
           },
         ],
       },
@@ -196,6 +210,7 @@ const sections = [
             english: 'Welcome! How many people?',
             expectedResponses: ['두 명이요', '한 명이요', '세 명이요'],
             hint: 'How many in your group',
+            englishResponse: 'Two people, please.',
           },
           {
             speaker: 'other',
@@ -203,6 +218,7 @@ const sections = [
             english: 'Please sit here. Here is the menu.',
             expectedResponses: ['감사합니다', '네, 고마워요', '감사해요'],
             hint: 'Thank them',
+            englishResponse: 'Thank you.',
           },
           {
             speaker: 'other',
@@ -210,6 +226,7 @@ const sections = [
             english: 'Would you like to order?',
             expectedResponses: ['네, 비빔밥 하나 주세요', '김치찌개 하나요', '불고기 하나 주세요'],
             hint: 'Order a dish',
+            englishResponse: 'Yes, I\'ll have one bibimbap.',
           },
           {
             speaker: 'other',
@@ -217,6 +234,7 @@ const sections = [
             english: 'What would you like to drink?',
             expectedResponses: ['물이면 돼요', '콜라 하나 주세요', '괜찮아요, 물 주세요'],
             hint: 'Choose a drink',
+            englishResponse: 'Water is fine.',
           },
           {
             speaker: 'other',
@@ -224,6 +242,7 @@ const sections = [
             english: 'Understood. Please wait a moment.',
             expectedResponses: ['네, 감사합니다', '알겠어요'],
             hint: 'Acknowledge',
+            englishResponse: 'Thank you.',
           },
           {
             speaker: 'other',
@@ -231,6 +250,7 @@ const sections = [
             english: 'Enjoy your meal!',
             expectedResponses: ['감사합니다! 잘 먹겠습니다', '잘 먹겠습니다', '고마워요'],
             hint: 'Traditional reply before eating',
+            englishResponse: 'Thank you! I\'ll enjoy it.',
           },
           {
             speaker: 'you-initiate',
@@ -238,6 +258,7 @@ const sections = [
             english: 'You are done eating. Ask for the bill.',
             expectedResponses: ['저기요, 계산해 주세요', '계산서 좀 주세요', '여기 계산이요'],
             hint: 'Ask for the check',
+            englishResponse: 'Excuse me, could we get the check?',
           },
           {
             speaker: 'other',
@@ -245,6 +266,7 @@ const sections = [
             english: 'The total is 9,000 won.',
             expectedResponses: ['카드로 할게요', '현금으로 계산할게요', '카드 되나요?'],
             hint: 'Pay',
+            englishResponse: 'I\'ll pay by card.',
           },
         ],
       },
@@ -260,6 +282,7 @@ const sections = [
             english: 'Ready to order?',
             expectedResponses: ['네, 그런데 알레르기가 있어서 먼저 여쭤볼게요', '주문 전에 확인할 게 있어요', '이 메뉴에 땅콩 들어가나요?'],
             hint: 'Mention your allergy before ordering',
+            englishResponse: 'Yes, but I have an allergy, so I\'d like to ask about it first.',
           },
           {
             speaker: 'other',
@@ -267,6 +290,7 @@ const sections = [
             english: 'What allergies do you have?',
             expectedResponses: ['땅콩 알레르기가 있어요', '해산물을 못 먹어요', '유제품 알레르기가 있는데요'],
             hint: 'Specify your allergy',
+            englishResponse: 'I have a peanut allergy.',
           },
           {
             speaker: 'other',
@@ -274,6 +298,7 @@ const sections = [
             english: 'Ah, then this dish is fine. It does not contain those ingredients.',
             expectedResponses: ['그럼 그걸로 할게요', '다행이에요! 그거 주세요', '확인해 주셔서 감사합니다, 그걸로 주세요'],
             hint: 'Order with relief',
+            englishResponse: 'Then I\'ll have that one.',
           },
           {
             speaker: 'other',
@@ -281,6 +306,7 @@ const sections = [
             english: 'Do you need anything else?',
             expectedResponses: ['아니요, 이거면 충분해요. 감사합니다', '음료는 물로 주세요', '이거면 됐어요'],
             hint: 'Wrap up the order',
+            englishResponse: 'No, this is enough. Thank you.',
           },
         ],
       },
@@ -296,6 +322,7 @@ const sections = [
             english: 'Your food arrived but it is completely wrong. Call the server.',
             expectedResponses: ['저기요, 제가 주문한 것과 다른 음식이 나온 것 같은데요', '실례합니다, 이거 제가 시킨 게 아닌 것 같아요', '죄송한데, 주문한 메뉴가 아닌 것 같아서요'],
             hint: 'Politely explain the mistake',
+            englishResponse: 'Excuse me, I think I received the wrong order.',
           },
           {
             speaker: 'other',
@@ -303,6 +330,7 @@ const sections = [
             english: 'Oh, I am so sorry! Let me check what you ordered again.',
             expectedResponses: ['비빔밥을 주문했는데 김치찌개가 나왔어요', '저는 불고기를 시켰는데요', '칼국수를 주문했거든요'],
             hint: 'Clarify what you ordered',
+            englishResponse: 'I ordered bibimbap but got kimchi jjigae instead.',
           },
           {
             speaker: 'other',
@@ -310,6 +338,7 @@ const sections = [
             english: 'I have confirmed it. The orders got switched. I will prepare yours right away. Let me offer you a complimentary drink.',
             expectedResponses: ['아, 감사합니다. 그럴 수 있죠', '음료까지 주시다니 감사해요', '괜찮아요, 신경 써 주셔서 감사합니다'],
             hint: 'Accept graciously',
+            englishResponse: 'Oh, thank you. These things happen.',
           },
           {
             speaker: 'other',
@@ -317,6 +346,7 @@ const sections = [
             english: 'Here it is! I apologize once again for the trouble.',
             expectedResponses: ['괜찮아요, 빠르게 해결해 주셔서 감사합니다', '아니에요, 맛있게 먹을게요', '신경 써 주셔서 고맙습니다'],
             hint: 'Thank them and move on',
+            englishResponse: 'It\'s fine, thank you for taking care of it so quickly.',
           },
         ],
       },
@@ -352,6 +382,7 @@ const sections = [
             english: 'You are lost. Ask a stranger where the subway station is.',
             expectedResponses: ['저기요, 지하철역이 어디에 있어요?', '실례합니다, 지하철역 어디예요?', '죄송한데 지하철역 어떻게 가요?'],
             hint: 'Ask for the subway station',
+            englishResponse: 'Excuse me, where is the subway station?',
           },
           {
             speaker: 'other',
@@ -359,6 +390,7 @@ const sections = [
             english: 'Go straight and you will reach an intersection. Turn right there.',
             expectedResponses: ['직진하고 오른쪽이요?', '네, 알겠습니다. 감사합니다', '오른쪽으로요? 감사합니다'],
             hint: 'Confirm the directions',
+            englishResponse: 'Straight and then right?',
           },
           {
             speaker: 'other',
@@ -366,6 +398,7 @@ const sections = [
             english: 'Yes, that is right. It takes about 5 minutes.',
             expectedResponses: ['감사합니다! 도움이 됐어요', '고마워요!', '네, 감사합니다'],
             hint: 'Thank them',
+            englishResponse: 'Thank you! That was really helpful.',
           },
         ],
       },
@@ -381,6 +414,7 @@ const sections = [
             english: 'You need to take a bus to Gangnam. Ask someone at the bus stop.',
             expectedResponses: ['실례합니다, 강남 가는 버스가 여기서 타면 되나요?', '저기요, 이 정류장에서 강남행 버스 있어요?', '혹시 강남 가려면 몇 번 버스 타야 해요?'],
             hint: 'Ask about the bus to Gangnam',
+            englishResponse: 'Excuse me, can I get a bus to Gangnam from here?',
           },
           {
             speaker: 'other',
@@ -388,6 +422,7 @@ const sections = [
             english: 'Gangnam? You can take bus 472 here. But you need to take it from the stop on the opposite side.',
             expectedResponses: ['아, 반대편이요? 감사합니다', '반대쪽이면 건너편 말씀이시죠?', '아, 이쪽이 아니라 저쪽이요?'],
             hint: 'Confirm the opposite stop',
+            englishResponse: 'Oh, the opposite side? Thank you.',
           },
           {
             speaker: 'other',
@@ -395,6 +430,7 @@ const sections = [
             english: 'Yes, cross the crosswalk and it is right there. It will take about 20 minutes.',
             expectedResponses: ['카드로도 탈 수 있죠?', '20분이요? 알겠습니다. 감사합니다!', '혹시 몇 분마다 와요?'],
             hint: 'Ask a follow-up question',
+            englishResponse: 'Can I pay with a transit card?',
           },
           {
             speaker: 'other',
@@ -402,6 +438,7 @@ const sections = [
             english: 'Yes, just tap your transit card. It comes about every 10 minutes.',
             expectedResponses: ['알겠습니다, 정말 감사합니다!', '자세히 알려주셔서 감사해요', '도움 많이 됐어요, 감사합니다'],
             hint: 'Thank them warmly',
+            englishResponse: 'Got it, thank you so much!',
           },
         ],
       },
@@ -417,6 +454,7 @@ const sections = [
             english: 'You are completely lost in an unfamiliar neighborhood. Stop a passerby and explain your situation.',
             expectedResponses: ['실례합니다, 이 근처를 잘 몰라서 그런데 도움을 좀 받을 수 있을까요?', '저기요, 죄송한데 저 외국인인데 길을 완전히 잃어버렸어요', '혹시 잠깐 시간 되시면 길 좀 알려주실 수 있나요?'],
             hint: 'Explain you are lost and ask for help',
+            englishResponse: 'Excuse me, I\'m not familiar with this area. Could I ask for some help?',
           },
           {
             speaker: 'other',
@@ -424,6 +462,7 @@ const sections = [
             english: 'Sure, no problem! Where are you trying to go?',
             expectedResponses: ['이 주소로 가야 하는데 어떻게 가는지 모르겠어요', '명동에 가려고 하는데 여기가 어딘지도 잘 모르겠어요', '호텔로 돌아가야 하는데 지도 앱이 안 돼서요'],
             hint: 'Explain your destination and difficulty',
+            englishResponse: 'I need to go to this address but I don\'t know how.',
           },
           {
             speaker: 'other',
@@ -431,6 +470,7 @@ const sections = [
             english: 'Ah, it is a bit far from here. Walking would take over 30 minutes. I think taking a taxi would be better.',
             expectedResponses: ['택시 타는 곳이 어디에 있어요?', '택시는 어디서 잡을 수 있나요?', '앱으로 부를 수 있을까요?'],
             hint: 'Ask how to get a taxi',
+            englishResponse: 'Where can I get a taxi?',
           },
           {
             speaker: 'other',
@@ -438,6 +478,7 @@ const sections = [
             english: 'You can hail one on the main road, or if you have the Kakao Taxi app, you can call one right away. Just show the driver this address.',
             expectedResponses: ['정말 감사합니다, 큰 도움이 됐어요', '친절하게 알려주셔서 정말 감사합니다', '덕분에 살았어요! 정말 고맙습니다'],
             hint: 'Express deep gratitude',
+            englishResponse: 'Thank you so much, you\'ve been a huge help!',
           },
         ],
       },
@@ -473,6 +514,7 @@ const sections = [
             english: 'Are you looking for something?',
             expectedResponses: ['선물 살 거 찾고 있어요', '티셔츠 어디에 있어요?', '그냥 구경하고 있어요'],
             hint: 'What you are looking for',
+            englishResponse: 'I\'m looking for a gift.',
           },
           {
             speaker: 'other',
@@ -480,6 +522,7 @@ const sections = [
             english: 'How about this one? It is very popular lately.',
             expectedResponses: ['어, 괜찮네요. 입어 봐도 돼요?', '색깔이 예쁘네요', '다른 색 있어요?'],
             hint: 'React and ask to try it',
+            englishResponse: 'Oh, that looks nice. Can I try it on?',
           },
           {
             speaker: 'other',
@@ -487,6 +530,7 @@ const sections = [
             english: 'Yes, the fitting room is over there.',
             expectedResponses: ['감사합니다', '네, 알겠어요'],
             hint: 'Thank them',
+            englishResponse: 'Thank you.',
           },
           {
             speaker: 'other',
@@ -494,6 +538,7 @@ const sections = [
             english: 'How is it? Does it fit well?',
             expectedResponses: ['네, 잘 맞아요. 이거 살게요', '좀 큰 것 같아요. 작은 사이즈 있어요?', '예쁜데 좀 비싸요. 할인 돼요?'],
             hint: 'How it fits',
+            englishResponse: 'Yes, it fits well. I\'ll buy this.',
           },
           {
             speaker: 'other',
@@ -501,6 +546,7 @@ const sections = [
             english: 'This is 30,000 won, but it is on sale for 20,000 won.',
             expectedResponses: ['좋아요, 이걸로 할게요', '카드로 계산할게요', '감사합니다, 살게요'],
             hint: 'Decide to buy',
+            englishResponse: 'Great, I\'ll take it.',
           },
         ],
       },
@@ -516,6 +562,7 @@ const sections = [
             english: 'Point at something and ask how much it costs.',
             expectedResponses: ['이거 얼마예요?', '이건 얼마예요?', '저거 가격이 얼마예요?'],
             hint: 'Ask the price',
+            englishResponse: 'How much is this?',
           },
           {
             speaker: 'other',
@@ -523,6 +570,7 @@ const sections = [
             english: 'That is 15,000 won.',
             expectedResponses: ['좀 비싸네요', '괜찮아요, 살게요', '감사합니다'],
             hint: 'React to the price',
+            englishResponse: 'That\'s a bit expensive.',
           },
           {
             speaker: 'other',
@@ -530,6 +578,7 @@ const sections = [
             english: 'This one is cheaper. It is 10,000 won.',
             expectedResponses: ['아, 이게 더 괜찮네요. 이거 주세요', '좋아요, 이걸로 할게요', '두 개 다 살게요'],
             hint: 'Pick one',
+            englishResponse: 'Oh, this one is better. I\'ll take this.',
           },
           {
             speaker: 'other',
@@ -537,6 +586,7 @@ const sections = [
             english: 'Will you pay by card?',
             expectedResponses: ['네, 카드로 할게요', '현금으로 할게요', '카드요'],
             hint: 'Pay',
+            englishResponse: 'Yes, I\'ll pay by card.',
           },
         ],
       },
@@ -552,6 +602,7 @@ const sections = [
             english: 'You bought something yesterday but want to exchange it. Explain the situation.',
             expectedResponses: ['안녕하세요, 어제 여기서 산 건데 교환이 가능한지 여쭤보려고요', '어제 구매한 상품인데 사이즈가 안 맞아서 교환하고 싶은데요', '죄송한데, 어제 산 거 교환 가능할까요?'],
             hint: 'Request an exchange',
+            englishResponse: 'Hello, I bought this here yesterday. I wanted to ask if an exchange is possible.',
           },
           {
             speaker: 'other',
@@ -559,6 +610,7 @@ const sections = [
             english: 'Do you have the receipt? And what was the issue?',
             expectedResponses: ['네, 영수증 여기 있어요. 사이즈가 너무 작아서요', '영수증이요, 여기요. 색상이 생각했던 것과 달라서요', '있어요. 집에서 보니까 다른 디자인이 더 나을 것 같아서요'],
             hint: 'Show receipt and explain',
+            englishResponse: 'Yes, here\'s the receipt. It\'s too small.',
           },
           {
             speaker: 'other',
@@ -566,6 +618,7 @@ const sections = [
             english: 'Let me check... Yes, since it has been within 7 days of purchase, an exchange is possible. Would you like a different size or color?',
             expectedResponses: ['한 사이즈 큰 걸로 바꿔 주세요', '같은 디자인으로 다른 색상 있어요?', '미디엄 사이즈로 교환 가능할까요?'],
             hint: 'Specify what you want instead',
+            englishResponse: 'Could I exchange it for a size larger?',
           },
           {
             speaker: 'other',
@@ -573,6 +626,7 @@ const sections = [
             english: 'Here you go. There is a 5,000 won price difference, so an additional payment is needed.',
             expectedResponses: ['네, 카드로 추가 결제할게요', '알겠습니다, 여기요', '괜찮아요, 카드로 할게요'],
             hint: 'Pay the difference',
+            englishResponse: 'Yes, I\'ll pay the difference by card.',
           },
         ],
       },
@@ -620,6 +674,7 @@ const sections = [
             english: 'Hello, do you have a reservation?',
             expectedResponses: ['네, 예약했어요', '김민준 이름으로 예약했는데요', '네, 어제 온라인으로 했어요'],
             hint: 'Confirm your reservation',
+            englishResponse: 'Yes, I have a reservation.',
           },
           {
             speaker: 'other',
@@ -627,6 +682,7 @@ const sections = [
             english: 'Could you show me your passport or ID?',
             expectedResponses: ['네, 여기 있어요', '잠깐만요, 찾을게요', '여권이요, 여기요'],
             hint: 'Hand over your ID',
+            englishResponse: 'Yes, here it is.',
           },
           {
             speaker: 'other',
@@ -634,6 +690,7 @@ const sections = [
             english: "That's 3 nights, correct? The total is 180,000 won.",
             expectedResponses: ['네, 맞아요. 카드로 계산할게요', '네, 체크카드로 해도 되나요?', '맞아요, 여기요'],
             hint: 'Confirm and pay',
+            englishResponse: 'Yes, that\'s right. I\'ll pay by card.',
           },
           {
             speaker: 'other',
@@ -641,6 +698,7 @@ const sections = [
             english: "That's room 507. The elevator is over there. Enjoy your stay!",
             expectedResponses: ['감사합니다', '고마워요, 좋은 하루 되세요', '감사해요'],
             hint: 'Thank the receptionist',
+            englishResponse: 'Thank you.',
           },
         ],
       },
@@ -656,6 +714,7 @@ const sections = [
             english: 'You need to ask the front desk for the Wi-Fi password.',
             expectedResponses: ['와이파이 비밀번호가 뭐예요?', '와이파이 비번 알려주세요', '인터넷 비밀번호 뭐예요?'],
             hint: 'Ask for Wi-Fi',
+            englishResponse: 'What\'s the Wi-Fi password?',
           },
           {
             speaker: 'other',
@@ -663,6 +722,7 @@ const sections = [
             english: 'The password is hotel1234.',
             expectedResponses: ['감사합니다', '네, 감사해요', '알겠습니다'],
             hint: 'Thank them',
+            englishResponse: 'Thank you.',
           },
           {
             speaker: 'you-initiate',
@@ -670,6 +730,7 @@ const sections = [
             english: 'Now ask what time breakfast is.',
             expectedResponses: ['아침 식사 몇 시예요?', '조식이 몇 시부터예요?', '아침은 몇 시에 먹을 수 있어요?'],
             hint: 'Ask about breakfast time',
+            englishResponse: 'What time is breakfast?',
           },
           {
             speaker: 'other',
@@ -677,6 +738,7 @@ const sections = [
             english: 'Breakfast is available from 7 to 10 AM in the restaurant on the first floor.',
             expectedResponses: ['알겠습니다, 감사합니다', '네, 감사해요', '네, 알겠어요'],
             hint: 'Acknowledge',
+            englishResponse: 'Got it, thank you.',
           },
         ],
       },
@@ -692,6 +754,7 @@ const sections = [
             english: 'Your air conditioning is broken and you cannot sleep. Call the front desk.',
             expectedResponses: ['여보세요, 507호 투숙객인데요. 에어컨이 고장 난 것 같아서 전화드렸어요', '안녕하세요, 객실 에어컨이 작동하지 않아서 연락드립니다', '죄송한데 방 에어컨이 안 되는 것 같아요'],
             hint: 'Report the AC problem',
+            englishResponse: 'Hello, I\'m in room 507. I\'m calling because the air conditioning seems to be broken.',
           },
           {
             speaker: 'other',
@@ -699,6 +762,7 @@ const sections = [
             english: 'I am sorry for the inconvenience. I will send our maintenance team right away. Would you like to wait in the lobby during the repair, or would you prefer to move to a different room?',
             expectedResponses: ['가능하시면 다른 방으로 옮기고 싶은데요', '방을 바꿔 주시면 감사하겠습니다', '수리가 오래 걸리면 다른 방이 나을 것 같아요'],
             hint: 'Request a room change',
+            englishResponse: 'If possible, I\'d like to move to a different room.',
           },
           {
             speaker: 'other',
@@ -706,6 +770,7 @@ const sections = [
             english: 'Yes, there is an available room on the same floor. Shall I help you move your luggage? And as compensation, I will provide you with breakfast coupons.',
             expectedResponses: ['감사합니다, 짐은 많지 않아서 괜찮아요. 조식 쿠폰 감사합니다', '도와주시면 감사하겠어요. 짐이 좀 많아서요', '빠르게 처리해 주셔서 정말 감사합니다'],
             hint: 'Accept the offer',
+            englishResponse: 'Thank you, my luggage isn\'t much so it\'s fine. I appreciate the breakfast coupon.',
           },
           {
             speaker: 'other',
@@ -713,6 +778,7 @@ const sections = [
             english: 'Here is the key for room 509. Have a good night! Please contact us anytime if you need anything else.',
             expectedResponses: ['정말 감사합니다. 빠르게 대응해 주셔서 좋았어요', '신경 써 주셔서 감사합니다. 좋은 밤 되세요', '덕분에 편하게 쉴 수 있겠어요. 감사합니다'],
             hint: 'Thank them sincerely',
+            englishResponse: 'Thank you so much. I really appreciated the quick response.',
           },
         ],
       },
@@ -767,6 +833,7 @@ const sections = [
             english: 'Hey, long time no see! Have you been well?',
             expectedResponses: ['응, 잘 지냈어! 너는?', '그냥 그래. 너는 어때?', '잘 지내지~ 오랜만이다!'],
             hint: 'Respond to a greeting',
+            englishResponse: 'Yeah, I\'ve been good! How about you?',
           },
           {
             speaker: 'other',
@@ -774,6 +841,7 @@ const sections = [
             english: "I've been good too~ What have you been up to?",
             expectedResponses: ['한국어 공부하고 있어', '그냥 일하고 있어', '별로 특별한 건 없어'],
             hint: 'What you have been doing',
+            englishResponse: 'I\'m studying Korean.',
           },
           {
             speaker: 'other',
@@ -781,6 +849,7 @@ const sections = [
             english: 'Oh~ studying Korean? Awesome! Good for you.',
             expectedResponses: ['고마워! 아직 많이 부족해', 'ㅎㅎ 아직 초보야', '고마워, 재밌어'],
             hint: 'Respond humbly',
+            englishResponse: 'Thanks! I still have a lot to learn.',
           },
           {
             speaker: 'other',
@@ -788,6 +857,7 @@ const sections = [
             english: 'Really? What are you doing this weekend? Let us eat together!',
             expectedResponses: ['좋아! 어디서 먹을까?', '토요일 괜찮아!', '좋지! 뭐 먹고 싶어?'],
             hint: 'Accept the invitation',
+            englishResponse: 'Sounds good! Where should we eat?',
           },
           {
             speaker: 'other',
@@ -795,6 +865,7 @@ const sections = [
             english: 'Hmm... how about Korean food? Let us go eat samgyeopsal!',
             expectedResponses: ['삼겹살 좋지!', '좋아, 나 삼겹살 진짜 좋아해', '완전 좋아! 어디로 갈까?'],
             hint: 'React to the suggestion',
+            englishResponse: 'Samgyeopsal is great!',
           },
           {
             speaker: 'other',
@@ -802,6 +873,7 @@ const sections = [
             english: 'Then let us meet at Hongdae on Saturday at 7 PM!',
             expectedResponses: ['좋아, 그때 보자!', '알겠어! 그럼 토요일에~', '오케이! 기대된다!'],
             hint: 'Confirm and say bye',
+            englishResponse: 'Okay, I\'ll see you then!',
           },
         ],
       },
@@ -817,6 +889,7 @@ const sections = [
             english: 'What did you do on the weekend?',
             expectedResponses: ['집에서 쉬었어', '친구 만났어', '넷플릭스 봤어'],
             hint: 'What you did',
+            englishResponse: 'I rested at home.',
           },
           {
             speaker: 'other',
@@ -824,6 +897,7 @@ const sections = [
             english: 'Really? I went hiking.',
             expectedResponses: ['오~ 어디 갔어?', '좋겠다! 힘들지 않았어?', '등산 좋아해?'],
             hint: 'Ask a follow-up',
+            englishResponse: 'Oh~ where did you go?',
           },
           {
             speaker: 'other',
@@ -831,6 +905,7 @@ const sections = [
             english: 'I went to Bukhansan, and the scenery was really beautiful!',
             expectedResponses: ['사진 찍었어?', '나도 한번 가보고 싶다', '우와, 부럽다!'],
             hint: 'React with interest',
+            englishResponse: 'Did you take photos?',
           },
           {
             speaker: 'other',
@@ -838,6 +913,7 @@ const sections = [
             english: 'Yeah! Want to see the photos? Let us go together next time!',
             expectedResponses: ['응, 보여줘!', '좋아, 다음에 꼭 같이 가자', '완전! 언제 갈까?'],
             hint: 'Agree enthusiastically',
+            englishResponse: 'Yeah, show me!',
           },
         ],
       },
@@ -853,6 +929,7 @@ const sections = [
             english: 'Oh right! Let me introduce you. This is my college friend Jisoo.',
             expectedResponses: ['안녕, 나는 민준이야. 만나서 반가워!', '안녕하세요! 얘기 많이 들었어요', '반가워~ 나는 민준이야'],
             hint: 'Introduce yourself',
+            englishResponse: 'Hi, I\'m Minjun. Nice to meet you!',
           },
           {
             speaker: 'other',
@@ -860,6 +937,7 @@ const sections = [
             english: 'Nice to meet you! How long have you been in Korea?',
             expectedResponses: ['한 6개월 됐어', '올해 초에 왔어', '아직 얼마 안 됐어, 한 3개월?'],
             hint: 'Say how long you have been here',
+            englishResponse: 'About six months.',
           },
           {
             speaker: 'other',
@@ -867,6 +945,7 @@ const sections = [
             english: 'Wow~ your Korean is really good! Where did you learn?',
             expectedResponses: ['독학으로 했어', '학원 다니고 있어', '앱으로 공부하고 있어'],
             hint: 'Explain how you learned Korean',
+            englishResponse: 'I studied on my own.',
           },
           {
             speaker: 'other',
@@ -874,6 +953,7 @@ const sections = [
             english: 'Impressive! Teach me English too~ haha. Let us keep in touch!',
             expectedResponses: ['좋아! 카톡 아이디 알려줘', '그래! 번호 교환하자', '물론이지! 인스타 아이디 있어?'],
             hint: 'Exchange contact info',
+            englishResponse: 'Sure! Tell me your KakaoTalk ID.',
           },
         ],
       },
@@ -889,6 +969,7 @@ const sections = [
             english: 'Oh my, who is this! Is that Minjun? How long has it been~',
             expectedResponses: ['안녕하세요, 이모! 오래간만이에요. 잘 지내셨어요?', '이모, 안녕하세요! 정말 오래간만이에요', '안녕하세요! 건강하시죠?'],
             hint: 'Greet the elder respectfully',
+            englishResponse: 'Hello, Aunt! It\'s been a while. Have you been well?',
           },
           {
             speaker: 'other',
@@ -896,6 +977,7 @@ const sections = [
             english: 'Yes~ have you been well? What are you up to these days? Are your parents doing well?',
             expectedResponses: ['네, 덕분에 잘 지내고 있어요. 부모님도 건강하세요', '잘 지내요! 부모님도 안부 전해달라고 하셨어요', '네, 요즘 회사 다니고 있어요. 부모님도 잘 계세요'],
             hint: 'Answer about yourself and your parents',
+            englishResponse: 'Yes, I\'ve been well, thanks. My parents are doing well too.',
           },
           {
             speaker: 'other',
@@ -903,6 +985,7 @@ const sections = [
             english: 'Good to hear. Have you eaten? If not, shall I make you something?',
             expectedResponses: ['감사해요, 이모. 아까 먹고 왔어요', '아, 괜찮으세요. 신경 써 주셔서 감사해요', '이모 손맛이 그리웠어요! 감사합니다'],
             hint: 'Respond politely to the offer',
+            englishResponse: 'Thank you, Aunt. I already ate earlier.',
           },
           {
             speaker: 'other',
@@ -910,6 +993,7 @@ const sections = [
             english: 'At least have some fruit. Come visit me often, okay?',
             expectedResponses: ['네, 자주 올게요! 감사합니다, 이모', '감사해요, 이모. 다음에 부모님이랑 같이 올게요', '네, 꼭 자주 올게요. 건강하세요!'],
             hint: 'Promise to visit again',
+            englishResponse: 'Yes, I\'ll visit often! Thank you, Aunt.',
           },
         ],
       },
@@ -957,6 +1041,7 @@ const sections = [
             english: 'Ask your friend if they want to watch a movie this weekend.',
             expectedResponses: ['이번 주말에 영화 보러 갈래?', '같이 영화 볼까?', '주말에 영화 보자!'],
             hint: 'Suggest a movie',
+            englishResponse: 'Wanna go watch a movie this weekend?',
           },
           {
             speaker: 'other',
@@ -964,6 +1049,7 @@ const sections = [
             english: 'Oh, sounds good! What do you want to watch?',
             expectedResponses: ['액션 영화 보고 싶어', '아무거나 괜찮아, 너는?', '요즘 뭐 재밌는 거 있어?'],
             hint: 'Suggest a genre or ask',
+            englishResponse: 'I want to watch an action movie.',
           },
           {
             speaker: 'other',
@@ -971,6 +1057,7 @@ const sections = [
             english: 'I like action too! Then what time should we watch?',
             expectedResponses: ['오후 3시 어때?', '저녁에 보자, 7시쯤?', '점심 먹고 보자'],
             hint: 'Pick a time',
+            englishResponse: 'How about 3 PM?',
           },
           {
             speaker: 'other',
@@ -978,6 +1065,7 @@ const sections = [
             english: 'Good, then where should we meet?',
             expectedResponses: ['CGV 강남 어때?', '영화관 앞에서 만나자', '강남역에서 만날까?'],
             hint: 'Pick a place',
+            englishResponse: 'How about CGV in Gangnam?',
           },
           {
             speaker: 'other',
@@ -985,6 +1073,7 @@ const sections = [
             english: 'Okay! See you then. Popcorn is on me!',
             expectedResponses: ['ㅋㅋ 고마워! 그때 보자!', '좋아~ 기대된다!', '오~ 고마워! 그럼 음료는 내가 살게'],
             hint: 'Thank and say bye',
+            englishResponse: 'Haha, thanks! See you then!',
           },
         ],
       },
@@ -1000,6 +1089,7 @@ const sections = [
             english: "We're meeting tomorrow, right?",
             expectedResponses: ['아... 그거 얘기하려고 했는데', '미안, 내일 갑자기 일이 생겼어', '어, 그런데 미안한 얘기가 있어'],
             hint: 'Break the news',
+            englishResponse: 'Oh... I was actually going to talk to you about that.',
           },
           {
             speaker: 'other',
@@ -1007,6 +1097,7 @@ const sections = [
             english: 'Huh? Why? Is something going on?',
             expectedResponses: ['갑자기 야근해야 돼', '가족 약속이 생겼어', '몸이 좀 안 좋아서...'],
             hint: 'Explain why',
+            englishResponse: 'I suddenly have to work late.',
           },
           {
             speaker: 'other',
@@ -1014,6 +1105,7 @@ const sections = [
             english: "Oh, really? It's fine~ Let's meet next time.",
             expectedResponses: ['미안해, 다음 주에 꼭 만나자', '고마워, 이해해줘서. 다음에 내가 살게', '진짜 미안! 다음에 꼭!'],
             hint: 'Apologize and reschedule',
+            englishResponse: 'Sorry, let\'s definitely meet next week.',
           },
           {
             speaker: 'other',
@@ -1021,6 +1113,7 @@ const sections = [
             english: 'Haha okay~ Then how about next Saturday?',
             expectedResponses: ['토요일 좋아!', '응, 다음 주 토요일 괜찮아', '좋아, 그때 만나자!'],
             hint: 'Confirm new plan',
+            englishResponse: 'Yeah, next Saturday works for me.',
           },
         ],
       },
@@ -1036,6 +1129,7 @@ const sections = [
             english: 'We are trying to have a class reunion, but it seems hard to coordinate everyone\'s schedules. Could you organize it?',
             expectedResponses: ['응, 내가 단톡방에 투표 올릴게', '그래, 내가 일정 조율해 볼게. 몇 명이나 올 것 같아?', '알겠어, 다음 주쯤으로 잡아볼까?'],
             hint: 'Agree to organize',
+            englishResponse: 'Yeah, I\'ll put up a poll in the group chat.',
           },
           {
             speaker: 'other',
@@ -1043,6 +1137,7 @@ const sections = [
             english: 'About 8? But Minsu is only free on weekends, and Jieun can only do Friday evenings. What should we do?',
             expectedResponses: ['그럼 금요일 저녁이나 토요일로 잡는 게 나을 것 같아', '다수결로 하자. 투표해서 많은 날로 정하자', '모든 사람 맞추기 힘드니까 제일 많이 되는 날로 가자'],
             hint: 'Suggest a solution',
+            englishResponse: 'Then I think Friday evening or Saturday would be best.',
           },
           {
             speaker: 'other',
@@ -1050,6 +1145,7 @@ const sections = [
             english: 'Good, what about the venue? Gangnam is the most convenient, but Hyejin might say it is too far.',
             expectedResponses: ['그럼 홍대는 어때? 접근성도 좋고 맛집도 많잖아', '중간 지점으로 잡자. 종로나 을지로 어때?', '혜진이한테 물어보고 다 같이 편한 데로 하자'],
             hint: 'Suggest a compromise location',
+            englishResponse: 'Then how about Hongdae? It\'s accessible and has lots of restaurants.',
           },
           {
             speaker: 'other',
@@ -1057,6 +1153,7 @@ const sections = [
             english: 'Hongdae sounds good! Can you make the restaurant reservation? Somewhere that seats about 8.',
             expectedResponses: ['응, 내가 알아보고 예약할게. 한식이 나을까, 고기집이 나을까?', '그래, 예약은 내가 할게. 예산은 1인당 어느 정도로 잡을까?', '알겠어, 좋은 데 찾아서 단톡에 공유할게'],
             hint: 'Accept and ask about preferences',
+            englishResponse: 'Yeah, I\'ll look into it and make a reservation. Korean food or BBQ?',
           },
           {
             speaker: 'other',
@@ -1064,6 +1161,7 @@ const sections = [
             english: 'BBQ place sounds great! Around 30,000 won per person should be fine. Thanks so much, you are the best!',
             expectedResponses: ['ㅋㅋ 알겠어! 예약하고 단톡에 올릴게. 다들 꼭 와야 해!', '별말을~ 오랜만에 다 같이 만나니까 기대된다!', '좋아, 이번 주 안에 정리해서 공유할게'],
             hint: 'Wrap up the planning',
+            englishResponse: 'Haha, got it! I\'ll make the reservation and post it in the chat. Everyone has to come!',
           },
         ],
       },
@@ -1111,6 +1209,7 @@ const sections = [
             english: 'Why do you look so happy today?',
             expectedResponses: ['오늘 시험 끝났어!', '좋은 일이 있었어', '그냥 기분이 좋아!'],
             hint: 'Why you are happy',
+            englishResponse: 'I finished my exam today!',
           },
           {
             speaker: 'other',
@@ -1118,6 +1217,7 @@ const sections = [
             english: 'Oh~ what is it? Tell me!',
             expectedResponses: ['사실 승진했어!', '한국어 시험에서 좋은 점수 받았어', '새 프로젝트가 재밌어'],
             hint: 'Share the good news',
+            englishResponse: 'I actually got promoted!',
           },
           {
             speaker: 'other',
@@ -1125,6 +1225,7 @@ const sections = [
             english: 'Wow! Congratulations! You should treat us today, right?',
             expectedResponses: ['ㅋㅋ 알겠어, 오늘 내가 쏠게!', '그렇지? 오늘 내가 살게', '에이~ 다음에!'],
             hint: 'Respond to the teasing',
+            englishResponse: 'Haha, okay! My treat today!',
           },
           {
             speaker: 'other',
@@ -1132,6 +1233,7 @@ const sections = [
             english: 'Hearing good news makes me happy too!',
             expectedResponses: ['고마워! 너도 좋은 일만 있을 거야', '같이 기뻐해줘서 고마워', '우리 오늘 신나게 놀자!'],
             hint: 'Thank them warmly',
+            englishResponse: 'Thanks! Good things will happen to you too!',
           },
         ],
       },
@@ -1147,6 +1249,7 @@ const sections = [
             english: "Are you okay? You don't look great.",
             expectedResponses: ['좀 피곤해서 그래', '요즘 스트레스 좀 받아', '어제 잠을 못 잤어'],
             hint: 'How you are feeling',
+            englishResponse: 'I\'m just a bit tired.',
           },
           {
             speaker: 'other',
@@ -1154,6 +1257,7 @@ const sections = [
             english: "What's going on? Talk to me.",
             expectedResponses: ['일이 너무 많아', '요즘 회사가 바빠서...', '별거 아닌데 그냥 힘들어'],
             hint: 'Explain what is wrong',
+            englishResponse: 'There\'s just too much work.',
           },
           {
             speaker: 'other',
@@ -1161,6 +1265,7 @@ const sections = [
             english: "That must be tough... Let's go eat something good. My treat.",
             expectedResponses: ['진짜? 고마워...', '너무 고마워, 좋은 친구야', '응, 맛있는 거 먹으면 좀 나을 것 같아'],
             hint: 'Accept the kindness',
+            englishResponse: 'Really? Thanks...',
           },
           {
             speaker: 'other',
@@ -1168,6 +1273,7 @@ const sections = [
             english: 'Good food makes all the stress go away!',
             expectedResponses: ['맞아! 고마워 진짜', '벌써 기분이 좀 나아졌어', 'ㅋㅋ 그래, 가자!'],
             hint: 'Agree and cheer up',
+            englishResponse: 'You\'re right! Thanks, really.',
           },
         ],
       },
@@ -1183,6 +1289,7 @@ const sections = [
             english: 'Is there anything fun going on these days?',
             expectedResponses: ['요즘 새로운 드라마 보고 있어!', '넷플릭스에서 드라마 하나 찾았어', '요즘 재밌는 예능 있어'],
             hint: 'Share what you are watching',
+            englishResponse: 'I\'m watching a new drama these days!',
           },
           {
             speaker: 'other',
@@ -1190,6 +1297,7 @@ const sections = [
             english: 'Oh, what is it? Is it good?',
             expectedResponses: ['응, 진짜 재밌어! 추천해', '완전 재밌어, 밤새 봤어', '스토리가 진짜 좋아'],
             hint: 'Describe it briefly',
+            englishResponse: 'Yeah, it\'s really fun! I recommend it.',
           },
           {
             speaker: 'other',
@@ -1197,6 +1305,7 @@ const sections = [
             english: 'Should I watch it too? How many episodes?',
             expectedResponses: ['16회인데 빨리 끝나', '12회밖에 없어, 금방 봐', '한 20회? 좀 긴데 재밌어'],
             hint: 'Answer about episodes',
+            englishResponse: 'It\'s 16 episodes and goes by quick.',
           },
           {
             speaker: 'other',
@@ -1204,6 +1313,7 @@ const sections = [
             english: "Okay, I'll watch it tonight! Let's talk about it after.",
             expectedResponses: ['좋아! 스포 주의해~', '응~ 다 보고 나서 얘기하자', '절대 스포하지 마! ㅋㅋ'],
             hint: 'Agree, no spoilers',
+            englishResponse: 'Good! No spoilers though~',
           },
         ],
       },
@@ -1219,6 +1329,7 @@ const sections = [
             english: 'You have a big decision to make. Bring it up with a close friend.',
             expectedResponses: ['나 요즘 고민이 있는데 좀 들어줄 수 있어?', '얘기 좀 하고 싶은 건데, 시간 괜찮아?', '솔직히 요즘 큰 결정을 앞두고 있어서 조언 좀 구하고 싶어'],
             hint: 'Open up about your concern',
+            englishResponse: 'I have something on my mind. Can you listen?',
           },
           {
             speaker: 'other',
@@ -1226,6 +1337,7 @@ const sections = [
             english: 'Sure, what is it about? Feel free to talk.',
             expectedResponses: ['사실 이직을 고민하고 있어. 지금 회사도 나쁘지 않은데 새로운 기회가 생겨서', '지금 직장을 그만두고 대학원을 갈까 생각 중이야', '해외로 나갈지 한국에 남을지 고민이야'],
             hint: 'Explain the dilemma',
+            englishResponse: 'I\'m actually thinking about changing jobs. My current company isn\'t bad, but a new opportunity came up.',
           },
           {
             speaker: 'other',
@@ -1233,6 +1345,7 @@ const sections = [
             english: 'Hmm... that is not an easy decision. What is better about the new place? And what is lacking at your current job?',
             expectedResponses: ['새로운 데는 연봉도 높고 성장할 수 있을 것 같은데, 지금 회사 사람들이 좋거든', '지금은 안정적인데 도전이 없어. 새 데는 힘들 수 있지만 배울 게 많을 것 같아', '솔직히 양쪽 다 장단점이 있어서 더 어려워'],
             hint: 'Compare pros and cons honestly',
+            englishResponse: 'The new place has better pay and growth potential, but I really like the people at my current job.',
           },
           {
             speaker: 'other',
@@ -1240,6 +1353,7 @@ const sections = [
             english: 'I get it. But I hope you make a choice you won\'t regret. When you look back in 10 years, which choice would you regret more?',
             expectedResponses: ['음... 아마 도전 안 한 걸 더 후회할 것 같아', '맞아, 그렇게 생각하니까 좀 정리가 되네', '너 말이 맞아. 안 해보고 후회하는 게 더 싫어'],
             hint: 'Reflect on the advice',
+            englishResponse: 'Hmm... I\'d probably regret not taking the challenge more.',
           },
           {
             speaker: 'other',
@@ -1247,6 +1361,7 @@ const sections = [
             english: 'Then seems like you have your answer! haha. Whatever you choose, I support you. Reach out anytime if it is tough.',
             expectedResponses: ['고마워, 진짜. 이렇게 들어줘서 마음이 한결 편해졌어', '최고다 진짜. 결정하면 제일 먼저 알려줄게', '얘기하니까 확실히 정리됐어. 정말 고마워'],
             hint: 'Express gratitude for the support',
+            englishResponse: 'Thanks, really. Hearing you out made me feel so much better.',
           },
         ],
       },
@@ -1301,6 +1416,7 @@ const sections = [
                 english: 'Is everyone here? Let us start the meeting.',
                 expectedResponses: ['네, 시작하죠', '잠깐만요, 한 명 더 오고 있습니다', '네, 시작하겠습니다'],
                 hint: 'Agree to start',
+                englishResponse: 'Yes, let\'s start.',
               },
               {
                 speaker: 'other',
@@ -1308,6 +1424,7 @@ const sections = [
                 english: "There are three agenda items today. Shall we start with last week's results?",
                 expectedResponses: ['네, 좋습니다', '먼저 자료 공유해 주세요', '알겠습니다'],
                 hint: 'Agree and ask for the material',
+                englishResponse: 'Yes, that sounds good.',
               },
               {
                 speaker: 'other',
@@ -1315,6 +1432,7 @@ const sections = [
                 english: 'Do you have any thoughts on this?',
                 expectedResponses: ['저는 이 방향이 좋을 것 같습니다', '조금 더 검토가 필요할 것 같습니다', '동의합니다'],
                 hint: 'Share your opinion',
+                englishResponse: 'I think this direction is good.',
               },
               {
                 speaker: 'other',
@@ -1322,6 +1440,7 @@ const sections = [
                 english: 'Can you share another update next week?',
                 expectedResponses: ['네, 그렇게 하겠습니다', '화요일까지 보내드리겠습니다', '물론입니다'],
                 hint: 'Commit to a follow-up',
+                englishResponse: 'Yes, I\'ll do that.',
               },
             ],
           },
@@ -1337,6 +1456,7 @@ const sections = [
                 english: 'Hello! Thank you for attending today\'s meeting.',
                 expectedResponses: ['안녕하세요, 감사합니다', '안녕하세요! 잘 부탁드립니다', '네, 안녕하세요'],
                 hint: 'Return the greeting',
+                englishResponse: 'Hello, thank you.',
               },
               {
                 speaker: 'other',
@@ -1344,6 +1464,7 @@ const sections = [
                 english: 'Did you receive the materials?',
                 expectedResponses: ['네, 받았습니다', '아직 보지 못했습니다', '네, 확인했습니다'],
                 hint: 'Confirm receipt',
+                englishResponse: 'Yes, I received it.',
               },
               {
                 speaker: 'other',
@@ -1351,6 +1472,7 @@ const sections = [
                 english: 'Shall we begin?',
                 expectedResponses: ['네, 시작하죠', '좋습니다', '네, 준비됐습니다'],
                 hint: 'Agree to start',
+                englishResponse: 'Yes, let\'s start.',
               },
               {
                 speaker: 'other',
@@ -1358,6 +1480,7 @@ const sections = [
                 english: 'Good work in today\'s meeting!',
                 expectedResponses: ['수고하셨습니다', '감사합니다, 수고하셨습니다', '네, 수고하셨습니다'],
                 hint: 'Say goodbye after the meeting',
+                englishResponse: 'Good work.',
               },
             ],
           },
@@ -1373,6 +1496,7 @@ const sections = [
                 english: 'Then please go ahead with the next presentation.',
                 expectedResponses: ['네, 시작하겠습니다. 자료를 화면에 띄우겠습니다', '감사합니다. 간단히 설명드리겠습니다', '네, 제가 이번 주 업데이트를 공유하겠습니다'],
                 hint: 'Begin your presentation',
+                englishResponse: 'Yes, I\'ll start. I\'ll put the slides on screen.',
               },
               {
                 speaker: 'other',
@@ -1380,6 +1504,7 @@ const sections = [
                 english: 'Could you explain this part in more detail?',
                 expectedResponses: ['네, 이건 지난달 대비 20% 증가한 수치입니다', '물론입니다. 이 그래프를 보시면 추세를 확인하실 수 있습니다', '네, 좀 더 자세히 말씀드리면요...'],
                 hint: 'Elaborate on a point',
+                englishResponse: 'Yes, this is a 20% increase compared to last month.',
               },
               {
                 speaker: 'other',
@@ -1387,6 +1512,7 @@ const sections = [
                 english: 'What is the plan for the next steps?',
                 expectedResponses: ['다음 주까지 최종 보고서를 작성할 예정입니다', '팀원들과 논의 후 금요일까지 결정할 계획입니다', '일정표를 공유해 드리겠습니다'],
                 hint: 'Outline next steps',
+                englishResponse: 'I plan to complete the final report by next week.',
               },
               {
                 speaker: 'other',
@@ -1394,6 +1520,7 @@ const sections = [
                 english: 'Got it. That was a good presentation. Thank you.',
                 expectedResponses: ['감사합니다! 질문 있으시면 언제든 말씀해 주세요', '고맙습니다. 추가 자료 필요하시면 공유드리겠습니다', '감사합니다'],
                 hint: 'Thank them and offer to help',
+                englishResponse: 'Thank you! Feel free to ask questions anytime.',
               },
             ],
           },
@@ -1441,6 +1568,7 @@ const sections = [
                 english: 'Hello, welcome to today\'s interview. Please give us a brief self-introduction.',
                 expectedResponses: ['안녕하세요, 저는 김민준이라고 합니다', '반갑습니다, 저는 마케팅 분야에서 일해왔습니다', '안녕하세요, 잘 부탁드립니다'],
                 hint: 'Greet and introduce yourself',
+                englishResponse: 'Hello, I\'m Minjun Kim.',
               },
               {
                 speaker: 'other',
@@ -1448,6 +1576,7 @@ const sections = [
                 english: 'What motivated you to apply for this position?',
                 expectedResponses: ['이 회사의 비전에 공감해서 지원했습니다', '제 역량을 발휘할 수 있을 것 같아서 지원했습니다', '성장 가능성이 크다고 생각했습니다'],
                 hint: 'Explain your motivation',
+                englishResponse: 'I applied because I relate to the company\'s vision.',
               },
               {
                 speaker: 'other',
@@ -1455,6 +1584,7 @@ const sections = [
                 english: 'Please tell us your strengths and weaknesses.',
                 expectedResponses: ['제 강점은 꼼꼼함이고, 약점은 완벽주의 성향입니다', '저는 빠른 학습 능력이 강점입니다', '소통 능력이 강점이라고 생각합니다'],
                 hint: 'Describe your strengths and a weakness',
+                englishResponse: 'My strength is attention to detail, and my weakness is perfectionism.',
               },
               {
                 speaker: 'other',
@@ -1462,6 +1592,7 @@ const sections = [
                 english: 'Finally, do you have any questions for us?',
                 expectedResponses: ['입사 후 교육 프로그램이 있나요?', '팀 분위기는 어떤가요?', '네, 몇 가지 여쭤봐도 될까요?'],
                 hint: 'Ask a thoughtful question',
+                englishResponse: 'Is there a training program after joining?',
               },
             ],
           },
@@ -1477,6 +1608,7 @@ const sections = [
                 english: 'Hello, come in. Please sit down.',
                 expectedResponses: ['안녕하세요, 감사합니다', '네, 감사합니다', '안녕하세요'],
                 hint: 'Greet and sit down',
+                englishResponse: 'Hello, thank you.',
               },
               {
                 speaker: 'other',
@@ -1484,6 +1616,7 @@ const sections = [
                 english: 'What is your name?',
                 expectedResponses: ['저는 김민준입니다', '김민준이라고 합니다', '저는 김민준이라고 합니다'],
                 hint: 'Say your name',
+                englishResponse: 'I\'m Minjun Kim.',
               },
               {
                 speaker: 'other',
@@ -1491,6 +1624,7 @@ const sections = [
                 english: 'Where do you live?',
                 expectedResponses: ['서울에 살고 있습니다', '강남에 살고 있습니다', '서울 근처에 살고 있습니다'],
                 hint: 'Say where you live',
+                englishResponse: 'I live in Seoul.',
               },
               {
                 speaker: 'other',
@@ -1498,6 +1632,7 @@ const sections = [
                 english: 'Thank you for coming today. We will contact you next week with the results.',
                 expectedResponses: ['감사합니다, 좋은 하루 되세요', '네, 감사합니다. 연락 기다리겠습니다', '감사합니다'],
                 hint: 'Thank them and say goodbye',
+                englishResponse: 'Thank you, have a great day.',
               },
             ],
           },
@@ -1513,6 +1648,7 @@ const sections = [
                 english: 'What did you do at your previous job?',
                 expectedResponses: ['마케팅 팀에서 3년간 일했습니다', '고객 서비스 업무를 담당했습니다', '프로젝트 관리를 주로 했습니다'],
                 hint: 'Describe your previous role',
+                englishResponse: 'I worked in the marketing department for three years.',
               },
               {
                 speaker: 'other',
@@ -1520,6 +1656,7 @@ const sections = [
                 english: 'Is there a project that stands out the most?',
                 expectedResponses: ['네, 신제품 출시 프로젝트가 가장 기억에 남아요', '작년에 팀을 이끌고 한 캠페인이 성공적이었어요', '고객 만족도를 30% 올린 프로젝트가 있었어요'],
                 hint: 'Share a memorable project',
+                englishResponse: 'Yes, the new product launch project stands out the most.',
               },
               {
                 speaker: 'other',
@@ -1527,6 +1664,7 @@ const sections = [
                 english: 'How do you handle difficult situations?',
                 expectedResponses: ['먼저 문제를 분석하고 우선순위를 정합니다', '팀원들과 소통하면서 해결 방법을 찾습니다', '침착하게 상황을 파악하고 단계별로 해결합니다'],
                 hint: 'Explain your approach',
+                englishResponse: 'First, I analyze the problem and prioritize.',
               },
               {
                 speaker: 'other',
@@ -1534,6 +1672,7 @@ const sections = [
                 english: 'Why do you think you are a good fit for this role?',
                 expectedResponses: ['제 경험이 이 직무와 잘 맞는다고 생각합니다', '이전 경력에서 쌓은 역량을 발휘할 수 있을 것 같아요', '이 분야에 대한 열정과 경험이 있습니다'],
                 hint: 'Explain why you fit',
+                englishResponse: 'I believe my experience aligns well with this position.',
               },
             ],
           },
