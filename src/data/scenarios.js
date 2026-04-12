@@ -15,32 +15,26 @@ const sections = [
       {
         korean: '아이스 아메리카노 한 잔 주세요.',
         english: 'One iced americano, please.',
-        romanization: 'aiseu amerikano han jan juseyo.',
       },
       {
         korean: '따뜻한 라떼 한 잔 주세요.',
         english: 'One hot latte, please.',
-        romanization: 'ttatteutan latte han jan juseyo.',
       },
       {
         korean: '카드로 계산할게요.',
         english: "I'll pay by card.",
-        romanization: 'kadeuro gyesanhalgeyo.',
       },
       {
         korean: '여기서 먹고 갈게요.',
         english: "I'll eat here.",
-        romanization: 'yeogiseo meokgo galgeyo.',
       },
       {
         korean: '포장해 주세요.',
         english: 'To go, please.',
-        romanization: 'pojanghae juseyo.',
       },
       {
         korean: '메뉴판 좀 볼 수 있을까요?',
         english: 'Can I see the menu?',
-        romanization: 'menupan jom bol su isseulkkayo?',
       },
     ],
     sessions: [
@@ -179,17 +173,14 @@ const sections = [
       {
         korean: '메뉴판 좀 주세요.',
         english: 'Please give me the menu.',
-        romanization: 'menupan jom juseyo.',
       },
       {
         korean: '이거 하나 주세요.',
         english: 'One of this, please.',
-        romanization: 'igeo hana juseyo.',
       },
       {
         korean: '물 좀 주세요.',
         english: 'Water, please.',
-        romanization: 'mul jom juseyo.',
       },
     ],
     sessions: [
@@ -342,12 +333,10 @@ const sections = [
       {
         korean: '지하철역이 어디에 있어요?',
         english: 'Where is the subway station?',
-        romanization: 'jihacheollyeogi eodie isseoyo?',
       },
       {
         korean: '이쪽으로 가면 돼요?',
         english: 'Can I go this way?',
-        romanization: 'ijjogeuro gamyeon dwaeyo?',
       },
     ],
     sessions: [
@@ -465,12 +454,10 @@ const sections = [
       {
         korean: '이거 얼마예요?',
         english: 'How much is this?',
-        romanization: 'igeo eolmayeyo?',
       },
       {
         korean: '좀 더 싼 거 있어요?',
         english: 'Do you have something cheaper?',
-        romanization: 'jom deo ssan geo isseoyo?',
       },
     ],
     sessions: [
@@ -602,27 +589,22 @@ const sections = [
       {
         korean: '체크인 하려고 왔는데요.',
         english: "I'm here to check in.",
-        romanization: 'chekeu-in haryogo wanneundeyo.',
       },
       {
         korean: '예약 확인 부탁드려도 될까요?',
         english: 'Could you confirm my reservation?',
-        romanization: 'yeyak hwakin butakdeuryeodo doelkkayo?',
       },
       {
         korean: '객실 키를 분실했어요.',
         english: 'I lost my room key.',
-        romanization: 'gaeksil kireul bunsirhaesseoyo.',
       },
       {
         korean: '와이파이 비밀번호가 뭐예요?',
         english: 'What is the Wi-Fi password?',
-        romanization: 'waipai bimilbeonhoga mwoyeyo?',
       },
       {
         korean: '체크아웃은 몇 시예요?',
         english: 'What time is check-out?',
-        romanization: 'chekeu-auteun myeot siyeyo?',
       },
     ],
     sessions: [
@@ -754,27 +736,22 @@ const sections = [
       {
         korean: '요즘 어떻게 지내?',
         english: 'How have you been lately?',
-        romanization: 'yojeum eotteoke jinae?',
       },
       {
         korean: '오랜만이야! 잘 지냈어?',
         english: "Long time no see! Have you been well?",
-        romanization: 'oraenmaniya! jal jinaesseo?',
       },
       {
         korean: '별일 없어, 그냥 그래.',
         english: 'Nothing special, just the usual.',
-        romanization: 'byeoril eopseo, geunyang geurae.',
       },
       {
         korean: '주말에 뭐 했어?',
         english: 'What did you do on the weekend?',
-        romanization: 'jumale mwo haesseo?',
       },
       {
         korean: '요즘 바빠? 아니면 시간 있어?',
         english: 'Are you busy these days? Or do you have time?',
-        romanization: 'yojeum bappa? animyeon sigan isseo?',
       },
     ],
     sessions: [
@@ -949,27 +926,22 @@ const sections = [
       {
         korean: '이번 주 토요일에 시간 있어?',
         english: 'Are you free this Saturday?',
-        romanization: 'ibeon ju toyoire sigan isseo?',
       },
       {
         korean: '같이 영화 보러 갈래?',
         english: 'Wanna go watch a movie together?',
-        romanization: 'gachi yeonghwa boreo gallae?',
       },
       {
         korean: '몇 시에 만날까?',
         english: 'What time should we meet?',
-        romanization: 'myeot sie mannalkka?',
       },
       {
         korean: '어디서 만날까?',
         english: 'Where should we meet?',
-        romanization: 'eodiseo mannalkka?',
       },
       {
         korean: '미안, 그날은 좀 바빠.',
         english: "Sorry, I'm a bit busy that day.",
-        romanization: 'mian, geunareun jom bappa.',
       },
     ],
     sessions: [
@@ -1108,27 +1080,22 @@ const sections = [
       {
         korean: '오늘 기분이 좋아!',
         english: "I'm in a good mood today!",
-        romanization: 'oneul gibuni joa!',
       },
       {
         korean: '좀 피곤해. 어제 늦게 잤어.',
         english: "I'm a bit tired. I slept late yesterday.",
-        romanization: 'jom pigonhae. eoje neutge jasseo.',
       },
       {
         korean: '이거 진짜 맛있다!',
         english: 'This is really delicious!',
-        romanization: 'igeo jinjja masitda!',
       },
       {
         korean: '나 요즘 스트레스 받아.',
         english: "I'm stressed out these days.",
-        romanization: 'na yojeum seuteureseu bada.',
       },
       {
         korean: '그거 재밌겠다!',
         english: 'That sounds fun!',
-        romanization: 'geugeo jaemitgetda!',
       },
     ],
     sessions: [
@@ -1303,27 +1270,22 @@ const sections = [
           {
             korean: '회의를 시작하겠습니다.',
             english: "Let's get the meeting started.",
-            romanization: 'hoeireul sijakhagetseumnida.',
           },
           {
             korean: '의견 있으신 분 계세요?',
             english: 'Does anyone have any input?',
-            romanization: 'uigyeon isseusiн bun gyeseyo?',
           },
           {
             korean: '자료를 화면에 띄워 드릴게요.',
             english: "I'll put the slides up on screen.",
-            romanization: 'jaryoreul hwamyeone ttiweo deurilgeyo.',
           },
           {
             korean: '다음 주까지 보고서를 제출해 주세요.',
             english: 'Please submit the report by next week.',
-            romanization: 'daeum jukkaji bogoseoreul jechulhae juseyo.',
           },
           {
             korean: '회의록을 공유해 드리겠습니다.',
             english: "I'll share the meeting notes.",
-            romanization: 'hoeiirogeul gongyuhae deurigetseumnida.',
           },
         ],
         sessions: [
@@ -1448,27 +1410,22 @@ const sections = [
           {
             korean: '저는 5년간 마케팅 분야에서 일했습니다.',
             english: 'I have worked in marketing for five years.',
-            romanization: 'jeoneun 5nyeongan maketing bunyaeseo ilhaetseumnida.',
           },
           {
             korean: '팀워크를 중요하게 생각합니다.',
             english: 'I value teamwork highly.',
-            romanization: 'timwokeureul jungyohage saenggakamnida.',
           },
           {
             korean: '이 회사에 꼭 입사하고 싶습니다.',
             english: 'I really want to join this company.',
-            romanization: 'i hoesae kkok ipsahago sipseumnida.',
           },
           {
             korean: '제 강점은 문제 해결 능력입니다.',
             english: 'My strength is problem-solving ability.',
-            romanization: 'je gangjjeomeun munje haegyeol neungnyeogipnida.',
           },
           {
             korean: '궁금한 점이 있으시면 언제든지 질문해 주세요.',
             english: 'Please feel free to ask if you have any questions.',
-            romanization: 'gunggeumhan jeomi isseusimyeon eonjedeunji jilmunhae juseyo.',
           },
         ],
         sessions: [

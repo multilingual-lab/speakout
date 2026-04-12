@@ -96,19 +96,21 @@ export default function PracticeMode({ exchanges }) {
   if (isFinished) {
     return (
       <div className="practice-container">
-        {/* Show full conversation history */}
-        <div className="chat-history">
-          {history.map((msg, i) => (
-            <div key={i} className={`chat-bubble ${msg.speaker === 'other' ? 'other-bubble' : 'user-bubble'}`}>
-              <div className="bubble-speaker">{msg.speaker === 'other' ? '상대방' : '나'}</div>
-              <p className="bubble-korean">{msg.korean}</p>
-            </div>
-          ))}
-        </div>
-        <div className="practice-complete">
-          <span className="complete-emoji">🎉</span>
-          <h3>수고했어요!</h3>
-          <p>Great job! You completed the conversation.</p>
+        <div className="practice-scroll-area">
+          {/* Show full conversation history */}
+          <div className="chat-history">
+            {history.map((msg, i) => (
+              <div key={i} className={`chat-bubble ${msg.speaker === 'other' ? 'other-bubble' : 'user-bubble'}`}>
+                <div className="bubble-speaker">{msg.speaker === 'other' ? '상대방' : '나'}</div>
+                <p className="bubble-korean">{msg.korean}</p>
+              </div>
+            ))}
+          </div>
+          <div className="practice-complete">
+            <span className="complete-emoji">🎉</span>
+            <h3>수고했어요!</h3>
+            <p>Great job! You completed the conversation.</p>
+          </div>
         </div>
       </div>
     );

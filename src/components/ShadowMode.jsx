@@ -20,6 +20,7 @@ function DialogShadow({ exchanges }) {
   const [showEnglish, setShowEnglish] = useState(false);
   const wasListeningRef = useRef(false);
   const chatEndRef = useRef(null);
+  const historyEndRef = useRef(null);
   const { isListening, transcript, isSpeaking, startListening, stopListening, speak, setTranscript } =
     useSpeech();
 
@@ -27,6 +28,8 @@ function DialogShadow({ exchanges }) {
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    // Auto-scroll history to bottom
+    setTimeout(() => historyEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' }), 50);
   }, [currentIndex, showResult]);
 
   useEffect(() => {
@@ -89,6 +92,7 @@ function DialogShadow({ exchanges }) {
                 <p className="shadow-line-text">{l.korean}</p>
               </div>
             ))}
+            <div ref={historyEndRef} />
           </div>
         )}
 
@@ -98,7 +102,6 @@ function DialogShadow({ exchanges }) {
             {line.speaker === 'you' ? '나 (Your turn)' : '상대방 (Other)'}
           </div>
           <p className="shadow-korean">{line.korean}</p>
-          {line.context && <p className="shadow-context">{line.context}</p>}
           {showEnglish && line.english && <p className="shadow-english">{line.english}</p>}
           {!showEnglish && line.english && (
             <button className="hint-btn" onClick={() => setShowEnglish(true)}>
@@ -107,22 +110,21 @@ function DialogShadow({ exchanges }) {
           )}
         </div>
 
-        {showResult && transcript && (
-          <div className="shadow-result">
-            <p className="result-label">You said:</p>
-            <p className="result-transcript">{transcript}</p>
-            <div className={`result-score ${similarity >= 80 ? 'good' : similarity >= 50 ? 'ok' : 'poor'}`}>
-              {similarity >= 80 ? '🎉' : similarity >= 50 ? '👍' : '💪'}{' '}
-              {similarity}% match
-            </div>
+        {showResult && (
+          <div className="shadow-result-bar">
+            {transcript ? (
+              <>
+                <span className="result-bar-text">You said: <strong>{transcript}</strong></span>
+                <span className={`result-bar-score ${similarity >= 80 ? 'good' : similarity >= 50 ? 'ok' : 'poor'}`}>
+                  {similarity >= 80 ? '🎉' : similarity >= 50 ? '👍' : '💪'} {similarity}%
+                </span>
+              </>
+            ) : (
+              <span className="result-bar-text">No speech detected — try again</span>
+            )}
           </div>
         )}
 
-        {showResult && !transcript && (
-          <div className="shadow-result">
-            <p className="result-label">No speech detected. Try again!</p>
-          </div>
-        )}
         <div ref={chatEndRef} />
       </div>
 
@@ -149,9 +151,13 @@ function DialogShadow({ exchanges }) {
           <button className="nav-btn" onClick={handlePrev} disabled={currentIndex === 0}>
             ← Previous
           </button>
-          <button className="nav-btn" onClick={handleNext} disabled={currentIndex >= lines.length - 1}>
-            Next →
-          </button>
+          {currentIndex >= lines.length - 1 ? (
+            <span className="nav-btn finished">Finished ✓</span>
+          ) : (
+            <button className="nav-btn" onClick={handleNext}>
+              Next →
+            </button>
+          )}
         </div>
       </div>
     </div>
@@ -259,20 +265,18 @@ function PhraseShadow({ phrases }) {
           )}
         </div>
 
-        {showResult && transcript && (
-          <div className="shadow-result">
-            <p className="result-label">You said:</p>
-            <p className="result-transcript">{transcript}</p>
-            <div className={`result-score ${similarity >= 80 ? 'good' : similarity >= 50 ? 'ok' : 'poor'}`}>
-              {similarity >= 80 ? '🎉' : similarity >= 50 ? '👍' : '💪'}{' '}
-              {similarity}% match
-            </div>
-          </div>
-        )}
-
-        {showResult && !transcript && (
-          <div className="shadow-result">
-            <p className="result-label">No speech detected. Try again!</p>
+        {showResult && (
+          <div className="shadow-result-bar">
+            {transcript ? (
+              <>
+                <span className="result-bar-text">You said: <strong>{transcript}</strong></span>
+                <span className={`result-bar-score ${similarity >= 80 ? 'good' : similarity >= 50 ? 'ok' : 'poor'}`}>
+                  {similarity >= 80 ? '🎉' : similarity >= 50 ? '👍' : '💪'} {similarity}%
+                </span>
+              </>
+            ) : (
+              <span className="result-bar-text">No speech detected — try again</span>
+            )}
           </div>
         )}
       </div>
@@ -306,12 +310,16 @@ function PhraseShadow({ phrases }) {
         </div>
 
         <div className="shadow-nav">
-          <button className="nav-btn" onClick={handlePrev}>
+          <button className="nav-btn" onClick={handlePrev} disabled={currentIndex === 0}>
             ← Previous
           </button>
-          <button className="nav-btn" onClick={handleNext}>
-            Next →
-          </button>
+          {currentIndex >= phrases.length - 1 ? (
+            <span className="nav-btn finished">Finished ✓</span>
+          ) : (
+            <button className="nav-btn" onClick={handleNext}>
+              Next →
+            </button>
+          )}
         </div>
       </div>
     </div>
