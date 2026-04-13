@@ -172,6 +172,25 @@
   background: var(--color-primary-hover);
 }
 
+.next-session-btn {
+  background: var(--color-primary);
+  margin-top: 0.75rem;
+  width: 100%;
+  text-align: center;
+  font-size: 1rem;
+  padding: 0.7rem 1.2rem;
+}
+.next-session-btn:hover {
+  background: var(--color-primary-hover);
+}
+
+.last-practice-hint {
+  margin-top: 0.75rem;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  text-align: center;
+}
+
 .hint-btn {
   background: none;
   border: 1px solid var(--color-border);

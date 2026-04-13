@@ -54,10 +54,12 @@ TopicGrid (home)          ⚙️ Settings gear (always visible, top-right)
   └─ Topic card → [🎙️ 실전] or [🔄 쉐도잉] button
         └─ SceneView (mode toggle bar always visible)
               ├─ Practice mode → Dialog picker → PracticeMode (chat)
-              │     └─ Feedback phase: model answers with per-answer 🔊 TTS buttons
+              │     ├─ Feedback phase: model answers with per-answer 🔊 TTS buttons
+              │     └─ Finished: "Next: <dialog>" button (or "last dialog" if final)
               └─ Shadow mode → Session picker → ShadowMode
                     ├─ Quick Phrases (original phrase drills)
                     └─ Dialog Shadow (shadow full conversations with context)
+                          └─ Last item: "Next: <dialog>" button (or "last dialog" if final)
 ```
 
 ## Data Model (`src/data/scenarios.js`)
@@ -118,6 +120,7 @@ sections[]          // "여행 한국어" | "친구와 대화" | "직장 한국�
 - [x] Dialog list sorted by difficulty level (beginner → intermediate → advanced)
 - [x] Testing (Vitest): schema validation for scenarios data, scoring/normalization unit tests (`npm test`)
 - [x] Extracted `computeSimilarity` into shared `src/utils/scoring.js` module
+- [x] Next-dialog navigation: after finishing practice/shadow, shows "Next: <title>" button to continue to next dialog, or "last dialog of this topic" indicator
 - [x] Practice mode: record button moved to sticky bottom bar for smoother UX
 
 ## Planned / Next Steps

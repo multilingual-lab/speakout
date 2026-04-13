@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSpeech } from '../hooks/useSpeech';
 
-export default function PracticeMode({ exchanges }) {
+export default function PracticeMode({ exchanges, onNext, nextSessionTitle }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [phase, setPhase] = useState('listen'); // listen | respond | processing | feedback
   const [showModel, setShowModel] = useState(false);
@@ -117,6 +117,13 @@ export default function PracticeMode({ exchanges }) {
             <span className="complete-emoji">🎉</span>
             <h3>수고했어요!</h3>
             <p>Great job! You completed the conversation.</p>
+            {onNext ? (
+              <button className="action-btn next-session-btn" onClick={onNext}>
+                Next: {nextSessionTitle} →
+              </button>
+            ) : (
+              <p className="last-practice-hint">This is the last dialog of this topic.</p>
+            )}
           </div>
         </div>
       </div>

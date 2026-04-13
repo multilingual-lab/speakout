@@ -10,7 +10,25 @@ export default function SceneView({ scenario, initialMode, onBack }) {
   const [mode, setMode] = useState(initialMode);
   const [sessionId, setSessionId] = useState(null);
 
+  const sortedSessions = scenario.sessions ? sortByLevel(scenario.sessions) : [];
   const session = scenario.sessions?.find((s) => s.id === sessionId);
+
+  // Compute next session for "Next Session" navigation
+  const getNextSessionId = () => {
+    if (!sessionId || sortedSessions.length === 0) return null;
+    if (sessionId === '__quick__') {
+      return sortedSessions.length > 0 ? sortedSessions[0].id : null;
+    }
+    const idx = sortedSessions.findIndex((s) => s.id === sessionId);
+    return idx >= 0 && idx < sortedSessions.length - 1 ? sortedSessions[idx + 1].id : null;
+  };
+
+  const nextSessionId = getNextSessionId();
+  const nextSession = nextSessionId ? sortedSessions.find((s) => s.id === nextSessionId) : null;
+
+  const handleNextSession = () => {
+    if (nextSessionId) setSessionId(nextSessionId);
+  };
 
   const handleBack = () => {
     if (sessionId) {
@@ -76,7 +94,7 @@ export default function SceneView({ scenario, initialMode, onBack }) {
 
       {/* Active practice session */}
       {mode === 'practice' && session && (
-        <PracticeMode exchanges={session.exchanges} />
+        <PracticeMode key={sessionId} exchanges={session.exchanges} onNext={nextSessionId ? handleNextSession : null} nextSessionTitle={nextSession?.title} />
       )}
 
       {/* Session picker for shadow */}
@@ -110,12 +128,12 @@ export default function SceneView({ scenario, initialMode, onBack }) {
 
       {/* Quick phrases shadow */}
       {mode === 'shadow' && sessionId === '__quick__' && (
-        <ShadowMode phrases={scenario.shadow} />
+        <ShadowMode key={sessionId} phrases={scenario.shadow} onNext={nextSessionId ? handleNextSession : null} nextSessionTitle={nextSession?.title} />
       )}
 
       {/* Dialog shadow */}
       {mode === 'shadow' && session && (
-        <ShadowMode exchanges={session.exchanges} />
+        <ShadowMode key={sessionId} exchanges={session.exchanges} onNext={nextSessionId ? handleNextSession : null} nextSessionTitle={nextSession?.title} />
       )}
     </div>
   );

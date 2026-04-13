@@ -2,15 +2,15 @@ import { useState, useEffect, useRef } from 'react';
 import { useSpeech } from '../hooks/useSpeech';
 import { computeSimilarity } from '../utils/scoring';
 
-export default function ShadowMode({ phrases, exchanges }) {
+export default function ShadowMode({ phrases, exchanges, onNext, nextSessionTitle }) {
   if (exchanges) {
-    return <DialogShadow exchanges={exchanges} />;
+    return <DialogShadow exchanges={exchanges} onNext={onNext} nextSessionTitle={nextSessionTitle} />;
   }
-  return <PhraseShadow phrases={phrases} />;
+  return <PhraseShadow phrases={phrases} onNext={onNext} nextSessionTitle={nextSessionTitle} />;
 }
 
 /* ── Dialog-based shadowing ─────────────────────────────────────────── */
-function DialogShadow({ exchanges }) {
+function DialogShadow({ exchanges, onNext, nextSessionTitle }) {
   // Flatten exchanges into shadow-able lines:
   // "other" → shadow their korean line
   // "you-initiate" → shadow each expectedResponse
@@ -160,6 +160,13 @@ function DialogShadow({ exchanges }) {
             </button>
           )}
         </div>
+        {currentIndex >= lines.length - 1 && (onNext ? (
+          <button className="action-btn next-session-btn" onClick={onNext}>
+            Next: {nextSessionTitle} →
+          </button>
+        ) : (
+          <p className="last-practice-hint">This is the last dialog of this topic.</p>
+        ))}
       </div>
     </div>
   );
@@ -196,7 +203,7 @@ function buildDialogLines(exchanges) {
 }
 
 /* ── Original phrase-based shadowing ────────────────────────────────── */
-function PhraseShadow({ phrases }) {
+function PhraseShadow({ phrases, onNext, nextSessionTitle }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showResult, setShowResult] = useState(false);
   const [showEnglish, setShowEnglish] = useState(false);
@@ -321,6 +328,13 @@ function PhraseShadow({ phrases }) {
             </button>
           )}
         </div>
+        {currentIndex >= phrases.length - 1 && (onNext ? (
+          <button className="action-btn next-session-btn" onClick={onNext}>
+            Next: {nextSessionTitle} →
+          </button>
+        ) : (
+          <p className="last-practice-hint">This is the last dialog of this topic.</p>
+        ))}
       </div>
     </div>
   );
