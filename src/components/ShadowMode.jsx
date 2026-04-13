@@ -160,13 +160,15 @@ function DialogShadow({ exchanges, onNext, nextSessionTitle }) {
             </button>
           )}
         </div>
-        {currentIndex >= lines.length - 1 && (onNext ? (
-          <button className="action-btn next-session-btn" onClick={onNext}>
-            Next: {nextSessionTitle} →
-          </button>
-        ) : (
-          <p className="last-practice-hint">This is the last dialog of this topic.</p>
-        ))}
+        {currentIndex >= lines.length - 1 && (
+          onNext ? (
+            <button className="next-dialog-link" onClick={onNext}>
+              Next dialog: {nextSessionTitle} →
+            </button>
+          ) : (
+            <span className="last-dialog-hint">Last dialog of this topic</span>
+          )
+        )}
       </div>
     </div>
   );
@@ -328,13 +330,15 @@ function PhraseShadow({ phrases, onNext, nextSessionTitle }) {
             </button>
           )}
         </div>
-        {currentIndex >= phrases.length - 1 && (onNext ? (
-          <button className="action-btn next-session-btn" onClick={onNext}>
-            Next: {nextSessionTitle} →
-          </button>
-        ) : (
-          <p className="last-practice-hint">This is the last dialog of this topic.</p>
-        ))}
+        {currentIndex >= phrases.length - 1 && (
+          onNext ? (
+            <button className="next-dialog-link" onClick={onNext}>
+              Next dialog: {nextSessionTitle} →
+            </button>
+          ) : (
+            <span className="last-dialog-hint">Last dialog of this topic</span>
+          )
+        )}
       </div>
     </div>
   );

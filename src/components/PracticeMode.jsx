@@ -118,8 +118,8 @@ export default function PracticeMode({ exchanges, onNext, nextSessionTitle }) {
             <h3>수고했어요!</h3>
             <p>Great job! You completed the conversation.</p>
             {onNext ? (
-              <button className="action-btn next-session-btn" onClick={onNext}>
-                Next: {nextSessionTitle} →
+              <button className="next-dialog-link" onClick={onNext}>
+                Next dialog: {nextSessionTitle} →
               </button>
             ) : (
               <p className="last-practice-hint">This is the last dialog of this topic.</p>
