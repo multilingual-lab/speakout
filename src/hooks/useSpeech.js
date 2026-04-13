@@ -8,12 +8,13 @@ export function useSpeech() {
   const [isListening, setIsListening] = useState(false);
   const [transcript, setTranscript] = useState('');
   const [isSpeaking, setIsSpeaking] = useState(false);
+  const [error, setError] = useState(null); // 'mic-denied' | 'no-speech' | 'tts-failed' | null
   const recognitionRef = useRef(null);
   const audioRef = useRef(null);
 
   const startListening = useCallback(() => {
     if (!SpeechRecognition) {
-      alert('Speech recognition not supported in this browser. Use Chrome.');
+      setError('no-speech');
       return;
     }
 
@@ -25,6 +26,7 @@ export function useSpeech() {
     recognition.onresult = (event) => {
       const result = event.results[0][0].transcript;
       setTranscript(result);
+      setError(null);
     };
 
     recognition.onend = () => {
@@ -34,10 +36,16 @@ export function useSpeech() {
     recognition.onerror = (event) => {
       console.error('STT error:', event.error);
       setIsListening(false);
+      if (event.error === 'not-allowed') {
+        setError('mic-denied');
+      } else if (event.error === 'no-speech') {
+        setError('no-speech');
+      }
     };
 
     recognitionRef.current = recognition;
     setTranscript('');
+    setError(null);
     setIsListening(true);
     recognition.start();
   }, []);
@@ -58,7 +66,7 @@ export function useSpeech() {
     setIsSpeaking(false);
   }, []);
 
-  const speak = useCallback((text, lang = 'ko-KR') => {
+  const speak = useCallback(async (text, lang = 'ko-KR') => {
     // Stop any in-progress speech first
     if (audioRef.current) {
       audioRef.current.pause();
@@ -69,10 +77,10 @@ export function useSpeech() {
 
     // Use Azure TTS if configured, otherwise fall back to Web Speech API
     if (isAzureConfigured()) {
-      return new Promise(async (resolve) => {
-        try {
-          setIsSpeaking(true);
-          const audioUrl = await azureSpeak(text);
+      try {
+        setIsSpeaking(true);
+        const audioUrl = await azureSpeak(text);
+        await new Promise((resolve) => {
           const audio = new Audio(audioUrl);
           audioRef.current = audio;
           audio.onended = () => {
@@ -86,16 +94,18 @@ export function useSpeech() {
             resolve();
           };
           audio.play();
-        } catch (err) {
-          console.error('Azure TTS error, falling back to browser TTS:', err);
-          setIsSpeaking(false);
-          // Fall back to browser TTS
+        });
+      } catch (err) {
+        console.error('Azure TTS error, falling back to browser TTS:', err);
+        setIsSpeaking(false);
+        await new Promise((resolve) => {
           speakBrowser(text, lang, setIsSpeaking, resolve);
-        }
-      });
+        });
+      }
+      return;
     }
 
-    return new Promise((resolve) => {
+    await new Promise((resolve) => {
       speakBrowser(text, lang, setIsSpeaking, resolve);
     });
   }, []);
@@ -104,11 +114,13 @@ export function useSpeech() {
     isListening,
     transcript,
     isSpeaking,
+    error,
     startListening,
     stopListening,
     speak,
     stopSpeaking,
     setTranscript,
+    setError,
     supported: !!SpeechRecognition,
   };
 }

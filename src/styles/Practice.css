@@ -37,6 +37,15 @@
   text-align: center;
 }
 
+.error-bar {
+  background: rgba(184, 96, 108, 0.15);
+  color: #d99aa3;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
 /* Chat history */
 .chat-history {
   display: flex;

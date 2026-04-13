@@ -8,9 +8,10 @@ export default function PracticeMode({ exchanges }) {
   const [showModel, setShowModel] = useState(false);
   const [speakingIdx, setSpeakingIdx] = useState(null);
   const [history, setHistory] = useState([]); // past chat bubbles
+  const [pendingAutoRecord, setPendingAutoRecord] = useState(false);
   const chatEndRef = useRef(null);
   const wasListeningRef = useRef(false);
-  const { isListening, transcript, isSpeaking, startListening, stopListening, speak, stopSpeaking, setTranscript } =
+  const { isListening, transcript, isSpeaking, error, startListening, stopListening, speak, stopSpeaking, setTranscript, setError } =
     useSpeech();
 
   const exchange = exchanges[currentIndex];
@@ -31,6 +32,14 @@ export default function PracticeMode({ exchanges }) {
     wasListeningRef.current = isListening;
   }, [isListening, phase]);
 
+  // Auto-record after retry (triggered by pendingAutoRecord flag)
+  useEffect(() => {
+    if (pendingAutoRecord && phase === 'respond' && !isListening) {
+      setPendingAutoRecord(false);
+      startListening();
+    }
+  }, [pendingAutoRecord, phase, isListening, startListening]);
+
   useEffect(() => {
     if (isFinished || phase !== 'listen') return;
     if (isYouInitiate) {
@@ -46,7 +55,7 @@ export default function PracticeMode({ exchanges }) {
         stopSpeaking();
       };
     }
-  }, [currentIndex, phase]);
+  }, [currentIndex, phase, isFinished, isYouInitiate, exchange, speak, stopSpeaking]);
 
   const handleRecord = () => {
     setTranscript('');
@@ -88,9 +97,9 @@ export default function PracticeMode({ exchanges }) {
   const handleRetry = () => {
     setTranscript('');
     setShowModel(false);
+    setError(null);
     setPhase('respond');
-    // Auto-start recording so user doesn't have to tap twice
-    setTimeout(() => startListening(), 100);
+    setPendingAutoRecord(true);
   };
 
   if (isFinished) {
@@ -163,6 +172,12 @@ export default function PracticeMode({ exchanges }) {
 
         {phase === 'respond' && (
           <div className="respond-area">
+            {error && (
+              <div className="error-bar">
+                {error === 'mic-denied' && '⚠️ Microphone access denied — check browser permissions'}
+                {error === 'no-speech' && '⚠️ No speech detected — try again'}
+              </div>
+            )}
             <div className="respond-actions">
               {!isListening ? (
                 <button className="action-btn record-btn large" onClick={handleRecord}>

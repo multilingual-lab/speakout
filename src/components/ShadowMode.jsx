@@ -327,13 +327,17 @@ function PhraseShadow({ phrases }) {
 
 function computeSimilarity(target, spoken) {
   const normalize = (s) =>
-    s.replace(/[.,!?~\s]/g, '').toLowerCase();
+    s
+      .replace(/[.,!?~…ㅋㅎㅠㅜ\s]/g, '') // strip punctuation, emoticons, whitespace
+      .replace(/요$/g, '')                  // strip trailing 요 (formality particle)
+      .toLowerCase();
   const a = normalize(target);
   const b = normalize(spoken);
 
   if (a === b) return 100;
+  if (!a || !b) return 0;
 
-  // Simple character-level Levenshtein-based similarity
+  // Levenshtein distance
   const matrix = Array.from({ length: a.length + 1 }, (_, i) =>
     Array.from({ length: b.length + 1 }, (_, j) => (i === 0 ? j : j === 0 ? i : 0))
   );
