@@ -33,6 +33,8 @@ src/
 │   ├── PracticeMode.jsx      # Dialog practice with scrolling chat history
 │   ├── ShadowMode.jsx        # Listen & repeat with Levenshtein match scoring
 │   └── Settings.jsx          # Azure key/endpoint config modal (localStorage)
+├── utils/
+│   └── scoring.js            # Korean-aware normalize + Levenshtein similarity scoring
 ├── hooks/
 │   └── useSpeech.js          # Azure TTS (primary) + Web Speech TTS (fallback) + STT
 ├── services/
@@ -113,6 +115,9 @@ sections[]          // "여행 한국어" | "친구와 대화" | "직장 한국�
 - [x] Difficulty level badges (beginner / intermediate / advanced)
 - [x] English translations for user responses (`englishResponse` field) in shadow mode
 - [x] Code quality: fixed Promise anti-pattern, added error states to useSpeech, error boundary, Korean-aware similarity scoring
+- [x] Dialog list sorted by difficulty level (beginner → intermediate → advanced)
+- [x] Testing (Vitest): schema validation for scenarios data, scoring/normalization unit tests (`npm test`)
+- [x] Extracted `computeSimilarity` into shared `src/utils/scoring.js` module
 
 ## Planned / Next Steps
 - [ ] Ambient audio per scene (café sounds, street sounds)

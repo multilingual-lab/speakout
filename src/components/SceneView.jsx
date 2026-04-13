@@ -3,6 +3,8 @@ import ShadowMode from './ShadowMode';
 import PracticeMode from './PracticeMode';
 
 const LEVEL_LABELS = { beginner: 'Beginner', intermediate: 'Intermediate', advanced: 'Advanced' };
+const LEVEL_ORDER = { beginner: 0, intermediate: 1, advanced: 2 };
+const sortByLevel = (sessions) => [...sessions].sort((a, b) => (LEVEL_ORDER[a.level] ?? 99) - (LEVEL_ORDER[b.level] ?? 99));
 
 export default function SceneView({ scenario, initialMode, onBack }) {
   const [mode, setMode] = useState(initialMode);
@@ -56,7 +58,7 @@ export default function SceneView({ scenario, initialMode, onBack }) {
         <div className="session-picker">
           <p className="session-picker-label">Choose a dialog</p>
           <div className="session-list">
-            {scenario.sessions.map((s) => (
+            {sortByLevel(scenario.sessions).map((s) => (
               <button
                 key={s.id}
                 className="session-card"
@@ -90,7 +92,7 @@ export default function SceneView({ scenario, initialMode, onBack }) {
               <span className="session-title-en">Quick Phrases</span>
               <span className="session-count">{scenario.shadow.length} phrases</span>
             </button>
-            {scenario.sessions.map((s) => (
+            {sortByLevel(scenario.sessions).map((s) => (
               <button
                 key={s.id}
                 className="session-card"
