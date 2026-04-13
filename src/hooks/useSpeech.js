@@ -11,6 +11,9 @@ export function useSpeech() {
   const [error, setError] = useState(null); // 'mic-denied' | 'no-speech' | 'tts-failed' | null
   const recognitionRef = useRef(null);
   const audioRef = useRef(null);
+  const timeoutRef = useRef(null);
+
+  const LISTEN_TIMEOUT_MS = 10000; // auto-stop after 10 seconds
 
   const startListening = useCallback(() => {
     if (!SpeechRecognition) {
@@ -24,16 +27,19 @@ export function useSpeech() {
     recognition.maxAlternatives = 3;
 
     recognition.onresult = (event) => {
+      clearTimeout(timeoutRef.current);
       const result = event.results[0][0].transcript;
       setTranscript(result);
       setError(null);
     };
 
     recognition.onend = () => {
+      clearTimeout(timeoutRef.current);
       setIsListening(false);
     };
 
     recognition.onerror = (event) => {
+      clearTimeout(timeoutRef.current);
       console.error('STT error:', event.error);
       setIsListening(false);
       if (event.error === 'not-allowed') {
@@ -48,9 +54,16 @@ export function useSpeech() {
     setError(null);
     setIsListening(true);
     recognition.start();
+
+    timeoutRef.current = setTimeout(() => {
+      if (recognitionRef.current) {
+        recognitionRef.current.stop();
+      }
+    }, LISTEN_TIMEOUT_MS);
   }, []);
 
   const stopListening = useCallback(() => {
+    clearTimeout(timeoutRef.current);
     if (recognitionRef.current) {
       recognitionRef.current.stop();
     }

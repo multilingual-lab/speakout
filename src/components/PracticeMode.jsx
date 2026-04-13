@@ -4,7 +4,6 @@ import { useSpeech } from '../hooks/useSpeech';
 export default function PracticeMode({ exchanges }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [phase, setPhase] = useState('listen'); // listen | respond | processing | feedback
-  const [showHint, setShowHint] = useState(false);
   const [showModel, setShowModel] = useState(false);
   const [speakingIdx, setSpeakingIdx] = useState(null);
   const [history, setHistory] = useState([]); // past chat bubbles
@@ -81,7 +80,6 @@ export default function PracticeMode({ exchanges }) {
     newHistory.push({ speaker: 'you', korean: transcript || '...' });
 
     setHistory(newHistory);
-    setShowHint(false);
     setShowModel(false);
     setTranscript('');
     setPhase('listen');
@@ -171,32 +169,9 @@ export default function PracticeMode({ exchanges }) {
         )}
 
         {phase === 'respond' && (
-          <div className="respond-area">
-            {error && (
-              <div className="error-bar">
-                {error === 'mic-denied' && '⚠️ Microphone access denied — check browser permissions'}
-                {error === 'no-speech' && '⚠️ No speech detected — try again'}
-              </div>
-            )}
-            <div className="respond-actions">
-              {!isListening ? (
-                <button className="action-btn record-btn large" onClick={handleRecord}>
-                  🎙️ Your turn — speak!
-                </button>
-              ) : (
-                <button className="action-btn record-btn large recording" onClick={handleStopAndCheck}>
-                  🎙️ Listening… tap to finish
-                </button>
-              )}
-            </div>
-
-            {!showHint ? (
-              <button className="hint-link" onClick={() => setShowHint(true)}>
-                💡 Show hint
-              </button>
-            ) : (
-              <div className="hint-text">{exchange.hint}</div>
-            )}
+          <div className="practice-status respond-prompt">
+            <span className="status-icon">🎤</span>
+            <span>{exchange.hint}</span>
           </div>
         )}
 
@@ -215,46 +190,68 @@ export default function PracticeMode({ exchanges }) {
               <p className="bubble-korean">{transcript || '(no speech detected)'}</p>
             </div>
 
-            {!showModel && (
-              <button className="hint-btn" onClick={() => setShowModel(true)}>
-                Show model answers
-              </button>
-            )}
-
-            {showModel && (
-              <div className="model-answers">
-                <p className="model-label">Model answers:</p>
-                {exchange.expectedResponses.map((r, i) => (
-                  <div key={i} className="model-answer-row">
-                    <p className="model-answer">{r}</p>
-                    <button
-                      className={`replay-btn${speakingIdx === i ? ' speaking' : ''}`}
-                      onClick={() => {
-                        if (isSpeaking) return;
-                        setSpeakingIdx(i);
-                        speak(r).then(() => setSpeakingIdx(null));
-                      }}
-                    >
-                      🔊
-                    </button>
-                  </div>
-                ))}
-              </div>
-            )}
           </div>
         )}
 
         <div ref={chatEndRef} />
       </div>
 
+      {phase === 'respond' && (
+        <div className="practice-bottom-bar respond-bar">
+          {error && (
+            <div className="error-bar">
+              {error === 'mic-denied' && '⚠️ Microphone access denied — check browser permissions'}
+              {error === 'no-speech' && '⚠️ No speech detected — try again'}
+            </div>
+          )}
+          <div className="respond-actions">
+            {!isListening ? (
+              <button className="action-btn record-btn large" onClick={handleRecord}>
+                🎙️ Your turn — speak!
+              </button>
+            ) : (
+              <button className="action-btn record-btn large recording" onClick={handleStopAndCheck}>
+                🎙️ Listening… tap to finish
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+
       {phase === 'feedback' && (
-        <div className="practice-bottom-bar">
-          <button className="action-btn retry-btn" onClick={handleRetry}>
-            🔄 Retry
-          </button>
-          <button className="action-btn next-btn" onClick={handleNext}>
-            Next →
-          </button>
+        <div className="practice-bottom-bar respond-bar">
+          {!showModel ? (
+            <button className="hint-link" onClick={() => setShowModel(true)}>
+              💡 Show model answers
+            </button>
+          ) : (
+            <div className="model-answers">
+              <p className="model-label">Model answers:</p>
+              {exchange.expectedResponses.map((r, i) => (
+                <div key={i} className="model-answer-row">
+                  <p className="model-answer">{r}</p>
+                  <button
+                    className={`replay-btn${speakingIdx === i ? ' speaking' : ''}`}
+                    onClick={() => {
+                      if (isSpeaking) return;
+                      setSpeakingIdx(i);
+                      speak(r).then(() => setSpeakingIdx(null));
+                    }}
+                  >
+                    🔊
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+          <div className="respond-actions">
+            <button className="action-btn retry-btn" onClick={handleRetry}>
+              🔄 Retry
+            </button>
+            <button className="action-btn next-btn" onClick={handleNext}>
+              Next →
+            </button>
+          </div>
         </div>
       )}
     </div>

@@ -78,15 +78,15 @@ sections[]          // "여행 한국어" | "친구와 대화" | "직장 한국�
 ## Key Decisions
 - **No LLM in Phase 1** — all content is pre-written JSON. LLM evaluation is a planned Phase 2 addition.
 - **Dialogs over flat Q&A** — each practice dialog is a coherent multi-turn exchange (6–8 turns), not disconnected question/answer pairs.
-- **Two modes on home card** — clicking a topic goes directly into practice or shadow; no intermediate mode-selector page. A toggle bar inside the topic lets you switch modes.
+- **Two modes on home card** — clicking a topic goes directly into practice or shadow; no intermediate mode-selector page. A toggle bar inside the topic lets you switch modes while preserving the selected dialog session.
 - **Azure TTS** — `ko-KR-SunHiNeural` neural voice. Falls back to `SpeechSynthesisUtterance` if Azure fails.
 - **Similarity scoring** — Levenshtein-based character similarity with Korean-aware normalization: strips punctuation, emoticons (ㅋㅎㅠㅜ), trailing formality particle (요), and whitespace before comparison.
 - **Dialog shadowing** — shadow mode now has a session picker like practice mode. Users can choose "Quick Phrases" (original phrase drills) or any dialog session. Dialog shadow flattens exchanges into sequential lines (both sides of the conversation), showing past lines as scrollable context above the current line. For `you-initiate` exchanges, the first expected response is used as the shadow target.
 - **Immersion-first** — shadow mode shows Korean only by default. English translation is behind a "Show English" toggle. Model answers in practice mode are Korean-only — no translations added to avoid creating a crutch. Users who need translation can use external tools.
-- **Pinned action bars** — both modes use a scroll-area + pinned-bottom-bar layout. In shadow mode, Listen/Record + Previous/Next are pinned at the bottom. In practice mode, Retry/Next are pinned at the bottom during feedback phase. Scrollbars are hidden (`scrollbar-width: none`) for cleaner appearance. The scene container uses `height: 100vh` with `overflow: hidden` to prevent full-page scrolling.
+- **Pinned action bars** — both modes use a scroll-area + pinned-bottom-bar layout. In shadow mode, Listen/Record + Previous/Next are pinned at the bottom. In practice mode, the record button is pinned at the bottom during the respond phase, and model answers + Retry/Next are pinned during the feedback phase — so the user never has to chase buttons between scroll area and actions. Scrollbars are hidden (`scrollbar-width: none`) for cleaner appearance. The scene container uses `height: 100vh` with `overflow: hidden` to prevent full-page scrolling.
 - **Retry auto-records** — tapping Retry in practice feedback automatically starts recording after a brief delay, so users don't have to tap twice (Retry then Record).
 - **Model answer TTS** — each model answer in the feedback phase has an individual 🔊 button. Only the clicked button shows an active (pulsing) state; others remain idle. Clicks are no-op while audio is playing to prevent overlap.
-- **Recording UX** — single button toggles between "🎙️ Your turn — speak!" and "🎙️ Listening… tap to finish" with a pulsing ring animation. A `processing` phase prevents button flash on transition. Auto-detection: when the browser's speech recognition stops on its own (silence timeout), the app automatically transitions to feedback — no manual tap required.
+- **Recording UX** — single button toggles between "🎙️ Your turn — speak!" and "🎙️ Listening… tap to finish" with a pulsing ring animation. The exchange's hint is shown as the status prompt above the record button (e.g. "🎤 Order a drink") instead of a generic message. A `processing` phase prevents button flash on transition. Auto-detection: when the browser's speech recognition stops on its own (silence timeout), the app automatically transitions to feedback — no manual tap required.
 - **Consistent button sizing** — action buttons use `min-width: 220px` to maintain visual consistency across states.
 
 ## Content Quality Rules
@@ -118,6 +118,7 @@ sections[]          // "여행 한국어" | "친구와 대화" | "직장 한국�
 - [x] Dialog list sorted by difficulty level (beginner → intermediate → advanced)
 - [x] Testing (Vitest): schema validation for scenarios data, scoring/normalization unit tests (`npm test`)
 - [x] Extracted `computeSimilarity` into shared `src/utils/scoring.js` module
+- [x] Practice mode: record button moved to sticky bottom bar for smoother UX
 
 ## Planned / Next Steps
 - [ ] Ambient audio per scene (café sounds, street sounds)

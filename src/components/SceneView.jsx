@@ -41,13 +41,13 @@ export default function SceneView({ scenario, initialMode, onBack }) {
       <div className="mode-toggle">
         <button
           className={`mode-toggle-btn ${mode === 'practice' ? 'active' : ''}`}
-          onClick={() => { setMode('practice'); setSessionId(null); }}
+          onClick={() => { setMode('practice'); if (sessionId === '__quick__') setSessionId(null); }}
         >
           Practice
         </button>
         <button
           className={`mode-toggle-btn ${mode === 'shadow' ? 'active' : ''}`}
-          onClick={() => { setMode('shadow'); setSessionId(null); }}
+          onClick={() => { setMode('shadow'); }}
         >
           Shadowing
         </button>
