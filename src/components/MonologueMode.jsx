@@ -99,22 +99,20 @@ export default function MonologueMode({ monologue, onNext, nextTitle }) {
           )}
         </div>
 
-        {/* Prompt phase */}
-        {phase === 'prompt' && (
+        {/* Keywords & warm-up — prompt and recording phases */}
+        {(phase === 'prompt' || phase === 'recording') && monologue.keywords?.length > 0 && (
           <div className="monologue-center">
-            {monologue.keywords?.length > 0 && (
-              <div className="monologue-keywords">
-                <span className="monologue-keywords-label">🏷️</span>
-                {monologue.keywords.map((kw, i) => (
-                  <span key={i} className="monologue-keyword">{kw}</span>
-                ))}
-                {monologue.drills?.length > 0 && (
-                  <button className="warmup-link" onClick={() => setPhase('drill')}>
-                    📝 warm up
-                  </button>
-                )}
-              </div>
-            )}
+            <div className="monologue-keywords">
+              <span className="monologue-keywords-label">🏷️</span>
+              {monologue.keywords.map((kw, i) => (
+                <span key={i} className="monologue-keyword">{kw}</span>
+              ))}
+              {phase === 'prompt' && monologue.drills?.length > 0 && (
+                <button className="warmup-link" onClick={() => setPhase('drill')}>
+                  📝 warm up
+                </button>
+              )}
+            </div>
           </div>
         )}
 
@@ -141,7 +139,12 @@ export default function MonologueMode({ monologue, onNext, nextTitle }) {
         {/* Reviewing phase */}
         {phase === 'reviewing' && (
           <div className="monologue-review">
-            <h3 className="monologue-review-heading">Your response</h3>
+            <h3 className="monologue-review-heading">
+              Your response
+              <button className="hint-link" onClick={() => setShowModel(!showModel)} style={{ marginLeft: 'auto' }}>
+                {showModel ? '💡 Hide model answer' : '💡 Show model answer'}
+              </button>
+            </h3>
             <div className="monologue-transcript-box">
               <p className="monologue-transcript-text">{transcript || '(no speech detected)'}</p>
               <span className="monologue-duration-badge">{formatTime(elapsed)}</span>
@@ -162,29 +165,29 @@ export default function MonologueMode({ monologue, onNext, nextTitle }) {
                   <span className="monologue-keyword-score">
                     {matchedKeywords.length}/{monologue.keywords.length} used
                   </span>
+                  {monologue.drills?.length > 0 && (
+                    <button className="warmup-link" onClick={() => setPhase('drill')}>
+                      📝 warm up
+                    </button>
+                  )}
                 </div>
               </div>
             )}
 
             {/* Model answer */}
-            <div className="monologue-model-section">
-              <button className="hint-link" onClick={() => setShowModel(!showModel)}>
-                {showModel ? '💡 Hide model answer' : '💡 Show model answer'}
-              </button>
-              {showModel && (
-                <div className="monologue-model-box">
-                  <p className="monologue-model-kr">{monologue.modelAnswer}</p>
-                  <p className="monologue-model-en">{monologue.modelAnswerEn}</p>
-                  <button
-                    className="action-btn listen-btn"
-                    onClick={handleListenModel}
-                    disabled={isSpeaking}
-                  >
-                    🔊 Listen
-                  </button>
-                </div>
-              )}
-            </div>
+            {showModel && (
+              <div className="monologue-model-box">
+                <p className="monologue-model-kr">{monologue.modelAnswer}</p>
+                <p className="monologue-model-en">{monologue.modelAnswerEn}</p>
+                <button
+                  className="action-btn listen-btn"
+                  onClick={handleListenModel}
+                  disabled={isSpeaking}
+                >
+                  🔊 Listen
+                </button>
+              </div>
+            )}
           </div>
         )}
       </div>
