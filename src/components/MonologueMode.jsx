@@ -80,7 +80,17 @@ export default function MonologueMode({ monologue, onNext, nextTitle }) {
         {/* Prompt card — always visible */}
         <div className="monologue-prompt-card">
           <p className="monologue-prompt-en">{monologue.prompt}</p>
-          <p className="monologue-prompt-kr">{monologue.promptKorean}</p>
+          <p className="monologue-prompt-kr">
+            {monologue.promptKorean}
+            <button
+              className="prompt-speak-btn"
+              onClick={() => speak(monologue.promptKorean)}
+              disabled={isSpeaking}
+              aria-label="Listen to prompt"
+            >
+              🔊
+            </button>
+          </p>
           {ChartComponent && (
             <div className="monologue-chart">
               <ChartComponent />

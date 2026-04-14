@@ -49,6 +49,20 @@
   line-height: 1.5;
 }
 
+.prompt-speak-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  margin-left: 0.4rem;
+  padding: 0;
+  vertical-align: middle;
+  opacity: 0.7;
+  transition: opacity 0.15s;
+}
+.prompt-speak-btn:hover:not(:disabled) { opacity: 1; }
+.prompt-speak-btn:disabled { opacity: 0.35; cursor: default; }
+
 .monologue-chart {
   margin-top: 0.75rem;
   background: #1e1e30;
