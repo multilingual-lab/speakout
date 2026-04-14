@@ -47,25 +47,27 @@ export function useSpeech() {
       timeoutRef.current = setTimeout(stopRecognition, 10000);
     };
 
+    let lastFinalIndex = -1;
+
     recognition.onresult = (event) => {
       // Reset silence timeout on every result (interim or final)
       resetSilenceTimer();
 
       if (continuous) {
-        // Concatenate all final results from this session
-        let finalOnly = accumulatedRef.current;
-        for (let i = 0; i < event.results.length; i++) {
+        // Only process newly finalized results to avoid mobile duplication
+        for (let i = lastFinalIndex + 1; i < event.results.length; i++) {
           if (event.results[i].isFinal) {
-            finalOnly += event.results[i][0].transcript;
+            accumulatedRef.current += event.results[i][0].transcript;
+            lastFinalIndex = i;
           }
         }
-        finalizedRef.current = finalOnly;
-        // Include the latest interim result for live preview only
+        finalizedRef.current = accumulatedRef.current;
+        // Live preview: finalized text + latest interim
         const lastResult = event.results[event.results.length - 1];
         if (!lastResult.isFinal) {
-          setTranscript(finalOnly + lastResult[0].transcript);
+          setTranscript(accumulatedRef.current + lastResult[0].transcript);
         } else {
-          setTranscript(finalOnly);
+          setTranscript(accumulatedRef.current);
         }
       } else {
         // Single-result mode: use first final result, ignore interim
