@@ -35,7 +35,7 @@ export default function MonologueMode({ monologue, onNext, nextTitle }) {
     setElapsed(0);
     setShowModel(false);
     setPhase('recording');
-    startListening();
+    startListening({ continuous: true });
   };
 
   const handleStop = () => {
@@ -57,7 +57,7 @@ export default function MonologueMode({ monologue, onNext, nextTitle }) {
   useEffect(() => {
     if (pendingAutoRecord && phase === 'recording' && !isListening) {
       setPendingAutoRecord(false);
-      startListening();
+      startListening({ continuous: true });
     }
   }, [pendingAutoRecord, phase, isListening, startListening]);
 

@@ -6,7 +6,7 @@ A browser-based language speaking practice app, currently focused on Korean. The
 ## Tech Stack
 - **Framework:** React + Vite (v5, Node 20.9 compatible)
 - **TTS:** Azure Cognitive Services TTS REST API (`ko-KR-SunHiNeural`) with Web Speech API fallback
-- **STT:** Web Speech API (`ko-KR`), Chrome required
+- **STT:** Web Speech API (`ko-KR`), Chrome required. Configurable listening modes: short (10s, single-result) for practice/shadow, continuous (10s auto-resetting, concatenated results) for monologue
 - **Styling:** Plain CSS under `src/styles/`, dark theme (`#1a1a2e` background). Unified design system using CSS custom properties (`--color-primary`, `--color-surface`, etc.) defined in `index.css`
 - **Color palette:** Slate-blue primary (`#4a6da8`) with hover/muted variants (`#5b7fbf`, `#3d5a8a`). Muted rose (`#a84f5a`) for record button, vivid rose (`#c0545f`) for active recording state. All UI tones stay in the blue-navy family — surfaces (`#16213e`, `#1e2d4d`), borders (`#2a3550`), and muted text (`#8a9abc`) share the same hue to maintain cohesion. WCAG AA contrast verified for all text-on-background pairings.
 - **No backend** — all runs in the browser. Azure key configurable via in-app Settings UI (stored in `localStorage`) with `.env` fallback
@@ -107,6 +107,7 @@ sections[]          // "여행 한국어" | "친구와 대화" | "직장 한국�
 - **Retry auto-records** — tapping Retry in both practice and monologue modes automatically starts recording after a brief delay, so users don't have to tap twice (Retry then Record).
 - **Model answer TTS** — each model answer in the feedback phase has an individual 🔊 button. Only the clicked button shows an active (pulsing) state; others remain idle. Clicks are no-op while audio is playing to prevent overlap.
 - **Recording UX** — single button toggles between "🎙️ Your turn — speak!" and "🎙️ Listening… tap to finish" with a pulsing ring animation. The exchange's hint is shown as the status prompt above the record button (e.g. "🎤 Order a drink") instead of a generic message. A `processing` phase prevents button flash on transition. Auto-detection: when the browser's speech recognition stops on its own (silence timeout), the app automatically transitions to feedback — no manual tap required.
+- **Continuous listening for monologue** — `startListening({ continuous: true })` enables Web Speech API's continuous mode with a 10-second idle timeout that resets on each spoken phrase, allowing longer thinking gaps. Practice and shadow modes use the default short mode (10s, single result) so background noise doesn't delay completion.
 - **Consistent button sizing** — action buttons use `min-width: 220px` to maintain visual consistency across states.
 
 ## Content Quality Rules

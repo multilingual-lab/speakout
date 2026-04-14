@@ -13,9 +13,7 @@ export function useSpeech() {
   const audioRef = useRef(null);
   const timeoutRef = useRef(null);
 
-  const LISTEN_TIMEOUT_MS = 10000; // auto-stop after 10 seconds
-
-  const startListening = useCallback(() => {
+  const startListening = useCallback(({ continuous = false } = {}) => {
     if (!SpeechRecognition) {
       setError('no-speech');
       return;
@@ -23,13 +21,32 @@ export function useSpeech() {
 
     const recognition = new SpeechRecognition();
     recognition.lang = 'ko-KR';
+    recognition.continuous = continuous;
     recognition.interimResults = false;
     recognition.maxAlternatives = 3;
 
     recognition.onresult = (event) => {
-      clearTimeout(timeoutRef.current);
-      const result = event.results[0][0].transcript;
-      setTranscript(result);
+      if (continuous) {
+        // Reset the silence timeout on each new result
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = setTimeout(() => {
+          if (recognitionRef.current) {
+            recognitionRef.current.stop();
+          }
+        }, 10000);
+
+        // Concatenate all final results
+        let full = '';
+        for (let i = 0; i < event.results.length; i++) {
+          if (event.results[i].isFinal) {
+            full += event.results[i][0].transcript;
+          }
+        }
+        setTranscript(full);
+      } else {
+        clearTimeout(timeoutRef.current);
+        setTranscript(event.results[0][0].transcript);
+      }
       setError(null);
     };
 
@@ -59,7 +76,7 @@ export function useSpeech() {
       if (recognitionRef.current) {
         recognitionRef.current.stop();
       }
-    }, LISTEN_TIMEOUT_MS);
+    }, 10000);
   }, []);
 
   const stopListening = useCallback(() => {
