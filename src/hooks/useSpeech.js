@@ -30,7 +30,7 @@ export function useSpeech() {
     const recognition = new SpeechRecognition();
     recognition.lang = 'ko-KR';
     recognition.continuous = continuous;
-    recognition.interimResults = false;
+    recognition.interimResults = true;
     recognition.maxAlternatives = 3;
 
     const stopRecognition = () => {
@@ -48,10 +48,10 @@ export function useSpeech() {
     };
 
     recognition.onresult = (event) => {
-      if (continuous) {
-        // Reset silence timeout on each finalized phrase
-        resetSilenceTimer();
+      // Reset silence timeout on every result (interim or final)
+      resetSilenceTimer();
 
+      if (continuous) {
         // Concatenate all final results from this session
         let finalOnly = accumulatedRef.current;
         for (let i = 0; i < event.results.length; i++) {
@@ -60,40 +60,29 @@ export function useSpeech() {
           }
         }
         finalizedRef.current = finalOnly;
-        setTranscript(finalOnly);
+        // Include the latest interim result for live preview only
+        const lastResult = event.results[event.results.length - 1];
+        if (!lastResult.isFinal) {
+          setTranscript(finalOnly + lastResult[0].transcript);
+        } else {
+          setTranscript(finalOnly);
+        }
       } else {
-        // Single-result mode: browser auto-stops after one final result
-        clearTimeout(timeoutRef.current);
-        setTranscript(event.results[0][0].transcript);
+        // Single-result mode: use first final result, ignore interim
+        if (event.results[0].isFinal) {
+          setTranscript(event.results[0][0].transcript);
+        }
       }
       setError(null);
     };
 
     recognition.onend = () => {
       clearTimeout(timeoutRef.current);
-      if (continuousModeRef.current && !stoppedManuallyRef.current) {
-        // Mobile browsers often stop recognition; save finals and restart
-        try {
-          // Carry over only finalized text (no interim) to avoid duplicates
-          accumulatedRef.current = finalizedRef.current;
-          const next = new SpeechRecognition();
-          next.lang = recognition.lang;
-          next.continuous = true;
-          next.interimResults = false;
-          next.maxAlternatives = 3;
-          next.onresult = recognition.onresult;
-          next.onend = recognition.onend;
-          next.onerror = recognition.onerror;
-          recognitionRef.current = next;
-          next.start();
-          // Reset silence timer for the restarted session (max timer keeps running)
-          resetSilenceTimer();
-          return; // Don't set isListening to false
-        } catch (e) {
-          console.error('Failed to restart recognition:', e);
-        }
-      }
       clearTimeout(maxTimerRef.current);
+      // Use finalized text only (discard any trailing interim)
+      if (continuousModeRef.current) {
+        setTranscript(finalizedRef.current);
+      }
       setIsListening(false);
     };
 
@@ -104,13 +93,13 @@ export function useSpeech() {
         setIsListening(false);
         setError('mic-denied');
       } else if (event.error === 'no-speech') {
-        // On mobile, no-speech can fire before user starts; let onend handle restart
         if (!continuousModeRef.current) {
           setIsListening(false);
           setError('no-speech');
         }
+        // In continuous mode, onend will clean up
       } else if (event.error === 'aborted') {
-        // Ignore aborted errors during restart
+        // Ignore aborted errors
       } else {
         setIsListening(false);
       }
@@ -125,7 +114,7 @@ export function useSpeech() {
     recognition.start();
 
     // Silence/safety timeout:
-    // - Continuous: 10s silence timer, reset on each finalized phrase
+    // - Continuous: 10s silence timer, reset on every interim/final result
     // - Single: 30s safety fallback (browser auto-stops after one result)
     timeoutRef.current = setTimeout(stopRecognition, continuous ? 10000 : 30000);
     // Hard max duration cap — safety net against background noise
