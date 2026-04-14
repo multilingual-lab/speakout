@@ -30,7 +30,7 @@ export function useSpeech() {
     const recognition = new SpeechRecognition();
     recognition.lang = 'ko-KR';
     recognition.continuous = continuous;
-    recognition.interimResults = true; // always on — resets silence timer while user speaks
+    recognition.interimResults = false;
     recognition.maxAlternatives = 3;
 
     const stopRecognition = () => {
@@ -48,10 +48,10 @@ export function useSpeech() {
     };
 
     recognition.onresult = (event) => {
-      // Reset silence timeout on every result (interim or final)
-      resetSilenceTimer();
-
       if (continuous) {
+        // Reset silence timeout on each finalized phrase
+        resetSilenceTimer();
+
         // Concatenate all final results from this session
         let finalOnly = accumulatedRef.current;
         for (let i = 0; i < event.results.length; i++) {
@@ -59,20 +59,12 @@ export function useSpeech() {
             finalOnly += event.results[i][0].transcript;
           }
         }
-        // Track finalized text separately (never includes interim)
         finalizedRef.current = finalOnly;
-        // Include the latest interim result for live preview only
-        const lastResult = event.results[event.results.length - 1];
-        if (!lastResult.isFinal) {
-          setTranscript(finalOnly + lastResult[0].transcript);
-        } else {
-          setTranscript(finalOnly);
-        }
+        setTranscript(finalOnly);
       } else {
-        // Single-result mode: use first final result, ignore interim
-        if (event.results[0].isFinal) {
-          setTranscript(event.results[0][0].transcript);
-        }
+        // Single-result mode: browser auto-stops after one final result
+        clearTimeout(timeoutRef.current);
+        setTranscript(event.results[0][0].transcript);
       }
       setError(null);
     };
@@ -87,7 +79,7 @@ export function useSpeech() {
           const next = new SpeechRecognition();
           next.lang = recognition.lang;
           next.continuous = true;
-          next.interimResults = true;
+          next.interimResults = false;
           next.maxAlternatives = 3;
           next.onresult = recognition.onresult;
           next.onend = recognition.onend;
@@ -132,8 +124,10 @@ export function useSpeech() {
     setIsListening(true);
     recognition.start();
 
-    // Silence timeout — stops after 10s of no speech results
-    timeoutRef.current = setTimeout(stopRecognition, 10000);
+    // Silence/safety timeout:
+    // - Continuous: 10s silence timer, reset on each finalized phrase
+    // - Single: 30s safety fallback (browser auto-stops after one result)
+    timeoutRef.current = setTimeout(stopRecognition, continuous ? 10000 : 30000);
     // Hard max duration cap — safety net against background noise
     clearTimeout(maxTimerRef.current);
     maxTimerRef.current = setTimeout(stopRecognition, continuous ? 120000 : 60000);

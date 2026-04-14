@@ -2,6 +2,46 @@ import { useState, useEffect, useRef } from 'react';
 import { useSpeech } from '../hooks/useSpeech';
 import topikCharts from './charts/TopikCharts';
 
+// Check if a Korean grammar keyword pattern matches the transcript.
+// Handles notations: (으)ㄹ (jamo 받침), (으), (이), and / alternatives.
+function keywordMatchesTranscript(keyword, transcript) {
+  const kw = keyword.replace(/~/g, '');
+
+  // Slash alternatives: "아서/어서" → match either side
+  if (kw.includes('/')) {
+    return kw.split('/').some((part) => keywordMatchesTranscript(part.trim(), transcript));
+  }
+
+  // (으)ㄹ + suffix: ㄹ combines as 받침 with the preceding syllable
+  // e.g. (으)ㄹ 거예요 → 할 거예요 (vowel stem) or 먹을 거예요 (consonant stem)
+  if (kw.includes('(으)ㄹ')) {
+    const suffix = kw.split('(으)ㄹ').pop();
+    if (transcript.includes('을' + suffix)) return true;
+    let pos = 0;
+    while (pos < transcript.length) {
+      const idx = transcript.indexOf(suffix, pos);
+      if (idx <= 0) break;
+      const code = transcript.charCodeAt(idx - 1);
+      // Check preceding char is a Korean syllable with ㄹ as 종성 (index 8)
+      if (code >= 0xAC00 && code <= 0xD7A3 && (code - 0xAC00) % 28 === 8) return true;
+      pos = idx + 1;
+    }
+    return false;
+  }
+
+  // (으) without ㄹ jamo: 으 is optional (e.g. (으)면, (으)로)
+  if (kw.includes('(으)')) {
+    return transcript.includes(kw.replace('(으)', '으')) || transcript.includes(kw.replace('(으)', ''));
+  }
+
+  // (이): 이 is optional (e.g. (이)라고)
+  if (kw.includes('(이)')) {
+    return transcript.includes(kw.replace('(이)', '이')) || transcript.includes(kw.replace('(이)', ''));
+  }
+
+  return transcript.includes(kw);
+}
+
 export default function MonologueMode({ monologue, onNext, nextTitle }) {
   const [phase, setPhase] = useState('prompt'); // prompt | drill | recording | reviewing
   const [elapsed, setElapsed] = useState(0);
@@ -68,7 +108,7 @@ export default function MonologueMode({ monologue, onNext, nextTitle }) {
   const formatTime = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
 
   // Check which keywords appear in transcript
-  const matchedKeywords = monologue.keywords?.filter((kw) => transcript.includes(kw.replace(/~/g, ''))) || [];
+  const matchedKeywords = monologue.keywords?.filter((kw) => keywordMatchesTranscript(kw, transcript)) || [];
 
   const ChartComponent = monologue.chartId ? topikCharts[monologue.chartId] : null;
 
