@@ -51,7 +51,7 @@ export default function SceneView({ scenario, initialMode, onBack }) {
     }
   };
 
-  const backLabel = sessionId ? (isMonologue ? 'Choose Topic' : 'Choose Dialog') : 'Back';
+  const backLabel = 'Back';
 
   return (
     <div className="scene-container" style={{ '--scene-color': scenario.color }}>

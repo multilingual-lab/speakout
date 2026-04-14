@@ -275,7 +275,7 @@ function DictationDrill({ drills, onFinish }) {
 
       <div className="drill-nav">
         <button className="nav-btn" onClick={handlePrev} disabled={index === 0}>
-          ← Previous
+          ← Prev
         </button>
         <button className="nav-btn" onClick={handleNext}>
           {index < drills.length - 1 ? 'Next →' : 'Done ✓'}

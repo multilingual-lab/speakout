@@ -159,7 +159,7 @@ function DialogShadow({ exchanges, onNext, nextSessionTitle }) {
         </div>
         <div className="shadow-nav">
           <button className="nav-btn" onClick={handlePrev} disabled={currentIndex === 0}>
-            ← Previous
+            ← Prev
           </button>
           {currentIndex >= lines.length - 1 ? (
             <span className="nav-btn finished">Finished ✓</span>
@@ -329,7 +329,7 @@ function PhraseShadow({ phrases, onNext, nextSessionTitle }) {
 
         <div className="shadow-nav">
           <button className="nav-btn" onClick={handlePrev} disabled={currentIndex === 0}>
-            ← Previous
+            ← Prev
           </button>
           {currentIndex >= phrases.length - 1 ? (
             <span className="nav-btn finished">Finished ✓</span>
