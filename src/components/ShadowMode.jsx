@@ -130,6 +130,15 @@ function DialogShadow({ exchanges, onNext, nextSessionTitle }) {
       </div>
 
       <div className="shadow-bottom-bar">
+        {currentIndex >= lines.length - 1 && (
+          onNext ? (
+            <button className="next-dialog-link" onClick={onNext}>
+              Next dialog: {nextSessionTitle} →
+            </button>
+          ) : (
+            <span className="last-dialog-hint">Last dialog of this topic</span>
+          )
+        )}
         <div className="shadow-actions">
           <button
             className="action-btn listen-btn"
@@ -160,15 +169,6 @@ function DialogShadow({ exchanges, onNext, nextSessionTitle }) {
             </button>
           )}
         </div>
-        {currentIndex >= lines.length - 1 && (
-          onNext ? (
-            <button className="next-dialog-link" onClick={onNext}>
-              Next dialog: {nextSessionTitle} →
-            </button>
-          ) : (
-            <span className="last-dialog-hint">Last dialog of this topic</span>
-          )
-        )}
       </div>
     </div>
   );
@@ -291,6 +291,15 @@ function PhraseShadow({ phrases, onNext, nextSessionTitle }) {
       </div>
 
       <div className="shadow-bottom-bar">
+        {currentIndex >= phrases.length - 1 && (
+          onNext ? (
+            <button className="next-dialog-link" onClick={onNext}>
+              Next dialog: {nextSessionTitle} →
+            </button>
+          ) : (
+            <span className="last-dialog-hint">Last dialog of this topic</span>
+          )
+        )}
         <div className="shadow-actions">
           <button
             className="action-btn listen-btn"
@@ -330,15 +339,6 @@ function PhraseShadow({ phrases, onNext, nextSessionTitle }) {
             </button>
           )}
         </div>
-        {currentIndex >= phrases.length - 1 && (
-          onNext ? (
-            <button className="next-dialog-link" onClick={onNext}>
-              Next dialog: {nextSessionTitle} →
-            </button>
-          ) : (
-            <span className="last-dialog-hint">Last dialog of this topic</span>
-          )
-        )}
       </div>
     </div>
   );
