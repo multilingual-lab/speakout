@@ -6,7 +6,7 @@ A browser-based language speaking practice app, currently focused on Korean. The
 ## Tech Stack
 - **Framework:** React + Vite (v5, Node 20.9 compatible)
 - **TTS:** Azure Cognitive Services TTS REST API (`ko-KR-SunHiNeural`) with Web Speech API fallback
-- **STT:** Web Speech API (`ko-KR`), Chrome required. Configurable listening modes: short (10s, single-result) for practice/shadow, continuous (10s auto-resetting, concatenated results) for monologue
+- **STT:** Web Speech API (`ko-KR`), Chrome required. Configurable listening modes: short (10s, single-result) for practice/shadow, continuous (10s silence timeout, auto-restart on mobile, concatenated results with interim preview) for monologue
 - **Styling:** Plain CSS under `src/styles/`, dark theme (`#1a1a2e` background). Unified design system using CSS custom properties (`--color-primary`, `--color-surface`, etc.) defined in `index.css`
 - **Color palette:** Slate-blue primary (`#4a6da8`) with hover/muted variants (`#5b7fbf`, `#3d5a8a`). Muted rose (`#a84f5a`) for record button, vivid rose (`#c0545f`) for active recording state. All UI tones stay in the blue-navy family — surfaces (`#16213e`, `#1e2d4d`), borders (`#2a3550`), and muted text (`#8a9abc`) share the same hue to maintain cohesion. WCAG AA contrast verified for all text-on-background pairings.
 - **No backend** — all runs in the browser. Azure key configurable via in-app Settings UI (stored in `localStorage`) with `.env` fallback

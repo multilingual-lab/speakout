@@ -12,6 +12,9 @@ export function useSpeech() {
   const recognitionRef = useRef(null);
   const audioRef = useRef(null);
   const timeoutRef = useRef(null);
+  const stoppedManuallyRef = useRef(false);
+  const continuousModeRef = useRef(false);
+  const accumulatedRef = useRef('');
 
   const startListening = useCallback(({ continuous = false } = {}) => {
     if (!SpeechRecognition) {
@@ -19,30 +22,40 @@ export function useSpeech() {
       return;
     }
 
+    stoppedManuallyRef.current = false;
+    continuousModeRef.current = continuous;
+
     const recognition = new SpeechRecognition();
     recognition.lang = 'ko-KR';
     recognition.continuous = continuous;
-    recognition.interimResults = false;
+    recognition.interimResults = continuous;
     recognition.maxAlternatives = 3;
 
     recognition.onresult = (event) => {
       if (continuous) {
-        // Reset the silence timeout on each new result
+        // Reset the silence timeout on each new result (including interim)
         clearTimeout(timeoutRef.current);
         timeoutRef.current = setTimeout(() => {
+          stoppedManuallyRef.current = true;
           if (recognitionRef.current) {
             recognitionRef.current.stop();
           }
         }, 10000);
 
-        // Concatenate all final results
-        let full = '';
+        // Concatenate all final results plus current interim
+        let full = accumulatedRef.current;
         for (let i = 0; i < event.results.length; i++) {
           if (event.results[i].isFinal) {
             full += event.results[i][0].transcript;
           }
         }
-        setTranscript(full);
+        // Include the latest interim result for live preview
+        const lastResult = event.results[event.results.length - 1];
+        if (!lastResult.isFinal) {
+          setTranscript(full + lastResult[0].transcript);
+        } else {
+          setTranscript(full);
+        }
       } else {
         clearTimeout(timeoutRef.current);
         setTranscript(event.results[0][0].transcript);
@@ -52,27 +65,72 @@ export function useSpeech() {
 
     recognition.onend = () => {
       clearTimeout(timeoutRef.current);
+      if (continuousModeRef.current && !stoppedManuallyRef.current) {
+        // Mobile browsers often stop recognition; save finals and restart
+        // Persist already-finalized text before restarting
+        const prev = recognitionRef.current;
+        if (prev) {
+          // Grab all final text from the ended session via current transcript
+        }
+        try {
+          // Save accumulated transcript so far
+          setTranscript((cur) => {
+            accumulatedRef.current = cur;
+            return cur;
+          });
+          const next = new SpeechRecognition();
+          next.lang = recognition.lang;
+          next.continuous = true;
+          next.interimResults = true;
+          next.maxAlternatives = 3;
+          next.onresult = recognition.onresult;
+          next.onend = recognition.onend;
+          next.onerror = recognition.onerror;
+          recognitionRef.current = next;
+          next.start();
+          // Reset silence timer for the restarted session
+          timeoutRef.current = setTimeout(() => {
+            stoppedManuallyRef.current = true;
+            if (recognitionRef.current) {
+              recognitionRef.current.stop();
+            }
+          }, 10000);
+          return; // Don't set isListening to false
+        } catch (e) {
+          console.error('Failed to restart recognition:', e);
+        }
+      }
       setIsListening(false);
     };
 
     recognition.onerror = (event) => {
       clearTimeout(timeoutRef.current);
       console.error('STT error:', event.error);
-      setIsListening(false);
       if (event.error === 'not-allowed') {
+        setIsListening(false);
         setError('mic-denied');
       } else if (event.error === 'no-speech') {
-        setError('no-speech');
+        // On mobile, no-speech can fire before user starts; let onend handle restart
+        if (!continuousModeRef.current) {
+          setIsListening(false);
+          setError('no-speech');
+        }
+      } else if (event.error === 'aborted') {
+        // Ignore aborted errors during restart
+      } else {
+        setIsListening(false);
       }
     };
 
     recognitionRef.current = recognition;
+    accumulatedRef.current = '';
     setTranscript('');
     setError(null);
     setIsListening(true);
     recognition.start();
 
     timeoutRef.current = setTimeout(() => {
+      stoppedManuallyRef.current = true;
       if (recognitionRef.current) {
         recognitionRef.current.stop();
       }
@@ -81,6 +139,7 @@ export function useSpeech() {
 
   const stopListening = useCallback(() => {
     clearTimeout(timeoutRef.current);
+    stoppedManuallyRef.current = true;
     if (recognitionRef.current) {
       recognitionRef.current.stop();
     }
