@@ -199,6 +199,25 @@
   color: #c0cce0;
 }
 
+/* ── Mobile: fix bottom bar to screen ──────────────────────────────── */
+@media (max-width: 768px) {
+  .monologue-container .practice-bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: #1a1a2e;
+    padding: 0.75rem 1rem calc(env(safe-area-inset-bottom, 0px) + 1.25rem);
+    border-top: 1px solid var(--color-border);
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.4);
+  }
+
+  .monologue-scroll-area {
+    padding-bottom: 200px; /* space for fixed bottom bar */
+  }
+}
+
 .monologue-keyword-score {
   font-size: 0.8rem;
   color: var(--color-text-muted);

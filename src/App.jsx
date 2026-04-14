@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import scenarios, { sections } from './data/scenarios';
 import TopicGrid from './components/TopicGrid';
 import SceneView from './components/SceneView';
@@ -13,6 +13,17 @@ import './styles/Monologue.css';
 export default function App() {
   const [selection, setSelection] = useState(null); // { topicId, mode }
   const [showSettings, setShowSettings] = useState(false);
+  const scrollYRef = useRef(0);
+
+  const handleSelect = useCallback((topicId, mode) => {
+    scrollYRef.current = window.scrollY;
+    setSelection({ topicId, mode });
+  }, []);
+
+  const handleBack = useCallback(() => {
+    setSelection(null);
+    requestAnimationFrame(() => window.scrollTo(0, scrollYRef.current));
+  }, []);
 
   const scenario = selection && scenarios.find((s) => s.id === selection.topicId);
 
@@ -21,12 +32,12 @@ export default function App() {
       <button className="settings-gear" onClick={() => setShowSettings(true)} title="Settings">⚙️</button>
       {showSettings && <Settings onClose={() => setShowSettings(false)} />}
       {!scenario ? (
-        <TopicGrid sections={sections} onSelect={(topicId, mode) => setSelection({ topicId, mode })} />
+        <TopicGrid sections={sections} onSelect={handleSelect} />
       ) : (
         <SceneView
           scenario={scenario}
           initialMode={selection.mode}
-          onBack={() => setSelection(null)}
+          onBack={handleBack}
         />
       )}
     </>
