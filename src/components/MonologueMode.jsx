@@ -164,15 +164,10 @@ export default function MonologueMode({ monologue, onNext, nextTitle }) {
           />
         )}
 
-        {/* Recording phase */}
-        {phase === 'recording' && (
-          <div className="monologue-center">
-            <div className="monologue-timer">{formatTime(elapsed)}</div>
-            {transcript && (
-              <div className="monologue-live-transcript">
-                <p className="monologue-live-text">{transcript}</p>
-              </div>
-            )}
+        {/* Recording phase — live transcript directly under keywords */}
+        {phase === 'recording' && transcript && (
+          <div className="monologue-live-transcript">
+            <p className="monologue-live-text">{transcript}</p>
           </div>
         )}
 
