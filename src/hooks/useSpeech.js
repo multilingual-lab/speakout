@@ -15,6 +15,7 @@ export function useSpeech() {
   const stoppedManuallyRef = useRef(false);
   const continuousModeRef = useRef(false);
   const accumulatedRef = useRef('');
+  const finalizedRef = useRef('');
 
   const startListening = useCallback(({ continuous = false } = {}) => {
     if (!SpeechRecognition) {
@@ -42,19 +43,21 @@ export function useSpeech() {
           }
         }, 10000);
 
-        // Concatenate all final results plus current interim
-        let full = accumulatedRef.current;
+        // Concatenate all final results from this session
+        let finalOnly = accumulatedRef.current;
         for (let i = 0; i < event.results.length; i++) {
           if (event.results[i].isFinal) {
-            full += event.results[i][0].transcript;
+            finalOnly += event.results[i][0].transcript;
           }
         }
-        // Include the latest interim result for live preview
+        // Track finalized text separately (never includes interim)
+        finalizedRef.current = finalOnly;
+        // Include the latest interim result for live preview only
         const lastResult = event.results[event.results.length - 1];
         if (!lastResult.isFinal) {
-          setTranscript(full + lastResult[0].transcript);
+          setTranscript(finalOnly + lastResult[0].transcript);
         } else {
-          setTranscript(full);
+          setTranscript(finalOnly);
         }
       } else {
         clearTimeout(timeoutRef.current);
@@ -67,17 +70,9 @@ export function useSpeech() {
       clearTimeout(timeoutRef.current);
       if (continuousModeRef.current && !stoppedManuallyRef.current) {
         // Mobile browsers often stop recognition; save finals and restart
-        // Persist already-finalized text before restarting
-        const prev = recognitionRef.current;
-        if (prev) {
-          // Grab all final text from the ended session via current transcript
-        }
         try {
-          // Save accumulated transcript so far
-          setTranscript((cur) => {
-            accumulatedRef.current = cur;
-            return cur;
-          });
+          // Carry over only finalized text (no interim) to avoid duplicates
+          accumulatedRef.current = finalizedRef.current;
           const next = new SpeechRecognition();
           next.lang = recognition.lang;
           next.continuous = true;
@@ -124,6 +119,7 @@ export function useSpeech() {
 
     recognitionRef.current = recognition;
     accumulatedRef.current = '';
+    finalizedRef.current = '';
     setTranscript('');
     setError(null);
     setIsListening(true);
