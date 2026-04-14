@@ -49,6 +49,13 @@
   line-height: 1.5;
 }
 
+.monologue-chart {
+  margin-top: 0.75rem;
+  background: #1e1e30;
+  border-radius: 10px;
+  padding: 0.75rem 0.5rem;
+}
+
 .monologue-suggested-time {
   font-size: 0.8rem;
   color: var(--color-text-muted);

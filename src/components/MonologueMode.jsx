@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSpeech } from '../hooks/useSpeech';
+import topikCharts from './charts/TopikCharts';
 
 export default function MonologueMode({ monologue, onNext, nextTitle }) {
   const [phase, setPhase] = useState('prompt'); // prompt | recording | reviewing
@@ -71,6 +72,8 @@ export default function MonologueMode({ monologue, onNext, nextTitle }) {
   // Check which keywords appear in transcript
   const matchedKeywords = monologue.keywords?.filter((kw) => transcript.includes(kw.replace(/~/g, ''))) || [];
 
+  const ChartComponent = monologue.chartId ? topikCharts[monologue.chartId] : null;
+
   return (
     <div className="monologue-container">
       <div className="monologue-scroll-area">
@@ -78,6 +81,11 @@ export default function MonologueMode({ monologue, onNext, nextTitle }) {
         <div className="monologue-prompt-card">
           <p className="monologue-prompt-en">{monologue.prompt}</p>
           <p className="monologue-prompt-kr">{monologue.promptKorean}</p>
+          {ChartComponent && (
+            <div className="monologue-chart">
+              <ChartComponent />
+            </div>
+          )}
           {monologue.duration && (
             <span className="monologue-suggested-time">⏱ Suggested: {formatTime(monologue.duration)}</span>
           )}
