@@ -1,24 +1,18 @@
 # SpeakOut — Architecture & Context
 
 ## Goal
-A browser-based language speaking practice app, currently focused on Korean. The core pain point: without an immersive environment it is hard to produce spoken language in real time (user freezes up). The app solves this with scenario-based forced production practice.
+Browser-based Korean speaking practice app. Solves the "freeze-up" problem — without immersion, learners can't produce spoken language in real time. Uses scenario-based forced production drills.
 
 ## Tech Stack
-- **Framework:** React + Vite (v5, Node 20.9 compatible)
-- **TTS:** Azure Cognitive Services TTS REST API (`ko-KR-SunHiNeural`) with Web Speech API fallback
-- **STT:** Web Speech API (`ko-KR`), Chrome required. Interim results reset a 10s silence timer; hard max-duration cap (60s single / 120s continuous) as safety net. Single-result mode (`continuous: false`) for practice/shadow. Monologue uses `continuous: true` on desktop only; mobile falls back to single-result mode due to an **unresolved duplication bug** — mobile Chrome's `continuous` mode re-delivers or replays finalized results, causing repeated words in the transcript. No auto-restart on session end (avoids beep on mobile Chrome from repeated `.start()` calls).
-- **Styling:** Plain CSS under `src/styles/`, dark theme (`#1a1a2e` background). Unified design system using CSS custom properties (`--color-primary`, `--color-surface`, etc.) defined in `index.css`
-- **Color palette:** Slate-blue primary (`#4a6da8`) with hover/muted variants (`#5b7fbf`, `#3d5a8a`). Muted rose (`#a84f5a`) for record button, vivid rose (`#c0545f`) for active recording state. All UI tones stay in the blue-navy family — surfaces (`#16213e`, `#1e2d4d`), borders (`#2a3550`), and muted text (`#8a9abc`) share the same hue to maintain cohesion. WCAG AA contrast verified for all text-on-background pairings.
-- **No backend** — all runs in the browser. Azure key configurable via in-app Settings UI (stored in `localStorage`) with `.env` fallback
-
-## Azure Speech Configuration
-Credentials are resolved in this order:
-1. **In-app Settings** (⚙️ gear icon, top-right) — saved to `localStorage`
-2. **Environment variables** (`.env` fallback):
-```
-VITE_AZURE_SPEECH_KEY=<key>
-VITE_AZURE_SPEECH_ENDPOINT=<your-endpoint>
-```
+| Layer | Choice | Notes |
+|-------|--------|-------|
+| Framework | React + Vite v5 | Node 20.9+, no backend — 100% browser |
+| TTS | Azure Cognitive Services (`ko-KR-SunHiNeural`) | Web Speech API fallback if Azure fails |
+| STT | Web Speech API (`ko-KR`) | Chrome required |
+| Styling | Plain CSS + custom properties | Dark slate-blue theme, WCAG AA verified |
+| Storage | `localStorage` | Azure creds, future: progress tracking |
+| Testing | Vitest | `npm test` — schema validation + scoring unit tests |
+| Content | Pre-authored JSON | No LLM yet (planned Phase 2) |
 
 ## Project Structure
 ```
@@ -28,129 +22,150 @@ src/
 ├── data/
 │   └── scenarios.js         # All content — sections → scenarios → dialogs → exchanges
 ├── components/
-│   ├── TopicGrid.jsx         # Home page: section headers + topic cards with mode buttons
-│   ├── SceneView.jsx         # Per-topic wrapper: mode toggle bar + dialog/monologue picker
+│   ├── TopicGrid.jsx         # Home: section headers + topic cards with mode buttons
+│   ├── SceneView.jsx         # Per-topic wrapper: mode toggle + dialog/monologue picker
 │   ├── PracticeMode.jsx      # Dialog practice with scrolling chat history
 │   ├── ShadowMode.jsx        # Listen & repeat with Levenshtein match scoring
-│   ├── MonologueMode.jsx     # Extended speaking practice: prompt → record → review
-│   └── Settings.jsx          # Azure key/endpoint config modal (localStorage)
+│   ├── MonologueMode.jsx     # Extended speaking: prompt → record → review
+│   ├── Settings.jsx          # Azure key/endpoint config modal
+│   └── charts/
+│       └── TopikCharts.jsx   # TOPIK-style bar/line/pie SVG charts for monologue prompts
 ├── utils/
-│   └── scoring.js            # Korean-aware normalize + Levenshtein similarity scoring
+│   └── scoring.js            # Korean-aware normalize + Levenshtein similarity
 ├── hooks/
-│   └── useSpeech.js          # Azure TTS (primary) + Web Speech TTS (fallback) + STT
+│   └── useSpeech.js          # TTS (Azure primary, Web Speech fallback) + STT
 ├── services/
-│   └── azureTts.js           # Azure TTS REST API: SSML builder, fetch, blob → Audio URL
-│                             # getAzureConfig/saveAzureConfig — localStorage with env fallback
-└── styles/
-    ├── TopicGrid.css
-    ├── SceneView.css
-    ├── Shadow.css
-    ├── Practice.css
-    ├── Monologue.css
-    └── Settings.css
+│   └── azureTts.js           # Azure TTS REST: SSML builder, fetch, blob → Audio URL
+│                             #   getAzureConfig/saveAzureConfig (localStorage + env fallback)
+└── styles/                   # One CSS file per component
 ```
 
-## UI Flow
-```
-TopicGrid (home)          ⚙️ Settings gear (always visible, top-right)
-  └─ Topic card → [🎙️ 실전] or [🔄 쉐도잉] button
-        └─ SceneView (mode toggle bar always visible)
-              ├─ Practice mode → Dialog picker → PracticeMode (chat)
-              │     ├─ Feedback phase: model answers with per-answer 🔊 TTS buttons
-              │     └─ Finished: "Next: <dialog>" button (or "last dialog" if final)
-              └─ Shadow mode → Session picker → ShadowMode
-                    ├─ Quick Phrases (original phrase drills)
-                    └─ Dialog Shadow (shadow full conversations with context)
-                          └─ Last item: "Next: <dialog>" button (or "last dialog" if final)
-  └─ Monologue topic card → [Monologue] button
-        └─ SceneView (no mode toggle — monologue only)
-              └─ Topic picker → MonologueMode
-                    ├─ Prompt phase: show Korean + English prompt, suggested duration,
-                    │     keyword hints (always visible), optional warm-up drill
-                    ├─ Warm-up drill: listen-only flashcards for key terms (🔊 + prev/next)
-                    ├─ Recording phase: timer + live transcript
-                    └─ Reviewing phase: transcript + keyword checklist + model answer with TTS
-```
+## Configuration
+
+Azure credentials resolve in order:
+1. **In-app Settings** (⚙️ gear icon, top-right) → `localStorage`
+2. **`.env` fallback:** `VITE_AZURE_SPEECH_KEY`, `VITE_AZURE_SPEECH_ENDPOINT`
 
 ## Data Model (`src/data/scenarios.js`)
 ```js
-sections[]          // "여행 한국어" | "친구와 대화" | "직장 한국어" | "말하기 연습"
-  └─ scenarios[]    // e.g. "카페에서", "인사하기", "의견 말하기"
-        // Dialog scenarios:
-        ├─ shadow[] // { korean, english }  — for ShadowMode quick phrases
-        └─ sessions[]   // named dialog sessions
+sections[]            // "여행 한국어" | "친구와 대화" | "직장 한국어" | "말하기 연습"
+  └─ scenarios[]      // e.g. "카페에서", "인사하기", "의견 말하기"
+        // ── Dialog scenarios (have sessions[]):
+        ├─ shadow[]           // { korean, english } — quick phrases for ShadowMode
+        └─ sessions[]         // named dialog sessions
               └─ exchanges[]
-                    // { speaker: 'other' | 'you-initiate', korean, english,
+                    // { speaker: 'other'|'you-initiate', korean, english,
                     //   expectedResponses[], hint, englishResponse, level? }
-        // Monologue scenarios (mutually exclusive with shadow/sessions):
-        └─ monologues[]  // extended speaking prompts
+        // ── Monologue scenarios (have monologues[], mutually exclusive with sessions):
+        └─ monologues[]
               // { id, title, titleEn, level, prompt, promptKorean, duration,
-              //   keywords[], drills[], modelAnswer, modelAnswerEn }
-              //   drills[]: optional warm-up items
-              //     { term, meaning, example }
+              //   keywords[], drills[], modelAnswer, modelAnswerEn, chartId? }
+              //   drills[]: { term, meaning, example }
 ```
 
-`you-initiate` exchanges show an English situation prompt and skip TTS playback — the user speaks first.
+### Content Rules (must follow when adding/editing scenarios)
+- **`expectedResponses[0]`** must flow naturally into the *next* exchange — dialog shadowing uses `[0]` to build conversation sequence. Other responses are unordered alternatives for practice mode.
+- **`you-initiate`** exchanges show an English situation prompt and skip TTS — user speaks first.
+- **Formality registers — never mix within a scenario:**
+  - Travel/service → 해요체 (polite conversational)
+  - Casual/friends → 반말
+  - Work/interview → 합니다체 (formal)
+- **Dialog coherence:** each session's exchanges must form a logical multi-turn conversation (6–8 turns), not disconnected Q&A.
+- **Monologue scenarios** live in their own section ("말하기 연습"), detected by presence of `monologues[]` instead of `sessions[]`.
 
-**expectedResponses ordering rule:** `expectedResponses[0]` must be the response that flows naturally into the *next* exchange's prompt, because dialog shadowing uses `[0]` to build the conversation. Other responses are alternatives for practice mode (order doesn't matter there).
+## UI Flow
+```
+TopicGrid (home)              ⚙️ Settings (always visible, top-right)
+  ├─ Dialog topic card → [🎙️ 실전] or [🔄 쉐도잉]
+  │     └─ SceneView (mode toggle bar visible)
+  │           ├─ Practice → Dialog picker → PracticeMode
+  │           │     ├─ Respond phase → Feedback phase (model answers + 🔊)
+  │           │     └─ "Next: <dialog>" or "last dialog" indicator
+  │           └─ Shadow → Session picker → ShadowMode
+  │                 ├─ Quick Phrases (phrase drills)
+  │                 └─ Dialog Shadow (full conversation, sequential lines)
+  │                       └─ "Next: <dialog>" or "last dialog" indicator
+  └─ Monologue topic card → [Monologue]
+        └─ SceneView (no mode toggle)
+              └─ Topic picker → MonologueMode
+                    ├─ Prompt phase (Korean/English prompt, keywords, optional warm-up drill)
+                    ├─ Recording phase (timer + live transcript)
+                    └─ Review phase (transcript, keyword checklist, model answer + TTS)
+```
 
-## Key Decisions
-- **Monologue mode** — a separate mode for extended speaking practice (describing situations, stating opinions, explaining). Monologue scenarios live in their own section ("말하기 연습"), not mixed into dialog scenario cards. SceneView detects monologue scenarios via the presence of `monologues[]` (instead of `sessions[]`) and hides the practice/shadow mode toggle. Keywords are always visible in the prompt phase. After recording, keywords are displayed with match highlighting via grammar-aware matching (`keywordMatchesTranscript`): handles `(으)ㄹ` patterns by checking for ㄹ 받침 in the preceding syllable (e.g. `~(으)ㄹ 거예요` matches "할 거예요") or `을` for consonant stems ("먹을 거예요"); `(으)` and `(이)` optional syllables match with or without; `/` alternatives (e.g. `~아서/~어서`) match either side. Model answers are shown for self-comparison with TTS playback. Monologues with a `chartId` field render a TOPIK-style chart (bar/line/pie) from `src/components/charts/TopikCharts.jsx` inside the prompt card. Each monologue can include a `drills[]` array for an optional warm-up: lightweight listen-only flashcards (example sentence + 🔊 speaker + term/meaning) that users can page through before attempting the full monologue.
-- **No LLM in Phase 1** — all content is pre-written JSON. LLM evaluation is a planned Phase 2 addition.
-- **Dialogs over flat Q&A** — each practice dialog is a coherent multi-turn exchange (6–8 turns), not disconnected question/answer pairs.
-- **Two modes on home card** — clicking a topic goes directly into practice or shadow; no intermediate mode-selector page. A toggle bar inside the topic lets you switch modes while preserving the selected dialog session.
-- **Azure TTS** — `ko-KR-SunHiNeural` neural voice. Falls back to `SpeechSynthesisUtterance` if Azure fails.
-- **Similarity scoring** — Levenshtein-based character similarity with Korean-aware normalization: strips punctuation, emoticons (ㅋㅎㅠㅜ), trailing formality particle (요), and whitespace before comparison.
-- **Dialog shadowing** — shadow mode now has a session picker like practice mode. Users can choose "Quick Phrases" (original phrase drills) or any dialog session. Dialog shadow flattens exchanges into sequential lines (both sides of the conversation), showing past lines as scrollable context above the current line. For `you-initiate` exchanges, the first expected response is used as the shadow target.
-- **Immersion-first** — shadow mode shows Korean only by default. English translation is behind a "Show English" toggle. Model answers in practice mode are Korean-only — no translations added to avoid creating a crutch. Users who need translation can use external tools.
-- **Pinned action bars** — all three modes use a scroll-area + pinned-bottom-bar layout. In shadow mode, Listen/Record + Previous/Next are pinned at the bottom. In practice mode, the record button is pinned at the bottom during the respond phase, and model answers + Retry/Next are pinned during the feedback phase. In monologue mode, Start/Recording/Retry+Next are pinned at the bottom across all phases. Users never have to chase buttons between scroll area and actions. Scrollbars are hidden (`scrollbar-width: none`) for cleaner appearance. The scene container uses `height: 100vh` with `overflow: hidden` to prevent full-page scrolling. On mobile (≤768px), bottom bars become `position: fixed; bottom: 0` with `calc(env(safe-area-inset-bottom, 0px) + 1.25rem)` bottom padding and 200px scroll-area padding to compensate. Because fixed bars escape the scene container's padding, bottom spacing must be set *inside* the bar itself. Watch CSS specificity: `.practice-bottom-bar.respond-bar` (2-class) overrides the single-class mobile rule — always add a matching `.respond-bar` override inside the media query.
-- **Retry auto-records** — tapping Retry in both practice and monologue modes automatically starts recording after a brief delay, so users don't have to tap twice (Retry then Record).
-- **Model answer TTS** — each model answer in the feedback phase has an individual 🔊 button. Only the clicked button shows an active (pulsing) state; others remain idle. Clicks are no-op while audio is playing to prevent overlap.
-- **Recording UX** — single button toggles between "🎙️ Your turn — speak!" and "🎙️ Listening… tap to finish" with a pulsing ring animation. The exchange's hint is shown as the status prompt above the record button (e.g. "🎤 Order a drink") instead of a generic message. A `processing` phase prevents button flash on transition. Auto-detection: when the browser's speech recognition stops on its own (silence timeout), the app automatically transitions to feedback — no manual tap required.
-- **Continuous listening for monologue** — `startListening({ continuous: true })` enables Web Speech API's continuous mode with a 10-second idle timeout that resets on each spoken phrase, allowing longer thinking gaps. Practice and shadow modes use the default short mode (10s, single result) so background noise doesn't delay completion.
-- **Consistent button sizing** — action buttons use `min-width: 220px` to maintain visual consistency across states.
-- **Scroll position restore** — when navigating from a topic card into a sub-page, `App.jsx` saves `window.scrollY` in a ref. On back navigation, the grid scroll position is restored via `requestAnimationFrame` so users return to where they left off (especially useful on mobile with long topic lists).
+## Behavioral Specifications
 
-## Content Quality Rules
-- **Formality consistency:** Travel/service scenarios use 해요체 (polite conversational). Casual/friend scenarios use 반말. Work/interview scenarios use 합니다체 (formal). Never mix registers within a scenario.
-- **Response ordering:** `expectedResponses[0]` must connect naturally to the next exchange's prompt (see Data Model section).
-- **Dialog coherence:** Each session's exchanges must form a logical, flowing conversation from start to finish.
+### Speech Recognition (STT)
+- **Practice/Shadow:** single-result mode (`continuous: false`) on all platforms
+- **Monologue (desktop):** `continuous: true` with 10s idle timeout resetting on each phrase
+- **Monologue (mobile):** falls back to `continuous: false` via `isMobile` UA detection
+- **Safety caps:** 60s single / 120s continuous max duration
+- **Auto-stop:** when browser recognition ends on its own, app transitions to feedback automatically
+- **No auto-restart** on session end (avoids beep on mobile Chrome from repeated `.start()`)
 
-## Completed Phases
-- [x] Phase 1: Vite + React scaffold
-- [x] Azure TTS integration
-- [x] Topic sections (Travel / Casual with Friends / Work)
-- [x] Dialog-based conversation practice with chat history
-- [x] Shadow mode with pronunciation scoring
-- [x] Direct mode buttons on home cards (no intermediate screen)
-- [x] Model answer TTS playback in practice feedback phase
-- [x] Unified slate-blue design system with CSS custom properties (WCAG AA verified)
-- [x] Recording UX: toggle button with pulse animation, auto-stop detection, processing phase
-- [x] In-app Settings UI for Azure key/endpoint (localStorage with .env fallback)
-- [x] Dialog shadowing mode (shadow full conversations with session picker)
-- [x] Pinned bottom bars for stable button positioning in both modes
-- [x] Retry auto-record in practice mode
-- [x] Content quality review: formality consistency (합니다체 for work, 해요체 for travel, 반말 for casual), response ordering for shadow flow
-- [x] Removed romanization — immersion-first, only Korean + English toggle
-- [x] Slim inline result bar for shadow mode (replaces stacked card)
-- [x] Shadow "Finished ✓" indicator on last item
-- [x] Difficulty level badges (beginner / intermediate / advanced)
-- [x] English translations for user responses (`englishResponse` field) in shadow mode
-- [x] Code quality: fixed Promise anti-pattern, added error states to useSpeech, error boundary, Korean-aware similarity scoring
-- [x] Dialog list sorted by difficulty level (beginner → intermediate → advanced)
-- [x] Testing (Vitest): schema validation for scenarios data, scoring/normalization unit tests (`npm test`)
-- [x] Extracted `computeSimilarity` into shared `src/utils/scoring.js` module
-- [x] Next-dialog navigation: after finishing practice/shadow, shows "Next: <title>" button to continue to next dialog, or "last dialog of this topic" indicator
-- [x] Practice mode: record button moved to sticky bottom bar for smoother UX
-- [x] Monologue mode: extended speaking practice with prompt → record → review (keyword checklist + model answer + TTS)
-- [x] Monologue section "말하기 연습" with 3 topic categories: 일상 설명하기, 의견 말하기, 상황 설명하기 (6 prompts total)
-- [x] TOPIK-style chart/graph description practice (자료 설명하기): bar chart, line graph, pie chart rendered as inline SVG React components (`src/components/charts/TopikCharts.jsx`); monologue data references charts via `chartId`; MonologueMode renders chart inside prompt card
-- [x] Scroll position restore on back navigation (saves scroll offset before entering sub-page, restores on return)
+### Recording UX
+- Single toggle button: "🎙️ Your turn — speak!" ↔ "🎙️ Listening… tap to finish" with pulsing ring animation
+- Exchange `hint` shown as status prompt (e.g. "🎤 Order a drink")
+- `processing` phase prevents button flash between states
+- **Retry auto-records:** tapping Retry starts recording after brief delay (no double-tap)
 
-## Planned / Next Steps
+### TTS Playback
+- Azure `ko-KR-SunHiNeural` primary, `SpeechSynthesisUtterance` fallback
+- Feedback phase: per-answer 🔊 buttons. Only clicked button pulses; others idle. Clicks are no-op while audio plays.
+
+### Scoring (`src/utils/scoring.js`)
+- Levenshtein character similarity with Korean-aware normalization
+- Strips: punctuation, emoticons (ㅋㅎㅠㅜ), trailing 요, whitespace
+
+### Keyword Matching (monologue review)
+Grammar-aware `keywordMatchesTranscript`:
+- `(으)ㄹ` → checks ㄹ 받침 (e.g. `~(으)ㄹ 거예요` matches "할 거예요") or `을` for consonant stems
+- `(으)`, `(이)` → optional syllable, matches with or without
+- `/` alternatives → e.g. `~아서/~어서` matches either side
+
+### Monologue-Specific
+- Monologues with `chartId` render TOPIK-style charts via `TopikCharts.jsx` inside prompt card
+- `drills[]` → optional warm-up: listen-only flashcards (example sentence + 🔊 + term/meaning), paged before full monologue
+- Keywords always visible in prompt phase; review shows match highlighting
+
+### Navigation & Layout
+- **Immersion-first:** Korean only by default in shadow mode; English behind toggle. Practice model answers Korean-only.
+- **Two modes on home card:** direct entry into practice or shadow — no intermediate screen. Toggle bar inside topic preserves dialog selection.
+- **Scroll position restore:** `App.jsx` saves `scrollY` in ref before sub-page; restores via `requestAnimationFrame` on back.
+- **Dialog lists** sorted by difficulty (beginner → intermediate → advanced).
+
+## CSS / Layout Patterns
+
+### Design System (`index.css` custom properties)
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--color-primary` | `#4a6da8` | Primary actions, links |
+| hover/muted | `#5b7fbf` / `#3d5a8a` | Hover, secondary |
+| record | `#a84f5a` → `#c0545f` active | Record button states |
+| surfaces | `#16213e`, `#1e2d4d` | Cards, panels |
+| borders | `#2a3550` | Dividers |
+| muted text | `#8a9abc` | Secondary text |
+| background | `#1a1a2e` | Page background |
+
+All tones in blue-navy family for cohesion. WCAG AA verified.
+
+### Pinned Bottom Bars
+All three modes: scroll-area + pinned-bottom-bar. Scene container `height: 100vh; overflow: hidden`. Scrollbars hidden (`scrollbar-width: none`).
+
+**Mobile (≤768px):** bottom bars become `position: fixed; bottom: 0` with `calc(env(safe-area-inset-bottom, 0px) + 1.25rem)` padding. 200px scroll-area bottom padding to compensate. Bottom spacing set *inside* the bar (fixed bars escape container padding).
+
+**CSS specificity pitfall:** `.practice-bottom-bar.respond-bar` (2-class) overrides single-class mobile rule — always add matching `.respond-bar` override inside the media query.
+
+### Button Sizing
+Action buttons: `min-width: 220px` for visual consistency across states.
+
+## Known Issues
+- **Mobile Chrome STT duplication:** `continuous: true` mode re-delivers finalized results → duplicate words. Workaround: mobile uses `continuous: false`.
+
+## Roadmap
 - [ ] Ambient audio per scene (café sounds, street sounds)
 - [ ] More scenario content (병원, 호텔, 택시 등)
 - [ ] Dialog progress tracking / history (localStorage)
 - [ ] LLM evaluation for free responses (GPT-4o-mini)
 - [ ] Mobile layout improvements
-- [ ] Azure Pronunciation Assessment API for detailed phoneme feedback
+- [ ] Azure Pronunciation Assessment API for phoneme feedback
