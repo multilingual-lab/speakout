@@ -232,3 +232,22 @@
 .quick-phrases-card {
   border-left: 3px solid #6366f1 !important;
 }
+
+/* ── Mobile: fix bottom bar to screen ──────────────────────────────── */
+@media (max-width: 768px) {
+  .shadow-bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: #1a1a2e;
+    padding: 0.75rem 1rem calc(env(safe-area-inset-bottom, 0px) + 0.75rem);
+    border-top: 1px solid var(--color-border);
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.4);
+  }
+
+  .shadow-scroll-area {
+    padding-bottom: 200px; /* space for fixed bottom bar */
+  }
+}
