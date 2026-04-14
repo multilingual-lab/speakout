@@ -1,21 +1,30 @@
 import { useState } from 'react';
 import ShadowMode from './ShadowMode';
 import PracticeMode from './PracticeMode';
+import MonologueMode from './MonologueMode';
 
 const LEVEL_LABELS = { beginner: 'Beginner', intermediate: 'Intermediate', advanced: 'Advanced' };
 const LEVEL_ORDER = { beginner: 0, intermediate: 1, advanced: 2 };
 const sortByLevel = (sessions) => [...sessions].sort((a, b) => (LEVEL_ORDER[a.level] ?? 99) - (LEVEL_ORDER[b.level] ?? 99));
 
 export default function SceneView({ scenario, initialMode, onBack }) {
-  const [mode, setMode] = useState(initialMode);
+  const isMonologue = !!scenario.monologues;
+  const [mode, setMode] = useState(isMonologue ? 'monologue' : initialMode);
   const [sessionId, setSessionId] = useState(null);
 
   const sortedSessions = scenario.sessions ? sortByLevel(scenario.sessions) : [];
   const session = scenario.sessions?.find((s) => s.id === sessionId);
+  const sortedMonologues = scenario.monologues ? sortByLevel(scenario.monologues) : [];
+  const monologue = scenario.monologues?.find((m) => m.id === sessionId);
 
   // Compute next session for "Next Session" navigation
   const getNextSessionId = () => {
-    if (!sessionId || sortedSessions.length === 0) return null;
+    if (!sessionId) return null;
+    if (isMonologue) {
+      const idx = sortedMonologues.findIndex((m) => m.id === sessionId);
+      return idx >= 0 && idx < sortedMonologues.length - 1 ? sortedMonologues[idx + 1].id : null;
+    }
+    if (sortedSessions.length === 0) return null;
     if (sessionId === '__quick__') {
       return sortedSessions.length > 0 ? sortedSessions[0].id : null;
     }
@@ -24,7 +33,11 @@ export default function SceneView({ scenario, initialMode, onBack }) {
   };
 
   const nextSessionId = getNextSessionId();
-  const nextSession = nextSessionId ? sortedSessions.find((s) => s.id === nextSessionId) : null;
+  const nextSession = nextSessionId
+    ? (isMonologue
+        ? sortedMonologues.find((m) => m.id === nextSessionId)
+        : sortedSessions.find((s) => s.id === nextSessionId))
+    : null;
 
   const handleNextSession = () => {
     if (nextSessionId) setSessionId(nextSessionId);
@@ -38,7 +51,7 @@ export default function SceneView({ scenario, initialMode, onBack }) {
     }
   };
 
-  const backLabel = sessionId ? 'Choose Dialog' : 'Back';
+  const backLabel = sessionId ? (isMonologue ? 'Choose Topic' : 'Choose Dialog') : 'Back';
 
   return (
     <div className="scene-container" style={{ '--scene-color': scenario.color }}>
@@ -51,25 +64,28 @@ export default function SceneView({ scenario, initialMode, onBack }) {
           <h2 className="scene-title">
             {scenario.title}
             {session && <span className="scene-session-name"> — {session.title}</span>}
+            {monologue && <span className="scene-session-name"> — {monologue.title}</span>}
           </h2>
         </div>
       </header>
 
-      {/* Mode toggle */}
-      <div className="mode-toggle">
-        <button
-          className={`mode-toggle-btn ${mode === 'practice' ? 'active' : ''}`}
-          onClick={() => { setMode('practice'); if (sessionId === '__quick__') setSessionId(null); }}
-        >
-          Practice
-        </button>
-        <button
-          className={`mode-toggle-btn ${mode === 'shadow' ? 'active' : ''}`}
-          onClick={() => { setMode('shadow'); }}
-        >
-          Shadowing
-        </button>
-      </div>
+      {/* Mode toggle — only for dialog scenarios */}
+      {!isMonologue && (
+        <div className="mode-toggle">
+          <button
+            className={`mode-toggle-btn ${mode === 'practice' ? 'active' : ''}`}
+            onClick={() => { setMode('practice'); if (sessionId === '__quick__') setSessionId(null); }}
+          >
+            Practice
+          </button>
+          <button
+            className={`mode-toggle-btn ${mode === 'shadow' ? 'active' : ''}`}
+            onClick={() => { setMode('shadow'); }}
+          >
+            Shadowing
+          </button>
+        </div>
+      )}
 
       {/* Session picker for practice */}
       {mode === 'practice' && !sessionId && (
@@ -134,6 +150,32 @@ export default function SceneView({ scenario, initialMode, onBack }) {
       {/* Dialog shadow */}
       {mode === 'shadow' && session && (
         <ShadowMode key={sessionId} exchanges={session.exchanges} onNext={nextSessionId ? handleNextSession : null} nextSessionTitle={nextSession?.title} />
+      )}
+
+      {/* Monologue picker */}
+      {isMonologue && !sessionId && (
+        <div className="session-picker">
+          <p className="session-picker-label">Choose a topic</p>
+          <div className="session-list">
+            {sortByLevel(scenario.monologues).map((m) => (
+              <button
+                key={m.id}
+                className="session-card"
+                onClick={() => setSessionId(m.id)}
+              >
+                <span className="session-title">{m.title}</span>
+                <span className="session-title-en">{m.titleEn}</span>
+                {m.level && <span className={`level-badge level-${m.level}`}>{LEVEL_LABELS[m.level]}</span>}
+                <span className="session-count">⏱ {Math.floor(m.duration / 60)}:{String(m.duration % 60).padStart(2, '0')}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Active monologue */}
+      {isMonologue && monologue && (
+        <MonologueMode key={sessionId} monologue={monologue} onNext={nextSessionId ? handleNextSession : null} nextTitle={nextSession?.title} />
       )}
     </div>
   );

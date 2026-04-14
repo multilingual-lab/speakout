@@ -8,6 +8,7 @@ import './styles/SceneView.css';
 import './styles/Shadow.css';
 import './styles/Practice.css';
 import './styles/Settings.css';
+import './styles/Monologue.css';
 
 export default function App() {
   const [selection, setSelection] = useState(null); // { topicId, mode }

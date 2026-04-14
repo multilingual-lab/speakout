@@ -29,9 +29,10 @@ src/
 │   └── scenarios.js         # All content — sections → scenarios → dialogs → exchanges
 ├── components/
 │   ├── TopicGrid.jsx         # Home page: section headers + topic cards with mode buttons
-│   ├── SceneView.jsx         # Per-topic wrapper: mode toggle bar + dialog picker
+│   ├── SceneView.jsx         # Per-topic wrapper: mode toggle bar + dialog/monologue picker
 │   ├── PracticeMode.jsx      # Dialog practice with scrolling chat history
 │   ├── ShadowMode.jsx        # Listen & repeat with Levenshtein match scoring
+│   ├── MonologueMode.jsx     # Extended speaking practice: prompt → record → review
 │   └── Settings.jsx          # Azure key/endpoint config modal (localStorage)
 ├── utils/
 │   └── scoring.js            # Korean-aware normalize + Levenshtein similarity scoring
@@ -45,6 +46,7 @@ src/
     ├── SceneView.css
     ├── Shadow.css
     ├── Practice.css
+    ├── Monologue.css
     └── Settings.css
 ```
 
@@ -60,17 +62,28 @@ TopicGrid (home)          ⚙️ Settings gear (always visible, top-right)
                     ├─ Quick Phrases (original phrase drills)
                     └─ Dialog Shadow (shadow full conversations with context)
                           └─ Last item: "Next: <dialog>" button (or "last dialog" if final)
+  └─ Monologue topic card → [Monologue] button
+        └─ SceneView (no mode toggle — monologue only)
+              └─ Topic picker → MonologueMode
+                    ├─ Prompt phase: show Korean + English prompt, suggested duration
+                    ├─ Recording phase: timer + live transcript
+                    └─ Reviewing phase: transcript + keyword checklist + model answer with TTS
 ```
 
 ## Data Model (`src/data/scenarios.js`)
 ```js
-sections[]          // "여행 한국어" | "친구와 대화" | "직장 한국어"
-  └─ scenarios[]    // e.g. "카페에서", "인사하기"
+sections[]          // "여행 한국어" | "친구와 대화" | "직장 한국어" | "발표 연습"
+  └─ scenarios[]    // e.g. "카페에서", "인사하기", "의견 말하기"
+        // Dialog scenarios:
         ├─ shadow[] // { korean, english }  — for ShadowMode quick phrases
         └─ sessions[]   // named dialog sessions
               └─ exchanges[]
                     // { speaker: 'other' | 'you-initiate', korean, english,
                     //   expectedResponses[], hint, englishResponse, level? }
+        // Monologue scenarios (mutually exclusive with shadow/sessions):
+        └─ monologues[]  // extended speaking prompts
+              // { id, title, titleEn, level, prompt, promptKorean, duration,
+              //   keywords[], modelAnswer, modelAnswerEn }
 ```
 
 `you-initiate` exchanges show an English situation prompt and skip TTS playback — the user speaks first.
@@ -78,6 +91,7 @@ sections[]          // "여행 한국어" | "친구와 대화" | "직장 한국�
 **expectedResponses ordering rule:** `expectedResponses[0]` must be the response that flows naturally into the *next* exchange's prompt, because dialog shadowing uses `[0]` to build the conversation. Other responses are alternatives for practice mode (order doesn't matter there).
 
 ## Key Decisions
+- **Monologue mode** — a separate mode for extended speaking practice (describing situations, stating opinions, explaining). Monologue scenarios live in their own section ("발표 연습"), not mixed into dialog scenario cards. SceneView detects monologue scenarios via the presence of `monologues[]` (instead of `sessions[]`) and hides the practice/shadow mode toggle. Keyword hints are shown before speaking (togglable) and persist into the recording phase if toggled on. After recording, keywords are displayed with match highlighting. Model answers are shown for self-comparison with TTS playback.
 - **No LLM in Phase 1** — all content is pre-written JSON. LLM evaluation is a planned Phase 2 addition.
 - **Dialogs over flat Q&A** — each practice dialog is a coherent multi-turn exchange (6–8 turns), not disconnected question/answer pairs.
 - **Two modes on home card** — clicking a topic goes directly into practice or shadow; no intermediate mode-selector page. A toggle bar inside the topic lets you switch modes while preserving the selected dialog session.
@@ -85,8 +99,8 @@ sections[]          // "여행 한국어" | "친구와 대화" | "직장 한국�
 - **Similarity scoring** — Levenshtein-based character similarity with Korean-aware normalization: strips punctuation, emoticons (ㅋㅎㅠㅜ), trailing formality particle (요), and whitespace before comparison.
 - **Dialog shadowing** — shadow mode now has a session picker like practice mode. Users can choose "Quick Phrases" (original phrase drills) or any dialog session. Dialog shadow flattens exchanges into sequential lines (both sides of the conversation), showing past lines as scrollable context above the current line. For `you-initiate` exchanges, the first expected response is used as the shadow target.
 - **Immersion-first** — shadow mode shows Korean only by default. English translation is behind a "Show English" toggle. Model answers in practice mode are Korean-only — no translations added to avoid creating a crutch. Users who need translation can use external tools.
-- **Pinned action bars** — both modes use a scroll-area + pinned-bottom-bar layout. In shadow mode, Listen/Record + Previous/Next are pinned at the bottom. In practice mode, the record button is pinned at the bottom during the respond phase, and model answers + Retry/Next are pinned during the feedback phase — so the user never has to chase buttons between scroll area and actions. Scrollbars are hidden (`scrollbar-width: none`) for cleaner appearance. The scene container uses `height: 100vh` with `overflow: hidden` to prevent full-page scrolling.
-- **Retry auto-records** — tapping Retry in practice feedback automatically starts recording after a brief delay, so users don't have to tap twice (Retry then Record).
+- **Pinned action bars** — all three modes use a scroll-area + pinned-bottom-bar layout. In shadow mode, Listen/Record + Previous/Next are pinned at the bottom. In practice mode, the record button is pinned at the bottom during the respond phase, and model answers + Retry/Next are pinned during the feedback phase. In monologue mode, Start/Recording/Retry+Next are pinned at the bottom across all phases. Users never have to chase buttons between scroll area and actions. Scrollbars are hidden (`scrollbar-width: none`) for cleaner appearance. The scene container uses `height: 100vh` with `overflow: hidden` to prevent full-page scrolling.
+- **Retry auto-records** — tapping Retry in both practice and monologue modes automatically starts recording after a brief delay, so users don't have to tap twice (Retry then Record).
 - **Model answer TTS** — each model answer in the feedback phase has an individual 🔊 button. Only the clicked button shows an active (pulsing) state; others remain idle. Clicks are no-op while audio is playing to prevent overlap.
 - **Recording UX** — single button toggles between "🎙️ Your turn — speak!" and "🎙️ Listening… tap to finish" with a pulsing ring animation. The exchange's hint is shown as the status prompt above the record button (e.g. "🎤 Order a drink") instead of a generic message. A `processing` phase prevents button flash on transition. Auto-detection: when the browser's speech recognition stops on its own (silence timeout), the app automatically transitions to feedback — no manual tap required.
 - **Consistent button sizing** — action buttons use `min-width: 220px` to maintain visual consistency across states.
@@ -122,6 +136,8 @@ sections[]          // "여행 한국어" | "친구와 대화" | "직장 한국�
 - [x] Extracted `computeSimilarity` into shared `src/utils/scoring.js` module
 - [x] Next-dialog navigation: after finishing practice/shadow, shows "Next: <title>" button to continue to next dialog, or "last dialog of this topic" indicator
 - [x] Practice mode: record button moved to sticky bottom bar for smoother UX
+- [x] Monologue mode: extended speaking practice with prompt → record → review (keyword checklist + model answer + TTS)
+- [x] Monologue section "발표 연습" with 3 topic categories: 일상 설명하기, 의견 말하기, 상황 설명하기 (6 prompts total)
 
 ## Planned / Next Steps
 - [ ] Ambient audio per scene (café sounds, street sounds)

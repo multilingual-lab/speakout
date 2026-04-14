@@ -2,6 +2,8 @@ import { describe, it, expect } from 'vitest';
 import { sections } from './scenarios.js';
 
 const scenarios = sections.flatMap((s) => s.scenarios);
+const dialogScenarios = scenarios.filter((s) => s.sessions);
+const monologueScenarios = scenarios.filter((s) => s.monologues);
 const VALID_LEVELS = ['beginner', 'intermediate', 'advanced'];
 const VALID_SPEAKERS = ['other', 'you-initiate'];
 
@@ -40,12 +42,18 @@ describe('scenarios.js — schema validation', () => {
       expect(s, `${s.id} missing titleEn`).toHaveProperty('titleEn');
       expect(s, `${s.id} missing emoji`).toHaveProperty('emoji');
       expect(s, `${s.id} missing color`).toHaveProperty('color');
-      expect(s, `${s.id} missing shadow`).toHaveProperty('shadow');
-      expect(s, `${s.id} missing sessions`).toHaveProperty('sessions');
-      expect(Array.isArray(s.shadow), `${s.id} shadow not array`).toBe(true);
-      expect(Array.isArray(s.sessions), `${s.id} sessions not array`).toBe(true);
-      expect(s.shadow.length, `${s.id} has empty shadow`).toBeGreaterThan(0);
-      expect(s.sessions.length, `${s.id} has no sessions`).toBeGreaterThan(0);
+      // Dialog scenarios need shadow + sessions; monologue scenarios need monologues
+      if (s.monologues) {
+        expect(Array.isArray(s.monologues), `${s.id} monologues not array`).toBe(true);
+        expect(s.monologues.length, `${s.id} has no monologues`).toBeGreaterThan(0);
+      } else {
+        expect(s, `${s.id} missing shadow`).toHaveProperty('shadow');
+        expect(s, `${s.id} missing sessions`).toHaveProperty('sessions');
+        expect(Array.isArray(s.shadow), `${s.id} shadow not array`).toBe(true);
+        expect(Array.isArray(s.sessions), `${s.id} sessions not array`).toBe(true);
+        expect(s.shadow.length, `${s.id} has empty shadow`).toBeGreaterThan(0);
+        expect(s.sessions.length, `${s.id} has no sessions`).toBeGreaterThan(0);
+      }
     }
   });
 
@@ -57,7 +65,7 @@ describe('scenarios.js — schema validation', () => {
   // ── Shadow phrases ──
 
   it('every shadow phrase has korean and english', () => {
-    for (const scenario of scenarios) {
+    for (const scenario of dialogScenarios) {
       for (const phrase of scenario.shadow) {
         expect(phrase, `${scenario.id} shadow phrase missing korean`).toHaveProperty('korean');
         expect(phrase, `${scenario.id} shadow phrase missing english`).toHaveProperty('english');
@@ -70,7 +78,7 @@ describe('scenarios.js — schema validation', () => {
   // ── Session-level ──
 
   it('every session has required fields with valid level', () => {
-    for (const scenario of scenarios) {
+    for (const scenario of dialogScenarios) {
       for (const session of scenario.sessions) {
         expect(session, `${scenario.id} session missing id`).toHaveProperty('id');
         expect(session, `${session.id} missing title`).toHaveProperty('title');
@@ -88,14 +96,14 @@ describe('scenarios.js — schema validation', () => {
   });
 
   it('session ids are globally unique', () => {
-    const ids = scenarios.flatMap((s) => s.sessions.map((sess) => sess.id));
+    const ids = dialogScenarios.flatMap((s) => s.sessions.map((sess) => sess.id));
     expect(new Set(ids).size).toBe(ids.length);
   });
 
   // ── Exchange-level ──
 
   it('every exchange has required fields', () => {
-    for (const scenario of scenarios) {
+    for (const scenario of dialogScenarios) {
       for (const session of scenario.sessions) {
         session.exchanges.forEach((ex, i) => {
           const label = `${session.id}[${i}]`;
@@ -114,7 +122,7 @@ describe('scenarios.js — schema validation', () => {
   });
 
   it('you-initiate exchanges have expectedResponses for shadow target', () => {
-    for (const scenario of scenarios) {
+    for (const scenario of dialogScenarios) {
       for (const session of scenario.sessions) {
         session.exchanges
           .filter((ex) => ex.speaker === 'you-initiate')
@@ -137,7 +145,7 @@ describe('scenarios.js — schema validation', () => {
   // ── No empty strings ──
 
   it('no exchange has empty string values (except you-initiate korean)', () => {
-    for (const scenario of scenarios) {
+    for (const scenario of dialogScenarios) {
       for (const session of scenario.sessions) {
         session.exchanges.forEach((ex, i) => {
           const label = `${session.id}[${i}]`;
@@ -153,5 +161,32 @@ describe('scenarios.js — schema validation', () => {
         });
       }
     }
+  });
+
+  // ── Monologue-level ──
+
+  it('every monologue has required fields', () => {
+    for (const scenario of monologueScenarios) {
+      for (const m of scenario.monologues) {
+        expect(m, `${scenario.id} monologue missing id`).toHaveProperty('id');
+        expect(m, `${m.id} missing title`).toHaveProperty('title');
+        expect(m, `${m.id} missing titleEn`).toHaveProperty('titleEn');
+        expect(m, `${m.id} missing prompt`).toHaveProperty('prompt');
+        expect(m, `${m.id} missing promptKorean`).toHaveProperty('promptKorean');
+        expect(m, `${m.id} missing duration`).toHaveProperty('duration');
+        expect(m, `${m.id} missing modelAnswer`).toHaveProperty('modelAnswer');
+        expect(m, `${m.id} missing modelAnswerEn`).toHaveProperty('modelAnswerEn');
+        expect(m, `${m.id} missing level`).toHaveProperty('level');
+        expect(VALID_LEVELS, `${m.id} has invalid level "${m.level}"`).toContain(m.level);
+        expect(m.prompt.length, `${m.id} empty prompt`).toBeGreaterThan(0);
+        expect(m.modelAnswer.length, `${m.id} empty modelAnswer`).toBeGreaterThan(0);
+        expect(m.duration, `${m.id} duration must be positive`).toBeGreaterThan(0);
+      }
+    }
+  });
+
+  it('monologue ids are globally unique', () => {
+    const ids = monologueScenarios.flatMap((s) => s.monologues.map((m) => m.id));
+    expect(new Set(ids).size).toBe(ids.length);
   });
 });

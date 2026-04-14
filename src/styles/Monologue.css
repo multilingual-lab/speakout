@@ -1,0 +1,200 @@
+/* MonologueMode styles */
+.monologue-container {
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.monologue-scroll-area {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding-bottom: 1rem;
+  scrollbar-width: none;
+}
+
+.monologue-scroll-area::-webkit-scrollbar {
+  display: none;
+}
+
+/* Prompt card */
+.monologue-prompt-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.monologue-prompt-en {
+  margin: 0;
+  color: #bbb;
+  font-size: 0.95rem;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.monologue-prompt-kr {
+  margin: 0;
+  color: #e0e0e0;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.monologue-suggested-time {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-top: 0.25rem;
+}
+
+/* Center content */
+.monologue-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 2rem 0;
+}
+
+/* Timer */
+.monologue-timer {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #e0e0e0;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Live transcript while recording */
+.monologue-live-transcript {
+  background: var(--color-surface-alt);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.monologue-live-text {
+  margin: 0;
+  color: #ccc;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Review section */
+.monologue-review {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.monologue-review-heading {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.monologue-transcript-box {
+  background: var(--color-primary-muted);
+  border-radius: 14px;
+  padding: 1rem 1.25rem;
+  position: relative;
+}
+
+.monologue-transcript-text {
+  margin: 0;
+  color: #e0e0e0;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.monologue-duration-badge {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+/* Keywords */
+.monologue-keywords-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.monologue-keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.monologue-keyword {
+  padding: 0.25rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+}
+
+.monologue-keyword.matched {
+  background: rgba(74, 109, 168, 0.25);
+  border-color: var(--color-primary);
+  color: #c0cce0;
+}
+
+.monologue-keyword-score {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-left: 0.25rem;
+}
+
+/* Model answer */
+.monologue-model-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.monologue-model-box {
+  background: var(--color-surface);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.monologue-model-kr {
+  margin: 0;
+  color: #e0e0e0;
+  font-size: 1rem;
+  line-height: 1.6;
+  border-left: 3px solid var(--color-primary);
+  padding-left: 0.75rem;
+}
+
+.monologue-model-en {
+  margin: 0;
+  color: #888;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  padding-left: 0.75rem;
+}
+
+.monologue-model-box .listen-btn {
+  align-self: flex-start;
+  padding: 0.4rem 1rem;
+  font-size: 0.9rem;
+}
