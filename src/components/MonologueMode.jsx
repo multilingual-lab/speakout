@@ -42,6 +42,8 @@ function keywordMatchesTranscript(keyword, transcript) {
   return transcript.includes(kw);
 }
 
+const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
 export default function MonologueMode({ monologue, onNext, nextTitle }) {
   const [phase, setPhase] = useState('prompt'); // prompt | drill | recording | reviewing
   const [elapsed, setElapsed] = useState(0);
@@ -75,7 +77,7 @@ export default function MonologueMode({ monologue, onNext, nextTitle }) {
     setElapsed(0);
     setShowModel(false);
     setPhase('recording');
-    startListening({ continuous: true });
+    startListening({ continuous: !isMobile });
   };
 
   const handleStop = () => {
@@ -97,7 +99,7 @@ export default function MonologueMode({ monologue, onNext, nextTitle }) {
   useEffect(() => {
     if (pendingAutoRecord && phase === 'recording' && !isListening) {
       setPendingAutoRecord(false);
-      startListening({ continuous: true });
+      startListening({ continuous: !isMobile });
     }
   }, [pendingAutoRecord, phase, isListening, startListening]);
 
