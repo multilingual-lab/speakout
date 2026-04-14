@@ -65,7 +65,9 @@ TopicGrid (home)          ⚙️ Settings gear (always visible, top-right)
   └─ Monologue topic card → [Monologue] button
         └─ SceneView (no mode toggle — monologue only)
               └─ Topic picker → MonologueMode
-                    ├─ Prompt phase: show Korean + English prompt, suggested duration
+                    ├─ Prompt phase: show Korean + English prompt, suggested duration,
+                    │     keyword hints (always visible), optional warm-up drill
+                    ├─ Warm-up drill: listen-only flashcards for key terms (🔊 + prev/next)
                     ├─ Recording phase: timer + live transcript
                     └─ Reviewing phase: transcript + keyword checklist + model answer with TTS
 ```
@@ -83,7 +85,9 @@ sections[]          // "여행 한국어" | "친구와 대화" | "직장 한국�
         // Monologue scenarios (mutually exclusive with shadow/sessions):
         └─ monologues[]  // extended speaking prompts
               // { id, title, titleEn, level, prompt, promptKorean, duration,
-              //   keywords[], modelAnswer, modelAnswerEn }
+              //   keywords[], drills[], modelAnswer, modelAnswerEn }
+              //   drills[]: optional warm-up items
+              //     { term, meaning, example }
 ```
 
 `you-initiate` exchanges show an English situation prompt and skip TTS playback — the user speaks first.
@@ -91,7 +95,7 @@ sections[]          // "여행 한국어" | "친구와 대화" | "직장 한국�
 **expectedResponses ordering rule:** `expectedResponses[0]` must be the response that flows naturally into the *next* exchange's prompt, because dialog shadowing uses `[0]` to build the conversation. Other responses are alternatives for practice mode (order doesn't matter there).
 
 ## Key Decisions
-- **Monologue mode** — a separate mode for extended speaking practice (describing situations, stating opinions, explaining). Monologue scenarios live in their own section ("말하기 연습"), not mixed into dialog scenario cards. SceneView detects monologue scenarios via the presence of `monologues[]` (instead of `sessions[]`) and hides the practice/shadow mode toggle. Keyword hints are shown before speaking (togglable) and persist into the recording phase if toggled on. After recording, keywords are displayed with match highlighting. Model answers are shown for self-comparison with TTS playback. Monologues with a `chartId` field render a TOPIK-style chart (bar/line/pie) from `src/components/charts/TopikCharts.jsx` inside the prompt card.
+- **Monologue mode** — a separate mode for extended speaking practice (describing situations, stating opinions, explaining). Monologue scenarios live in their own section ("말하기 연습"), not mixed into dialog scenario cards. SceneView detects monologue scenarios via the presence of `monologues[]` (instead of `sessions[]`) and hides the practice/shadow mode toggle. Keywords are always visible in the prompt phase. After recording, keywords are displayed with match highlighting. Model answers are shown for self-comparison with TTS playback. Monologues with a `chartId` field render a TOPIK-style chart (bar/line/pie) from `src/components/charts/TopikCharts.jsx` inside the prompt card. Each monologue can include a `drills[]` array for an optional warm-up: lightweight listen-only flashcards (example sentence + 🔊 speaker + term/meaning) that users can page through before attempting the full monologue.
 - **No LLM in Phase 1** — all content is pre-written JSON. LLM evaluation is a planned Phase 2 addition.
 - **Dialogs over flat Q&A** — each practice dialog is a coherent multi-turn exchange (6–8 turns), not disconnected question/answer pairs.
 - **Two modes on home card** — clicking a topic goes directly into practice or shadow; no intermediate mode-selector page. A toggle bar inside the topic lets you switch modes while preserving the selected dialog session.

@@ -3,10 +3,9 @@ import { useSpeech } from '../hooks/useSpeech';
 import topikCharts from './charts/TopikCharts';
 
 export default function MonologueMode({ monologue, onNext, nextTitle }) {
-  const [phase, setPhase] = useState('prompt'); // prompt | recording | reviewing
+  const [phase, setPhase] = useState('prompt'); // prompt | drill | recording | reviewing
   const [elapsed, setElapsed] = useState(0);
   const [showModel, setShowModel] = useState(false);
-  const [showKeywords, setShowKeywords] = useState(false);
   const [pendingAutoRecord, setPendingAutoRecord] = useState(false);
   const timerRef = useRef(null);
   const wasListeningRef = useRef(false);
@@ -35,7 +34,6 @@ export default function MonologueMode({ monologue, onNext, nextTitle }) {
     setError(null);
     setElapsed(0);
     setShowModel(false);
-    // Keep showKeywords as-is so hints stay visible if user toggled them on
     setPhase('recording');
     startListening();
   };
@@ -105,33 +103,33 @@ export default function MonologueMode({ monologue, onNext, nextTitle }) {
         {phase === 'prompt' && (
           <div className="monologue-center">
             {monologue.keywords?.length > 0 && (
-              <div className="monologue-keywords-section">
-                <button className="hint-link" onClick={() => setShowKeywords(!showKeywords)}>
-                  {showKeywords ? '🏷️ Hide keywords' : '🏷️ Show keyword hints'}
-                </button>
-                {showKeywords && (
-                  <div className="monologue-keywords">
-                    {monologue.keywords.map((kw, i) => (
-                      <span key={i} className="monologue-keyword">{kw}</span>
-                    ))}
-                  </div>
+              <div className="monologue-keywords">
+                <span className="monologue-keywords-label">🏷️</span>
+                {monologue.keywords.map((kw, i) => (
+                  <span key={i} className="monologue-keyword">{kw}</span>
+                ))}
+                {monologue.drills?.length > 0 && (
+                  <button className="warmup-link" onClick={() => setPhase('drill')}>
+                    📝 warm up
+                  </button>
                 )}
               </div>
             )}
           </div>
         )}
 
+        {/* Drill phase */}
+        {phase === 'drill' && (
+          <DictationDrill
+            drills={monologue.drills}
+            onFinish={() => setPhase('prompt')}
+          />
+        )}
+
         {/* Recording phase */}
         {phase === 'recording' && (
           <div className="monologue-center">
             <div className="monologue-timer">{formatTime(elapsed)}</div>
-            {showKeywords && monologue.keywords?.length > 0 && (
-              <div className="monologue-keywords">
-                {monologue.keywords.map((kw, i) => (
-                  <span key={i} className="monologue-keyword">{kw}</span>
-                ))}
-              </div>
-            )}
             {transcript && (
               <div className="monologue-live-transcript">
                 <p className="monologue-live-text">{transcript}</p>
@@ -228,6 +226,61 @@ export default function MonologueMode({ monologue, onNext, nextTitle }) {
           </div>
         </div>
       )}
+    </div>
+  );
+}
+
+/* ── Dictation Drill sub-component ──────────────────────────────────── */
+function DictationDrill({ drills, onFinish }) {
+  const [index, setIndex] = useState(0);
+  const { isSpeaking, speak } = useSpeech();
+
+  const drill = drills[index];
+
+  const handleListen = () => {
+    speak(drill.example);
+  };
+
+  const handleNext = () => {
+    if (index < drills.length - 1) {
+      setIndex((i) => i + 1);
+    } else {
+      onFinish();
+    }
+  };
+
+  const handlePrev = () => {
+    if (index > 0) setIndex((i) => i - 1);
+  };
+
+  return (
+    <div className="drill-container">
+      <div className="drill-card">
+        <p className="drill-example">
+          {drill.example}
+          <button
+            className="drill-speak-btn"
+            onClick={handleListen}
+            disabled={isSpeaking}
+            aria-label="Listen"
+          >
+            🔊
+          </button>
+        </p>
+        <p className="drill-meaning">{drill.term} — {drill.meaning} <span className="drill-progress">({index + 1}/{drills.length})</span></p>
+      </div>
+
+      <div className="drill-nav">
+        <button className="nav-btn" onClick={handlePrev} disabled={index === 0}>
+          ← Previous
+        </button>
+        <button className="nav-btn" onClick={handleNext}>
+          {index < drills.length - 1 ? 'Next →' : 'Done ✓'}
+        </button>
+      </div>
+      <button className="hint-link drill-skip" onClick={onFinish}>
+        Exit warm-up
+      </button>
     </div>
   );
 }
