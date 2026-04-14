@@ -16,6 +16,7 @@ export function useSpeech() {
   const continuousModeRef = useRef(false);
   const accumulatedRef = useRef('');
   const finalizedRef = useRef('');
+  const maxTimerRef = useRef(null);
 
   const startListening = useCallback(({ continuous = false } = {}) => {
     if (!SpeechRecognition) {
@@ -29,20 +30,28 @@ export function useSpeech() {
     const recognition = new SpeechRecognition();
     recognition.lang = 'ko-KR';
     recognition.continuous = continuous;
-    recognition.interimResults = continuous;
+    recognition.interimResults = true; // always on — resets silence timer while user speaks
     recognition.maxAlternatives = 3;
 
-    recognition.onresult = (event) => {
-      if (continuous) {
-        // Reset the silence timeout on each new result (including interim)
-        clearTimeout(timeoutRef.current);
-        timeoutRef.current = setTimeout(() => {
-          stoppedManuallyRef.current = true;
-          if (recognitionRef.current) {
-            recognitionRef.current.stop();
-          }
-        }, 10000);
+    const stopRecognition = () => {
+      stoppedManuallyRef.current = true;
+      clearTimeout(timeoutRef.current);
+      clearTimeout(maxTimerRef.current);
+      if (recognitionRef.current) {
+        recognitionRef.current.stop();
+      }
+    };
 
+    const resetSilenceTimer = () => {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = setTimeout(stopRecognition, 10000);
+    };
+
+    recognition.onresult = (event) => {
+      // Reset silence timeout on every result (interim or final)
+      resetSilenceTimer();
+
+      if (continuous) {
         // Concatenate all final results from this session
         let finalOnly = accumulatedRef.current;
         for (let i = 0; i < event.results.length; i++) {
@@ -60,8 +69,10 @@ export function useSpeech() {
           setTranscript(finalOnly);
         }
       } else {
-        clearTimeout(timeoutRef.current);
-        setTranscript(event.results[0][0].transcript);
+        // Single-result mode: use first final result, ignore interim
+        if (event.results[0].isFinal) {
+          setTranscript(event.results[0][0].transcript);
+        }
       }
       setError(null);
     };
@@ -83,18 +94,14 @@ export function useSpeech() {
           next.onerror = recognition.onerror;
           recognitionRef.current = next;
           next.start();
-          // Reset silence timer for the restarted session
-          timeoutRef.current = setTimeout(() => {
-            stoppedManuallyRef.current = true;
-            if (recognitionRef.current) {
-              recognitionRef.current.stop();
-            }
-          }, 10000);
+          // Reset silence timer for the restarted session (max timer keeps running)
+          resetSilenceTimer();
           return; // Don't set isListening to false
         } catch (e) {
           console.error('Failed to restart recognition:', e);
         }
       }
+      clearTimeout(maxTimerRef.current);
       setIsListening(false);
     };
 
@@ -125,16 +132,16 @@ export function useSpeech() {
     setIsListening(true);
     recognition.start();
 
-    timeoutRef.current = setTimeout(() => {
-      stoppedManuallyRef.current = true;
-      if (recognitionRef.current) {
-        recognitionRef.current.stop();
-      }
-    }, 10000);
+    // Silence timeout — stops after 10s of no speech results
+    timeoutRef.current = setTimeout(stopRecognition, 10000);
+    // Hard max duration cap — safety net against background noise
+    clearTimeout(maxTimerRef.current);
+    maxTimerRef.current = setTimeout(stopRecognition, continuous ? 120000 : 60000);
   }, []);
 
   const stopListening = useCallback(() => {
     clearTimeout(timeoutRef.current);
+    clearTimeout(maxTimerRef.current);
     stoppedManuallyRef.current = true;
     if (recognitionRef.current) {
       recognitionRef.current.stop();
