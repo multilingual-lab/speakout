@@ -73,7 +73,7 @@ const ROW_OFFSETS = [0, 26, 52];
 
 /* ── Component ──────────────────────────────────────────────────────── */
 
-export default function KoreanKeyboardRef({ value, onChange }) {
+export default function KoreanKeyboardRef({ value, onChange, metaText }) {
   const [open, setOpen] = useState(() => {
     try { return localStorage.getItem('kb-ref-open') === '1'; } catch { return false; }
   });
@@ -196,9 +196,12 @@ export default function KoreanKeyboardRef({ value, onChange }) {
 
   return (
     <div className="kb-ref-wrapper">
-      <button className="kb-ref-toggle" onClick={toggle} type="button">
-        ⌨️ {open ? 'Hide' : 'Show'} keyboard
-      </button>
+      <div className="kb-ref-top-row">
+        <button className="kb-ref-toggle" onClick={toggle} type="button">
+          ⌨️ {open ? 'Hide' : 'Show'} keyboard
+        </button>
+        {metaText && <span className="writing-char-count kb-ref-meta">{metaText}</span>}
+      </div>
       {open && (
         <div className="kb-ref-panel" onMouseDown={(e) => e.preventDefault()}>
           <svg
@@ -209,7 +212,7 @@ export default function KoreanKeyboardRef({ value, onChange }) {
             aria-label="Korean keyboard"
           >
             {QWERTY_ROWS.map((row, ri) =>
-              row.map((qKey, ci) => {
+              row.map((_, ci) => {
                 const x = ROW_OFFSETS[ri] + ci * (KEY_W + GAP);
                 const y = ri * (KEY_H + GAP);
                 const krKey = rows[ri]?.[ci] || '';
@@ -220,11 +223,8 @@ export default function KoreanKeyboardRef({ value, onChange }) {
                       x={x} y={y} width={KEY_W} height={KEY_H} rx={6}
                       className={`kb-key-rect ${isShifted ? 'kb-key-shifted' : ''}`}
                     />
-                    <text x={x + KEY_W / 2} y={y + 21} className="kb-key-kr">
+                    <text x={x + KEY_W / 2} y={y + 31} className="kb-key-kr">
                       {krKey}
-                    </text>
-                    <text x={x + KEY_W / 2} y={y + 42} className="kb-key-en">
-                      {qKey}
                     </text>
                   </g>
                 );

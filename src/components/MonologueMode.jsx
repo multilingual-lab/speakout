@@ -48,6 +48,8 @@ export default function MonologueMode({ monologue, language = 'ko', onNext, next
   const [phase, setPhase] = useState('prompt'); // prompt | drill | recording | reviewing
   const [elapsed, setElapsed] = useState(0);
   const [showModel, setShowModel] = useState(false);
+  const [showPromptEnglish, setShowPromptEnglish] = useState(false);
+  const [showModelEnglish, setShowModelEnglish] = useState(false);
   const [pendingAutoRecord, setPendingAutoRecord] = useState(false);
   const timerRef = useRef(null);
   const wasListeningRef = useRef(false);
@@ -76,6 +78,7 @@ export default function MonologueMode({ monologue, language = 'ko', onNext, next
     setError(null);
     setElapsed(0);
     setShowModel(false);
+    setShowModelEnglish(false);
     setPhase('recording');
     startListening({ continuous: !isMobile, languageId: language });
   };
@@ -91,6 +94,7 @@ export default function MonologueMode({ monologue, language = 'ko', onNext, next
     setError(null);
     setElapsed(0);
     setShowModel(false);
+    setShowModelEnglish(false);
     setPhase('recording');
     setPendingAutoRecord(true);
   };
@@ -119,7 +123,6 @@ export default function MonologueMode({ monologue, language = 'ko', onNext, next
       <div className="monologue-scroll-area">
         {/* Prompt card — always visible */}
         <div className="monologue-prompt-card">
-          <p className="monologue-prompt-en">{monologue.prompt}</p>
           <p className="monologue-prompt-kr">
             {monologue.promptKorean}
             <button
@@ -131,15 +134,23 @@ export default function MonologueMode({ monologue, language = 'ko', onNext, next
               🔊
             </button>
           </p>
-          {ChartComponent && (
+          {monologue.prompt && (
+            <button className="hint-btn" onClick={() => setShowPromptEnglish((v) => !v)}>
+              {showPromptEnglish ? 'Hide English' : 'Show English'}
+            </button>
+          )}
+          {showPromptEnglish && monologue.prompt && (
+            <p className="monologue-prompt-en">{monologue.prompt}</p>
+          )}
+        </div>
+
+        {ChartComponent && (
+          <div className="monologue-chart-panel">
             <div className="monologue-chart">
               <ChartComponent />
             </div>
-          )}
-          {monologue.duration && (
-            <span className="monologue-suggested-time">⏱ Suggested: {formatTime(monologue.duration)}</span>
-          )}
-        </div>
+          </div>
+        )}
 
         {/* Keywords & warm-up — prompt and recording phases */}
         {(phase === 'prompt' || phase === 'recording') && monologue.keywords?.length > 0 && (
@@ -221,7 +232,14 @@ export default function MonologueMode({ monologue, language = 'ko', onNext, next
             {showModel && (
               <div className="monologue-model-box">
                 <p className="monologue-model-kr">{monologue.modelAnswer}</p>
-                <p className="monologue-model-en">{monologue.modelAnswerEn}</p>
+                {monologue.modelAnswerEn && (
+                  <button className="hint-btn" onClick={() => setShowModelEnglish((v) => !v)}>
+                    {showModelEnglish ? 'Hide English' : 'Show English'}
+                  </button>
+                )}
+                {showModelEnglish && monologue.modelAnswerEn && (
+                  <p className="monologue-model-en">{monologue.modelAnswerEn}</p>
+                )}
                 <button
                   className="action-btn listen-btn"
                   onClick={handleListenModel}

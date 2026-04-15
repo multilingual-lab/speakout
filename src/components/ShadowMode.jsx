@@ -115,10 +115,13 @@ function DialogShadow({ exchanges, language = 'ko', onNext, nextSessionTitle }) 
           <div className="shadow-result-bar">
             {transcript ? (
               <>
-                <span className="result-bar-text">You said: <strong>{transcript}</strong></span>
-                <span className={`result-bar-score ${similarity >= 80 ? 'good' : similarity >= 50 ? 'ok' : 'poor'}`}>
-                  {similarity >= 80 ? '🎉' : similarity >= 50 ? '👍' : '💪'} {similarity}%
-                </span>
+                <div className="result-bar-header">
+                  <span className="result-bar-text">You said:</span>
+                  <span className={`result-bar-score ${similarity >= 80 ? 'good' : similarity >= 50 ? 'ok' : 'poor'}`}>
+                    {similarity >= 80 ? '🎉' : similarity >= 50 ? '👍' : '💪'} {similarity}%
+                  </span>
+                </div>
+                <p className="result-bar-capture">{transcript}</p>
               </>
             ) : (
               <span className="result-bar-text">No speech detected — try again</span>
@@ -278,10 +281,13 @@ function PhraseShadow({ phrases, language = 'ko', onNext, nextSessionTitle }) {
           <div className="shadow-result-bar">
             {transcript ? (
               <>
-                <span className="result-bar-text">You said: <strong>{transcript}</strong></span>
-                <span className={`result-bar-score ${similarity >= 80 ? 'good' : similarity >= 50 ? 'ok' : 'poor'}`}>
-                  {similarity >= 80 ? '🎉' : similarity >= 50 ? '👍' : '💪'} {similarity}%
-                </span>
+                <div className="result-bar-header">
+                  <span className="result-bar-text">You said:</span>
+                  <span className={`result-bar-score ${similarity >= 80 ? 'good' : similarity >= 50 ? 'ok' : 'poor'}`}>
+                    {similarity >= 80 ? '🎉' : similarity >= 50 ? '👍' : '💪'} {similarity}%
+                  </span>
+                </div>
+                <p className="result-bar-capture">{transcript}</p>
               </>
             ) : (
               <span className="result-bar-text">No speech detected — try again</span>

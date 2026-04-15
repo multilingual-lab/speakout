@@ -166,10 +166,13 @@ function PhraseDictation({ phrases, language = 'ko', showKeyboard, onNext, nextT
         {submitted && (
           <div className="writing-feedback">
             <div className="writing-result-bar">
-              <span className="writing-result-text">You wrote: <strong>{input}</strong></span>
-              <span className={`writing-result-score ${scoreClass}`}>
-                {scoreEmoji} {score}%
-              </span>
+              <div className="writing-result-header">
+                <span className="writing-result-text">You wrote:</span>
+                <span className={`writing-result-score ${scoreClass}`}>
+                  {scoreEmoji} {score}%
+                </span>
+              </div>
+              <p className="writing-result-capture">{input}</p>
             </div>
           </div>
         )}
@@ -221,6 +224,8 @@ function CompositionWriting({ monologue, language = 'ko', showKeyboard, onNext, 
   const [phase, setPhase] = useState('writing'); // writing | reviewing
   const [input, setInput] = useState('');
   const [showModel, setShowModel] = useState(false);
+  const [showPromptEnglish, setShowPromptEnglish] = useState(false);
+  const [showModelEnglish, setShowModelEnglish] = useState(false);
   const { isSpeaking, speak } = useSpeech();
 
   const matchedKeywords = monologue.keywords?.filter((kw) => keywordMatchesTranscript(kw, input)) || [];
@@ -229,6 +234,7 @@ function CompositionWriting({ monologue, language = 'ko', showKeyboard, onNext, 
   const handleRetry = () => {
     setInput('');
     setShowModel(false);
+    setShowModelEnglish(false);
     setPhase('writing');
   };
 
@@ -241,7 +247,6 @@ function CompositionWriting({ monologue, language = 'ko', showKeyboard, onNext, 
       <div className="writing-scroll-area">
         {/* Prompt card — always visible */}
         <div className="monologue-prompt-card">
-          <p className="monologue-prompt-en">{monologue.prompt}</p>
           <p className="monologue-prompt-kr">
             {monologue.promptKorean}
             <button
@@ -253,12 +258,23 @@ function CompositionWriting({ monologue, language = 'ko', showKeyboard, onNext, 
               🔊
             </button>
           </p>
-          {ChartComponent && (
+          {monologue.prompt && (
+            <button className="hint-btn" onClick={() => setShowPromptEnglish((v) => !v)}>
+              {showPromptEnglish ? 'Hide English' : 'Show English'}
+            </button>
+          )}
+          {showPromptEnglish && monologue.prompt && (
+            <p className="monologue-prompt-en">{monologue.prompt}</p>
+          )}
+        </div>
+
+        {ChartComponent && (
+          <div className="monologue-chart-panel">
             <div className="monologue-chart">
               <ChartComponent />
             </div>
-          )}
-        </div>
+          </div>
+        )}
 
         {/* Keywords — visible during writing */}
         {phase === 'writing' && monologue.keywords?.length > 0 && (
@@ -285,8 +301,7 @@ function CompositionWriting({ monologue, language = 'ko', showKeyboard, onNext, 
               autoCapitalize="none"
               autoFocus
             />
-            {showKeyboard && <KoreanKeyboardRef value={input} onChange={setInput} />}
-            <span className="writing-char-count">{input.length} chars</span>
+            {showKeyboard && <KoreanKeyboardRef value={input} onChange={setInput} metaText={`${input.length} chars`} />}
           </div>
         )}
 
@@ -339,7 +354,14 @@ function CompositionWriting({ monologue, language = 'ko', showKeyboard, onNext, 
             {showModel && (
               <div className="monologue-model-box">
                 <p className="monologue-model-kr">{monologue.modelAnswer}</p>
-                <p className="monologue-model-en">{monologue.modelAnswerEn}</p>
+                {monologue.modelAnswerEn && (
+                  <button className="hint-btn" onClick={() => setShowModelEnglish((v) => !v)}>
+                    {showModelEnglish ? 'Hide English' : 'Show English'}
+                  </button>
+                )}
+                {showModelEnglish && monologue.modelAnswerEn && (
+                  <p className="monologue-model-en">{monologue.modelAnswerEn}</p>
+                )}
                 <button
                   className="action-btn listen-btn"
                   onClick={() => speak(monologue.modelAnswer, language)}

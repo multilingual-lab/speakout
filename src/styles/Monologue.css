@@ -63,11 +63,14 @@
 .prompt-speak-btn:hover:not(:disabled) { opacity: 1; }
 .prompt-speak-btn:disabled { opacity: 0.35; cursor: default; }
 
+.monologue-chart-panel {
+  width: 100%;
+}
+
 .monologue-chart {
-  margin-top: 0.75rem;
   background: #1e1e30;
   border-radius: 10px;
-  padding: 0.75rem 0.5rem;
+  padding: 0.9rem 0.75rem;
 }
 
 .monologue-suggested-time {
@@ -212,6 +215,30 @@
 
   .monologue-scroll-area {
     padding-bottom: 200px; /* space for fixed bottom bar */
+  }
+
+  .monologue-chart-panel {
+    width: 100%;
+  }
+
+  .monologue-chart {
+    padding: 0.9rem 0.25rem;
+  }
+
+  .monologue-chart .chart-title {
+    font-size: 17px;
+  }
+
+  .monologue-chart .chart-subtitle {
+    font-size: 13px;
+  }
+
+  .monologue-chart .chart-axis-label,
+  .monologue-chart .chart-legend-label,
+  .monologue-chart .chart-grid-label,
+  .monologue-chart .chart-year-label,
+  .monologue-chart .chart-data-label {
+    font-size: 12px;
   }
 }
 

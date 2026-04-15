@@ -30,10 +30,10 @@ function LeisureBarChart() {
 
   return (
     <svg viewBox={`0 0 ${svgW} ${svgH}`} style={chartStyle} role="img" aria-label="한국인이 좋아하는 여가 활동 설문 결과 막대 그래프">
-      <text x={svgW / 2} y={24} textAnchor="middle" fill="#e0e0e0" fontSize="14" fontWeight="600">
+      <text className="chart-title" x={svgW / 2} y={24} textAnchor="middle" fill="#e0e0e0" fontSize="14" fontWeight="600">
         한국인이 좋아하는 여가 활동 (2025)
       </text>
-      <text x={svgW / 2} y={42} textAnchor="middle" fill="#999" fontSize="11">
+      <text className="chart-subtitle" x={svgW / 2} y={42} textAnchor="middle" fill="#999" fontSize="11">
         (단위: %, 복수 응답, 응답자 1,200명)
       </text>
       {data.map((d, i) => {
@@ -41,9 +41,9 @@ function LeisureBarChart() {
         const w = (d.pct / maxPct) * barArea;
         return (
           <g key={d.label}>
-            <text x={padLeft - 8} y={y + barH / 2 + 5} textAnchor="end" fill="#ccc" fontSize="12">{d.label}</text>
+            <text className="chart-axis-label" x={padLeft - 8} y={y + barH / 2 + 5} textAnchor="end" fill="#ccc" fontSize="12">{d.label}</text>
             <rect x={padLeft} y={y} width={w} height={barH} rx={4} fill={COLORS[i]} />
-            <text x={padLeft + w + 6} y={y + barH / 2 + 5} fill="#bbb" fontSize="11">{d.pct}%</text>
+            <text className="chart-data-label" x={padLeft + w + 6} y={y + barH / 2 + 5} fill="#bbb" fontSize="11">{d.pct}%</text>
           </g>
         );
       })}
@@ -79,10 +79,10 @@ function HouseholdLineChart() {
 
   return (
     <svg viewBox={`0 0 ${svgW} ${svgH}`} style={chartStyle} role="img" aria-label="1인 가구 수 변화 꺾은선 그래프">
-      <text x={svgW / 2} y={22} textAnchor="middle" fill="#e0e0e0" fontSize="14" fontWeight="600">
+      <text className="chart-title" x={svgW / 2} y={22} textAnchor="middle" fill="#e0e0e0" fontSize="14" fontWeight="600">
         한국 1인 가구 수 변화
       </text>
-      <text x={svgW / 2} y={40} textAnchor="middle" fill="#999" fontSize="11">
+      <text className="chart-subtitle" x={svgW / 2} y={40} textAnchor="middle" fill="#999" fontSize="11">
         (단위: 만 가구)
       </text>
       {/* grid */}
@@ -91,7 +91,7 @@ function HouseholdLineChart() {
         return (
           <g key={v}>
             <line x1={padLeft} y1={y} x2={svgW - padRight} y2={y} stroke="#333" strokeDasharray="3,3" />
-            <text x={padLeft - 8} y={y + 4} textAnchor="end" fill="#888" fontSize="10">{v}</text>
+            <text className="chart-grid-label" x={padLeft - 8} y={y + 4} textAnchor="end" fill="#888" fontSize="10">{v}</text>
           </g>
         );
       })}
@@ -101,8 +101,8 @@ function HouseholdLineChart() {
       {points.map((p) => (
         <g key={p.year}>
           <circle cx={p.x} cy={p.y} r={4} fill="#818cf8" />
-          <text x={p.x} y={p.y - 10} textAnchor="middle" fill="#ccc" fontSize="10">{p.val}</text>
-          <text x={p.x} y={svgH - padBottom + 16} textAnchor="middle" fill="#aaa" fontSize="10">{p.year}</text>
+          <text className="chart-data-label" x={p.x} y={p.y - 10} textAnchor="middle" fill="#ccc" fontSize="10">{p.val}</text>
+          <text className="chart-year-label" x={p.x} y={svgH - padBottom + 16} textAnchor="middle" fill="#aaa" fontSize="10">{p.year}</text>
         </g>
       ))}
     </svg>
@@ -142,16 +142,16 @@ function StressPieChart() {
 
   return (
     <svg viewBox={`0 0 ${svgW} ${svgH}`} style={chartStyle} role="img" aria-label="직장인 스트레스 원인 원 그래프">
-      <text x={svgW / 2} y={22} textAnchor="middle" fill="#e0e0e0" fontSize="14" fontWeight="600">
+      <text className="chart-title" x={svgW / 2} y={22} textAnchor="middle" fill="#e0e0e0" fontSize="14" fontWeight="600">
         직장인 스트레스 원인 조사
       </text>
-      <text x={svgW / 2} y={40} textAnchor="middle" fill="#999" fontSize="11">
+      <text className="chart-subtitle" x={svgW / 2} y={40} textAnchor="middle" fill="#999" fontSize="11">
         (단위: %, 직장인 800명 대상)
       </text>
       {slices.map((s) => (
         <g key={s.label}>
           <path d={s.path} fill={s.color} stroke="#1a1a2e" strokeWidth="1.5" />
-          <text x={s.lx} y={s.ly + 4} textAnchor="middle" fill="#ccc" fontSize="10">
+          <text className="chart-data-label" x={s.lx} y={s.ly + 4} textAnchor="middle" fill="#ccc" fontSize="10">
             {s.pct}%
           </text>
         </g>
@@ -160,7 +160,7 @@ function StressPieChart() {
       {data.map((d, i) => (
         <g key={d.label}>
           <rect x={300} y={70 + i * 24} width={14} height={14} rx={3} fill={d.color} />
-          <text x={320} y={82 + i * 24} fill="#ccc" fontSize="11">{d.label}</text>
+          <text className="chart-legend-label" x={320} y={82 + i * 24} fill="#ccc" fontSize="11">{d.label}</text>
         </g>
       ))}
     </svg>

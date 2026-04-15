@@ -96,7 +96,6 @@
 }
 
 .writing-char-count {
-  align-self: flex-end;
   font-size: 0.8rem;
   color: var(--color-text-muted);
 }
@@ -111,26 +110,37 @@
 .writing-result-bar {
   width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  padding: 0.55rem 1rem;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.6rem 1rem;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 10px;
 }
 
+.writing-result-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
 .writing-result-text {
   color: var(--color-text-muted);
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   font-size: 0.95rem;
 }
 
-.writing-result-text strong {
+.writing-result-capture {
   color: #e8ecff;
   font-weight: 700;
+  margin: 0;
+  line-height: 1.5;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  min-width: 0;
+  width: 100%;
 }
 
 .writing-result-score {
@@ -177,22 +187,15 @@
 
 /* ── Mobile ────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .writing-scroll-area {
-    padding-bottom: 200px;
-  }
-
   .writing-bottom-bar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: var(--color-bg);
-    padding: 1rem 1.25rem calc(env(safe-area-inset-bottom, 0px) + 1.25rem);
+    background: transparent;
+    padding: 1rem 0 calc(env(safe-area-inset-bottom, 0px) + 0.5rem);
     border-top: 1px solid var(--color-border);
-    z-index: 10;
   }
 
-  .kb-ref-wrapper { display: none; }
+  .writing-result-score {
+    flex-shrink: 0;
+  }
 }
 
 /* ── Korean keyboard reference (desktop only) ─────────────────────── */
@@ -201,6 +204,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.kb-ref-top-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.kb-ref-meta {
+  margin-left: auto;
 }
 
 .kb-ref-toggle {
@@ -296,4 +311,54 @@
 
 .kb-ref-space {
   min-width: 120px;
+}
+
+/* Keep these mobile keyboard rules at the end so they override base desktop sizing. */
+@media (max-width: 768px) {
+  .kb-ref-wrapper {
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .kb-ref-top-row {
+    width: 100%;
+  }
+
+  .kb-ref-meta {
+    font-size: 0.75rem;
+  }
+
+  .kb-ref-panel {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .kb-ref-svg {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    height: auto;
+  }
+
+  .kb-ref-actions {
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+
+  .kb-ref-btn {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.6rem;
+  }
+
+  .kb-ref-space {
+    min-width: 90px;
+  }
+
+  .kb-key-kr {
+    font-size: 15px;
+  }
+
+  .kb-key-en {
+    font-size: 9px;
+  }
 }
