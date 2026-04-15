@@ -4,7 +4,7 @@
 
 export function normalize(s) {
   return s
-    .replace(/[.,!?~…ㅋㅎㅠㅜ\s]/g, '') // strip punctuation, emoticons, whitespace
+    .replace(/[\p{P}\p{Z}]/gu, '')       // strip all unicode punctuation and whitespace
     .replace(/요$/g, '')                  // strip trailing 요 (formality particle)
     .toLowerCase();
 }
