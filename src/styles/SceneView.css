@@ -295,6 +295,17 @@
   max-width: 640px;
 }
 
+.session-picker-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.session-picker-header .session-picker-label {
+  margin-bottom: 0;
+}
+
 .session-picker-label {
   font-size: 0.9rem;
   color: #888;

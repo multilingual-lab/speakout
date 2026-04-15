@@ -44,7 +44,7 @@ function keywordMatchesTranscript(keyword, transcript) {
 
 const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-export default function MonologueMode({ monologue, onNext, nextTitle }) {
+export default function MonologueMode({ monologue, onNext, nextTitle, onWriteMode }) {
   const [phase, setPhase] = useState('prompt'); // prompt | drill | recording | reviewing
   const [elapsed, setElapsed] = useState(0);
   const [showModel, setShowModel] = useState(false);
@@ -152,6 +152,11 @@ export default function MonologueMode({ monologue, onNext, nextTitle }) {
               {phase === 'prompt' && monologue.drills?.length > 0 && (
                 <button className="warmup-link" onClick={() => setPhase('drill')}>
                   📝 warm up
+                </button>
+              )}
+              {phase === 'prompt' && onWriteMode && (
+                <button className="warmup-link" onClick={onWriteMode}>
+                  ✍️ practice writing
                 </button>
               )}
             </div>

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import ShadowMode from './ShadowMode';
 import PracticeMode from './PracticeMode';
 import MonologueMode from './MonologueMode';
+import WritingMode from './WritingMode';
 
 const LEVEL_LABELS = { beginner: 'Beginner', intermediate: 'Intermediate', advanced: 'Advanced' };
 const LEVEL_ORDER = { beginner: 0, intermediate: 1, advanced: 2 };
@@ -46,6 +47,7 @@ export default function SceneView({ scenario, initialMode, onBack }) {
   const handleBack = () => {
     if (sessionId) {
       setSessionId(null);
+      if (isMonologue && mode === 'write') setMode('monologue');
     } else {
       onBack();
     }
@@ -69,7 +71,7 @@ export default function SceneView({ scenario, initialMode, onBack }) {
         </div>
       </header>
 
-      {/* Mode toggle — only for dialog scenarios */}
+      {/* Mode toggle — dialog scenarios */}
       {!isMonologue && (
         <div className="mode-toggle">
           <button
@@ -90,7 +92,12 @@ export default function SceneView({ scenario, initialMode, onBack }) {
       {/* Session picker for practice */}
       {mode === 'practice' && !sessionId && (
         <div className="session-picker">
-          <p className="session-picker-label">Choose a dialog</p>
+          <div className="session-picker-header">
+            <p className="session-picker-label">Choose a dialog</p>
+            <button className="warmup-link" onClick={() => { setMode('write'); setSessionId(null); }}>
+              ✍️ practice writing
+            </button>
+          </div>
           <div className="session-list">
             {sortByLevel(scenario.sessions).map((s) => (
               <button
@@ -116,7 +123,12 @@ export default function SceneView({ scenario, initialMode, onBack }) {
       {/* Session picker for shadow */}
       {mode === 'shadow' && !sessionId && (
         <div className="session-picker">
-          <p className="session-picker-label">Choose what to shadow</p>
+          <div className="session-picker-header">
+            <p className="session-picker-label">Choose what to shadow</p>
+            <button className="warmup-link" onClick={() => { setMode('write'); setSessionId(null); }}>
+              ✍️ practice writing
+            </button>
+          </div>
           <div className="session-list">
             <button
               className="session-card quick-phrases-card"
@@ -173,9 +185,19 @@ export default function SceneView({ scenario, initialMode, onBack }) {
         </div>
       )}
 
-      {/* Active monologue */}
-      {isMonologue && monologue && (
-        <MonologueMode key={sessionId} monologue={monologue} onNext={nextSessionId ? handleNextSession : null} nextTitle={nextSession?.title} />
+      {/* Active monologue (speaking) */}
+      {mode === 'monologue' && monologue && (
+        <MonologueMode key={sessionId} monologue={monologue} onNext={nextSessionId ? handleNextSession : null} nextTitle={nextSession?.title} onWriteMode={() => setMode('write')} />
+      )}
+
+      {/* Writing — phrase dictation (dialog scenarios) */}
+      {mode === 'write' && !isMonologue && (
+        <WritingMode key="phrases" phrases={scenario.shadow} />
+      )}
+
+      {/* Writing — composition (monologue scenarios, after topic picked) */}
+      {mode === 'write' && isMonologue && monologue && (
+        <WritingMode key={sessionId} monologue={monologue} onNext={nextSessionId ? handleNextSession : null} nextTitle={nextSession?.title} onSpeakMode={() => setMode('monologue')} />
       )}
     </div>
   );

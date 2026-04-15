@@ -30,17 +30,18 @@ src/
 │   ├── PracticeMode.jsx      # Dialog practice with scrolling chat history
 │   ├── ShadowMode.jsx        # Listen & repeat with Levenshtein match scoring
 │   ├── MonologueMode.jsx     # Extended speaking: prompt → record → review
+│   ├── WritingMode.jsx        # Writing practice: phrase dictation + composition
 │   ├── Settings.jsx          # Azure key/endpoint config modal
 │   └── charts/
 │       └── TopikCharts.jsx   # TOPIK-style bar/line/pie SVG charts for monologue prompts
 ├── utils/
-│   └── scoring.js            # Korean-aware normalize + Levenshtein similarity
+│   └── scoring.js            # Korean-aware normalize + Levenshtein similarity (used by Shadow + Writing)
 ├── hooks/
 │   └── useSpeech.js          # TTS (Azure primary, Web Speech fallback) + STT
 ├── services/
 │   └── azureTts.js           # Azure TTS REST: SSML builder, fetch, blob → Audio URL
 │                             #   getAzureConfig/saveAzureConfig (localStorage + env fallback)
-└── styles/                   # One CSS file per component
+└── styles/                   # One CSS file per component (incl. Writing.css)
 ```
 
 ## Configuration
@@ -84,20 +85,25 @@ sections[]            // "여행 한국어" | "친구와 대화" | "직장 한�
 ```text
 TopicGrid (home)              ⚙️ Settings (always visible, top-right)
   ├─ Dialog topic card → [🎙️ 실전] or [🔄 쉐도잉]
-  │     └─ SceneView (mode toggle bar visible)
+  │     └─ SceneView (mode toggle: Practice | Shadowing)
   │           ├─ Practice → Dialog picker → PracticeMode
   │           │     ├─ Respond phase → Feedback phase (model answers + 🔊)
   │           │     └─ "Next: <dialog>" or "last dialog" indicator
-  │           └─ Shadow → Session picker → ShadowMode
-  │                 ├─ Quick Phrases (phrase drills)
-  │                 └─ Dialog Shadow (full conversation, sequential lines)
-  │                       └─ "Next: <dialog>" or "last dialog" indicator
+  │           ├─ Shadow → Session picker → ShadowMode
+  │           │     ├─ Quick Phrases (phrase drills)
+  │           │     └─ Dialog Shadow (full conversation, sequential lines)
+  │           │           └─ "Next: <dialog>" or "last dialog" indicator
+  │           └─ "✍️ practice writing" link (in session picker) → WritingMode
+  │                 └─ Phrase dictation: English → type Korean → score + answer
   └─ Monologue topic card → [Monologue]
         └─ SceneView (no mode toggle)
               └─ Topic picker → MonologueMode
-                    ├─ Prompt phase (Korean/English prompt, keywords, optional warm-up drill)
+                    ├─ Prompt phase (keywords, optional warm-up drill, "✍️ practice writing" link)
                     ├─ Recording phase (timer + live transcript)
-                    └─ Review phase (transcript, keyword checklist, model answer + TTS)
+                    ├─ Review phase (transcript, keyword checklist, model answer + TTS)
+                    └─ "✍️ practice writing" → WritingMode (composition)
+                          ├─ Writing phase (textarea + char count + keywords)
+                          └─ Review phase (keyword checklist, model answer + TTS)
 ```
 
 ## Behavioral Specifications
@@ -142,10 +148,26 @@ Grammar-aware `keywordMatchesTranscript`:
 - `drills[]` → optional warm-up: listen-only flashcards (example sentence + 🔊 + term/meaning), paged before full monologue
 - Keywords always visible in prompt phase; review shows match highlighting
 
+### Writing Mode (addon)
+
+Writing mode is an optional addon — speakout is primarily a speaking app. Entry points are secondary links, not primary mode toggles:
+
+- **Dialog scenarios:** "✍️ practice writing" link appears in the session picker next to "Choose a dialog" / "Choose what to shadow"
+- **Monologue scenarios:** "✍️ practice writing" link appears in the keywords area next to "📝 warm up"
+
+**Two flows in one component (`WritingMode.jsx`):**
+
+- **Phrase dictation** (dialog scenarios): uses `shadow[]` quick phrases. Shows English → user types Korean → `computeSimilarity()` scores the match → reveals correct answer with TTS. Prev/Retry/Next navigation. No session picker needed.
+- **Composition** (monologue scenarios): uses same `monologues[]` data. Shows prompt/keywords → user types response → keyword match review → model answer reveal with TTS.
+
+Both flows use inline controls (warm-up style `drill-nav` buttons + `hint-link` exit link), not pinned bottom bars. "Exit writing" returns to speaking mode.
+
+WritingMode uses TTS only (no STT). It has its own `keywordMatchesTranscript` copy to avoid coupling with MonologueMode. Reuses monologue CSS classes for prompt/review elements to maintain visual consistency.
+
 ### Navigation & Layout
 
 - **Immersion-first:** Korean only by default in shadow mode; English behind toggle. Practice model answers Korean-only.
-- **Two modes on home card:** direct entry into practice or shadow — no intermediate screen. Toggle bar inside topic preserves dialog selection.
+- **Two modes on home card:** direct entry into practice or shadow — no intermediate screen. Toggle bar inside topic preserves dialog selection. Writing is a secondary link, not a mode toggle.
 - **Scroll position restore:** `App.jsx` saves `scrollY` in ref before sub-page; restores via `requestAnimationFrame` on back.
 - **Dialog lists** sorted by difficulty (beginner → intermediate → advanced).
 
