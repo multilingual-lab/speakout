@@ -295,7 +295,7 @@ function DictationDrill({ drills, onFinish }) {
 
   return (
     <div className="drill-container">
-      <div className="drill-card">
+      <div className="drill-card" key={index}>
         <p className="drill-example">
           {drill.example}
           <button
