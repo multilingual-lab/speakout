@@ -1,9 +1,24 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useSpeech } from '../hooks/useSpeech';
 import { computeSimilarity } from '../utils/scoring';
 import topikCharts from './charts/TopikCharts';
 import KoreanKeyboardRef from './KoreanKeyboardRef';
 import '../styles/Writing.css';
+
+const phraseShape = PropTypes.shape({
+  english: PropTypes.string.isRequired,
+  korean: PropTypes.string.isRequired,
+});
+
+const monologueShape = PropTypes.shape({
+  prompt: PropTypes.string.isRequired,
+  promptKorean: PropTypes.string.isRequired,
+  keywords: PropTypes.arrayOf(PropTypes.string),
+  chartId: PropTypes.string,
+  modelAnswer: PropTypes.string,
+  modelAnswerEn: PropTypes.string,
+});
 
 // Copied from MonologueMode — grammar-aware Korean keyword matching.
 // Kept as a local copy to avoid modifying MonologueMode.
@@ -50,6 +65,14 @@ export default function WritingMode({ phrases, monologue, onNext, nextTitle, onS
     : <CompositionWriting monologue={monologue} onNext={onNext} nextTitle={nextTitle} onSpeakMode={onSpeakMode} />;
 }
 
+WritingMode.propTypes = {
+  phrases: PropTypes.arrayOf(phraseShape),
+  monologue: monologueShape,
+  onNext: PropTypes.func,
+  nextTitle: PropTypes.string,
+  onSpeakMode: PropTypes.func,
+};
+
 /* ── Phrase Dictation ──────────────────────────────────────────────── */
 function PhraseDictation({ phrases, onNext, nextTitle }) {
   const [index, setIndex] = useState(0);
@@ -58,7 +81,9 @@ function PhraseDictation({ phrases, onNext, nextTitle }) {
   const { isSpeaking, speak } = useSpeech();
 
   const phrase = phrases[index];
+  const hasNextAction = index < phrases.length - 1 || !!onNext;
   const score = submitted ? computeSimilarity(phrase.korean, input) : null;
+  const scoreEmoji = score >= 80 ? '🎉' : score >= 50 ? '👍' : '💪';
   const scoreClass = score >= 80 ? 'high' : score >= 50 ? 'mid' : 'low';
 
   const handleSubmit = () => {
@@ -101,6 +126,20 @@ function PhraseDictation({ phrases, onNext, nextTitle }) {
       <div className="writing-scroll-area">
         <div className="writing-phrase-card">
           <p className="writing-phrase-en">{phrase.english}</p>
+          {submitted && (
+            <p className="writing-phrase-kr">
+              {phrase.korean}
+              <button
+                className="prompt-speak-btn"
+                onClick={() => speak(phrase.korean)}
+                disabled={isSpeaking}
+                aria-label="Listen"
+                style={{ marginLeft: '0.4rem' }}
+              >
+                🔊
+              </button>
+            </p>
+          )}
           <span className="writing-progress">{index + 1} / {phrases.length}</span>
         </div>
 
@@ -112,6 +151,9 @@ function PhraseDictation({ phrases, onNext, nextTitle }) {
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="Write in Korean…"
+              spellCheck={false}
+              autoCorrect="off"
+              autoCapitalize="none"
               autoFocus
             />
             <KoreanKeyboardRef value={input} onChange={setInput} />
@@ -120,28 +162,12 @@ function PhraseDictation({ phrases, onNext, nextTitle }) {
 
         {submitted && (
           <div className="writing-feedback">
-            <div className="writing-answer-box">
-              <p className="writing-answer-label">Your answer</p>
-              <p className="writing-your-text">{input}</p>
+            <div className="writing-result-bar">
+              <span className="writing-result-text">You wrote: <strong>{input}</strong></span>
+              <span className={`writing-result-score ${scoreClass}`}>
+                {scoreEmoji} {score}%
+              </span>
             </div>
-            <div className="writing-answer-box">
-              <p className="writing-answer-label">
-                Answer
-                <button
-                  className="prompt-speak-btn"
-                  onClick={() => speak(phrase.korean)}
-                  disabled={isSpeaking}
-                  aria-label="Listen"
-                  style={{ marginLeft: '0.4rem' }}
-                >
-                  🔊
-                </button>
-              </p>
-              <p className="writing-answer-text">{phrase.korean}</p>
-            </div>
-            <span className={`writing-score ${scoreClass}`}>
-              Match: {score}%
-            </span>
           </div>
         )}
       </div>
@@ -168,9 +194,11 @@ function PhraseDictation({ phrases, onNext, nextTitle }) {
               <button className="action-btn retry-btn" onClick={handleRetry}>
                 🔄 Retry
               </button>
-              <button className="action-btn next-btn" onClick={handleNext}>
-                {index < phrases.length - 1 ? 'Next →' : onNext ? `Next: ${nextTitle} →` : 'Done ✓'}
-              </button>
+              {hasNextAction && (
+                <button className="action-btn next-btn" onClick={handleNext}>
+                  {index < phrases.length - 1 ? 'Next →' : `Next: ${nextTitle} →`}
+                </button>
+              )}
             </>
           )}
         </div>
@@ -178,6 +206,12 @@ function PhraseDictation({ phrases, onNext, nextTitle }) {
     </div>
   );
 }
+
+PhraseDictation.propTypes = {
+  phrases: PropTypes.arrayOf(phraseShape).isRequired,
+  onNext: PropTypes.func,
+  nextTitle: PropTypes.string,
+};
 
 /* ── Composition Writing ───────────────────────────────────────────── */
 function CompositionWriting({ monologue, onNext, nextTitle, onSpeakMode }) {
@@ -243,6 +277,9 @@ function CompositionWriting({ monologue, onNext, nextTitle, onSpeakMode }) {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Write your response in Korean…"
+              spellCheck={false}
+              autoCorrect="off"
+              autoCapitalize="none"
               autoFocus
             />
             <KoreanKeyboardRef value={input} onChange={setInput} />
@@ -335,3 +372,10 @@ function CompositionWriting({ monologue, onNext, nextTitle, onSpeakMode }) {
     </div>
   );
 }
+
+CompositionWriting.propTypes = {
+  monologue: monologueShape.isRequired,
+  onNext: PropTypes.func,
+  nextTitle: PropTypes.string,
+  onSpeakMode: PropTypes.func,
+};

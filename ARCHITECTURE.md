@@ -95,7 +95,7 @@ TopicGrid (home)              ⚙️ Settings (always visible, top-right)
   │           │     └─ Dialog Shadow (full conversation, sequential lines)
   │           │           └─ "Next: <dialog>" or "last dialog" indicator
   │           └─ "✍️ practice writing" link (in session picker) → WritingMode
-  │                 └─ Phrase dictation: English → type Korean → score + answer
+      │                 └─ Phrase dictation: English → type Korean → score bar; on submit reveal Korean under English
   └─ Monologue topic card → [Monologue]
         └─ SceneView (no mode toggle)
               └─ Topic picker → MonologueMode
@@ -158,10 +158,10 @@ Writing mode is an optional addon — speakout is primarily a speaking app. Entr
 
 **Two flows in one component (`WritingMode.jsx`):**
 
-- **Phrase dictation** (dialog scenarios): uses `shadow[]` quick phrases. Shows English → user types Korean → `computeSimilarity()` scores the match → reveals correct answer with TTS. Prev/Retry/Next navigation. No session picker needed.
+- **Phrase dictation** (dialog scenarios): uses `shadow[]` quick phrases. Shows English → user types Korean → `computeSimilarity()` scores the match in a compact result bar. After submit, Korean is revealed directly under the English prompt with optional TTS playback. Prev/Retry/Next navigation. No session picker needed.
 - **Composition** (monologue scenarios): uses same `monologues[]` data. Shows prompt/keywords → user types response → keyword match review → model answer reveal with TTS.
 
-Both flows use inline controls (warm-up style `drill-nav` buttons + `hint-link` exit link), not pinned bottom bars. "Exit writing" returns to speaking mode.
+Dialog phrase dictation uses a dedicated bottom action bar (`writing-bottom-bar`) for Prev/Check/Retry/Next. Composition keeps inline controls (`drill-nav` + `hint-link`). "Exit writing" returns to speaking mode.
 
 WritingMode uses TTS only (no STT). It has its own `keywordMatchesTranscript` copy to avoid coupling with MonologueMode. Reuses monologue CSS classes for prompt/review elements to maintain visual consistency.
 
