@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useSpeech } from '../hooks/useSpeech';
 import { computeSimilarity } from '../utils/scoring';
 import topikCharts from './charts/TopikCharts';
+import KoreanKeyboardRef from './KoreanKeyboardRef';
 import '../styles/Writing.css';
 
 // Copied from MonologueMode — grammar-aware Korean keyword matching.
@@ -113,6 +114,7 @@ function PhraseDictation({ phrases, onNext, nextTitle }) {
               placeholder="Write in Korean…"
               autoFocus
             />
+            <KoreanKeyboardRef value={input} onChange={setInput} />
           </div>
         )}
 
@@ -243,6 +245,7 @@ function CompositionWriting({ monologue, onNext, nextTitle, onSpeakMode }) {
               placeholder="Write your response in Korean…"
               autoFocus
             />
+            <KoreanKeyboardRef value={input} onChange={setInput} />
             <span className="writing-char-count">{input.length} chars</span>
           </div>
         )}

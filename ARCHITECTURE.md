@@ -31,6 +31,7 @@ src/
 │   ├── ShadowMode.jsx        # Listen & repeat with Levenshtein match scoring
 │   ├── MonologueMode.jsx     # Extended speaking: prompt → record → review
 │   ├── WritingMode.jsx        # Writing practice: phrase dictation + composition
+│   ├── KoreanKeyboardRef.jsx  # Virtual Korean keyboard with jamo-to-syllable composition
 │   ├── Settings.jsx          # Azure key/endpoint config modal
 │   └── charts/
 │       └── TopikCharts.jsx   # TOPIK-style bar/line/pie SVG charts for monologue prompts
@@ -163,6 +164,18 @@ Writing mode is an optional addon — speakout is primarily a speaking app. Entr
 Both flows use inline controls (warm-up style `drill-nav` buttons + `hint-link` exit link), not pinned bottom bars. "Exit writing" returns to speaking mode.
 
 WritingMode uses TTS only (no STT). It has its own `keywordMatchesTranscript` copy to avoid coupling with MonologueMode. Reuses monologue CSS classes for prompt/review elements to maintain visual consistency.
+
+### Virtual Korean Keyboard (`KoreanKeyboardRef.jsx`)
+
+A clickable on-screen keyboard for desktop users who don't have a Korean IME installed. Hidden on mobile via CSS media query (`max-width: 768px`). Features:
+
+- **Full 두벌식 layout** with Shift toggle for double consonants (ㅃ ㅉ ㄸ ㄲ ㅆ) and ㅒ ㅖ
+- **Jamo-to-syllable composition** — implements the standard Korean IME algorithm: initial → medial → final, with compound vowel/final support and automatic final-consonant splitting when followed by a vowel
+- **Backspace decomposition** — removes jamo incrementally (final → vowel → initial) rather than deleting whole syllables
+- **Space** finalizes the current composition
+- **Co-exists with native IME** — detects external textarea edits and resets composition state
+- **Persistent toggle state** via `localStorage` (`kb-ref-open`)
+- Rendered as SVG keys; receives `value` + `onChange` props from WritingMode
 
 ### Navigation & Layout
 
