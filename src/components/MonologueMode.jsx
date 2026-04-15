@@ -44,7 +44,7 @@ function keywordMatchesTranscript(keyword, transcript) {
 
 const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-export default function MonologueMode({ monologue, onNext, nextTitle, onWriteMode }) {
+export default function MonologueMode({ monologue, language = 'ko', onNext, nextTitle, onWriteMode }) {
   const [phase, setPhase] = useState('prompt'); // prompt | drill | recording | reviewing
   const [elapsed, setElapsed] = useState(0);
   const [showModel, setShowModel] = useState(false);
@@ -77,7 +77,7 @@ export default function MonologueMode({ monologue, onNext, nextTitle, onWriteMod
     setElapsed(0);
     setShowModel(false);
     setPhase('recording');
-    startListening({ continuous: !isMobile });
+    startListening({ continuous: !isMobile, languageId: language });
   };
 
   const handleStop = () => {
@@ -99,12 +99,12 @@ export default function MonologueMode({ monologue, onNext, nextTitle, onWriteMod
   useEffect(() => {
     if (pendingAutoRecord && phase === 'recording' && !isListening) {
       setPendingAutoRecord(false);
-      startListening({ continuous: !isMobile });
+      startListening({ continuous: !isMobile, languageId: language });
     }
-  }, [pendingAutoRecord, phase, isListening, startListening]);
+  }, [pendingAutoRecord, phase, isListening, startListening, language]);
 
   const handleListenModel = () => {
-    speak(monologue.modelAnswer);
+    speak(monologue.modelAnswer, language);
   };
 
   const formatTime = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
@@ -124,7 +124,7 @@ export default function MonologueMode({ monologue, onNext, nextTitle, onWriteMod
             {monologue.promptKorean}
             <button
               className="prompt-speak-btn"
-              onClick={() => speak(monologue.promptKorean)}
+              onClick={() => speak(monologue.promptKorean, language)}
               disabled={isSpeaking}
               aria-label="Listen to prompt"
             >
@@ -167,6 +167,7 @@ export default function MonologueMode({ monologue, onNext, nextTitle, onWriteMod
         {phase === 'drill' && (
           <DictationDrill
             drills={monologue.drills}
+            language={language}
             onFinish={() => setPhase('prompt')}
           />
         )}
@@ -276,14 +277,14 @@ export default function MonologueMode({ monologue, onNext, nextTitle, onWriteMod
 }
 
 /* ── Dictation Drill sub-component ──────────────────────────────────── */
-function DictationDrill({ drills, onFinish }) {
+function DictationDrill({ drills, language = 'ko', onFinish }) {
   const [index, setIndex] = useState(0);
   const { isSpeaking, speak } = useSpeech();
 
   const drill = drills[index];
 
   const handleListen = () => {
-    speak(drill.example);
+    speak(drill.example, language);
   };
 
   const handleNext = () => {

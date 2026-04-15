@@ -29,17 +29,22 @@ function escapeXml(text) {
 }
 
 /**
- * Synthesize Korean speech using Azure TTS REST API.
- * Returns an Audio element that can be played.
+ * Synthesize speech using Azure TTS REST API.
+ * @param {string} text - Text to synthesize
+ * @param {Object} options - Configuration
+ * @param {string} options.voice - Azure voice name (e.g., 'ko-KR-SunHiNeural')
+ * @param {string} options.ssmlLang - SSML language tag (e.g., 'ko-KR')
+ * @param {string} options.rate - Speech rate multiplier (default 0.9)
+ * @returns {Promise<string>} Audio blob URL
  */
-export async function azureSpeak(text, { voice = 'ko-KR-SunHiNeural', rate = '0.9' } = {}) {
+export async function azureSpeak(text, { voice = 'ko-KR-SunHiNeural', ssmlLang = 'ko-KR', rate = '0.9' } = {}) {
   const key = getAzureKey();
   const endpoint = getAzureEndpoint();
   if (!key || !endpoint) {
     throw new Error('Azure Speech credentials not configured');
   }
 
-  const ssml = `<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="ko-KR">
+  const ssml = `<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="${ssmlLang}">
   <voice name="${voice}">
     <prosody rate="${rate}">${escapeXml(text)}</prosody>
   </voice>

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSpeech } from '../hooks/useSpeech';
 
-export default function PracticeMode({ exchanges, onNext, nextSessionTitle }) {
+export default function PracticeMode({ exchanges, language = 'ko', onNext, nextSessionTitle }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [phase, setPhase] = useState('listen'); // listen | respond | processing | feedback
   const [showModel, setShowModel] = useState(false);
@@ -35,9 +35,9 @@ export default function PracticeMode({ exchanges, onNext, nextSessionTitle }) {
   useEffect(() => {
     if (pendingAutoRecord && phase === 'respond' && !isListening) {
       setPendingAutoRecord(false);
-      startListening();
+      startListening({ languageId: language });
     }
-  }, [pendingAutoRecord, phase, isListening, startListening]);
+  }, [pendingAutoRecord, phase, isListening, startListening, language]);
 
   useEffect(() => {
     if (isFinished || phase !== 'listen') return;
@@ -46,7 +46,7 @@ export default function PracticeMode({ exchanges, onNext, nextSessionTitle }) {
       setPhase('respond');
     } else {
       let cancelled = false;
-      speak(exchange.korean).then(() => {
+      speak(exchange.korean, language).then(() => {
         if (!cancelled) setPhase('respond');
       });
       return () => {
@@ -54,11 +54,11 @@ export default function PracticeMode({ exchanges, onNext, nextSessionTitle }) {
         stopSpeaking();
       };
     }
-  }, [currentIndex, phase, isFinished, isYouInitiate, exchange, speak, stopSpeaking]);
+  }, [currentIndex, phase, isFinished, isYouInitiate, exchange, speak, stopSpeaking, language]);
 
   const handleRecord = () => {
     setTranscript('');
-    startListening();
+    startListening({ languageId: language });
   };
 
   const handleStopAndCheck = () => {
@@ -88,7 +88,7 @@ export default function PracticeMode({ exchanges, onNext, nextSessionTitle }) {
 
   const handleReplay = () => {
     if (exchange) {
-      speak(exchange.korean);
+      speak(exchange.korean, language);
     }
   };
 
@@ -242,7 +242,7 @@ export default function PracticeMode({ exchanges, onNext, nextSessionTitle }) {
                     onClick={() => {
                       if (isSpeaking) return;
                       setSpeakingIdx(i);
-                      speak(r).then(() => setSpeakingIdx(null));
+                      speak(r, language).then(() => setSpeakingIdx(null));
                     }}
                   >
                     🔊

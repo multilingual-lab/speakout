@@ -2,6 +2,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useSpeech } from '../hooks/useSpeech';
 import { computeSimilarity } from '../utils/scoring';
+import { getLanguageConfig } from '../config/languages';
 import topikCharts from './charts/TopikCharts';
 import KoreanKeyboardRef from './KoreanKeyboardRef';
 import '../styles/Writing.css';
@@ -58,23 +59,25 @@ function keywordMatchesTranscript(keyword, text) {
  * 2. Composition (monologue scenarios): receives `monologue` prop.
  *    See prompt → write response → keyword match + model answer.
  */
-export default function WritingMode({ phrases, monologue, onNext, nextTitle, onSpeakMode }) {
+export default function WritingMode({ phrases, monologue, language = 'ko', onNext, nextTitle, onSpeakMode }) {
   const isPhraseMode = !!phrases;
+  const langConfig = getLanguageConfig(language);
   return isPhraseMode
-    ? <PhraseDictation phrases={phrases} onNext={onNext} nextTitle={nextTitle} />
-    : <CompositionWriting monologue={monologue} onNext={onNext} nextTitle={nextTitle} onSpeakMode={onSpeakMode} />;
+    ? <PhraseDictation phrases={phrases} language={language} showKeyboard={langConfig.features.virtualKeyboard} onNext={onNext} nextTitle={nextTitle} />
+    : <CompositionWriting monologue={monologue} language={language} showKeyboard={langConfig.features.virtualKeyboard} onNext={onNext} nextTitle={nextTitle} onSpeakMode={onSpeakMode} />;
 }
 
 WritingMode.propTypes = {
   phrases: PropTypes.arrayOf(phraseShape),
   monologue: monologueShape,
+  language: PropTypes.string,
   onNext: PropTypes.func,
   nextTitle: PropTypes.string,
   onSpeakMode: PropTypes.func,
 };
 
 /* ── Phrase Dictation ──────────────────────────────────────────────── */
-function PhraseDictation({ phrases, onNext, nextTitle }) {
+function PhraseDictation({ phrases, language = 'ko', showKeyboard, onNext, nextTitle }) {
   const [index, setIndex] = useState(0);
   const [input, setInput] = useState('');
   const [submitted, setSubmitted] = useState(false);
@@ -131,7 +134,7 @@ function PhraseDictation({ phrases, onNext, nextTitle }) {
               {phrase.korean}
               <button
                 className="prompt-speak-btn"
-                onClick={() => speak(phrase.korean)}
+                onClick={() => speak(phrase.korean, language)}
                 disabled={isSpeaking}
                 aria-label="Listen"
                 style={{ marginLeft: '0.4rem' }}
@@ -156,7 +159,7 @@ function PhraseDictation({ phrases, onNext, nextTitle }) {
               autoCapitalize="none"
               autoFocus
             />
-            <KoreanKeyboardRef value={input} onChange={setInput} />
+            {showKeyboard && <KoreanKeyboardRef value={input} onChange={setInput} />}
           </div>
         )}
 
@@ -214,7 +217,7 @@ PhraseDictation.propTypes = {
 };
 
 /* ── Composition Writing ───────────────────────────────────────────── */
-function CompositionWriting({ monologue, onNext, nextTitle, onSpeakMode }) {
+function CompositionWriting({ monologue, language = 'ko', showKeyboard, onNext, nextTitle, onSpeakMode }) {
   const [phase, setPhase] = useState('writing'); // writing | reviewing
   const [input, setInput] = useState('');
   const [showModel, setShowModel] = useState(false);
@@ -243,7 +246,7 @@ function CompositionWriting({ monologue, onNext, nextTitle, onSpeakMode }) {
             {monologue.promptKorean}
             <button
               className="prompt-speak-btn"
-              onClick={() => speak(monologue.promptKorean)}
+              onClick={() => speak(monologue.promptKorean, language)}
               disabled={isSpeaking}
               aria-label="Listen to prompt"
             >
@@ -282,7 +285,7 @@ function CompositionWriting({ monologue, onNext, nextTitle, onSpeakMode }) {
               autoCapitalize="none"
               autoFocus
             />
-            <KoreanKeyboardRef value={input} onChange={setInput} />
+            {showKeyboard && <KoreanKeyboardRef value={input} onChange={setInput} />}
             <span className="writing-char-count">{input.length} chars</span>
           </div>
         )}
@@ -339,7 +342,7 @@ function CompositionWriting({ monologue, onNext, nextTitle, onSpeakMode }) {
                 <p className="monologue-model-en">{monologue.modelAnswerEn}</p>
                 <button
                   className="action-btn listen-btn"
-                  onClick={() => speak(monologue.modelAnswer)}
+                  onClick={() => speak(monologue.modelAnswer, language)}
                   disabled={isSpeaking}
                 >
                   🔊 Listen

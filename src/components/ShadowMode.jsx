@@ -2,15 +2,15 @@ import { useState, useEffect, useRef } from 'react';
 import { useSpeech } from '../hooks/useSpeech';
 import { computeSimilarity } from '../utils/scoring';
 
-export default function ShadowMode({ phrases, exchanges, onNext, nextSessionTitle }) {
+export default function ShadowMode({ phrases, exchanges, language = 'ko', onNext, nextSessionTitle }) {
   if (exchanges) {
-    return <DialogShadow exchanges={exchanges} onNext={onNext} nextSessionTitle={nextSessionTitle} />;
+    return <DialogShadow exchanges={exchanges} language={language} onNext={onNext} nextSessionTitle={nextSessionTitle} />;
   }
-  return <PhraseShadow phrases={phrases} onNext={onNext} nextSessionTitle={nextSessionTitle} />;
+  return <PhraseShadow phrases={phrases} language={language} onNext={onNext} nextSessionTitle={nextSessionTitle} />;
 }
 
 /* ── Dialog-based shadowing ─────────────────────────────────────────── */
-function DialogShadow({ exchanges, onNext, nextSessionTitle }) {
+function DialogShadow({ exchanges, language = 'ko', onNext, nextSessionTitle }) {
   // Flatten exchanges into shadow-able lines:
   // "other" → shadow their korean line
   // "you-initiate" → shadow each expectedResponse
@@ -43,12 +43,12 @@ function DialogShadow({ exchanges, onNext, nextSessionTitle }) {
   const handleListen = async () => {
     setShowResult(false);
     setTranscript('');
-    await speak(line.korean);
+    await speak(line.korean, language);
   };
 
   const handleRecord = () => {
     setShowResult(false);
-    startListening();
+    startListening({ languageId: language });
   };
 
   const handleStopAndCheck = () => {
@@ -205,7 +205,7 @@ function buildDialogLines(exchanges) {
 }
 
 /* ── Original phrase-based shadowing ────────────────────────────────── */
-function PhraseShadow({ phrases, onNext, nextSessionTitle }) {
+function PhraseShadow({ phrases, language = 'ko', onNext, nextSessionTitle }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showResult, setShowResult] = useState(false);
   const [showEnglish, setShowEnglish] = useState(false);
@@ -226,12 +226,12 @@ function PhraseShadow({ phrases, onNext, nextSessionTitle }) {
   const handleListen = async () => {
     setShowResult(false);
     setTranscript('');
-    await speak(phrase.korean);
+    await speak(phrase.korean, language);
   };
 
   const handleRecord = () => {
     setShowResult(false);
-    startListening();
+    startListening({ languageId: language });
   };
 
   const handleStopAndCheck = () => {

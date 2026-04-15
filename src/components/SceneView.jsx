@@ -8,7 +8,7 @@ const LEVEL_LABELS = { beginner: 'Beginner', intermediate: 'Intermediate', advan
 const LEVEL_ORDER = { beginner: 0, intermediate: 1, advanced: 2 };
 const sortByLevel = (sessions) => [...sessions].sort((a, b) => (LEVEL_ORDER[a.level] ?? 99) - (LEVEL_ORDER[b.level] ?? 99));
 
-export default function SceneView({ scenario, initialMode, onBack }) {
+export default function SceneView({ scenario, initialMode, language = 'ko', onBack }) {
   const isMonologue = !!scenario.monologues;
   const [mode, setMode] = useState(isMonologue ? 'monologue' : initialMode);
   const [sessionId, setSessionId] = useState(null);
@@ -117,7 +117,7 @@ export default function SceneView({ scenario, initialMode, onBack }) {
 
       {/* Active practice session */}
       {mode === 'practice' && session && (
-        <PracticeMode key={sessionId} exchanges={session.exchanges} onNext={nextSessionId ? handleNextSession : null} nextSessionTitle={nextSession?.title} />
+        <PracticeMode key={sessionId} exchanges={session.exchanges} language={language} onNext={nextSessionId ? handleNextSession : null} nextSessionTitle={nextSession?.title} />
       )}
 
       {/* Session picker for shadow */}
@@ -156,12 +156,12 @@ export default function SceneView({ scenario, initialMode, onBack }) {
 
       {/* Quick phrases shadow */}
       {mode === 'shadow' && sessionId === '__quick__' && (
-        <ShadowMode key={sessionId} phrases={scenario.shadow} onNext={nextSessionId ? handleNextSession : null} nextSessionTitle={nextSession?.title} />
+        <ShadowMode key={sessionId} phrases={scenario.shadow} language={language} onNext={nextSessionId ? handleNextSession : null} nextSessionTitle={nextSession?.title} />
       )}
 
       {/* Dialog shadow */}
       {mode === 'shadow' && session && (
-        <ShadowMode key={sessionId} exchanges={session.exchanges} onNext={nextSessionId ? handleNextSession : null} nextSessionTitle={nextSession?.title} />
+        <ShadowMode key={sessionId} exchanges={session.exchanges} language={language} onNext={nextSessionId ? handleNextSession : null} nextSessionTitle={nextSession?.title} />
       )}
 
       {/* Monologue picker */}
@@ -187,17 +187,17 @@ export default function SceneView({ scenario, initialMode, onBack }) {
 
       {/* Active monologue (speaking) */}
       {mode === 'monologue' && monologue && (
-        <MonologueMode key={sessionId} monologue={monologue} onNext={nextSessionId ? handleNextSession : null} nextTitle={nextSession?.title} onWriteMode={() => setMode('write')} />
+        <MonologueMode key={sessionId} monologue={monologue} language={language} onNext={nextSessionId ? handleNextSession : null} nextTitle={nextSession?.title} onWriteMode={() => setMode('write')} />
       )}
 
       {/* Writing — phrase dictation (dialog scenarios) */}
       {mode === 'write' && !isMonologue && (
-        <WritingMode key="phrases" phrases={scenario.shadow} />
+        <WritingMode key="phrases" phrases={scenario.shadow} language={language} />
       )}
 
       {/* Writing — composition (monologue scenarios, after topic picked) */}
       {mode === 'write' && isMonologue && monologue && (
-        <WritingMode key={sessionId} monologue={monologue} onNext={nextSessionId ? handleNextSession : null} nextTitle={nextSession?.title} onSpeakMode={() => setMode('monologue')} />
+        <WritingMode key={sessionId} monologue={monologue} language={language} onNext={nextSessionId ? handleNextSession : null} nextTitle={nextSession?.title} onSpeakMode={() => setMode('monologue')} />
       )}
     </div>
   );

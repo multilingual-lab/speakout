@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback } from 'react';
 import { azureSpeak, isAzureConfigured } from '../services/azureTts';
+import { getLanguageConfig } from '../config/languages';
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -14,14 +15,15 @@ export function useSpeech() {
   const timeoutRef = useRef(null);
   const maxTimerRef = useRef(null);
 
-  const startListening = useCallback(({ continuous = false } = {}) => {
+  const startListening = useCallback(({ continuous = false, languageId = 'ko' } = {}) => {
     if (!SpeechRecognition) {
       setError('no-speech');
       return;
     }
 
+    const langConfig = getLanguageConfig(languageId);
     const recognition = new SpeechRecognition();
-    recognition.lang = 'ko-KR';
+    recognition.lang = langConfig.sttLang;
     recognition.continuous = continuous;
     recognition.interimResults = true;
     recognition.maxAlternatives = 1;
@@ -113,7 +115,7 @@ export function useSpeech() {
     setIsSpeaking(false);
   }, []);
 
-  const speak = useCallback(async (text, lang = 'ko-KR') => {
+  const speak = useCallback(async (text, languageId = 'ko') => {
     // Stop any in-progress speech first
     if (audioRef.current) {
       audioRef.current.pause();
@@ -122,11 +124,18 @@ export function useSpeech() {
     }
     window.speechSynthesis.cancel();
 
+    // Resolve language config for TTS voice and SSML lang
+    const langConfig = getLanguageConfig(languageId);
+    const ttsConfig = langConfig.tts;
+
     // Use Azure TTS if configured, otherwise fall back to Web Speech API
     if (isAzureConfigured()) {
       try {
         setIsSpeaking(true);
-        const audioUrl = await azureSpeak(text);
+        const audioUrl = await azureSpeak(text, {
+          voice: ttsConfig.azureVoice,
+          ssmlLang: ttsConfig.ssmlLang,
+        });
         await new Promise((resolve) => {
           const audio = new Audio(audioUrl);
           audioRef.current = audio;
@@ -146,14 +155,14 @@ export function useSpeech() {
         console.error('Azure TTS error, falling back to browser TTS:', err);
         setIsSpeaking(false);
         await new Promise((resolve) => {
-          speakBrowser(text, lang, setIsSpeaking, resolve);
+          speakBrowser(text, ttsConfig.fallbackLang, setIsSpeaking, resolve);
         });
       }
       return;
     }
 
     await new Promise((resolve) => {
-      speakBrowser(text, lang, setIsSpeaking, resolve);
+      speakBrowser(text, ttsConfig.fallbackLang, setIsSpeaking, resolve);
     });
   }, []);
 

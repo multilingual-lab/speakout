@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { getAzureConfig, saveAzureConfig } from '../services/azureTts';
+import { LANGUAGES } from '../config/languages';
 
-export default function Settings({ onClose }) {
+export default function Settings({ language, onLanguageChange, onClose }) {
   const config = getAzureConfig();
   const [key, setKey] = useState(config.key);
   const [endpoint, setEndpoint] = useState(config.endpoint);
@@ -35,6 +36,19 @@ export default function Settings({ onClose }) {
         <p className="settings-note">
           Azure Speech is optional — it improves TTS voice quality. Without it, the app falls back to your browser's built-in speech.
         </p>
+
+        <label className="settings-label">Language</label>
+        <select
+          className="settings-input"
+          value={language}
+          onChange={(e) => onLanguageChange(e.target.value)}
+        >
+          {Object.values(LANGUAGES).map((lang) => (
+            <option key={lang.id} value={lang.id}>
+              {lang.label}
+            </option>
+          ))}
+        </select>
 
         <label className="settings-label">Azure Speech Key</label>
         <input
