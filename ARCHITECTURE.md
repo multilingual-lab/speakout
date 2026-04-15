@@ -133,7 +133,7 @@ TopicGrid (home)              ⚙️ Settings (always visible, top-right)
 ### Scoring (`src/utils/scoring.js`)
 
 - Levenshtein character similarity with Korean-aware normalization
-- Strips: punctuation, emoticons (ㅋㅎㅠㅜ), trailing 요, whitespace
+- Strips: all Unicode punctuation and whitespace (punctuation-insensitive scoring)
 
 ### Keyword Matching (monologue review)
 
