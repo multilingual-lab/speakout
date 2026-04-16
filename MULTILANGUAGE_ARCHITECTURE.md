@@ -37,13 +37,10 @@ Out of scope:
 - [x] Added language selector in settings.
 - [x] Threaded selected language through Practice, Shadow, Monologue, and Writing flows.
 - [x] Gated Korean keyboard helper behind language feature flag.
-
-## In Progress
-
-- [ ] Create language adapter layer with normalize, computeSimilarity, matchKeywords per language.
-- [ ] Extract Korean-specific keyword matching from MonologueMode into Korean adapter.
-- [ ] Route all scoring and keyword checks through adapter dispatch.
-- [ ] Add adapter tests for Korean, Spanish, and default/generic behavior.
+- [x] Created language adapter dispatch layer with default, Korean, and Spanish adapters.
+- [x] Extracted Korean-specific keyword matching from MonologueMode/WritingMode into Korean adapter.
+- [x] Routed all scoring and keyword checks through adapter dispatch.
+- [x] Added adapter tests for Korean, Spanish, and default/generic behavior (21 tests).
 
 ## Pending
 
@@ -105,8 +102,8 @@ File layout:
 
 - src/utils/adapters/index.js — dispatch + default adapter
 - src/utils/adapters/korean.js — Korean-specific logic extracted from MonologueMode + scoring
-- src/utils/adapters/spanish.js — Spanish-specific overrides (stub initially)
-- src/utils/scoring.js — delegates to adapter layer
+- src/utils/adapters/spanish.js — Spanish-specific overrides (accent-insensitive normalization)
+- src/utils/scoring.js — re-exports from adapter layer
 
 Current Korean-specific behavior remains baseline specialized adapter implementation.
 
@@ -144,18 +141,18 @@ Acceptance:
 - [x] language selection changes TTS voice and SSML language
 - [x] Korean baseline behavior preserved
 
-## Phase 2: Language Adapters (priority — current focus)
+## Phase 2: Language Adapters
 
-Status: in progress
+Status: completed
 
 Acceptance:
 
-- [ ] adapter dispatch layer created with default + Korean adapters
-- [ ] scoring normalization routed through adapter
-- [ ] keyword matching routed through adapter
-- [ ] Korean-specific grammar logic extracted from components into Korean adapter
-- [ ] tests added for Korean, Spanish, and default adapter behavior
-- [ ] all existing tests remain green
+- [x] adapter dispatch layer created with default + Korean adapters
+- [x] scoring normalization routed through adapter
+- [x] keyword matching routed through adapter
+- [x] Korean-specific grammar logic extracted from components into Korean adapter
+- [x] tests added for Korean, Spanish, and default adapter behavior
+- [x] all existing tests remain green
 
 ## Phase 3: Spanish Pilot Content
 
