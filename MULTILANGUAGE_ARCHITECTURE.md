@@ -8,13 +8,15 @@ In scope:
 
 - language-aware STT and TTS configuration
 - language-aware UI shell behavior
-- language-specific text processing boundaries
-- content schema evolution
+- language-specific text processing boundaries via adapter layer
+- any source-language ↔ target-language pair support
+- content schema evolution toward language-neutral fields
 
 Out of scope:
 
-- full content authoring for all languages
-- replacing all Korean-specific pedagogy in a single release
+- full content authoring for all languages in a single release
+- replacing all Korean-specific pedagogy at once
+- full UI i18n (deferred — English shell labels are sufficient for now)
 
 ## Architectural Principles
 
@@ -36,13 +38,19 @@ Out of scope:
 - [x] Threaded selected language through Practice, Shadow, Monologue, and Writing flows.
 - [x] Gated Korean keyboard helper behind language feature flag.
 
-## In Progress / Pending
+## In Progress
 
-- [ ] Replace hardcoded shell copy with i18n dictionary keys.
-- [ ] Move scoring normalization into language adapters.
-- [ ] Move keyword matching into language adapters.
+- [ ] Create language adapter layer with normalize, computeSimilarity, matchKeywords per language.
+- [ ] Extract Korean-specific keyword matching from MonologueMode into Korean adapter.
+- [ ] Route all scoring and keyword checks through adapter dispatch.
+- [ ] Add adapter tests for Korean, Spanish, and default/generic behavior.
+
+## Pending
+
+- [ ] Add pilot scenario content for Spanish (first non-Korean target).
+- [ ] Evolve content schema toward language-neutral fields (targetText, supportTextByLocale).
 - [ ] Add schema v2 loader support and dual-schema compatibility tests.
-- [ ] Add pilot scenario content for Spanish and French.
+- [ ] Replace hardcoded shell copy with i18n dictionary keys (low priority — deferred).
 
 ## Logical Architecture
 
@@ -77,12 +85,30 @@ Downstream components receive selected language as explicit props for determinis
 
 ## 4) Language Adapters
 
-Language-sensitive text logic must move behind adapters:
+Language-sensitive text logic must move behind adapters.
 
-- normalize(text, languageId)
-- matchKeywords(transcript, keywords, languageId)
+Adapter interface (per language):
 
-Current Korean-specific behavior remains baseline adapter implementation.
+- normalize(text) — strip noise characters, normalize whitespace/punctuation
+- computeSimilarity(target, spoken) — Levenshtein or language-appropriate scoring
+- matchKeywords(transcript, keywords) — grammar-aware keyword detection
+
+Adapter dispatch:
+
+- getAdapter(languageId) resolves to language-specific or default adapter
+- unknown language IDs fall back to default adapter
+- default adapter: unicode punctuation/whitespace strip + plain substring keyword match
+- Korean adapter: current behavior (grammar-aware patterns like (으)ㄹ, (으), (이), slash alternatives)
+- Spanish adapter: default + accent-insensitive normalization (future)
+
+File layout:
+
+- src/utils/adapters/index.js — dispatch + default adapter
+- src/utils/adapters/korean.js — Korean-specific logic extracted from MonologueMode + scoring
+- src/utils/adapters/spanish.js — Spanish-specific overrides (stub initially)
+- src/utils/scoring.js — delegates to adapter layer
+
+Current Korean-specific behavior remains baseline specialized adapter implementation.
 
 ## 5) Feature Modularity
 
@@ -118,24 +144,28 @@ Acceptance:
 - [x] language selection changes TTS voice and SSML language
 - [x] Korean baseline behavior preserved
 
-## Phase 2: UI Shell i18n
+## Phase 2: Language Adapters (priority — current focus)
 
-Status: pending
-
-Acceptance:
-
-- [ ] hardcoded shell labels moved to dictionary
-- [ ] missing keys safely fallback to English
-
-## Phase 3: Language Adapters
-
-Status: pending
+Status: in progress
 
 Acceptance:
 
+- [ ] adapter dispatch layer created with default + Korean adapters
 - [ ] scoring normalization routed through adapter
 - [ ] keyword matching routed through adapter
-- [ ] tests added for at least 3 languages
+- [ ] Korean-specific grammar logic extracted from components into Korean adapter
+- [ ] tests added for Korean, Spanish, and default adapter behavior
+- [ ] all existing tests remain green
+
+## Phase 3: Spanish Pilot Content
+
+Status: pending
+
+Acceptance:
+
+- [ ] at least one complete Spanish scenario (dialog + monologue)
+- [ ] Spanish adapter handles accent normalization
+- [ ] no Korean regression in speaking and writing flows
 
 ## Phase 4: Schema v2 Migration
 
@@ -143,18 +173,20 @@ Status: pending
 
 Acceptance:
 
+- [ ] content fields evolved to language-neutral names (targetText, supportTextByLocale)
 - [ ] dual-schema loader support implemented
 - [ ] loader compatibility tests added
 
-## Phase 5: Pilot Language Content
+## Phase 5: UI Shell i18n (deferred)
 
-Status: pending
+Status: deferred
+
+Rationale: English UI labels are simple and universally understood. Full i18n adds complexity with limited UX benefit at current scale.
 
 Acceptance:
 
-- [ ] at least one complete Spanish scenario
-- [ ] at least one complete French scenario
-- [ ] no Korean regression in speaking and writing flows
+- [ ] hardcoded shell labels moved to dictionary
+- [ ] missing keys safely fallback to English
 
 ## Validation
 
