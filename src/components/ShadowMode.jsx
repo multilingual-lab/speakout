@@ -71,7 +71,7 @@ function DialogShadow({ exchanges, language = 'ko', onNext, nextSessionTitle }) 
   };
 
   const similarity = showResult && transcript
-    ? computeSimilarity(line.korean, transcript)
+    ? computeSimilarity(line.korean, transcript, language)
     : null;
 
   // Conversation context: all lines before current
@@ -257,7 +257,7 @@ function PhraseShadow({ phrases, language = 'ko', onNext, nextSessionTitle }) {
   };
 
   const similarity = showResult && transcript
-    ? computeSimilarity(phrase.korean, transcript)
+    ? computeSimilarity(phrase.korean, transcript, language)
     : null;
 
   return (

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useSpeech } from '../hooks/useSpeech';
-import { computeSimilarity } from '../utils/scoring';
+import { computeSimilarity, matchKeywords } from '../utils/scoring';
 import { getLanguageConfig } from '../config/languages';
 import topikCharts from './charts/TopikCharts';
 import KoreanKeyboardRef from './KoreanKeyboardRef';
@@ -21,34 +21,8 @@ const monologueShape = PropTypes.shape({
   modelAnswerEn: PropTypes.string,
 });
 
-// Copied from MonologueMode — grammar-aware Korean keyword matching.
-// Kept as a local copy to avoid modifying MonologueMode.
-function keywordMatchesTranscript(keyword, text) {
-  const kw = keyword.replace(/~/g, '');
-  if (kw.includes('/')) {
-    return kw.split('/').some((part) => keywordMatchesTranscript(part.trim(), text));
-  }
-  if (kw.includes('(으)ㄹ')) {
-    const suffix = kw.split('(으)ㄹ').pop();
-    if (text.includes('을' + suffix)) return true;
-    let pos = 0;
-    while (pos < text.length) {
-      const idx = text.indexOf(suffix, pos);
-      if (idx <= 0) break;
-      const code = text.charCodeAt(idx - 1);
-      if (code >= 0xAC00 && code <= 0xD7A3 && (code - 0xAC00) % 28 === 8) return true;
-      pos = idx + 1;
-    }
-    return false;
-  }
-  if (kw.includes('(으)')) {
-    return text.includes(kw.replace('(으)', '으')) || text.includes(kw.replace('(으)', ''));
-  }
-  if (kw.includes('(이)')) {
-    return text.includes(kw.replace('(이)', '이')) || text.includes(kw.replace('(이)', ''));
-  }
-  return text.includes(kw);
-}
+// Keyword matching is now handled by the language adapter layer.
+// See src/utils/adapters/ for language-specific implementations.
 
 /**
  * WritingMode — two flows in one component:
@@ -85,7 +59,7 @@ function PhraseDictation({ phrases, language = 'ko', showKeyboard, onNext, nextT
 
   const phrase = phrases[index];
   const hasNextAction = index < phrases.length - 1 || !!onNext;
-  const score = submitted ? computeSimilarity(phrase.korean, input) : null;
+  const score = submitted ? computeSimilarity(phrase.korean, input, language) : null;
   const scoreEmoji = score >= 80 ? '🎉' : score >= 50 ? '👍' : '💪';
   const scoreClass = score >= 80 ? 'high' : score >= 50 ? 'mid' : 'low';
 
@@ -228,7 +202,7 @@ function CompositionWriting({ monologue, language = 'ko', showKeyboard, onNext, 
   const [showModelEnglish, setShowModelEnglish] = useState(false);
   const { isSpeaking, speak } = useSpeech();
 
-  const matchedKeywords = monologue.keywords?.filter((kw) => keywordMatchesTranscript(kw, input)) || [];
+  const matchedKeywords = monologue.keywords ? matchKeywords(monologue.keywords, input, language) : [];
   const ChartComponent = monologue.chartId ? topikCharts[monologue.chartId] : null;
 
   const handleRetry = () => {

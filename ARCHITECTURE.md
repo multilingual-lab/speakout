@@ -112,8 +112,8 @@ TopicGrid (home)              ⚙️ Settings (always visible, top-right)
 ### Speech Recognition (STT)
 
 - **Practice/Shadow:** single-result mode (`continuous: false`) on all platforms
-- **Monologue (desktop):** `continuous: true` with 10s idle timeout resetting on each phrase
-- **Monologue (mobile):** falls back to `continuous: false` via `isMobile` UA detection
+- **Monologue (laptop/desktop input):** `continuous: true` with 10s idle timeout resetting on each phrase
+- **Monologue (touch/mobile input):** falls back to `continuous: false` (mobile UA or coarse-pointer environments)
 - **Safety caps:** 60s single / 120s continuous max duration
 - **Auto-stop:** when browser recognition ends on its own, app transitions to feedback automatically
 - **No auto-restart** on session end (avoids beep on mobile Chrome from repeated `.start()`)

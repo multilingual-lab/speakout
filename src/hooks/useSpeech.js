@@ -15,7 +15,7 @@ export function useSpeech() {
   const timeoutRef = useRef(null);
   const maxTimerRef = useRef(null);
 
-  const startListening = useCallback(({ continuous = false, languageId = 'ko' } = {}) => {
+  const startListening = useCallback(({ continuous = false, languageId = 'ko', silenceTimeoutMs = 10000 } = {}) => {
     if (!SpeechRecognition) {
       setError('no-speech');
       return;
@@ -39,7 +39,7 @@ export function useSpeech() {
 
     const resetSilenceTimer = () => {
       clearTimeout(timeoutRef.current);
-      timeoutRef.current = setTimeout(stop, 10000);
+      timeoutRef.current = setTimeout(stop, silenceTimeoutMs);
     };
 
     recognition.onresult = (event) => {
@@ -90,7 +90,7 @@ export function useSpeech() {
     recognition.start();
 
     // Silence timeout: reset on every result (interim or final)
-    timeoutRef.current = setTimeout(stop, 10000);
+    timeoutRef.current = setTimeout(stop, silenceTimeoutMs);
     // Hard max cap — safety net
     clearTimeout(maxTimerRef.current);
     maxTimerRef.current = setTimeout(stop, continuous ? 120000 : 60000);

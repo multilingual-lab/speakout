@@ -1,48 +1,28 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSpeech } from '../hooks/useSpeech';
+import { matchKeywords } from '../utils/adapters/index.js';
 import topikCharts from './charts/TopikCharts';
 
-// Check if a Korean grammar keyword pattern matches the transcript.
-// Handles notations: (으)ㄹ (jamo 받침), (으), (이), and / alternatives.
-function keywordMatchesTranscript(keyword, transcript) {
-  const kw = keyword.replace(/~/g, '');
+// Keyword matching is now handled by the language adapter layer.
+// See src/utils/adapters/ for language-specific implementations.
 
-  // Slash alternatives: "아서/어서" → match either side
-  if (kw.includes('/')) {
-    return kw.split('/').some((part) => keywordMatchesTranscript(part.trim(), transcript));
+function isLaptopRecordingMode() {
+  const isLikelyMobileUa = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+
+  if (typeof window.matchMedia !== 'function') {
+    return !isLikelyMobileUa;
   }
 
-  // (으)ㄹ + suffix: ㄹ combines as 받침 with the preceding syllable
-  // e.g. (으)ㄹ 거예요 → 할 거예요 (vowel stem) or 먹을 거예요 (consonant stem)
-  if (kw.includes('(으)ㄹ')) {
-    const suffix = kw.split('(으)ㄹ').pop();
-    if (transcript.includes('을' + suffix)) return true;
-    let pos = 0;
-    while (pos < transcript.length) {
-      const idx = transcript.indexOf(suffix, pos);
-      if (idx <= 0) break;
-      const code = transcript.charCodeAt(idx - 1);
-      // Check preceding char is a Korean syllable with ㄹ as 종성 (index 8)
-      if (code >= 0xAC00 && code <= 0xD7A3 && (code - 0xAC00) % 28 === 8) return true;
-      pos = idx + 1;
-    }
-    return false;
-  }
+  const hasFinePointer =
+    window.matchMedia('(pointer: fine)').matches ||
+    window.matchMedia('(any-pointer: fine)').matches;
+  const hasHover =
+    window.matchMedia('(hover: hover)').matches ||
+    window.matchMedia('(any-hover: hover)').matches;
 
-  // (으) without ㄹ jamo: 으 is optional (e.g. (으)면, (으)로)
-  if (kw.includes('(으)')) {
-    return transcript.includes(kw.replace('(으)', '으')) || transcript.includes(kw.replace('(으)', ''));
-  }
-
-  // (이): 이 is optional (e.g. (이)라고)
-  if (kw.includes('(이)')) {
-    return transcript.includes(kw.replace('(이)', '이')) || transcript.includes(kw.replace('(이)', ''));
-  }
-
-  return transcript.includes(kw);
+  // Enable continuous mode in laptop/desktop-like environments, including touch laptops.
+  return !isLikelyMobileUa && (hasFinePointer || hasHover);
 }
-
-const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
 export default function MonologueMode({ monologue, language = 'ko', onNext, nextTitle, onWriteMode }) {
   const [phase, setPhase] = useState('prompt'); // prompt | drill | recording | reviewing
@@ -53,6 +33,7 @@ export default function MonologueMode({ monologue, language = 'ko', onNext, next
   const [pendingAutoRecord, setPendingAutoRecord] = useState(false);
   const timerRef = useRef(null);
   const wasListeningRef = useRef(false);
+  const useContinuousRecording = isLaptopRecordingMode();
   const { isListening, transcript, isSpeaking, error, startListening, stopListening, speak, setTranscript, setError } =
     useSpeech();
 
@@ -80,7 +61,7 @@ export default function MonologueMode({ monologue, language = 'ko', onNext, next
     setShowModel(false);
     setShowModelEnglish(false);
     setPhase('recording');
-    startListening({ continuous: !isMobile, languageId: language });
+    startListening({ continuous: useContinuousRecording, languageId: language, silenceTimeoutMs: 15000 });
   };
 
   const handleStop = () => {
@@ -103,9 +84,9 @@ export default function MonologueMode({ monologue, language = 'ko', onNext, next
   useEffect(() => {
     if (pendingAutoRecord && phase === 'recording' && !isListening) {
       setPendingAutoRecord(false);
-      startListening({ continuous: !isMobile, languageId: language });
+      startListening({ continuous: useContinuousRecording, languageId: language, silenceTimeoutMs: 15000 });
     }
-  }, [pendingAutoRecord, phase, isListening, startListening, language]);
+  }, [pendingAutoRecord, phase, isListening, startListening, language, useContinuousRecording]);
 
   const handleListenModel = () => {
     speak(monologue.modelAnswer, language);
@@ -114,7 +95,7 @@ export default function MonologueMode({ monologue, language = 'ko', onNext, next
   const formatTime = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
 
   // Check which keywords appear in transcript
-  const matchedKeywords = monologue.keywords?.filter((kw) => keywordMatchesTranscript(kw, transcript)) || [];
+  const matchedKeywords = monologue.keywords ? matchKeywords(monologue.keywords, transcript, language) : [];
 
   const ChartComponent = monologue.chartId ? topikCharts[monologue.chartId] : null;
 
