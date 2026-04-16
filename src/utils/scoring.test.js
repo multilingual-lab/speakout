@@ -3,22 +3,22 @@ import { normalize, computeSimilarity } from './scoring.js';
 
 describe('normalize', () => {
   it('strips punctuation and whitespace', () => {
-    expect(normalize('안녕하세요!')).toBe('안녕하세');
+    expect(normalize('안녕하세요!')).toBe('안녕하세요');
     expect(normalize('감사합니다.')).toBe('감사합니다');
   });
 
-  it('strips trailing 요 formality particle', () => {
-    expect(normalize('괜찮아요')).toBe('괜찮아');
-    expect(normalize('감사해요')).toBe('감사해');
+  it('preserves 요 formality particle', () => {
+    expect(normalize('괜찮아요')).toBe('괜찮아요');
+    expect(normalize('감사해요')).toBe('감사해요');
   });
 
-  it('strips Korean emoticons (ㅋㅎㅠㅜ)', () => {
-    expect(normalize('좋아요ㅎㅎ')).toBe('좋아');
-    expect(normalize('힘들어요ㅠㅠ')).toBe('힘들어');
+  it('preserves Korean emoticons (ㅋㅎㅠㅜ)', () => {
+    expect(normalize('좋아요ㅎㅎ')).toBe('좋아요ㅎㅎ');
+    expect(normalize('힘들어요ㅠㅠ')).toBe('힘들어요ㅠㅠ');
   });
 
   it('strips whitespace', () => {
-    expect(normalize('한 잔 주세요')).toBe('한잔주세');
+    expect(normalize('한 잔 주세요')).toBe('한잔주세요');
   });
 
   it('lowercases Latin characters', () => {
@@ -35,8 +35,8 @@ describe('computeSimilarity', () => {
     expect(computeSimilarity('안녕하세요', '안녕하세요')).toBe(100);
   });
 
-  it('returns 100 when only differing by stripped chars', () => {
-    // Trailing 요 and punctuation stripped → both normalize to 안녕하세
+  it('returns 100 when only differing by punctuation', () => {
+    // Punctuation stripped → both normalize to 안녕하세요
     expect(computeSimilarity('안녕하세요!', '안녕하세요')).toBe(100);
   });
 
@@ -69,9 +69,9 @@ describe('computeSimilarity', () => {
     expect(computeSimilarity(a, b)).toBe(computeSimilarity(b, a));
   });
 
-  it('ignores formality particle difference', () => {
-    // "괜찮아요" and "괜찮아" normalize to the same string
-    expect(computeSimilarity('괜찮아요', '괜찮아')).toBe(100);
+  it('distinguishes formality particle difference', () => {
+    // "괜찮아요" and "괜찮아" are different after normalization
+    expect(computeSimilarity('괜찮아요', '괜찮아')).toBe(75);
   });
 
   it('handles mixed Korean and whitespace', () => {
