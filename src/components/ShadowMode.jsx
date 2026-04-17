@@ -182,11 +182,12 @@ function buildDialogLines(exchanges, language = 'ko') {
   const lines = [];
   for (const ex of exchanges) {
     if (ex.speaker === 'you-initiate') {
-      // Shadow each expected response as "your" line
-      const firstResponse = ex.expectedResponses[0];
+      // Use the target-language field if available, otherwise fall back to first expectedResponse
+      const langText = getLanguageField(ex, 'text', language);
+      const text = langText || ex.expectedResponses[0];
       lines.push({
         speaker: 'you',
-        text: firstResponse,
+        text,
         english: ex.englishResponse || ex.english,
       });
     } else {

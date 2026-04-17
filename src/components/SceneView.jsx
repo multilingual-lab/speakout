@@ -3,6 +3,7 @@ import ShadowMode from './ShadowMode';
 import PracticeMode from './PracticeMode';
 import MonologueMode from './MonologueMode';
 import WritingMode from './WritingMode';
+import { getLanguageConfig } from '../config/languages.js';
 
 const LEVEL_LABELS = { beginner: 'Beginner', intermediate: 'Intermediate', advanced: 'Advanced' };
 const LEVEL_ORDER = { beginner: 0, intermediate: 1, advanced: 2 };
@@ -134,7 +135,7 @@ export default function SceneView({ scenario, initialMode, language = 'ko', onBa
               className="session-card quick-phrases-card"
               onClick={() => setSessionId('__quick__')}
             >
-              <span className="session-title">빠른 연습</span>
+              <span className="session-title">{getLanguageConfig(language).ui.quickPhrases}</span>
               <span className="session-title-en">Quick Phrases</span>
               <span className="session-count">{scenario.shadow.length} phrases</span>
             </button>

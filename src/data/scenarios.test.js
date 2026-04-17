@@ -190,3 +190,92 @@ describe('scenarios.js — schema validation', () => {
     expect(new Set(ids).size).toBe(ids.length);
   });
 });
+
+// ── Language-aware validation ──
+
+describe('scenarios.js — language consistency', () => {
+  const KOREAN_RE = /[\uac00-\ud7a3]/;
+  const sectionLanguageMap = new Map();
+  for (const section of sections) {
+    const lang = section.languageId || 'ko';
+    for (const scenario of section.scenarios) {
+      sectionLanguageMap.set(scenario.id, lang);
+    }
+  }
+
+  function getLangField(langId) {
+    return langId === 'es' ? 'spanish' : 'korean';
+  }
+
+  it('every Spanish scenario exchange has a spanish field', () => {
+    for (const scenario of dialogScenarios) {
+      if (sectionLanguageMap.get(scenario.id) !== 'es') continue;
+      for (const session of scenario.sessions) {
+        session.exchanges.forEach((ex, i) => {
+          const label = `${session.id}[${i}]`;
+          expect(ex, `${label} missing spanish field`).toHaveProperty('spanish');
+        });
+      }
+    }
+  });
+
+  it('every shadow phrase has the correct language field for its section', () => {
+    for (const scenario of dialogScenarios) {
+      const lang = sectionLanguageMap.get(scenario.id);
+      const field = getLangField(lang);
+      for (const phrase of scenario.shadow) {
+        expect(phrase, `${scenario.id} shadow phrase missing ${field}`).toHaveProperty(field);
+        expect(phrase[field].length, `${scenario.id} shadow phrase empty ${field}`).toBeGreaterThan(0);
+      }
+    }
+  });
+
+  it('you-initiate exchanges have non-empty target language text', () => {
+    for (const scenario of dialogScenarios) {
+      const lang = sectionLanguageMap.get(scenario.id);
+      const field = getLangField(lang);
+      for (const session of scenario.sessions) {
+        session.exchanges
+          .filter((ex) => ex.speaker === 'you-initiate')
+          .forEach((ex, i) => {
+            const label = `${session.id} you-initiate[${i}]`;
+            expect(ex[field], `${label} ${field} should not be empty`).not.toBe('');
+          });
+      }
+    }
+  });
+
+  it('no Korean characters in Spanish scenario target-language fields', () => {
+    for (const scenario of dialogScenarios) {
+      if (sectionLanguageMap.get(scenario.id) !== 'es') continue;
+      for (const session of scenario.sessions) {
+        session.exchanges.forEach((ex, i) => {
+          const label = `${session.id}[${i}]`;
+          if (ex.spanish) {
+            expect(KOREAN_RE.test(ex.spanish), `${label} spanish field contains Korean characters`).toBe(false);
+          }
+        });
+      }
+      for (const phrase of scenario.shadow) {
+        if (phrase.spanish) {
+          expect(KOREAN_RE.test(phrase.spanish), `${scenario.id} shadow phrase spanish contains Korean`).toBe(false);
+        }
+      }
+    }
+  });
+
+  it('no Spanish characters in Korean scenario target-language fields', () => {
+    const SPANISH_ONLY_RE = /[áéíóúñ¿¡]/i;
+    for (const scenario of dialogScenarios) {
+      if (sectionLanguageMap.get(scenario.id) !== 'ko') continue;
+      for (const session of scenario.sessions) {
+        session.exchanges.forEach((ex, i) => {
+          const label = `${session.id}[${i}]`;
+          if (ex.korean) {
+            expect(SPANISH_ONLY_RE.test(ex.korean), `${label} korean field contains Spanish characters`).toBe(false);
+          }
+        });
+      }
+    }
+  });
+});

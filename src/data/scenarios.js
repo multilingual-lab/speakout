@@ -111,7 +111,7 @@ const sections = [
           },
           {
             speaker: 'you-initiate',
-            korean: '',
+            korean: '저기요, 뜨거운 걸로 바꿀 수 있을까요?',
             english: 'You realize you wanted it hot, not iced. Tell the barista.',
             expectedResponses: ['저기요, 뜨거운 걸로 바꿀 수 있을까요?', '죄송한데 따뜻한 걸로 변경 가능할까요?', '아, 뜨거운 걸로 주문했는데요'],
             hint: 'Ask to change to hot',
@@ -143,7 +143,7 @@ const sections = [
         exchanges: [
           {
             speaker: 'you-initiate',
-            korean: '',
+            korean: '저기요, 이 음료가 좀 이상한 것 같은데요.',
             english: 'Your drink tastes weird. Politely tell the barista.',
             expectedResponses: ['저기요, 이 음료가 좀 이상한 것 같은데요', '죄송한데, 맛이 좀 다른 것 같아서요', '실례지만 음료를 다시 확인해 주실 수 있을까요?'],
             hint: 'Politely raise the issue',
@@ -255,7 +255,7 @@ const sections = [
           },
           {
             speaker: 'you-initiate',
-            korean: '',
+            korean: '저기요, 계산해 주세요.',
             english: 'You are done eating. Ask for the bill.',
             expectedResponses: ['저기요, 계산해 주세요', '계산서 좀 주세요', '여기 계산이요'],
             hint: 'Ask for the check',
@@ -319,7 +319,7 @@ const sections = [
         exchanges: [
           {
             speaker: 'you-initiate',
-            korean: '',
+            korean: '저기요, 제가 주문한 것과 다른 음식이 나온 것 같은데요.',
             english: 'Your food arrived but it is completely wrong. Call the server.',
             expectedResponses: ['저기요, 제가 주문한 것과 다른 음식이 나온 것 같은데요', '실례합니다, 이거 제가 시킨 게 아닌 것 같아요', '죄송한데, 주문한 메뉴가 아닌 것 같아서요'],
             hint: 'Politely explain the mistake',
@@ -379,7 +379,7 @@ const sections = [
         exchanges: [
           {
             speaker: 'you-initiate',
-            korean: '',
+            korean: '저기요, 지하철역이 어디에 있어요?',
             english: 'You are lost. Ask a stranger where the subway station is.',
             expectedResponses: ['저기요, 지하철역이 어디에 있어요?', '실례합니다, 지하철역 어디예요?', '죄송한데 지하철역 어떻게 가요?'],
             hint: 'Ask for the subway station',
@@ -411,7 +411,7 @@ const sections = [
         exchanges: [
           {
             speaker: 'you-initiate',
-            korean: '',
+            korean: '실례합니다, 강남 가는 버스가 여기서 타면 되나요?',
             english: 'You need to take a bus to Gangnam. Ask someone at the bus stop.',
             expectedResponses: ['실례합니다, 강남 가는 버스가 여기서 타면 되나요?', '저기요, 이 정류장에서 강남행 버스 있어요?', '혹시 강남 가려면 몇 번 버스 타야 해요?'],
             hint: 'Ask about the bus to Gangnam',
@@ -451,7 +451,7 @@ const sections = [
         exchanges: [
           {
             speaker: 'you-initiate',
-            korean: '',
+            korean: '실례합니다, 이 근처를 잘 몰라서 그런데 도움을 좀 받을 수 있을까요?',
             english: 'You are completely lost in an unfamiliar neighborhood. Stop a passerby and explain your situation.',
             expectedResponses: ['실례합니다, 이 근처를 잘 몰라서 그런데 도움을 좀 받을 수 있을까요?', '저기요, 죄송한데 저 외국인인데 길을 완전히 잃어버렸어요', '혹시 잠깐 시간 되시면 길 좀 알려주실 수 있나요?'],
             hint: 'Explain you are lost and ask for help',
@@ -559,7 +559,7 @@ const sections = [
         exchanges: [
           {
             speaker: 'you-initiate',
-            korean: '',
+            korean: '이거 얼마예요?',
             english: 'Point at something and ask how much it costs.',
             expectedResponses: ['이거 얼마예요?', '이건 얼마예요?', '저거 가격이 얼마예요?'],
             hint: 'Ask the price',
@@ -599,7 +599,7 @@ const sections = [
         exchanges: [
           {
             speaker: 'you-initiate',
-            korean: '',
+            korean: '안녕하세요, 어제 여기서 산 건데 교환이 가능한지 여쭤보려고요.',
             english: 'You bought something yesterday but want to exchange it. Explain the situation.',
             expectedResponses: ['안녕하세요, 어제 여기서 산 건데 교환이 가능한지 여쭤보려고요', '어제 구매한 상품인데 사이즈가 안 맞아서 교환하고 싶은데요', '죄송한데, 어제 산 거 교환 가능할까요?'],
             hint: 'Request an exchange',
@@ -711,7 +711,7 @@ const sections = [
         exchanges: [
           {
             speaker: 'you-initiate',
-            korean: '',
+            korean: '와이파이 비밀번호가 뭐예요?',
             english: 'You need to ask the front desk for the Wi-Fi password.',
             expectedResponses: ['와이파이 비밀번호가 뭐예요?', '와이파이 비번 알려주세요', '인터넷 비밀번호 뭐예요?'],
             hint: 'Ask for Wi-Fi',
@@ -727,7 +727,7 @@ const sections = [
           },
           {
             speaker: 'you-initiate',
-            korean: '',
+            korean: '아침 식사 몇 시예요?',
             english: 'Now ask what time breakfast is.',
             expectedResponses: ['아침 식사 몇 시예요?', '조식이 몇 시부터예요?', '아침은 몇 시에 먹을 수 있어요?'],
             hint: 'Ask about breakfast time',
@@ -751,7 +751,7 @@ const sections = [
         exchanges: [
           {
             speaker: 'you-initiate',
-            korean: '',
+            korean: '여보세요, 507호 투숙객인데요. 에어컨이 고장 난 것 같아서 전화드렸어요.',
             english: 'Your air conditioning is broken and you cannot sleep. Call the front desk.',
             expectedResponses: ['여보세요, 507호 투숙객인데요. 에어컨이 고장 난 것 같아서 전화드렸어요', '안녕하세요, 객실 에어컨이 작동하지 않아서 연락드립니다', '죄송한데 방 에어컨이 안 되는 것 같아요'],
             hint: 'Report the AC problem',
@@ -1038,7 +1038,7 @@ const sections = [
         exchanges: [
           {
             speaker: 'you-initiate',
-            korean: '',
+            korean: '이번 주말에 영화 보러 갈래?',
             english: 'Ask your friend if they want to watch a movie this weekend.',
             expectedResponses: ['이번 주말에 영화 보러 갈래?', '같이 영화 볼까?', '주말에 영화 보자!'],
             hint: 'Suggest a movie',
@@ -1326,7 +1326,7 @@ const sections = [
         exchanges: [
           {
             speaker: 'you-initiate',
-            korean: '',
+            korean: '나 요즘 고민이 있는데 좀 들어줄 수 있어?',
             english: 'You have a big decision to make. Bring it up with a close friend.',
             expectedResponses: ['나 요즘 고민이 있는데 좀 들어줄 수 있어?', '얘기 좀 하고 싶은 건데, 시간 괜찮아?', '솔직히 요즘 큰 결정을 앞두고 있어서 조언 좀 구하고 싶어'],
             hint: 'Open up about your concern',
@@ -2032,8 +2032,8 @@ const sections = [
               },
               {
                 speaker: 'you-initiate',
-                spanish: '',
-                korean: '',
+                spanish: 'Disculpa, ¿me lo puedes poner caliente?',
+                korean: 'Disculpa, ¿me lo puedes poner caliente?',
                 english: 'You realize you wanted it hot, not iced. Tell the barista.',
                 expectedResponses: ['disculpa', 'lo quería caliente', 'lo queria caliente no frio'],
                 hint: 'Ask to change to hot',
@@ -2147,8 +2147,8 @@ const sections = [
             exchanges: [
               {
                 speaker: 'you-initiate',
-                spanish: '',
-                korean: '',
+                spanish: 'Disculpe, tengo una alergia alimentaria. ¿Este plato tiene frutos secos?',
+                korean: 'Disculpe, tengo una alergia alimentaria. ¿Este plato tiene frutos secos?',
                 english: 'You have a food allergy. Ask the server before ordering.',
                 expectedResponses: ['disculpe', 'tengo alergia', 'tiene gluten este plato'],
                 hint: 'Mention your allergy',
@@ -2191,8 +2191,8 @@ const sections = [
             exchanges: [
               {
                 speaker: 'you-initiate',
-                spanish: '',
-                korean: '',
+                spanish: 'Disculpe, creo que esto no es lo que pedí.',
+                korean: 'Disculpe, creo que esto no es lo que pedí.',
                 english: 'Your food arrived but it is completely wrong. Call the server.',
                 expectedResponses: ['disculpe', 'esto no es lo que pedi', 'creo que se han equivocado'],
                 hint: 'Politely explain the mistake',
@@ -2257,8 +2257,8 @@ const sections = [
             exchanges: [
               {
                 speaker: 'you-initiate',
-                spanish: '',
-                korean: '',
+                spanish: 'Disculpe, ¿dónde está la estación de metro?',
+                korean: 'Disculpe, ¿dónde está la estación de metro?',
                 english: 'You are lost. Ask a passerby where the metro station is.',
                 expectedResponses: ['disculpe', 'donde esta el metro', 'perdone donde esta la estacion'],
                 hint: 'Ask for the metro station',
@@ -2292,8 +2292,8 @@ const sections = [
             exchanges: [
               {
                 speaker: 'you-initiate',
-                spanish: '',
-                korean: '',
+                spanish: 'Disculpe, ¿qué autobús va al centro de la ciudad?',
+                korean: 'Disculpe, ¿qué autobús va al centro de la ciudad?',
                 english: 'You need to take a bus to the city center. Ask someone at the bus stop.',
                 expectedResponses: ['disculpe', 'que autobus va al centro', 'cual es la linea para el centro'],
                 hint: 'Ask about the bus to the center',
@@ -2336,8 +2336,8 @@ const sections = [
             exchanges: [
               {
                 speaker: 'you-initiate',
-                spanish: '',
-                korean: '',
+                spanish: 'Disculpe, estoy perdido. ¿Podría ayudarme?',
+                korean: 'Disculpe, estoy perdido. ¿Podría ayudarme?',
                 english: 'You are completely lost in an unfamiliar neighborhood. Stop someone and explain.',
                 expectedResponses: ['disculpe estoy perdido', 'perdone me he perdido', 'puede ayudarme'],
                 hint: 'Explain you are lost and ask for help',
@@ -2395,7 +2395,7 @@ const sections = [
             titleEn: 'Basic Questions',
             level: 'beginner',
             exchanges: [
-              { speaker: 'you-initiate', spanish: '', korean: '', english: 'You just arrived at the hotel. Ask about Wi-Fi and breakfast.', expectedResponses: ['disculpe cual es la clave del wifi', 'me puede dar la contrasena del wifi', 'tiene wifi'], hint: 'Ask about Wi-Fi', englishResponse: 'Excuse me, what is the Wi-Fi password?' },
+              { speaker: 'you-initiate', spanish: 'Disculpe, ¿cuál es la clave del wifi?', korean: 'Disculpe, ¿cuál es la clave del wifi?', english: 'You just arrived at the hotel. Ask about Wi-Fi and breakfast.', expectedResponses: ['disculpe cual es la clave del wifi', 'me puede dar la contrasena del wifi', 'tiene wifi'], hint: 'Ask about Wi-Fi', englishResponse: 'Excuse me, what is the Wi-Fi password?' },
               { speaker: 'other', spanish: 'Claro, la contraseña es "hotel2024". ¿Necesita algo más?', korean: 'Claro, la contraseña es "hotel2024". ¿Necesita algo más?', english: 'Sure, the password is "hotel2024". Do you need anything else?', expectedResponses: ['a que hora es el desayuno', 'donde es el desayuno', 'si una cosa mas'], hint: 'Ask about breakfast', englishResponse: 'What time is breakfast?' },
               { speaker: 'other', spanish: 'El desayuno es de 7 a 10 en el primer piso.', korean: 'El desayuno es de 7 a 10 en el primer piso.', english: 'Breakfast is from 7 to 10 on the first floor.', expectedResponses: ['perfecto gracias', 'muchas gracias', 'de acuerdo'], hint: 'Thank them', englishResponse: 'Perfect, thank you.' },
               { speaker: 'other', spanish: 'De nada. Si necesita algo, llame a recepción.', korean: 'De nada. Si necesita algo, llame a recepción.', english: 'You\'re welcome. If you need anything, call the front desk.', expectedResponses: ['gracias', 'muy amable', 'de acuerdo buenas noches'], hint: 'Acknowledge', englishResponse: 'Thank you, good night.' },
@@ -2419,7 +2419,7 @@ const sections = [
             titleEn: 'A Hotel Problem',
             level: 'advanced',
             exchanges: [
-              { speaker: 'you-initiate', spanish: '', korean: '', english: 'The air conditioning in your room is not working. Call the front desk.', expectedResponses: ['disculpe el aire acondicionado no funciona', 'tengo un problema en la habitacion', 'el aire no funciona'], hint: 'Report the problem', englishResponse: 'Excuse me, the air conditioning in my room isn\'t working.' },
+              { speaker: 'you-initiate', spanish: 'Disculpe, el aire acondicionado de mi habitación no funciona.', korean: 'Disculpe, el aire acondicionado de mi habitación no funciona.', english: 'The air conditioning in your room is not working. Call the front desk.', expectedResponses: ['disculpe el aire acondicionado no funciona', 'tengo un problema en la habitacion', 'el aire no funciona'], hint: 'Report the problem', englishResponse: 'Excuse me, the air conditioning in my room isn\'t working.' },
               { speaker: 'other', spanish: 'Lo siento mucho. ¿En qué habitación está?', korean: 'Lo siento mucho. ¿En qué habitación está?', english: 'I\'m very sorry. What room are you in?', expectedResponses: ['la habitacion 405', 'estoy en la 405', 'habitacion cuatro cero cinco'], hint: 'Give your room number', englishResponse: 'Room 405.' },
               { speaker: 'other', spanish: 'Envío a alguien de mantenimiento ahora mismo. Si no se puede arreglar, le cambiaremos de habitación.', korean: 'Envío a alguien de mantenimiento ahora mismo. Si no se puede arreglar, le cambiaremos de habitación.', english: 'I\'ll send maintenance right away. If it can\'t be fixed, we\'ll move you to another room.', expectedResponses: ['gracias', 'cuanto tardaran', 'de acuerdo gracias'], hint: 'Acknowledge and ask about timing', englishResponse: 'Thank you. How long will it take?' },
               { speaker: 'other', spanish: 'Unos 15 minutos. De nuevo le pido disculpas por las molestias. Le ofrecemos el desayuno gratis mañana.', korean: 'Unos 15 minutos. De nuevo le pido disculpas por las molestias. Le ofrecemos el desayuno gratis mañana.', english: 'About 15 minutes. Again, I apologize for the inconvenience. We\'ll offer you complimentary breakfast tomorrow.', expectedResponses: ['muchas gracias', 'no se preocupe', 'se lo agradezco'], hint: 'Accept graciously', englishResponse: 'Thank you, I appreciate that.' },
@@ -2499,8 +2499,8 @@ const sections = [
             exchanges: [
               {
                 speaker: 'you-initiate',
-                spanish: '',
-                korean: '',
+                spanish: 'Disculpe, ¿cuánto cuesta esto?',
+                korean: 'Disculpe, ¿cuánto cuesta esto?',
                 english: 'You see something you like but there is no price tag. Ask the shopkeeper.',
                 expectedResponses: ['disculpe cuanto cuesta esto', 'cuanto vale', 'tiene precio'],
                 hint: 'Ask how much it costs',
@@ -2543,8 +2543,8 @@ const sections = [
             exchanges: [
               {
                 speaker: 'you-initiate',
-                spanish: '',
-                korean: '',
+                spanish: 'Hola, compré esto ayer pero es la talla equivocada. Me gustaría cambiarlo.',
+                korean: 'Hola, compré esto ayer pero es la talla equivocada. Me gustaría cambiarlo.',
                 english: 'You bought the wrong size yesterday. Go back to exchange it.',
                 expectedResponses: ['hola quiero cambiar esto', 'compre esto ayer pero es la talla equivocada', 'quiero hacer un cambio'],
                 hint: 'Explain you need to exchange',
@@ -2675,7 +2675,7 @@ const sections = [
             titleEn: 'Going to the Movies',
             level: 'beginner',
             exchanges: [
-              { speaker: 'you-initiate', spanish: '', korean: '', english: 'You want to invite your friend to the movies this weekend.', expectedResponses: ['quieres ir al cine', 'te apetece ir al cine', 'vamos al cine el sabado'], hint: 'Invite to the movies', englishResponse: 'Hey, do you want to go to the movies this Saturday?' },
+              { speaker: 'you-initiate', spanish: 'Oye, ¿quieres ir al cine el sábado?', korean: 'Oye, ¿quieres ir al cine el sábado?', english: 'You want to invite your friend to the movies this weekend.', expectedResponses: ['quieres ir al cine', 'te apetece ir al cine', 'vamos al cine el sabado'], hint: 'Invite to the movies', englishResponse: 'Hey, do you want to go to the movies this Saturday?' },
               { speaker: 'other', spanish: '¡Sí, me encantaría! ¿Qué película quieres ver?', korean: '¡Sí, me encantaría! ¿Qué película quieres ver?', english: 'Yes, I\'d love to! What movie do you want to see?', expectedResponses: ['la nueva de accion', 'hay una comedia nueva', 'tu que prefieres'], hint: 'Suggest a movie', englishResponse: 'There\'s a new action movie out.' },
               { speaker: 'other', spanish: 'Suena bien. ¿A qué hora?', korean: 'Suena bien. ¿A qué hora?', english: 'Sounds good. What time?', expectedResponses: ['a las siete', 'por la tarde', 'a las ocho de la noche'], hint: 'Suggest a time', englishResponse: 'How about 7 PM?' },
               { speaker: 'other', spanish: 'Perfecto. ¿Quedamos en la puerta del cine?', korean: 'Perfecto. ¿Quedamos en la puerta del cine?', english: 'Perfect. Shall we meet at the cinema entrance?', expectedResponses: ['vale perfecto', 'si alli nos vemos', 'de acuerdo'], hint: 'Agree on the meeting point', englishResponse: 'Sure, see you there!' },
@@ -2688,7 +2688,7 @@ const sections = [
             titleEn: 'Canceling Plans',
             level: 'intermediate',
             exchanges: [
-              { speaker: 'you-initiate', spanish: '', korean: '', english: 'You need to cancel plans you made with a friend. Call them.', expectedResponses: ['oye tengo que cancelar', 'lo siento no puedo ir', 'te llamo porque no voy a poder'], hint: 'Break the news gently', englishResponse: 'Hey, I\'m really sorry but I need to cancel our plans.' },
+              { speaker: 'you-initiate', spanish: 'Oye, lo siento mucho pero tengo que cancelar nuestros planes.', korean: 'Oye, lo siento mucho pero tengo que cancelar nuestros planes.', english: 'You need to cancel plans you made with a friend. Call them.', expectedResponses: ['oye tengo que cancelar', 'lo siento no puedo ir', 'te llamo porque no voy a poder'], hint: 'Break the news gently', englishResponse: 'Hey, I\'m really sorry but I need to cancel our plans.' },
               { speaker: 'other', spanish: '¡Vaya! ¿Qué ha pasado?', korean: '¡Vaya! ¿Qué ha pasado?', english: 'Oh no! What happened?', expectedResponses: ['me ha surgido algo', 'tengo que trabajar', 'no me encuentro bien'], hint: 'Explain why', englishResponse: 'Something came up at work, I\'m sorry.' },
               { speaker: 'other', spanish: 'No pasa nada. ¿Lo dejamos para otro día?', korean: 'No pasa nada. ¿Lo dejamos para otro día?', english: 'No worries. Shall we reschedule?', expectedResponses: ['si claro', 'que tal el proximo fin de semana', 'si te parece bien la semana que viene'], hint: 'Suggest another day', englishResponse: 'How about next weekend?' },
               { speaker: 'other', spanish: 'Me parece bien. Ya me dices cuando sepas.', korean: 'Me parece bien. Ya me dices cuando sepas.', english: 'Sounds good. Just let me know when you can.', expectedResponses: ['perfecto te aviso', 'gracias por entender', 'eres un sol'], hint: 'Thank them for understanding', englishResponse: 'Thanks for understanding. I\'ll let you know!' },
@@ -2766,7 +2766,7 @@ const sections = [
             titleEn: 'Asking for Advice',
             level: 'advanced',
             exchanges: [
-              { speaker: 'you-initiate', spanish: '', korean: '', english: 'You have a big decision to make. Ask your friend for advice.', expectedResponses: ['necesito tu consejo', 'puedo pedirte un consejo', 'tengo un dilema'], hint: 'Ask for advice', englishResponse: 'I need your advice about something important.' },
+              { speaker: 'you-initiate', spanish: 'Necesito tu consejo sobre algo importante.', korean: 'Necesito tu consejo sobre algo importante.', english: 'You have a big decision to make. Ask your friend for advice.', expectedResponses: ['necesito tu consejo', 'puedo pedirte un consejo', 'tengo un dilema'], hint: 'Ask for advice', englishResponse: 'I need your advice about something important.' },
               { speaker: 'other', spanish: 'Claro, dime. ¿Qué te preocupa?', korean: 'Claro, dime. ¿Qué te preocupa?', english: 'Of course, tell me. What\'s worrying you?', expectedResponses: ['me han ofrecido un trabajo en otra ciudad', 'no se si cambiar de trabajo', 'estoy pensando en mudarme'], hint: 'Explain the dilemma', englishResponse: 'I\'ve been offered a job in another city but I don\'t know if I should take it.' },
               { speaker: 'other', spanish: 'Es una decisión difícil. ¿Cuáles son las ventajas y desventajas?', korean: 'Es una decisión difícil. ¿Cuáles son las ventajas y desventajas?', english: 'That\'s a tough decision. What are the pros and cons?', expectedResponses: ['el sueldo es mejor', 'pero mis amigos estan aqui', 'es una buena oportunidad pero da miedo'], hint: 'Weigh pros and cons', englishResponse: 'The salary is better, but all my friends and family are here.' },
               { speaker: 'other', spanish: 'Yo creo que deberías pensarlo con calma. No tienes que decidir hoy.', korean: 'Yo creo que deberías pensarlo con calma. No tienes que decidir hoy.', english: 'I think you should think it over calmly. You don\'t have to decide today.', expectedResponses: ['tienes razon', 'gracias por escucharme', 'necesitaba hablarlo con alguien'], hint: 'Accept the advice', englishResponse: 'You\'re right. Thank you for listening.' },

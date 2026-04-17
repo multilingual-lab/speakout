@@ -19,6 +19,9 @@ export const LANGUAGES = {
       virtualKeyboard: true,
       grammarAwareKeywords: true,
     },
+    ui: {
+      quickPhrases: '빠른 연습',
+    },
   },
   es: {
     id: 'es',
@@ -34,6 +37,9 @@ export const LANGUAGES = {
     features: {
       virtualKeyboard: false,
       grammarAwareKeywords: false,
+    },
+    ui: {
+      quickPhrases: 'Práctica Rápida',
     },
   },
   fr: {
@@ -51,6 +57,9 @@ export const LANGUAGES = {
       virtualKeyboard: false,
       grammarAwareKeywords: false,
     },
+    ui: {
+      quickPhrases: 'Pratique Rapide',
+    },
   },
   zh: {
     id: 'zh',
@@ -66,6 +75,9 @@ export const LANGUAGES = {
     features: {
       virtualKeyboard: false,
       grammarAwareKeywords: false,
+    },
+    ui: {
+      quickPhrases: '快速练习',
     },
   },
 };
