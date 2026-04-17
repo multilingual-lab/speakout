@@ -121,9 +121,9 @@ export default function MonologueMode({ monologue, language = 'ko', onNext, next
               🔊
             </button>
           </p>
-          {promptEnglish && (
-            <button className="hint-btn" onClick={() => setShowPromptEnglish((v) => !v)}>
-              {showPromptEnglish ? 'Hide English' : 'Show English'}
+          {promptEnglish && !showPromptEnglish && (
+            <button className="hint-btn" onClick={() => setShowPromptEnglish(true)}>
+              Show English
             </button>
           )}
           {showPromptEnglish && promptEnglish && (
@@ -219,9 +219,9 @@ export default function MonologueMode({ monologue, language = 'ko', onNext, next
             {showModel && (
               <div className="monologue-model-box">
                 <p className="monologue-model-kr">{modelText}</p>
-                {modelEnglish && (
-                  <button className="hint-btn" onClick={() => setShowModelEnglish((v) => !v)}>
-                    {showModelEnglish ? 'Hide English' : 'Show English'}
+                {modelEnglish && !showModelEnglish && (
+                  <button className="hint-btn" onClick={() => setShowModelEnglish(true)}>
+                    Show English
                   </button>
                 )}
                 {showModelEnglish && modelEnglish && (
