@@ -112,7 +112,7 @@ export default function PracticeMode({ exchanges, language = 'ko', onNext, nextS
           <div className="chat-history">
             {history.map((msg, i) => (
               <div key={i} className={`chat-bubble ${msg.speaker === 'other' ? 'other-bubble' : 'user-bubble'}`}>
-                <div className="bubble-speaker">{msg.speaker === 'other' ? '상대방' : '나'}</div>
+                <div className="bubble-speaker">{msg.speaker === 'other' ? 'Other' : 'You'}</div>
                 <p className="bubble-korean">{msg.text}</p>
               </div>
             ))}
@@ -146,7 +146,7 @@ export default function PracticeMode({ exchanges, language = 'ko', onNext, nextS
           <div className="chat-history">
             {history.map((msg, i) => (
               <div key={i} className={`chat-bubble history-bubble ${msg.speaker === 'other' ? 'other-bubble' : 'user-bubble'}`}>
-                <div className="bubble-speaker">{msg.speaker === 'other' ? '상대방' : '나'}</div>
+                <div className="bubble-speaker">{msg.speaker === 'other' ? 'Other' : 'You'}</div>
                 <p className="bubble-korean">{msg.text}</p>
               </div>
             ))}
@@ -163,7 +163,7 @@ export default function PracticeMode({ exchanges, language = 'ko', onNext, nextS
         ) : (
           /* Other person's speech bubble */
           <div className="chat-bubble other-bubble">
-            <div className="bubble-speaker">상대방</div>
+            <div className="bubble-speaker">Other</div>
             <p className="bubble-korean">{exchangeText}</p>
             <button className="replay-btn" onClick={handleReplay} disabled={isSpeaking}>
               🔊

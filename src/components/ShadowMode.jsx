@@ -90,7 +90,7 @@ function DialogShadow({ exchanges, language = 'ko', onNext, nextSessionTitle }) 
           <div className="shadow-dialog-history">
             {past.map((l, i) => (
               <div key={i} className={`shadow-dialog-line ${l.speaker === 'you' ? 'shadow-you' : 'shadow-other'}`}>
-                <span className="shadow-speaker-label">{l.speaker === 'you' ? '나' : '상대방'}</span>
+                <span className="shadow-speaker-label">{l.speaker === 'you' ? 'You' : 'Other'}</span>
                 <p className="shadow-line-text">{l.text}</p>
               </div>
             ))}
@@ -101,7 +101,7 @@ function DialogShadow({ exchanges, language = 'ko', onNext, nextSessionTitle }) 
         {/* Current line to shadow */}
         <div className="shadow-card dialog-card">
           <div className={`shadow-speaker-badge ${line.speaker === 'you' ? 'badge-you' : 'badge-other'}`}>
-            {line.speaker === 'you' ? '나 (Your turn)' : '상대방 (Other)'}
+            {line.speaker === 'you' ? 'You (Your turn)' : 'Other'}
           </div>
           <p className="shadow-korean">{line.text}</p>
           {showEnglish && line.english && <p className="shadow-english">{line.english}</p>}
