@@ -3,7 +3,7 @@ import scenarios, { sections } from './data/scenarios';
 import TopicGrid from './components/TopicGrid';
 import SceneView from './components/SceneView';
 import Settings from './components/Settings';
-import { getSupportedLanguages } from './config/languages';
+import { getSupportedLanguages, LANGUAGES } from './config/languages';
 import './styles/TopicGrid.css';
 import './styles/SceneView.css';
 import './styles/Shadow.css';
@@ -38,11 +38,18 @@ export default function App() {
     requestAnimationFrame(() => window.scrollTo(0, scrollYRef.current));
   }, []);
 
-  const scenario = selection && scenarios.find((s) => s.id === selection.topicId);
+  const availableLanguageIds = [...new Set(sections.map((section) => section.languageId || 'ko'))]
+    .filter((languageId) => supportedLanguages.includes(languageId));
+  const languageToggleOptions = availableLanguageIds
+    .map((languageId) => LANGUAGES[languageId])
+    .filter(Boolean);
+
+  const activeSections = sections.filter((section) => (section.languageId || 'ko') === language);
+  const activeScenarios = scenarios.filter((s) => activeSections.some((section) => section.scenarios.includes(s)));
+  const scenario = selection && activeScenarios.find((s) => s.id === selection.topicId);
 
   return (
     <>
-      <button className="settings-gear" onClick={() => setShowSettings(true)} title="Settings">⚙️</button>
       {showSettings && (
         <Settings
           language={language}
@@ -51,7 +58,14 @@ export default function App() {
         />
       )}
       {!scenario ? (
-        <TopicGrid sections={sections} onSelect={handleSelect} />
+        <TopicGrid
+          sections={activeSections}
+          language={language}
+          languageOptions={languageToggleOptions}
+          onLanguageChange={handleLanguageChange}
+          onSelect={handleSelect}
+          onOpenSettings={() => setShowSettings(true)}
+        />
       ) : (
         <SceneView
           scenario={scenario}
