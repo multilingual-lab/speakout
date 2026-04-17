@@ -101,7 +101,7 @@ function DialogShadow({ exchanges, language = 'ko', onNext, nextSessionTitle }) 
         {/* Current line to shadow */}
         <div className="shadow-card dialog-card">
           <div className={`shadow-speaker-badge ${line.speaker === 'you' ? 'badge-you' : 'badge-other'}`}>
-            {line.speaker === 'you' ? 'You (Your turn)' : 'Other'}
+            {line.speaker === 'you' ? 'You' : 'Other'}
           </div>
           <p className="shadow-korean">{line.text}</p>
           {showEnglish && line.english && <p className="shadow-english">{line.english}</p>}
