@@ -7,6 +7,8 @@ export const LANGUAGES = {
   ko: {
     id: 'ko',
     label: 'Korean',
+    shortLabel: 'KR',
+    flag: '🇰🇷',
     sttLang: 'ko-KR',
     tts: {
       azureVoice: 'ko-KR-SunHiNeural',
@@ -21,6 +23,8 @@ export const LANGUAGES = {
   es: {
     id: 'es',
     label: 'Spanish',
+    shortLabel: 'ES',
+    flag: '🇪🇸',
     sttLang: 'es-ES',
     tts: {
       azureVoice: 'es-ES-ElviraNeural',
@@ -35,6 +39,8 @@ export const LANGUAGES = {
   fr: {
     id: 'fr',
     label: 'French',
+    shortLabel: 'FR',
+    flag: '🇫🇷',
     sttLang: 'fr-FR',
     tts: {
       azureVoice: 'fr-FR-CelesteNeural',
@@ -49,6 +55,8 @@ export const LANGUAGES = {
   zh: {
     id: 'zh',
     label: 'Chinese (Mandarin)',
+    shortLabel: 'ZH',
+    flag: '🇨🇳',
     sttLang: 'zh-CN',
     tts: {
       azureVoice: 'zh-CN-XiaoxiaoNeural',

@@ -41,10 +41,16 @@ Out of scope:
 - [x] Extracted Korean-specific keyword matching from MonologueMode/WritingMode into Korean adapter.
 - [x] Routed all scoring and keyword checks through adapter dispatch.
 - [x] Added adapter tests for Korean, Spanish, and default/generic behavior (21 tests).
+- [x] Added pilot scenario content for Spanish (first non-Korean target).
+- [x] Added language-aware field accessor utility (getLanguageField).
+- [x] Updated all practice components (Practice, Shadow, Monologue, Writing) to use language-aware text fields.
+- [x] Added languageId metadata to content sections for language-based filtering.
+- [x] Added in-page language selector dropdown in topic grid header.
+- [x] Removed redundant language selector from Settings popup.
+- [x] Expanded Spanish content to full parity with Korean dialog topics (10 scenarios, 31 sessions across travel, casual, and work sections).
 
 ## Pending
 
-- [ ] Add pilot scenario content for Spanish (first non-Korean target).
 - [ ] Evolve content schema toward language-neutral fields (targetText, supportTextByLocale).
 - [ ] Add schema v2 loader support and dual-schema compatibility tests.
 - [ ] Replace hardcoded shell copy with i18n dictionary keys (low priority — deferred).
@@ -103,6 +109,7 @@ File layout:
 - src/utils/adapters/index.js — dispatch + default adapter
 - src/utils/adapters/korean.js — Korean-specific logic extracted from MonologueMode + scoring
 - src/utils/adapters/spanish.js — Spanish-specific overrides (accent-insensitive normalization)
+- src/utils/getLanguageField.js — language-aware field accessor for content objects
 - src/utils/scoring.js — re-exports from adapter layer
 
 Current Korean-specific behavior remains baseline specialized adapter implementation.
@@ -156,13 +163,16 @@ Acceptance:
 
 ## Phase 3: Spanish Pilot Content
 
-Status: pending
+Status: completed
 
 Acceptance:
 
-- [ ] at least one complete Spanish scenario (dialog + monologue)
-- [ ] Spanish adapter handles accent normalization
-- [ ] no Korean regression in speaking and writing flows
+- [x] at least one complete Spanish scenario (dialog + monologue)
+- [x] Spanish adapter handles accent normalization
+- [x] no Korean regression in speaking and writing flows
+- [x] full Spanish content parity with Korean dialog topics (travel, casual, work)
+- [x] language-based content filtering in topic grid
+- [x] in-page language selector for quick switching
 
 ## Phase 4: Schema v2 Migration
 

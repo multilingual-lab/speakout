@@ -96,18 +96,16 @@
   background: var(--color-primary-hover);
 }
 
+
 .settings-gear {
-  position: fixed;
-  top: 14px;
-  right: 18px;
   background: none;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   cursor: pointer;
-  z-index: 100;
   opacity: 0.6;
   transition: opacity 0.2s;
   padding: 4px;
+  line-height: 1;
 }
 
 .settings-gear:hover {

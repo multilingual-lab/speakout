@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSpeech } from '../hooks/useSpeech';
+import { getLanguageField, getEnglishField } from '../utils/getLanguageField.js';
 
 export default function PracticeMode({ exchanges, language = 'ko', onNext, nextSessionTitle }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -16,6 +17,8 @@ export default function PracticeMode({ exchanges, language = 'ko', onNext, nextS
   const exchange = exchanges[currentIndex];
   const isFinished = currentIndex >= exchanges.length;
   const isYouInitiate = exchange?.speaker === 'you-initiate';
+  const exchangeText = getLanguageField(exchange, 'text', language);
+  const exchangePrompt = getEnglishField(exchange, 'text');
 
   // Auto-scroll to bottom on history change
   useEffect(() => {
@@ -46,7 +49,8 @@ export default function PracticeMode({ exchanges, language = 'ko', onNext, nextS
       setPhase('respond');
     } else {
       let cancelled = false;
-      speak(exchange.korean, language).then(() => {
+      const targetText = getLanguageField(exchange, 'text', language);
+      speak(targetText, language).then(() => {
         if (!cancelled) setPhase('respond');
       });
       return () => {
@@ -73,11 +77,11 @@ export default function PracticeMode({ exchanges, language = 'ko', onNext, nextS
 
     // Add the "other" person's line (if not you-initiate)
     if (!isYouInitiate) {
-      newHistory.push({ speaker: 'other', korean: exchange.korean });
+      newHistory.push({ speaker: 'other', text: exchangeText });
     }
 
     // Add user's response
-    newHistory.push({ speaker: 'you', korean: transcript || '...' });
+    newHistory.push({ speaker: 'you', text: transcript || '...' });
 
     setHistory(newHistory);
     setShowModel(false);
@@ -88,7 +92,7 @@ export default function PracticeMode({ exchanges, language = 'ko', onNext, nextS
 
   const handleReplay = () => {
     if (exchange) {
-      speak(exchange.korean, language);
+      speak(exchangeText, language);
     }
   };
 
@@ -108,8 +112,8 @@ export default function PracticeMode({ exchanges, language = 'ko', onNext, nextS
           <div className="chat-history">
             {history.map((msg, i) => (
               <div key={i} className={`chat-bubble ${msg.speaker === 'other' ? 'other-bubble' : 'user-bubble'}`}>
-                <div className="bubble-speaker">{msg.speaker === 'other' ? '상대방' : '나'}</div>
-                <p className="bubble-korean">{msg.korean}</p>
+                <div className="bubble-speaker">{msg.speaker === 'other' ? 'Other' : 'You'}</div>
+                <p className="bubble-korean">{msg.text}</p>
               </div>
             ))}
           </div>
@@ -142,8 +146,8 @@ export default function PracticeMode({ exchanges, language = 'ko', onNext, nextS
           <div className="chat-history">
             {history.map((msg, i) => (
               <div key={i} className={`chat-bubble history-bubble ${msg.speaker === 'other' ? 'other-bubble' : 'user-bubble'}`}>
-                <div className="bubble-speaker">{msg.speaker === 'other' ? '상대방' : '나'}</div>
-                <p className="bubble-korean">{msg.korean}</p>
+                <div className="bubble-speaker">{msg.speaker === 'other' ? 'Other' : 'You'}</div>
+                <p className="bubble-korean">{msg.text}</p>
               </div>
             ))}
           </div>
@@ -154,13 +158,13 @@ export default function PracticeMode({ exchanges, language = 'ko', onNext, nextS
           /* You-initiate: show the situation prompt */
           <div className="initiate-prompt">
             <span className="initiate-icon">💭</span>
-            <p className="initiate-text">{exchange.english}</p>
+            <p className="initiate-text">{exchangePrompt}</p>
           </div>
         ) : (
           /* Other person's speech bubble */
           <div className="chat-bubble other-bubble">
-            <div className="bubble-speaker">상대방</div>
-            <p className="bubble-korean">{exchange.korean}</p>
+            <div className="bubble-speaker">Other</div>
+            <p className="bubble-korean">{exchangeText}</p>
             <button className="replay-btn" onClick={handleReplay} disabled={isSpeaking}>
               🔊
             </button>

@@ -1,7 +1,26 @@
-export default function TopicGrid({ sections, onSelect }) {
+export default function TopicGrid({ sections, language, languageOptions, onLanguageChange, onSelect, onOpenSettings }) {
+  const selectedLanguage = languageOptions.find((option) => option.id === language) || languageOptions[0];
+
   return (
     <div className="topic-grid-container">
-      <h1 className="app-title">SpeakOut <span className="app-title-slogan">Immersive Practice</span></h1>
+      <div className="app-header-row">
+        <h1 className="app-title">SpeakOut <span className="app-title-slogan">Immersive Practice</span></h1>
+        <div className="app-header-right">
+          <select
+            className="language-quick-select"
+            value={language}
+            onChange={(e) => onLanguageChange(e.target.value)}
+            aria-label="Practice language"
+          >
+            {languageOptions.map((option) => (
+              <option key={option.id} value={option.id}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+          <button className="settings-gear" onClick={onOpenSettings} title="Settings">⚙️</button>
+        </div>
+      </div>
 
       {sections.map((section) => (
         <div key={section.id} className="topic-section">

@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSpeech } from '../hooks/useSpeech';
 import { computeSimilarity } from '../utils/scoring';
+import { getLanguageField, getEnglishField } from '../utils/getLanguageField.js';
 
 export default function ShadowMode({ phrases, exchanges, language = 'ko', onNext, nextSessionTitle }) {
   if (exchanges) {
@@ -14,7 +15,7 @@ function DialogShadow({ exchanges, language = 'ko', onNext, nextSessionTitle }) 
   // Flatten exchanges into shadow-able lines:
   // "other" → shadow their korean line
   // "you-initiate" → shadow each expectedResponse
-  const lines = useRef(buildDialogLines(exchanges)).current;
+  const lines = useRef(buildDialogLines(exchanges, language)).current;
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showResult, setShowResult] = useState(false);
@@ -43,7 +44,7 @@ function DialogShadow({ exchanges, language = 'ko', onNext, nextSessionTitle }) 
   const handleListen = async () => {
     setShowResult(false);
     setTranscript('');
-    await speak(line.korean, language);
+    await speak(line.text, language);
   };
 
   const handleRecord = () => {
@@ -71,7 +72,7 @@ function DialogShadow({ exchanges, language = 'ko', onNext, nextSessionTitle }) 
   };
 
   const similarity = showResult && transcript
-    ? computeSimilarity(line.korean, transcript, language)
+    ? computeSimilarity(line.text, transcript, language)
     : null;
 
   // Conversation context: all lines before current
@@ -89,8 +90,8 @@ function DialogShadow({ exchanges, language = 'ko', onNext, nextSessionTitle }) 
           <div className="shadow-dialog-history">
             {past.map((l, i) => (
               <div key={i} className={`shadow-dialog-line ${l.speaker === 'you' ? 'shadow-you' : 'shadow-other'}`}>
-                <span className="shadow-speaker-label">{l.speaker === 'you' ? '나' : '상대방'}</span>
-                <p className="shadow-line-text">{l.korean}</p>
+                <span className="shadow-speaker-label">{l.speaker === 'you' ? 'You' : 'Other'}</span>
+                <p className="shadow-line-text">{l.text}</p>
               </div>
             ))}
             <div ref={historyEndRef} />
@@ -100,9 +101,9 @@ function DialogShadow({ exchanges, language = 'ko', onNext, nextSessionTitle }) 
         {/* Current line to shadow */}
         <div className="shadow-card dialog-card">
           <div className={`shadow-speaker-badge ${line.speaker === 'you' ? 'badge-you' : 'badge-other'}`}>
-            {line.speaker === 'you' ? '나 (Your turn)' : '상대방 (Other)'}
+            {line.speaker === 'you' ? 'You (Your turn)' : 'Other'}
           </div>
-          <p className="shadow-korean">{line.korean}</p>
+          <p className="shadow-korean">{line.text}</p>
           {showEnglish && line.english && <p className="shadow-english">{line.english}</p>}
           {!showEnglish && line.english && (
             <button className="hint-btn" onClick={() => setShowEnglish(true)}>
@@ -177,7 +178,7 @@ function DialogShadow({ exchanges, language = 'ko', onNext, nextSessionTitle }) 
   );
 }
 
-function buildDialogLines(exchanges) {
+function buildDialogLines(exchanges, language = 'ko') {
   const lines = [];
   for (const ex of exchanges) {
     if (ex.speaker === 'you-initiate') {
@@ -185,21 +186,21 @@ function buildDialogLines(exchanges) {
       const firstResponse = ex.expectedResponses[0];
       lines.push({
         speaker: 'you',
-        korean: firstResponse,
+        text: firstResponse,
         english: ex.englishResponse || ex.english,
       });
     } else {
       lines.push({
         speaker: 'other',
-        korean: ex.korean,
-        english: ex.english,
+        text: getLanguageField(ex, 'text', language),
+        english: getEnglishField(ex, 'text'),
       });
     }
     // After the other person's line, shadow a response too
     if (ex.speaker === 'other' && ex.expectedResponses?.length) {
       lines.push({
         speaker: 'you',
-        korean: ex.expectedResponses[0],
+        text: ex.expectedResponses[0],
         english: ex.englishResponse || '',
       });
     }
@@ -217,6 +218,8 @@ function PhraseShadow({ phrases, language = 'ko', onNext, nextSessionTitle }) {
     useSpeech();
 
   const phrase = phrases[currentIndex];
+  const phraseText = getLanguageField(phrase, 'text', language);
+  const phraseEnglish = getEnglishField(phrase, 'text');
 
   // Auto-transition when speech recognition stops on its own
   useEffect(() => {
@@ -229,7 +232,7 @@ function PhraseShadow({ phrases, language = 'ko', onNext, nextSessionTitle }) {
   const handleListen = async () => {
     setShowResult(false);
     setTranscript('');
-    await speak(phrase.korean, language);
+    await speak(phraseText, language);
   };
 
   const handleRecord = () => {
@@ -257,7 +260,7 @@ function PhraseShadow({ phrases, language = 'ko', onNext, nextSessionTitle }) {
   };
 
   const similarity = showResult && transcript
-    ? computeSimilarity(phrase.korean, transcript, language)
+    ? computeSimilarity(phraseText, transcript, language)
     : null;
 
   return (
@@ -268,8 +271,8 @@ function PhraseShadow({ phrases, language = 'ko', onNext, nextSessionTitle }) {
         </div>
 
         <div className="shadow-card">
-          <p className="shadow-korean">{phrase.korean}</p>
-          {showEnglish && <p className="shadow-english">{phrase.english}</p>}
+          <p className="shadow-korean">{phraseText}</p>
+          {showEnglish && <p className="shadow-english">{phraseEnglish}</p>}
           {!showEnglish && (
             <button className="hint-btn" onClick={() => setShowEnglish(true)}>
               Show English

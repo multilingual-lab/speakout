@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useSpeech } from '../hooks/useSpeech';
 import { matchKeywords } from '../utils/adapters/index.js';
 import topikCharts from './charts/TopikCharts';
+import { getLanguageField, getEnglishField } from '../utils/getLanguageField.js';
 
 // Keyword matching is now handled by the language adapter layer.
 // See src/utils/adapters/ for language-specific implementations.
@@ -88,8 +89,13 @@ export default function MonologueMode({ monologue, language = 'ko', onNext, next
     }
   }, [pendingAutoRecord, phase, isListening, startListening, language, useContinuousRecording]);
 
+  const promptText = getLanguageField(monologue, 'prompt', language) || monologue.promptKorean;
+  const promptEnglish = getEnglishField(monologue, 'prompt') || monologue.prompt;
+  const modelText = getLanguageField(monologue, 'modelAnswer', language) || monologue.modelAnswer;
+  const modelEnglish = getEnglishField(monologue, 'modelAnswer') || monologue.modelAnswerEn;
+
   const handleListenModel = () => {
-    speak(monologue.modelAnswer, language);
+    speak(modelText, language);
   };
 
   const formatTime = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
@@ -105,23 +111,23 @@ export default function MonologueMode({ monologue, language = 'ko', onNext, next
         {/* Prompt card — always visible */}
         <div className="monologue-prompt-card">
           <p className="monologue-prompt-kr">
-            {monologue.promptKorean}
+            {promptText}
             <button
               className="prompt-speak-btn"
-              onClick={() => speak(monologue.promptKorean, language)}
+              onClick={() => speak(promptText, language)}
               disabled={isSpeaking}
               aria-label="Listen to prompt"
             >
               🔊
             </button>
           </p>
-          {monologue.prompt && (
-            <button className="hint-btn" onClick={() => setShowPromptEnglish((v) => !v)}>
-              {showPromptEnglish ? 'Hide English' : 'Show English'}
+          {promptEnglish && !showPromptEnglish && (
+            <button className="hint-btn" onClick={() => setShowPromptEnglish(true)}>
+              Show English
             </button>
           )}
-          {showPromptEnglish && monologue.prompt && (
-            <p className="monologue-prompt-en">{monologue.prompt}</p>
+          {showPromptEnglish && promptEnglish && (
+            <p className="monologue-prompt-en">{promptEnglish}</p>
           )}
         </div>
 
@@ -212,14 +218,14 @@ export default function MonologueMode({ monologue, language = 'ko', onNext, next
             {/* Model answer */}
             {showModel && (
               <div className="monologue-model-box">
-                <p className="monologue-model-kr">{monologue.modelAnswer}</p>
-                {monologue.modelAnswerEn && (
-                  <button className="hint-btn" onClick={() => setShowModelEnglish((v) => !v)}>
-                    {showModelEnglish ? 'Hide English' : 'Show English'}
+                <p className="monologue-model-kr">{modelText}</p>
+                {modelEnglish && !showModelEnglish && (
+                  <button className="hint-btn" onClick={() => setShowModelEnglish(true)}>
+                    Show English
                   </button>
                 )}
-                {showModelEnglish && monologue.modelAnswerEn && (
-                  <p className="monologue-model-en">{monologue.modelAnswerEn}</p>
+                {showModelEnglish && modelEnglish && (
+                  <p className="monologue-model-en">{modelEnglish}</p>
                 )}
                 <button
                   className="action-btn listen-btn"
