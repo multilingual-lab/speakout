@@ -8,7 +8,7 @@
 // The manifest is generated at build time and maps "langId:text" → { filename, voice, rate }
 import audioManifest from '../../data/audioManifest.json';
 
-const CDN_BASE = import.meta.env.VITE_CDN_BASE_URL || '/audio';
+const CDN_BASE = import.meta.env.VITE_CDN_BASE_URL || 'https://pub-9ef9b39f965a40b1b9ba22f7a8c18637.r2.dev/audio';
 
 const cdnProvider = {
   id: 'cdn',
