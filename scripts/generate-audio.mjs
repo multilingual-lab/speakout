@@ -229,10 +229,13 @@ async function main() {
     const filepath = join(AUDIO_DIR, filename);
     const manifestKey = `${line.langId}:${line.text}`;
 
-    // Incremental: skip if file exists and manifest entry matches
-    if (!FORCE && existsSync(filepath) && manifest[manifestKey]?.filename === filename) {
-      skipped++;
-      continue;
+    // Incremental: skip if already uploaded to CDN (no local file needed)
+    // or if local file exists and manifest entry matches
+    if (!FORCE && manifest[manifestKey]?.filename === filename) {
+      if (manifest[manifestKey]?.uploaded || existsSync(filepath)) {
+        skipped++;
+        continue;
+      }
     }
 
     try {
@@ -243,6 +246,7 @@ async function main() {
         filename,
         voice: voiceCfg.voice,
         rate: RATE,
+        uploaded: false,
       };
       generated++;
 

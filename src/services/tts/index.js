@@ -6,13 +6,12 @@
  */
 import cdnProvider from './cdnProvider.js';
 import azureProvider from './azureProvider.js';
-import openTtsProvider from './openTtsProvider.js';
 import browserProvider from './browserProvider.js';
 
 const STORAGE_PROVIDER_KEY = 'tts_provider';
 
 // Ordered list — first match wins during fallback.
-const providers = [cdnProvider, azureProvider, openTtsProvider, browserProvider];
+const providers = [cdnProvider, azureProvider, browserProvider];
 
 /**
  * Return all registered providers.

@@ -9,7 +9,7 @@ Browser-based Korean speaking practice app. Solves the "freeze-up" problem — w
 | Layer | Choice | Notes |
 | ----- | ------ | ----- |
 | Framework | React + Vite v5 | Node 20.9+, no backend — 100% browser |
-| TTS | Provider-based: Azure, OpenTTS, Browser, extensible | Fallback chain: preferred → next configured → browser |
+| TTS | Provider-based: CDN, Azure, Browser, extensible | Fallback chain: CDN → Azure → browser |
 | STT | Web Speech API (`ko-KR`) | Chrome required |
 | Styling | Plain CSS + custom properties | Dark slate-blue theme, WCAG AA verified |
 | Storage | `localStorage` | Azure creds, future: progress tracking |
@@ -45,7 +45,6 @@ src/
 │       ├── index.js          # Registry: getProviders, getActiveProvider, synthesize
 │       ├── provider.js       # Interface contract documentation
 │       ├── azureProvider.js  # Azure TTS adapter (SSML builder, fetch, blob → Audio URL)
-│       ├── openTtsProvider.js  # Piper/OpenTTS adapter (language-aware voice resolution)
 │       └── browserProvider.js # Web Speech API adapter (final fallback)
 └── styles/                   # One CSS file per component (incl. Writing.css)
 ```
@@ -58,14 +57,14 @@ Users choose a TTS provider in Settings (⚙️ gear icon). Selection is persist
 
 Built-in providers:
 
+- `cdn` — pre-generated audio files served from CDN
 - `azure` — cloud neural voice
-- `opentts` — self-hosted open-source HTTP server
 - `browser` — Web Speech API fallback
 
 The provider registry (`src/services/tts/index.js`) resolves the active provider:
 
 1. **Preferred provider** — if configured, use it
-2. **First configured non-browser provider** — fallback (for example OpenTTS when Azure is unset)
+2. **First configured non-browser provider** — fallback
 3. **Browser built-in** — always-available final fallback
 
 ### Azure Credentials
@@ -74,25 +73,6 @@ Azure credentials resolve in order:
 
 1. **In-app Settings** (⚙️ gear icon, top-right) → `localStorage`
 2. **`.env` fallback:** `VITE_AZURE_SPEECH_KEY`, `VITE_AZURE_SPEECH_ENDPOINT`
-
-### OpenTTS Configuration
-
-OpenTTS provider configuration is stored in `localStorage`:
-
-1. `opentts_base_url` (default: `http://localhost:5500`)
-2. `opentts_voice` (optional — auto-resolved from server if omitted)
-
-Runtime behavior:
-
-- Provider queries `GET <baseUrl>/api/voices` to discover available voices (cached 1 min)
-- On `speak()`, resolves a voice matching the requested language (e.g. `ko-KR` → `ko_KR-kss-medium`)
-- If no matching voice exists on the server, throws → falls through to browser provider
-- If explicit voice is configured but doesn't match the active language, searches server for an alternative
-- Calls `GET <baseUrl>/api/tts?text=...&voice=...` with the resolved voice
-- Returns audio blob URL and plays through the same audio pipeline as Azure
-- Settings UI shows live language support status (✓ available / ⚠️ not available)
-
-Piper voice models follow the naming convention `xx_XX-name-quality.onnx` (e.g. `ko_KR-kss-medium.onnx`). The language guard extracts the `xx-XX` prefix to match against the app's active SSML language tag.
 
 ## Data Model (`src/data/scenarios.js`)
 

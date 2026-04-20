@@ -5,7 +5,7 @@ import {
   setPreferredProviderId,
   getProviderById,
 } from '../services/tts/index.js';
-import { getLanguageConfig } from '../config/languages.js';
+
 
 export default function Settings({ language, onLanguageChange, onClose }) {
   const providers = getProviders();
@@ -14,28 +14,7 @@ export default function Settings({ language, onLanguageChange, onClose }) {
 
   const [configValues, setConfigValues] = useState(() => selectedProvider.getConfig());
   const [saved, setSaved] = useState(false);
-  const [langSupported, setLangSupported] = useState(null);
 
-  useEffect(() => {
-    if (selectedProviderId !== 'opentts') {
-      setLangSupported(null);
-      return;
-    }
-    setLangSupported(null);
-    const baseUrl = (configValues.baseUrl || 'http://localhost:5500').replace(/\/+$/, '');
-    const langConfig = getLanguageConfig(language);
-    const requestedLang = langConfig.tts.ssmlLang.split('-').slice(0, 2).join('-').toLowerCase();
-    fetch(baseUrl + '/api/voices')
-      .then((r) => r.ok ? r.json() : Promise.reject())
-      .then((voices) => {
-        if (!Array.isArray(voices)) { setLangSupported(false); return; }
-        const hasMatch = voices.some((v) =>
-          v.id.replace('_', '-').split('-').slice(0, 2).join('-').toLowerCase() === requestedLang
-        );
-        setLangSupported(hasMatch);
-      })
-      .catch(() => setLangSupported(false));
-  }, [selectedProviderId, language, configValues.baseUrl]);
 
   const handleProviderChange = (e) => {
     const id = e.target.value;
@@ -109,22 +88,15 @@ export default function Settings({ language, onLanguageChange, onClose }) {
               {saved ? '✓ Saved' : 'Save'}
             </button>
 
-            {selectedProviderId === 'opentts' && langSupported === false && (
-              <p className="settings-lang-warning">
-                ⚠️ No voice for {getLanguageConfig(language).label} on this server. TTS will fall back to browser.
-              </p>
-            )}
-            {selectedProviderId === 'opentts' && langSupported === true && (
-              <p className="settings-lang-ok">
-                ✓ {getLanguageConfig(language).label} voice available on server.
-              </p>
-            )}
+
           </>
         )}
 
         {selectedProvider.configFields.length === 0 && (
           <p className="settings-note">
-            {selectedProvider.label} requires no configuration — it uses your browser's built-in speech engine.
+            {selectedProvider.id === 'cdn'
+              ? `${selectedProvider.label} requires no configuration — it plays pre-generated Azure TTS audio from a CDN.`
+              : `${selectedProvider.label} requires no configuration — it uses your browser's built-in speech engine.`}
           </p>
         )}
 

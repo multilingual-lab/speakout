@@ -37,3 +37,4 @@ Desktop.ini
 
 # Coverage / test output
 coverage
+.wrangler/
