@@ -2,7 +2,9 @@
 
 ## Goal
 
-Browser-based Korean speaking practice app. Solves the "freeze-up" problem — without immersion, learners can't produce spoken language in real time. Uses scenario-based forced production drills.
+Multi-language speaking practice app. Solves the "freeze-up" problem — without immersion, learners can't produce spoken language in real time. Uses scenario-based forced production drills.
+
+Supported target languages: Korean, Spanish (with Chinese planned). Language selection via in-page dropdown; all speech, scoring, and content are language-aware.
 
 ## Tech Stack
 
@@ -10,43 +12,56 @@ Browser-based Korean speaking practice app. Solves the "freeze-up" problem — w
 | ----- | ------ | ----- |
 | Framework | React + Vite v5 | Node 20.9+, no backend — 100% browser |
 | TTS | Provider-based: CDN, Azure, Browser, extensible | Fallback chain: CDN → Azure → browser |
-| STT | Web Speech API (`ko-KR`) | Chrome required |
+| STT | Web Speech API | Chrome required; locale resolved from language registry |
 | Styling | Plain CSS + custom properties | Dark slate-blue theme, WCAG AA verified |
-| Storage | `localStorage` | Azure creds, future: progress tracking |
-| Testing | Vitest | `npm test` — schema validation + scoring unit tests |
+| Storage | `localStorage` | Azure creds, language selection, future: progress tracking |
+| Testing | Vitest | `npm test` — schema validation + scoring + adapter unit tests |
 | Content | Pre-authored JSON | No LLM yet (planned Phase 2) |
+| Audio CDN | Cloudflare R2 | Pre-generated Azure TTS audio; CORS configured via `r2-cors.json` |
 
 ## Project Structure
 
 ```text
 src/
-├── App.jsx                  # Root: manages { topicId, mode } selection state
+├── App.jsx                  # Root: manages { topicId, mode, language } selection state
 ├── main.jsx                 # Entry point with ErrorBoundary wrapper
+├── config/
+│   └── languages.js         # Language registry: STT locale, TTS voice, feature flags per language
 ├── data/
-│   └── scenarios.js         # All content — sections → scenarios → dialogs → exchanges
+│   ├── scenarios.js         # All content — sections → scenarios → dialogs → exchanges
+│   └── audioManifest.json   # Maps "lang:text" keys → CDN filenames (auto-generated)
 ├── components/
-│   ├── TopicGrid.jsx         # Home: section headers + topic cards with mode buttons
+│   ├── TopicGrid.jsx         # Home: language selector + section headers + topic cards
 │   ├── SceneView.jsx         # Per-topic wrapper: mode toggle + dialog/monologue picker
 │   ├── PracticeMode.jsx      # Dialog practice with scrolling chat history
 │   ├── ShadowMode.jsx        # Listen & repeat with Levenshtein match scoring
 │   ├── MonologueMode.jsx     # Extended speaking: prompt → record → review
 │   ├── WritingMode.jsx        # Writing practice: phrase dictation + composition
-│   ├── KoreanKeyboardRef.jsx  # Virtual Korean keyboard with jamo-to-syllable composition
+│   ├── KoreanKeyboardRef.jsx  # Virtual Korean keyboard (feature-flagged per language)
 │   ├── Settings.jsx          # Azure key/endpoint config modal
 │   └── charts/
 │       └── TopikCharts.jsx   # TOPIK-style bar/line/pie SVG charts for monologue prompts
 ├── utils/
-│   └── scoring.js            # Korean-aware normalize + Levenshtein similarity (used by Shadow + Writing)
+│   ├── scoring.js            # Re-exports from adapter layer
+│   ├── getLanguageField.js   # Language-aware field accessor for content objects
+│   └── adapters/             # Language-specific text processing
+│       ├── index.js          # Adapter dispatch + default adapter
+│       ├── korean.js         # Korean: grammar-aware keywords, jamo normalization
+│       └── spanish.js        # Spanish: accent-insensitive normalization
 ├── hooks/
-│   └── useSpeech.js          # TTS (Azure primary, Web Speech fallback) + STT
+│   └── useSpeech.js          # TTS + STT (language-aware via registry)
 ├── services/
 │   ├── azureTts.js           # (legacy — kept for reference, no longer imported)
 │   └── tts/                  # Provider-based TTS abstraction
 │       ├── index.js          # Registry: getProviders, getActiveProvider, synthesize
 │       ├── provider.js       # Interface contract documentation
+│       ├── cdnProvider.js    # CDN adapter: audioManifest lookup → R2 fetch
 │       ├── azureProvider.js  # Azure TTS adapter (SSML builder, fetch, blob → Audio URL)
 │       └── browserProvider.js # Web Speech API adapter (final fallback)
-└── styles/                   # One CSS file per component (incl. Writing.css)
+├── styles/                   # One CSS file per component (incl. Writing.css)
+scripts/
+├── generate-audio.mjs       # Azure TTS → MP3 files + audioManifest.json
+└── upload-audio.mjs         # Upload new MP3s to Cloudflare R2
 ```
 
 ## Configuration
@@ -74,16 +89,74 @@ Azure credentials resolve in order:
 1. **In-app Settings** (⚙️ gear icon, top-right) → `localStorage`
 2. **`.env` fallback:** `VITE_AZURE_SPEECH_KEY`, `VITE_AZURE_SPEECH_ENDPOINT`
 
+### Language System
+
+#### Language Registry (`src/config/languages.js`)
+
+Single source of truth for per-language configuration:
+
+- `sttLang` — Web Speech API recognition locale (e.g. `ko-KR`, `es-ES`)
+- `tts.azureVoice` — Azure neural voice name
+- `tts.ssmlLang` — SSML language tag
+- `tts.fallbackLang` — browser TTS fallback locale
+- Feature flags — `virtualKeyboard`, `grammarAwareKeywords`
+
+Unknown language IDs resolve to Korean fallback. All speech code reads from the registry.
+
+#### Language Adapters (`src/utils/adapters/`)
+
+Language-sensitive text processing behind a dispatch layer:
+
+- `getAdapter(languageId)` → returns language-specific or default adapter
+- **Default adapter:** Unicode punctuation/whitespace strip + plain substring keyword match
+- **Korean adapter:** grammar-aware patterns (`(으)ㄹ`, `(으)`, `(이)`, `/` alternatives)
+- **Spanish adapter:** accent-insensitive normalization
+
+Adapter interface per language:
+
+- `normalize(text)` — strip noise characters, normalize whitespace/punctuation
+- `computeSimilarity(target, spoken)` — Levenshtein or language-appropriate scoring
+- `matchKeywords(transcript, keywords)` — grammar-aware keyword detection
+
+#### Language-Aware Content Access (`src/utils/getLanguageField.js`)
+
+Utility to resolve the correct text field from content objects based on selected language. Components use this instead of hardcoded field names.
+
+#### Language Selection
+
+In-page dropdown in TopicGrid header. Persisted in `localStorage`. Sections filtered by `languageId` metadata.
+
+### Audio Pipeline (CDN Pre-generation)
+
+Pre-generated Azure TTS audio served from Cloudflare R2 — zero-latency, no API key needed for end users.
+
+#### Workflow
+
+1. **Generate:** `node scripts/generate-audio.mjs` — reads `scenarios.js`, extracts all TTS-able lines (shadow phrases, NPC exchanges, monologue answers), generates MP3 via Azure Speech at 0.9× speed, deduplicates by `lang:text` key, writes files to `public/audio/` with content-hash filenames, updates `src/data/audioManifest.json`
+2. **Upload:** `node scripts/upload-audio.mjs` — uploads files where `uploaded: false` to R2 via `wrangler r2 object put`, marks them `uploaded: true` in manifest
+3. **Commit:** updated `audioManifest.json` is committed to git (tracks upload status across machines)
+
+#### Options
+
+- `--dry-run` — list what would be generated/uploaded without acting
+- `--force` — re-generate or re-upload all files
+
+#### R2 Configuration
+
+- Bucket: `speakout`, public URL: `https://pub-*.r2.dev/audio/`
+- CORS rules: `r2-cors.json` (allow all origins, GET/HEAD)
+- Cache: `public, max-age=31536000, immutable`
+
 ## Data Model (`src/data/scenarios.js`)
 
 ```js
-sections[]            // "여행 한국어" | "친구와 대화" | "직장 한국어" | "말하기 연습"
-  └─ scenarios[]      // e.g. "카페에서", "인사하기", "의견 말하기"
+sections[]            // Each has languageId: 'ko' | 'es' | 'zh' | ...
+  └─ scenarios[]      // e.g. "카페에서", "En la cafetería"
         // ── Dialog scenarios (have sessions[]):
-        ├─ shadow[]           // { korean, english } — quick phrases for ShadowMode
+        ├─ shadow[]           // { korean|spanish|..., english } — quick phrases for ShadowMode
         └─ sessions[]         // named dialog sessions
               └─ exchanges[]
-                    // { speaker: 'other'|'you-initiate', korean, english,
+                    // { speaker: 'other'|'you-initiate', korean|spanish|..., english,
                     //   expectedResponses[], hint, englishResponse, level? }
         // ── Monologue scenarios (have monologues[], mutually exclusive with sessions):
         └─ monologues[]
@@ -91,6 +164,8 @@ sections[]            // "여행 한국어" | "친구와 대화" | "직장 한�
               //   keywords[], drills[], modelAnswer, modelAnswerEn, chartId? }
               //   drills[]: { term, meaning, example }
 ```
+
+Content uses language-specific field names (e.g. `korean`, `spanish`) resolved at runtime via `getLanguageField()`. Schema v2 migration to language-neutral fields (`targetText`, `supportTextByLocale`) is planned but deferred.
 
 ### Content Rules (must follow when adding/editing scenarios)
 
@@ -161,18 +236,23 @@ TopicGrid (home)              ⚙️ Settings (always visible, top-right)
 2. Import and add it to the `providers` array in `src/services/tts/index.js`
 3. Settings UI auto-renders config fields from `configFields` — no component changes needed
 
-### Scoring (`src/utils/scoring.js`)
+### Scoring (`src/utils/scoring.js` → adapter dispatch)
 
-- Levenshtein character similarity with Korean-aware normalization
-- Strips: all Unicode punctuation and whitespace (punctuation-insensitive scoring)
+Scoring and normalization are routed through the language adapter layer:
+
+- **Default:** Levenshtein character similarity with Unicode punctuation/whitespace strip
+- **Korean:** grammar-aware normalization (jamo handling)
+- **Spanish:** accent-insensitive normalization
 
 ### Keyword Matching (monologue review)
 
-Grammar-aware `keywordMatchesTranscript`:
+Keyword matching is routed through the adapter's `matchKeywords()`. Korean adapter implements grammar-aware patterns:
 
 - `(으)ㄹ` → checks ㄹ 받침 (e.g. `~(으)ㄹ 거예요` matches "할 거예요") or `을` for consonant stems
 - `(으)`, `(이)` → optional syllable, matches with or without
 - `/` alternatives → e.g. `~아서/~어서` matches either side
+
+Default and Spanish adapters use plain substring matching.
 
 ### Monologue-Specific
 
@@ -198,7 +278,7 @@ WritingMode uses TTS only (no STT). It has its own `keywordMatchesTranscript` co
 
 ### Virtual Korean Keyboard (`KoreanKeyboardRef.jsx`)
 
-A clickable on-screen keyboard for desktop users who don't have a Korean IME installed. Hidden on mobile via CSS media query (`max-width: 768px`). Features:
+Gated behind the `virtualKeyboard` feature flag in the language registry — only visible when Korean is the selected language. Hidden on mobile via CSS media query (`max-width: 768px`). Features:
 
 - **Full 두벌식 layout** with Shift toggle for double consonants (ㅃ ㅉ ㄸ ㄲ ㅆ) and ㅒ ㅖ
 - **Jamo-to-syllable composition** — implements the standard Korean IME algorithm: initial → medial → final, with compound vowel/final support and automatic final-consonant splitting when followed by a vowel
@@ -259,9 +339,11 @@ All `.md` files must pass **markdownlint** with zero warnings. Key rules:
 
 ## Roadmap
 
+- [ ] Chinese content (travel, casual, work — matching Spanish parity)
+- [ ] Schema v2: language-neutral content fields (`targetText`, `supportTextByLocale`)
 - [ ] Ambient audio per scene (café sounds, street sounds)
-- [ ] More scenario content (병원, 호텔, 택시 등)
 - [ ] Dialog progress tracking / history (localStorage)
 - [ ] LLM evaluation for free responses (GPT-4o-mini)
 - [ ] Mobile layout improvements
 - [ ] Azure Pronunciation Assessment API for phoneme feedback
+- [ ] UI shell i18n (deferred — English labels sufficient for now)
