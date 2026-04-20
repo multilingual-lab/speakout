@@ -72,8 +72,7 @@ In-app `localStorage` values take priority over `.env`.
 
 ## Documentation
 
-- Multi-language architecture and roadmap: [MULTILANGUAGE_ARCHITECTURE.md](./MULTILANGUAGE_ARCHITECTURE.md)
-- Full architecture and implementation context: [ARCHITECTURE.md](./ARCHITECTURE.md)
+- Architecture, language system, and audio pipeline: [ARCHITECTURE.md](./ARCHITECTURE.md)
 
 ## Run Locally
 
