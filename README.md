@@ -6,8 +6,6 @@ Multi-language speaking practice app focused on immersive, scenario-based dialog
 
 - **Korean** — full content (travel, casual, work, monologues)
 - **Spanish** — full dialog content (travel, casual, work)
-- **French** — dialog content
-- **Chinese** — dialog content
 
 Switch languages using the dropdown in the top-right of the topic grid.
 
