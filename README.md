@@ -46,3 +46,24 @@ VITE_AZURE_SPEECH_ENDPOINT=...
 localStorage values take priority over `.env`.
 
 Note: this is currently a frontend-only app. Do not deploy with exposed keys unless you move Azure calls to a backend proxy.
+
+## Open-Source TTS Setup (Optional)
+
+SpeakOut supports **Piper TTS** as a self-hosted open-source provider via a bundled HTTP server.
+
+### Quick Start
+
+1. Download and extract Piper from [GitHub releases](https://github.com/rhasspy/piper/releases)
+2. Download voice models into the same directory:
+   - Korean: [neurlang/piper-onnx-kss-korean](https://huggingface.co/neurlang/piper-onnx-kss-korean) (rename to `ko_KR-kss-medium.onnx` + `.json`)
+   - Spanish: [rhasspy/piper-voices es_ES-davefx-medium](https://huggingface.co/rhasspy/piper-voices/tree/v1.0.0/es/es_ES/davefx/medium)
+   - Browse all: [Piper VOICES.md](https://github.com/rhasspy/piper/blob/master/VOICES.md)
+3. Start the server:
+
+```bash
+py tts_server.py
+```
+
+4. In SpeakOut Settings (⚙️), select **OpenTTS (Self-hosted)**, Base URL: `http://localhost:5500`
+
+The server auto-discovers all `.onnx` models in the `piper/` directory. The app auto-selects the correct voice per language and shows support status in Settings. Unsupported languages fall back to browser TTS.

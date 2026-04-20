@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from 'react';
-import { azureSpeak, isAzureConfigured } from '../services/azureTts';
+import { synthesize } from '../services/tts/index.js';
 import { getLanguageConfig } from '../config/languages';
 
 const SpeechRecognition =
@@ -128,14 +128,18 @@ export function useSpeech() {
     const langConfig = getLanguageConfig(languageId);
     const ttsConfig = langConfig.tts;
 
-    // Use Azure TTS if configured, otherwise fall back to Web Speech API
-    if (isAzureConfigured()) {
-      try {
-        setIsSpeaking(true);
-        const audioUrl = await azureSpeak(text, {
-          voice: ttsConfig.azureVoice,
-          ssmlLang: ttsConfig.ssmlLang,
-        });
+    setIsSpeaking(true);
+    setError(null);
+
+    try {
+      const { audioUrl, providerId } = await synthesize(text, {
+        voice: ttsConfig.azureVoice,
+        ssmlLang: ttsConfig.ssmlLang,
+        rate: '0.9',
+      });
+
+      // Browser provider plays inline (audioUrl is null) — already done
+      if (audioUrl) {
         await new Promise((resolve) => {
           const audio = new Audio(audioUrl);
           audioRef.current = audio;
@@ -151,19 +155,14 @@ export function useSpeech() {
           };
           audio.play();
         });
-      } catch (err) {
-        console.error('Azure TTS error, falling back to browser TTS:', err);
-        setIsSpeaking(false);
-        await new Promise((resolve) => {
-          speakBrowser(text, ttsConfig.fallbackLang, setIsSpeaking, resolve);
-        });
+        return;
       }
-      return;
+    } catch (err) {
+      console.error('All TTS providers failed:', err);
+      setError('tts-failed');
     }
 
-    await new Promise((resolve) => {
-      speakBrowser(text, ttsConfig.fallbackLang, setIsSpeaking, resolve);
-    });
+    setIsSpeaking(false);
   }, []);
 
   return {
@@ -179,20 +178,4 @@ export function useSpeech() {
     setError,
     supported: !!SpeechRecognition,
   };
-}
-
-function speakBrowser(text, lang, setIsSpeaking, resolve) {
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = lang;
-  utterance.rate = 0.9;
-  utterance.onstart = () => setIsSpeaking(true);
-  utterance.onend = () => {
-    setIsSpeaking(false);
-    resolve();
-  };
-  utterance.onerror = () => {
-    setIsSpeaking(false);
-    resolve();
-  };
-  speechSynthesis.speak(utterance);
 }

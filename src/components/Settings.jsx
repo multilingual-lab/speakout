@@ -1,14 +1,57 @@
-import { useState } from 'react';
-import { getAzureConfig, saveAzureConfig } from '../services/azureTts';
+import { useState, useEffect } from 'react';
+import {
+  getProviders,
+  getPreferredProviderId,
+  setPreferredProviderId,
+  getProviderById,
+} from '../services/tts/index.js';
+import { getLanguageConfig } from '../config/languages.js';
 
 export default function Settings({ language, onLanguageChange, onClose }) {
-  const config = getAzureConfig();
-  const [key, setKey] = useState(config.key);
-  const [endpoint, setEndpoint] = useState(config.endpoint);
+  const providers = getProviders();
+  const [selectedProviderId, setSelectedProviderId] = useState(getPreferredProviderId());
+  const selectedProvider = getProviderById(selectedProviderId) || providers[0];
+
+  const [configValues, setConfigValues] = useState(() => selectedProvider.getConfig());
   const [saved, setSaved] = useState(false);
+  const [langSupported, setLangSupported] = useState(null);
+
+  useEffect(() => {
+    if (selectedProviderId !== 'opentts') {
+      setLangSupported(null);
+      return;
+    }
+    setLangSupported(null);
+    const baseUrl = (configValues.baseUrl || 'http://localhost:5500').replace(/\/+$/, '');
+    const langConfig = getLanguageConfig(language);
+    const requestedLang = langConfig.tts.ssmlLang.split('-').slice(0, 2).join('-').toLowerCase();
+    fetch(baseUrl + '/api/voices')
+      .then((r) => r.ok ? r.json() : Promise.reject())
+      .then((voices) => {
+        if (!Array.isArray(voices)) { setLangSupported(false); return; }
+        const hasMatch = voices.some((v) =>
+          v.id.replace('_', '-').split('-').slice(0, 2).join('-').toLowerCase() === requestedLang
+        );
+        setLangSupported(hasMatch);
+      })
+      .catch(() => setLangSupported(false));
+  }, [selectedProviderId, language, configValues.baseUrl]);
+
+  const handleProviderChange = (e) => {
+    const id = e.target.value;
+    setSelectedProviderId(id);
+    setPreferredProviderId(id);
+    const provider = getProviderById(id);
+    if (provider) setConfigValues(provider.getConfig());
+    setSaved(false);
+  };
+
+  const handleFieldChange = (key, value) => {
+    setConfigValues((prev) => ({ ...prev, [key]: value }));
+  };
 
   const handleSave = () => {
-    saveAzureConfig(key.trim(), endpoint.trim());
+    selectedProvider.saveConfig(configValues);
     setSaved(true);
     setTimeout(() => setSaved(false), 1500);
   };
@@ -32,31 +75,58 @@ export default function Settings({ language, onLanguageChange, onClose }) {
           </div>
         </div>
 
-        <p className="settings-note">
-          Azure Speech is optional — it improves TTS voice quality. Without it, the app falls back to your browser's built-in speech.
-        </p>
-
-        <label className="settings-label">Azure Speech Key</label>
-        <input
+        <label className="settings-label">TTS Provider</label>
+        <select
           className="settings-input"
-          type="password"
-          value={key}
-          onChange={(e) => setKey(e.target.value)}
-          placeholder="Enter your Azure Speech key"
-        />
+          value={selectedProviderId}
+          onChange={handleProviderChange}
+        >
+          {providers.map((p) => (
+            <option key={p.id} value={p.id}>{p.label}</option>
+          ))}
+        </select>
 
-        <label className="settings-label">Azure Speech Endpoint</label>
-        <input
-          className="settings-input"
-          type="url"
-          value={endpoint}
-          onChange={(e) => setEndpoint(e.target.value)}
-          placeholder="https://<region>.tts.speech.microsoft.com"
-        />
+        {selectedProvider.configFields.length > 0 && (
+          <>
+            <p className="settings-note">
+              {selectedProvider.label} improves TTS voice quality. Without credentials, the app falls back to the next available provider.
+            </p>
 
-        <button className="settings-save" onClick={handleSave}>
-          {saved ? '✓ Saved' : 'Save'}
-        </button>
+            {selectedProvider.configFields.map((field) => (
+              <div key={field.key}>
+                <label className="settings-label">{field.label}</label>
+                <input
+                  className="settings-input"
+                  type={field.type}
+                  value={configValues[field.key] || ''}
+                  onChange={(e) => handleFieldChange(field.key, e.target.value)}
+                  placeholder={field.placeholder}
+                />
+              </div>
+            ))}
+
+            <button className="settings-save" onClick={handleSave}>
+              {saved ? '✓ Saved' : 'Save'}
+            </button>
+
+            {selectedProviderId === 'opentts' && langSupported === false && (
+              <p className="settings-lang-warning">
+                ⚠️ No voice for {getLanguageConfig(language).label} on this server. TTS will fall back to browser.
+              </p>
+            )}
+            {selectedProviderId === 'opentts' && langSupported === true && (
+              <p className="settings-lang-ok">
+                ✓ {getLanguageConfig(language).label} voice available on server.
+              </p>
+            )}
+          </>
+        )}
+
+        {selectedProvider.configFields.length === 0 && (
+          <p className="settings-note">
+            {selectedProvider.label} requires no configuration — it uses your browser's built-in speech engine.
+          </p>
+        )}
 
       </div>
     </div>

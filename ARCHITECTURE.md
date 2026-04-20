@@ -9,7 +9,7 @@ Browser-based Korean speaking practice app. Solves the "freeze-up" problem — w
 | Layer | Choice | Notes |
 | ----- | ------ | ----- |
 | Framework | React + Vite v5 | Node 20.9+, no backend — 100% browser |
-| TTS | Azure Cognitive Services (`ko-KR-SunHiNeural`) | Web Speech API fallback if Azure fails |
+| TTS | Provider-based: Azure, OpenTTS, Browser, extensible | Fallback chain: preferred → next configured → browser |
 | STT | Web Speech API (`ko-KR`) | Chrome required |
 | Styling | Plain CSS + custom properties | Dark slate-blue theme, WCAG AA verified |
 | Storage | `localStorage` | Azure creds, future: progress tracking |
@@ -40,17 +40,59 @@ src/
 ├── hooks/
 │   └── useSpeech.js          # TTS (Azure primary, Web Speech fallback) + STT
 ├── services/
-│   └── azureTts.js           # Azure TTS REST: SSML builder, fetch, blob → Audio URL
-│                             #   getAzureConfig/saveAzureConfig (localStorage + env fallback)
+│   ├── azureTts.js           # (legacy — kept for reference, no longer imported)
+│   └── tts/                  # Provider-based TTS abstraction
+│       ├── index.js          # Registry: getProviders, getActiveProvider, synthesize
+│       ├── provider.js       # Interface contract documentation
+│       ├── azureProvider.js  # Azure TTS adapter (SSML builder, fetch, blob → Audio URL)
+│       ├── openTtsProvider.js  # Piper/OpenTTS adapter (language-aware voice resolution)
+│       └── browserProvider.js # Web Speech API adapter (final fallback)
 └── styles/                   # One CSS file per component (incl. Writing.css)
 ```
 
 ## Configuration
 
+### TTS Provider Selection
+
+Users choose a TTS provider in Settings (⚙️ gear icon). Selection is persisted in `localStorage` key `tts_provider`. Default: `azure`.
+
+Built-in providers:
+
+- `azure` — cloud neural voice
+- `opentts` — self-hosted open-source HTTP server
+- `browser` — Web Speech API fallback
+
+The provider registry (`src/services/tts/index.js`) resolves the active provider:
+
+1. **Preferred provider** — if configured, use it
+2. **First configured non-browser provider** — fallback (for example OpenTTS when Azure is unset)
+3. **Browser built-in** — always-available final fallback
+
+### Azure Credentials
+
 Azure credentials resolve in order:
 
 1. **In-app Settings** (⚙️ gear icon, top-right) → `localStorage`
 2. **`.env` fallback:** `VITE_AZURE_SPEECH_KEY`, `VITE_AZURE_SPEECH_ENDPOINT`
+
+### OpenTTS Configuration
+
+OpenTTS provider configuration is stored in `localStorage`:
+
+1. `opentts_base_url` (default: `http://localhost:5500`)
+2. `opentts_voice` (optional — auto-resolved from server if omitted)
+
+Runtime behavior:
+
+- Provider queries `GET <baseUrl>/api/voices` to discover available voices (cached 1 min)
+- On `speak()`, resolves a voice matching the requested language (e.g. `ko-KR` → `ko_KR-kss-medium`)
+- If no matching voice exists on the server, throws → falls through to browser provider
+- If explicit voice is configured but doesn't match the active language, searches server for an alternative
+- Calls `GET <baseUrl>/api/tts?text=...&voice=...` with the resolved voice
+- Returns audio blob URL and plays through the same audio pipeline as Azure
+- Settings UI shows live language support status (✓ available / ⚠️ not available)
+
+Piper voice models follow the naming convention `xx_XX-name-quality.onnx` (e.g. `ko_KR-kss-medium.onnx`). The language guard extracts the `xx-XX` prefix to match against the app's active SSML language tag.
 
 ## Data Model (`src/data/scenarios.js`)
 
@@ -127,8 +169,17 @@ TopicGrid (home)              ⚙️ Settings (always visible, top-right)
 
 ### TTS Playback
 
-- Azure `ko-KR-SunHiNeural` primary, `SpeechSynthesisUtterance` fallback
+- Provider-based: `useSpeech.speak()` calls `synthesize()` from the TTS registry
+- Fallback chain: preferred provider → browser `SpeechSynthesisUtterance`
+- Azure provider returns audio blob URL played via `new Audio(url)`
+- Browser provider plays inline via `speechSynthesis.speak()` (returns null URL)
 - Feedback phase: per-answer 🔊 buttons. Only clicked button pulses; others idle. Clicks are no-op while audio plays.
+
+#### Adding a New TTS Provider
+
+1. Create `src/services/tts/<name>Provider.js` exporting the provider interface (`id`, `label`, `isConfigured`, `getConfig`, `saveConfig`, `speak`, `configFields`)
+2. Import and add it to the `providers` array in `src/services/tts/index.js`
+3. Settings UI auto-renders config fields from `configFields` — no component changes needed
 
 ### Scoring (`src/utils/scoring.js`)
 

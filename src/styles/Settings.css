@@ -134,3 +134,17 @@
 .settings-github:hover {
   color: var(--color-primary-hover);
 }
+
+.settings-lang-warning {
+  font-size: 0.82rem;
+  color: #e8a838;
+  margin: 12px 0 0;
+  line-height: 1.5;
+}
+
+.settings-lang-ok {
+  font-size: 0.82rem;
+  color: #5cb85c;
+  margin: 12px 0 0;
+  line-height: 1.5;
+}
