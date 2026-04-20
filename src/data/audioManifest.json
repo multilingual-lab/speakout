@@ -1,0 +1,1672 @@
+{
+  "ko:아이스 아메리카노 한 잔 주세요.": {
+    "filename": "eb8af1f8c0ba343a.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:따뜻한 라떼 한 잔 주세요.": {
+    "filename": "dbf8f00e2d625446.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:카드로 계산할게요.": {
+    "filename": "40320f20272327c3.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:여기서 먹고 갈게요.": {
+    "filename": "1766453358dd1d23.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:포장해 주세요.": {
+    "filename": "862644f6732a2188.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:메뉴판 좀 볼 수 있을까요?": {
+    "filename": "3d02eb502bad3094.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:어서오세요~ 뭐 드릴까요?": {
+    "filename": "bc037d3f2813dc70.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:사이즈는 어떤 걸로 하시겠어요?": {
+    "filename": "2afcb132b8680558.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:다른 거 더 필요하신 건 없으세요?": {
+    "filename": "49ecbe201c1a6209.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:매장에서 드시나요, 가져가시나요?": {
+    "filename": "06f342373353d947.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:총 4,500원입니다. 결제는 어떻게 하시겠어요?": {
+    "filename": "0a1a2ba467b087c3.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:준비되면 불러드릴게요. 잠시만 기다려 주세요.": {
+    "filename": "c9428e8364b3c34d.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:주문하신 거 나왔습니다. 아이스 아메리카노요.": {
+    "filename": "a46922a407e312b0.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:아, 네! 잠시만 기다려 주세요. 다시 만들어 드릴게요.": {
+    "filename": "96b3734221b1314f.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:여기요, 따뜻한 아메리카노 나왔습니다!": {
+    "filename": "a20403d60044894f.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:아, 정말요? 죄송합니다. 어떤 점이 이상하세요?": {
+    "filename": "dbb3221625c51cac.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:확인해 보니 주문이 잘못 들어갔네요. 다시 만들어 드릴까요, 아니면 환불해 드릴까요?": {
+    "filename": "8d74445392519e3f.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:네, 바로 준비해 드리겠습니다. 불편을 드려서 정말 죄송합니다.": {
+    "filename": "0abb26c50cf99da3.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:메뉴판 좀 주세요.": {
+    "filename": "90a2355b7f825153.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:이거 하나 주세요.": {
+    "filename": "a8961cb092de0201.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:물 좀 주세요.": {
+    "filename": "f7f8292f0f46770d.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:어서오세요! 몇 분이세요?": {
+    "filename": "fb7cdcfe0569bff0.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:이쪽으로 앉으세요. 메뉴판 여기 있습니다.": {
+    "filename": "85a8590bf8a52291.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:주문하시겠어요?": {
+    "filename": "6d9970643f205c00.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:음료는 뭘로 하시겠어요?": {
+    "filename": "9271d62b6b572204.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:알겠습니다. 조금만 기다려 주세요.": {
+    "filename": "d917cd2ebf99e990.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:맛있게 드세요!": {
+    "filename": "0979fbe0054f2d04.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:총 9,000원입니다.": {
+    "filename": "67eaacf9a5d9cf1a.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:어떤 알레르기가 있으세요?": {
+    "filename": "b4b2fde8d03b5b97.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:아, 그럼 이 메뉴는 괜찮아요. 그런 재료가 안 들어가요.": {
+    "filename": "bb2967a90209e269.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:혹시 다른 거 더 필요하신 거 있으세요?": {
+    "filename": "04f1bd84b73952a2.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:어머, 정말 죄송합니다! 뭘 주문하셨는지 다시 확인해 볼게요.": {
+    "filename": "c487e56f94859a31.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:확인했습니다. 주문이 바뀌었네요. 바로 다시 준비해 드리겠습니다. 서비스로 음료 한 잔 드릴게요.": {
+    "filename": "3340f3c8055edf11.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:여기 다시 나왔습니다! 불편을 끼쳐 드려서 다시 한번 사과드립니다.": {
+    "filename": "03954b41aae8f7ba.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:지하철역이 어디에 있어요?": {
+    "filename": "360b699c9259b5ba.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:이쪽으로 가면 돼요?": {
+    "filename": "40615b74f383db08.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:여기서 직진하시면 사거리가 나와요. 거기서 오른쪽으로 가세요.": {
+    "filename": "3990f190634bd4b7.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:네, 맞아요. 한 5분 정도 걸려요.": {
+    "filename": "3c819a0d46f41c1b.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:강남이요? 여기서 472번 버스 타시면 돼요. 근데 반대쪽 정류장에서 타셔야 해요.": {
+    "filename": "c2a3888d1340099d.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:네, 횡단보도 건너시면 바로 있어요. 한 20분 정도 걸릴 거예요.": {
+    "filename": "989b6a2a97ce3fe1.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:네, 교통카드 그냥 찍으시면 돼요. 한 10분 간격으로 와요.": {
+    "filename": "d24a7932584d8e61.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:네, 괜찮아요! 어디 가시려고요?": {
+    "filename": "d87c246cfcddefff.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:아, 여기서 좀 먼데요. 걸어가시면 30분 넘게 걸려요. 택시 타시는 게 나을 것 같아요.": {
+    "filename": "3479c6927163d773.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:저기 큰 길에서 잡으셔도 되고, 카카오택시 앱이 있으시면 바로 부르실 수 있어요. 기사님한테 이 주소 보여주시면 돼요.": {
+    "filename": "13d15760b05a78a5.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:이거 얼마예요?": {
+    "filename": "41f0d34524a9d958.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:좀 더 싼 거 있어요?": {
+    "filename": "db34da0f939d65a1.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:뭐 찾으시는 거 있으세요?": {
+    "filename": "c55d7e47de3af0eb.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:이건 어때요? 요즘 인기가 많아요.": {
+    "filename": "099bb808d069bbc9.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:네, 피팅룸은 저쪽에 있어요.": {
+    "filename": "56c24da4c4b1102a.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:어때요? 잘 맞으세요?": {
+    "filename": "025af775fcc68cec.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:이건 30,000원인데, 지금 세일이라 20,000원이에요.": {
+    "filename": "558c29504c5a227a.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:그건 15,000원이에요.": {
+    "filename": "b3e84962f245ab61.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:이건 좀 더 싼 거예요. 10,000원이에요.": {
+    "filename": "4d2ee929471a4d4f.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:카드로 하시겠어요?": {
+    "filename": "752ebbdec616ef88.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:영수증 가지고 계세요? 그리고 혹시 어떤 문제가 있으셨나요?": {
+    "filename": "b99d63c0614412cb.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:확인해 볼게요... 네, 구매하신 지 7일 이내라 교환 가능하세요. 다른 사이즈나 색상으로 바꿔 드릴까요?": {
+    "filename": "c7f93768bda039c4.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:네, 여기 있습니다. 가격 차이가 5,000원 있는데 추가 결제 부탁드려요.": {
+    "filename": "061043e5f3bab28a.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:체크인 하려고 왔는데요.": {
+    "filename": "d604191d26793ee6.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:예약 확인 부탁드려도 될까요?": {
+    "filename": "b970f5d2a6d82a56.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:객실 키를 분실했어요.": {
+    "filename": "13323396342cdfb7.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:와이파이 비밀번호가 뭐예요?": {
+    "filename": "d7b0a1d8802d3b6e.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:체크아웃은 몇 시예요?": {
+    "filename": "119bf8a394212877.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:안녕하세요, 예약하셨나요?": {
+    "filename": "db6a9376956d3833.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:여권이나 신분증 보여 주실 수 있나요?": {
+    "filename": "d8aea8e3c1376fab.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:3박이 맞죠? 총 18만 원이에요.": {
+    "filename": "f67cdb8b067c8013.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:507호실이에요. 엘리베이터는 저쪽이에요. 편안히 쉬세요!": {
+    "filename": "845fbbdb2c159403.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:비밀번호는 hotel1234예요.": {
+    "filename": "3552533a876929f5.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:아침 7시부터 10시까지 1층 식당에서 드실 수 있어요.": {
+    "filename": "f70632cb0cbe4074.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:불편을 드려서 죄송합니다. 바로 기술팀을 보내드릴게요. 혹시 수리하는 동안 로비에서 대기하시겠어요, 아니면 다른 방으로 옮겨 드릴까요?": {
+    "filename": "50e83a4d6e81367e.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:네, 같은 층에 빈 방이 있어요. 짐 옮기시는 것 도와드릴까요? 그리고 불편에 대한 보상으로 조식 쿠폰을 드리겠습니다.": {
+    "filename": "2971762d68effe47.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:509호실 키 여기 있습니다. 편안히 주무세요! 다른 불편한 점 있으시면 언제든 연락 주세요.": {
+    "filename": "d3fd34dad30dc8e8.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:요즘 어떻게 지내?": {
+    "filename": "e2c782ffd7937f07.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:오랜만이야! 잘 지냈어?": {
+    "filename": "931ae5d7d32cdd2d.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:별일 없어, 그냥 그래.": {
+    "filename": "b215bd97404ae529.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:주말에 뭐 했어?": {
+    "filename": "aa7beb21fe329430.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:요즘 바빠? 아니면 시간 있어?": {
+    "filename": "75746a6c294555ac.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:야, 오랜만이야! 잘 지냈어?": {
+    "filename": "360f414d81536b0f.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:나도 잘 지냈어~ 요즘 뭐 하고 지내?": {
+    "filename": "c86d10e1ba271c87.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:오~ 한국어 공부? 대박! 잘하네.": {
+    "filename": "fce0695324f76ae8.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:그래? 주말에 뭐 해? 같이 밥 먹자!": {
+    "filename": "379ff9103219eeeb.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:음... 한식 어때? 삼겹살 먹으러 가자!": {
+    "filename": "7c6de5387b8de6eb.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:그럼 토요일 저녁 7시에 홍대에서 만나자!": {
+    "filename": "ec39a9a59285bd2d.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:아 진짜? 나는 등산 갔다 왔어.": {
+    "filename": "d2a1cb2fb9c8efae.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:북한산 갔는데, 경치가 진짜 좋았어!": {
+    "filename": "c48d6f4e04a39203.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:응! 사진 보여줄까? 다음에 같이 가자!": {
+    "filename": "3efc82a345bbba99.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:아, 맞다! 소개해 줄게. 이쪽은 내 대학 친구 지수야.": {
+    "filename": "e94c2c0026b63f1f.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:만나서 반가워! 혹시 한국에 온 지 얼마나 됐어?": {
+    "filename": "b081b42583e0cf99.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:오~ 한국어 진짜 잘한다! 어디서 배웠어?": {
+    "filename": "df7d07d949d88d0a.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:대단하다! 나도 영어 좀 알려줘~ ㅋㅋ 우리 연락하자!": {
+    "filename": "b4d73d5e1da315c1.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:어머, 이게 누구야! 우리 민준이 아니야? 얼마만이야~": {
+    "filename": "64e8f453d38fa3ed.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:그래~ 잘 지냈어? 요즘 뭐 하고 지내? 부모님은 잘 계시고?": {
+    "filename": "d6ee5c179d22eecc.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:그래, 다행이다. 밥은 먹었어? 안 먹었으면 이모가 해줄까?": {
+    "filename": "f788975ece3fb704.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:그래도 과일이라도 먹어. 이모한테 자주 놀러 와~ 알겠지?": {
+    "filename": "323786a92c304736.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:이번 주 토요일에 시간 있어?": {
+    "filename": "a9ad87cce771da37.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:같이 영화 보러 갈래?": {
+    "filename": "209dc03cff4c6753.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:몇 시에 만날까?": {
+    "filename": "cde1bc88ea50a8df.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:어디서 만날까?": {
+    "filename": "c6e742419974d855.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:미안, 그날은 좀 바빠.": {
+    "filename": "e823ce885f3e42e7.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:오, 좋아! 뭐 보고 싶어?": {
+    "filename": "c35bf5258144e3ff.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:나도 액션 좋아! 그럼 몇 시에 볼까?": {
+    "filename": "ba837e78c3259310.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:좋아, 그럼 어디서 만날까?": {
+    "filename": "6ac84a0111e2167f.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:오케이! 그때 보자. 팝콘은 내가 살게!": {
+    "filename": "005b267939c90800.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:내일 만나는 거 맞지?": {
+    "filename": "a5558edf5851b0a3.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:어? 왜? 무슨 일 있어?": {
+    "filename": "664cfd674f51fb30.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:아, 그래? 괜찮아~ 다음에 만나자.": {
+    "filename": "0e0874a72e402b9b.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:ㅋㅋ 알겠어~ 그럼 다음 주 토요일은 어때?": {
+    "filename": "1d9d481715ac2378.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:이번에 동창 모임 하려고 하는데, 아무래도 다 같이 시간 맞추기가 어려울 것 같아. 네가 좀 정리해 줄 수 있어?": {
+    "filename": "c5d894d663445fb0.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:한 8명? 근데 민수는 주말에만 돼고, 지은이는 금요일 저녁만 된대. 어떻게 하면 좋을까?": {
+    "filename": "e7c45ec8ffd0cc6e.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:좋아, 그럼 장소는? 강남이 제일 오기 편하긴 한데, 혜진이는 강남 너무 멀다고 할 것 같아.": {
+    "filename": "3b88aa3386766bbd.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:홍대 좋다! 식당은 네가 예약해 줄 수 있어? 8명 정도 앉을 수 있는 데로.": {
+    "filename": "f5a6e5330710b539.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:고기집 좋지! 1인당 3만 원 선이면 괜찮을 것 같아. 너무 고마워, 네가 최고야!": {
+    "filename": "e9164698f43a5c9a.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:오늘 기분이 좋아!": {
+    "filename": "4ea8d0b7749e6373.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:좀 피곤해. 어제 늦게 잤어.": {
+    "filename": "ccb36490031e8de6.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:이거 진짜 맛있다!": {
+    "filename": "40146ac561162030.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:나 요즘 스트레스 받아.": {
+    "filename": "7927ca88baac8429.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:그거 재밌겠다!": {
+    "filename": "79929bbf1141f827.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:오늘 왜 이렇게 기분 좋아 보여?": {
+    "filename": "1c45065cf7ec38e2.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:오~ 뭔데? 말해봐!": {
+    "filename": "9451dfe57bbf85ec.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:대박! 축하해! 오늘 한턱 내야 되는 거 아니야?": {
+    "filename": "b27e7c07172dbdfb.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:좋은 소식 들으니까 나까지 기분 좋다!": {
+    "filename": "6c7d751ff89d8e9e.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:괜찮아? 좀 안 좋아 보여.": {
+    "filename": "ecd24e432e7ead4a.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:무슨 일이야? 말해봐.": {
+    "filename": "ee757980ef0572cf.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:힘들겠다... 오늘 맛있는 거 먹으러 가자. 내가 살게.": {
+    "filename": "3e956863b05a6b2f.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:맛있는 거 먹으면 스트레스 다 날아가!": {
+    "filename": "201ce22812d274ea.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:요즘 뭐 재밌는 거 있어?": {
+    "filename": "087ea29c1aab78a7.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:오, 뭔데? 재밌어?": {
+    "filename": "60418942fecddf72.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:나도 볼까? 몇 회까지 있어?": {
+    "filename": "b06bd337ad70a03c.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:좋아, 오늘 밤에 볼게! 그거 보고 나서 같이 얘기하자.": {
+    "filename": "876ffbd5a7622172.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:그래, 무슨 고민인데? 편하게 말해.": {
+    "filename": "f36cff13ba8c1dc2.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:음... 쉽지 않은 결정이네. 새로운 데는 뭐가 더 좋은데? 그리고 지금 회사에서 아쉬운 점은?": {
+    "filename": "0e0f53d9cd0fb473.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:그래, 이해해. 근데 나는 네가 후회하지 않을 선택을 했으면 좋겠어. 10년 후에 돌아봤을 때 어떤 쪽이 더 후회될 것 같아?": {
+    "filename": "8ffb18c606469c7a.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:그럼 답 나온 거 아니야? ㅋㅋ 뭘 선택하든 내가 응원할게. 힘들면 언제든 연락해.": {
+    "filename": "881b53c47a029613.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:회의를 시작하겠습니다.": {
+    "filename": "33f771d7ab120e8d.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:의견 있으신 분 계세요?": {
+    "filename": "6d422f19ca2e8c6b.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:자료를 화면에 띄워 드릴게요.": {
+    "filename": "4097908facbfd822.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:다음 주까지 보고서를 제출해 주세요.": {
+    "filename": "e935dcd8724e841a.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:회의록을 공유해 드리겠습니다.": {
+    "filename": "554811a7217d9637.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:다들 오셨나요? 회의 시작하겠습니다.": {
+    "filename": "28a0e0a1befde967.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:오늘 안건은 세 가지입니다. 먼저 지난 주 결과부터 볼까요?": {
+    "filename": "db4c5b0dc25ae16e.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:이 부분에 대해 의견 있으세요?": {
+    "filename": "23f1a3ae1e1fbc63.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:그럼 다음 주에 다시 업데이트 공유해 주실 수 있나요?": {
+    "filename": "4a0f3ae548c6ce6a.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:안녕하세요! 오늘 회의 참석해 주셔서 감사합니다.": {
+    "filename": "3e510dd47c4926eb.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:자료 받으셨나요?": {
+    "filename": "ae6a444c40ad8dcc.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:그럼 시작할까요?": {
+    "filename": "bbda690ff0440a89.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:오늘 회의 수고하셨습니다!": {
+    "filename": "ed216a4c94d851b5.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:그럼 다음 발표 부탁드리겠습니다.": {
+    "filename": "bb545e53159851d0.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:이 부분 좀 더 자세히 설명해 주실 수 있나요?": {
+    "filename": "6c8640c0c6a5d645.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:다음 단계는 어떻게 진행할 계획인가요?": {
+    "filename": "dcf26d67a5a51466.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:알겠습니다. 좋은 발표였습니다. 감사합니다.": {
+    "filename": "49ab88e0bb87eeb7.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:저는 5년간 마케팅 분야에서 일했습니다.": {
+    "filename": "e53dd7b8793439b2.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:팀워크를 중요하게 생각합니다.": {
+    "filename": "1128a5423e130c8f.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:이 회사에 꼭 입사하고 싶습니다.": {
+    "filename": "7bb7bf4c63a625db.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:제 강점은 문제 해결 능력입니다.": {
+    "filename": "531003807548f5ae.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:궁금한 점이 있으시면 언제든지 질문해 주세요.": {
+    "filename": "07c48b30047de346.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:안녕하세요, 오늘 면접에 오신 걸 환영합니다. 간단히 자기소개 부탁드립니다.": {
+    "filename": "758b98d4d8e150d7.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:지원 동기가 무엇인가요?": {
+    "filename": "39b34fc5fd1ee25a.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:본인의 강점과 약점을 말씀해 주세요.": {
+    "filename": "edaf520624484683.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:마지막으로 궁금한 점 있으세요?": {
+    "filename": "52c443654b473a57.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:안녕하세요, 들어오세요. 앉으세요.": {
+    "filename": "92cc589f4a786f49.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:이름이 어떻게 되세요?": {
+    "filename": "b0e2b9d91b3b2d44.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:어디에 살고 계세요?": {
+    "filename": "45f33b0ff7941176.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:오늘 와주셔서 감사합니다. 결과는 다음 주에 연락드리겠습니다.": {
+    "filename": "68779dcef3e6c534.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:이전 직장에서 어떤 일을 하셨나요?": {
+    "filename": "652bc5fba9f05f8b.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:가장 기억에 남는 프로젝트가 있나요?": {
+    "filename": "68d1b6b516a6bffd.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:어려운 상황에서 어떻게 대처하시나요?": {
+    "filename": "e760c02283886d9c.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:이 직무에 본인이 적합하다고 생각하시는 이유가 뭐예요?": {
+    "filename": "1afade116769b63a.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:보통 아침 7시에 일어나요. 씻고 아침을 먹어요. 8시에 출근해서 오전에는 회의를 해요. 점심은 동료들이랑 같이 먹어요. 오후에는 업무를 하고, 6시에 퇴근해요. 저녁에는 운동을 하거나 책을 읽어요. 11시쯤 자요.": {
+    "filename": "181d5f2d4581b50a.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:이번 주말에는 토요일 오전에 카페에서 공부할 거예요. 오후에는 친구를 만나서 영화를 볼 거예요. 일요일에는 집에서 쉬고 싶어요. 요리도 하고, 넷플릭스도 볼 거예요. 저녁에는 다음 주 준비를 할 거예요.": {
+    "filename": "6fbf9d4dda3bc62a.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:저는 재택근무가 좋다고 생각해요. 왜냐하면 출퇴근 시간을 절약할 수 있어요. 그 시간에 운동을 하거나 공부를 할 수 있어요. 하지만 단점도 있어요. 혼자 일하면 외로울 수 있고, 집중하기 어려울 때도 있어요. 그래서 저는 일주일에 2~3일은 사무실에 가는 혼합 근무가 가장 좋다고 생각해요.": {
+    "filename": "1c9fa27f53cb6da0.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:SNS는 긍정적인 면과 부정적인 면이 있어요. 긍정적으로는 멀리 사는 친구들과 쉽게 연락할 수 있어요. 새로운 정보도 빨리 얻을 수 있어요. 반면에 부정적인 면도 있어요. 너무 많이 사용하면 시간 낭비가 되고, 다른 사람과 비교하면서 스트레스를 받을 수 있어요. 따라서 적당히 사용하는 것이 중요하다고 생각해요.": {
+    "filename": "e64d0cd5d4040179.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:팀장님, 늦어서 정말 죄송합니다. 오늘 아침에 지하철 고장 때문에 30분을 기다려야 했어요. 버스로 갈아탔는데 그것도 지연되어서 늦었습니다. 앞으로는 여유 있게 출발하겠습니다. 다시 한번 죄송합니다.": {
+    "filename": "de637cd570d859ca.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:내가 자주 가는 맛집이 있어. 강남역 근처에 있는 한식당인데, 김치찌개가 정말 맛있어. 반찬도 많고 양도 많아서 가성비가 좋아. 분위기도 깨끗하고 아늑해. 점심시간에 사람이 많으니까 일찍 가면 좋겠어. 꼭 한번 가 봐!": {
+    "filename": "31769dfbbe93082b.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:이 그래프는 한국인이 좋아하는 여가 활동에 대한 설문 조사 결과입니다. 응답자 1,200명을 대상으로 조사했습니다. 운동이 35%로 가장 높게 나타났습니다. 그 다음으로 OTT 시청이 28%를 차지했습니다. 독서는 15%, 게임은 12%로 나타났습니다. 반면에 여행은 10%로 가장 낮았습니다. 전체적으로 보면 한국인은 활동적인 여가를 선호하는 것으로 나타났습니다.": {
+    "filename": "3239582f23027f80.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:이 그래프는 한국의 1인 가구 수 변화를 보여줍니다. 2015년에 520만 가구였던 1인 가구는 꾸준히 증가하는 추세를 보이고 있습니다. 2019년에 615만 가구로 늘었고, 2023년에는 718만 가구를 기록했습니다. 2025년에는 750만 가구로, 10년간 약 44% 증가했습니다. 이러한 추세는 앞으로도 계속될 것으로 보입니다.": {
+    "filename": "4cfa484df1d8d33b.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "ko:이 원 그래프는 직장인 800명을 대상으로 스트레스 원인을 조사한 결과입니다. 업무량이 38%로 가장 큰 비중을 차지했습니다. 그 뒤를 이어 인간관계가 25%, 연봉이 20%로 나타났습니다. 출퇴근 스트레스는 12%였고, 기타가 5%를 차지했습니다. 이 조사를 통해 직장인들이 가장 큰 스트레스를 느끼는 원인은 과도한 업무량이라는 것을 알 수 있습니다.": {
+    "filename": "db5516b10f507fa9.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9"
+  },
+  "es:Un americano helado, por favor.": {
+    "filename": "3f259d37ec6684ea.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Un café con leche caliente, por favor.": {
+    "filename": "b985180b7943f577.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Voy a pagar con tarjeta.": {
+    "filename": "9900cc2e8f5f906a.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Voy a comer aquí.": {
+    "filename": "c418cfc99745a0a8.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Para llevar, por favor.": {
+    "filename": "b267a17e95841a4a.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Puedo ver el menú?": {
+    "filename": "08fb288ed9dc2f13.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¡Hola! ¿Qué te traigo?": {
+    "filename": "b0f2a6b89f2ca4ea.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿De qué tamaño lo quieres?": {
+    "filename": "3b8e8c264a23849b.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Algo más?": {
+    "filename": "f948ff6a45071707.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Para aquí o para llevar?": {
+    "filename": "b74f7aad9a35c090.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Son €4.50. ¿Cómo pagas?": {
+    "filename": "8742fd9dab1c6df2.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Perfecto. Te lo traigo en un momento.": {
+    "filename": "8542c3a59b57b9ce.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Aquí está tu americano helado.": {
+    "filename": "1f64c2ff9939e76a.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Ah, claro. Un momento, te lo preparo de nuevo.": {
+    "filename": "e5010abbf871177e.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Aquí tienes, café caliente. ¡Que lo disfrutes!": {
+    "filename": "ec494db85635932f.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Una mesa para dos, por favor.": {
+    "filename": "4a883152e362f558.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Qué me recomienda?": {
+    "filename": "03588bdc8d29b4a2.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:La cuenta, por favor.": {
+    "filename": "0f2043bfae9e10e7.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¡Buenas tardes! ¿Mesa para cuántos?": {
+    "filename": "2315e715f5276c8d.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Muy bien, síganme. Aquí tienen el menú.": {
+    "filename": "17c4c3ba76c7cc82.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Ya saben qué van a pedir?": {
+    "filename": "2dcdcbed49d04d89.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Y para beber?": {
+    "filename": "c4522f7243287cdf.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¡Perfecto! Enseguida se lo traigo.": {
+    "filename": "5e819691745d0ea2.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Déjeme preguntar al chef. ¿A qué es alérgico exactamente?": {
+    "filename": "1cbfd2b7e92885d8.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Ese plato lleva almendras. Le puedo recomendar la merluza a la plancha, que no tiene frutos secos.": {
+    "filename": "4cd67f7f752e70a9.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¡Muy bien! ¿Algo más que necesite?": {
+    "filename": "4034523215fb26d7.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¡Ay, lo siento mucho! ¿Qué había pedido?": {
+    "filename": "3132b69eef5150f9.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Tiene razón, ha sido un error nuestro. Se lo cambiamos enseguida y le invitamos al postre.": {
+    "filename": "96cd400d7c119509.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Aquí tiene su paella. Disculpe las molestias.": {
+    "filename": "a2bb912992a4ca07.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Dónde está la estación de metro?": {
+    "filename": "59e76c2ca2a94bc4.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Se puede ir andando?": {
+    "filename": "fe762c87f89e8fee.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Siga todo recto y al llegar al semáforo gire a la derecha.": {
+    "filename": "01f4b21de9df88fa.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Sí, exacto. Está a unos cinco minutos andando.": {
+    "filename": "ba5be8af57618204.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Al centro? Puede tomar la línea 25. Pero la parada está al otro lado de la calle.": {
+    "filename": "084adeed6502e15a.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Sí, cruce por el paso de peatones. El autobús tarda unos 20 minutos.": {
+    "filename": "5b2a1bf4a5843c7a.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Sí, puede pagar con tarjeta de transporte o con el móvil. Pasa cada 10 minutos.": {
+    "filename": "aa2929c4a8eb0970.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¡Claro! ¿Adónde quiere ir?": {
+    "filename": "99433747364918a3.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Eso está bastante lejos de aquí. Andando serían más de 30 minutos. Le recomiendo coger un taxi.": {
+    "filename": "6baa02f1c7d8aa76.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:En la calle principal hay una parada de taxi, o puede usar la aplicación. Enséñele la dirección al taxista.": {
+    "filename": "e456ad1529aa6b23.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Tengo una reserva a nombre de...": {
+    "filename": "0ea32cf143db909d.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Me puede dar la contraseña del wifi?": {
+    "filename": "482da3bc0afa18e9.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿A qué hora es el desayuno?": {
+    "filename": "6413dd4f61afffe6.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:He perdido la llave de la habitación.": {
+    "filename": "828b8016e9fcbebe.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿A qué hora hay que dejar la habitación?": {
+    "filename": "d99541cdf4947880.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Claro, la contraseña es \"hotel2024\". ¿Necesita algo más?": {
+    "filename": "dfb873cf3c9a3c3d.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:El desayuno es de 7 a 10 en el primer piso.": {
+    "filename": "b84cc0443c01a27b.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:De nada. Si necesita algo, llame a recepción.": {
+    "filename": "2e4e40d475ff79a8.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Buenas tardes. Bienvenido al Hotel Gran Vía. ¿Tiene reserva?": {
+    "filename": "b0422f1ff951ead8.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Perfecto, la encuentro aquí. ¿Me puede mostrar su pasaporte?": {
+    "filename": "a267b693cedcf124.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Su habitación es la 405, en la cuarta planta. ¿Prefiere cama doble o dos individuales?": {
+    "filename": "c85465302fd79d88.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Aquí tiene la tarjeta. El ascensor está a la derecha. ¡Disfrute de su estancia!": {
+    "filename": "d0653c20de8e526d.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Lo siento mucho. ¿En qué habitación está?": {
+    "filename": "c34a638a0d3e737e.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Envío a alguien de mantenimiento ahora mismo. Si no se puede arreglar, le cambiaremos de habitación.": {
+    "filename": "d49dca82728b9487.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Unos 15 minutos. De nuevo le pido disculpas por las molestias. Le ofrecemos el desayuno gratis mañana.": {
+    "filename": "40c1e4433777b1c4.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Cuánto cuesta esto?": {
+    "filename": "d1663cba6c29938d.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Tiene algo más barato?": {
+    "filename": "1957d717f93b36ea.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¡Hola! ¿Puedo ayudarle en algo?": {
+    "filename": "260c0f8098765541.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Qué talla usa?": {
+    "filename": "492c5991d94f8b71.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Aquí tiene varias opciones. ¿Quiere probársela?": {
+    "filename": "26fa6c4e9fa8d9ac.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Los probadores están al fondo a la derecha.": {
+    "filename": "78805a2283748d09.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Esa bufanda cuesta 35 euros. Pero hoy tenemos un 20% de descuento.": {
+    "filename": "f17b44608c4b86a8.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Con el descuento serían 28 euros. ¿Se la lleva?": {
+    "filename": "3aa3f72a00f6237a.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¡Perfecto! ¿Quiere que se la envuelva para regalo?": {
+    "filename": "736d4174033677e2.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Tiene el ticket de compra?": {
+    "filename": "f2e7f561f93e85f0.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Muy bien. ¿Qué talla necesita?": {
+    "filename": "6b144524abd1152f.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Déjeme comprobar si la tenemos... Sí, aquí está. ¿Quiere probársela?": {
+    "filename": "0431576a0012148f.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Qué tal? ¿Cómo te va?": {
+    "filename": "39f896b27499ed6a.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¡Cuánto tiempo sin verte!": {
+    "filename": "29a8749c44872d9c.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Nada especial, lo de siempre.": {
+    "filename": "29467a1b9114ac55.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Qué hiciste el fin de semana?": {
+    "filename": "e3de30fa7586a8c1.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Estás libre esta tarde?": {
+    "filename": "2063b8d56e135d11.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¡Hola! ¿Qué tal? ¡Cuánto tiempo!": {
+    "filename": "20505532f2574171.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Bien, bien. ¿Qué has estado haciendo últimamente?": {
+    "filename": "23b517ef1f014a9d.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Sigues viviendo en el mismo sitio?": {
+    "filename": "0d78d4779fbe6793.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Deberíamos quedar un día de estos para tomar algo.": {
+    "filename": "223f354975083cd1.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¡Hola! ¿Qué tal el fin de semana?": {
+    "filename": "27640febb4bb1eda.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Hiciste algo divertido?": {
+    "filename": "41552095d4278f8e.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Qué película viste?": {
+    "filename": "14351536234b24d7.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¡Qué bien! Yo me quedé en casa descansando.": {
+    "filename": "6d356ab9837da96e.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¡Hola! No nos conocemos, ¿verdad? Soy María.": {
+    "filename": "026687461fadb1d7.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Encantada. ¿De dónde eres?": {
+    "filename": "a137cd199c9f352a.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¡Qué interesante! ¿Y qué te trae por aquí?": {
+    "filename": "1f5e935412067c58.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¡Genial! Si necesitas algún consejo sobre la ciudad, no dudes en preguntar.": {
+    "filename": "c7182bf5eacd3497.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Buenos días. Usted debe ser el nuevo colega. ¿Cómo se llama?": {
+    "filename": "1fb0229dbebf2319.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Mucho gusto. ¿Ha tenido un buen viaje?": {
+    "filename": "248cd45b0c17026a.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Me alegro. Le presento al equipo durante la reunión de esta mañana.": {
+    "filename": "68e45b6a9f1f1b3e.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Le puedo ofrecer un café mientras tanto?": {
+    "filename": "73ecd13b811f2cd3.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Estás libre el sábado?": {
+    "filename": "197c596870f4d552.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Vamos al cine juntos?": {
+    "filename": "b436a1d1ad1a1c49.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿A qué hora quedamos?": {
+    "filename": "e4fc80031ebea853.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Dónde nos vemos?": {
+    "filename": "a750c38257ef867a.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Estoy muy ocupado esta semana.": {
+    "filename": "1f0c89f08ff6eaff.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¡Sí, me encantaría! ¿Qué película quieres ver?": {
+    "filename": "c3d17277bdde8183.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Suena bien. ¿A qué hora?": {
+    "filename": "fc9239d91ade0794.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Perfecto. ¿Quedamos en la puerta del cine?": {
+    "filename": "2de9fd03539492b5.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¡Genial! Nos vemos el sábado entonces.": {
+    "filename": "0c0bd1a3e718e579.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¡Vaya! ¿Qué ha pasado?": {
+    "filename": "d4e6d3d66c2aaa9c.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:No pasa nada. ¿Lo dejamos para otro día?": {
+    "filename": "5b921f192be62a22.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Me parece bien. Ya me dices cuando sepas.": {
+    "filename": "888f12afa1c50238.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Estamos organizando una cena para el cumpleaños de Ana. ¿Te apuntas?": {
+    "filename": "4301758ac3ddc233.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:El viernes por la noche. Estamos pensando en un restaurante italiano. ¿Qué te parece?": {
+    "filename": "5d64359d5b9add7a.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Podrías encargarte de reservar la mesa? Seremos unas diez personas.": {
+    "filename": "f23a478b70642f55.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¡Genial! ¿Le compramos un regalo entre todos?": {
+    "filename": "47ae36e196de3270.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Unos 15 euros cada uno. Le podemos comprar ese bolso que le gustaba.": {
+    "filename": "7efeaa49c4f9e2a3.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Estoy de buen humor hoy.": {
+    "filename": "1aadbce69ac74dec.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Estoy un poco cansado.": {
+    "filename": "ab9ba942646d4549.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¡Qué rico estaba!": {
+    "filename": "1fe65e19f1a5279b.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Estoy bastante estresado.": {
+    "filename": "d529cb313b7c509e.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¡Qué divertido!": {
+    "filename": "395838f946a63a34.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¡Hola! Te veo muy contento hoy. ¿Qué ha pasado?": {
+    "filename": "9a005f18ee53629e.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¡Enhorabuena! ¡Eso es genial!": {
+    "filename": "1f0bb37a5d5d6b39.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Hay que celebrarlo. ¿Te apetece que cenemos fuera?": {
+    "filename": "b453fdcc28341714.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¡Perfecto! Yo invito, que hoy es tu día.": {
+    "filename": "c0c2b9dfdfdc8e7b.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Oye, te noto un poco raro hoy. ¿Estás bien?": {
+    "filename": "6a0ed46bcca5f5c6.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Qué te pasa? ¿Puedo hacer algo para ayudar?": {
+    "filename": "acc3615322e7bc53.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:A veces ayuda tomarse un descanso de 10 minutos. ¿Quieres que vayamos a dar un paseo?": {
+    "filename": "a142ceb4de766e59.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¡Vamos! Ya verás como después lo ves todo más claro.": {
+    "filename": "eb80c1d6fc67fc5c.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Has visto la nueva serie que todo el mundo está hablando?": {
+    "filename": "dd88d31ff1969333.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Qué te parece? A mí me está encantando.": {
+    "filename": "e60e32a78aeb4abc.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¡El final del último episodio fue increíble! No me lo esperaba para nada.": {
+    "filename": "87b10fb6f915dfc5.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Crees que habrá segunda temporada?": {
+    "filename": "81ba235befe9ee82.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Claro, dime. ¿Qué te preocupa?": {
+    "filename": "168b26a5c9e8bc24.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Es una decisión difícil. ¿Cuáles son las ventajas y desventajas?": {
+    "filename": "523f2733c8cb92fd.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Yo creo que deberías pensarlo con calma. No tienes que decidir hoy.": {
+    "filename": "752dfd281c3a12b6.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Para eso están los amigos. Hagas lo que hagas, te apoyaré.": {
+    "filename": "b51f6e48244624c7.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Empecemos la reunión.": {
+    "filename": "cb506949a4710724.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Alguien tiene algo que añadir?": {
+    "filename": "a1d4cc0ab5e0a0e3.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Puede compartir su pantalla?": {
+    "filename": "023a9b8574d87167.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Envío el informe después.": {
+    "filename": "a41654c07058da87.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Comparto las notas de la reunión.": {
+    "filename": "1134f241ce634adf.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Buenos días. ¿Es usted el nuevo miembro del equipo?": {
+    "filename": "970cd1113c6e728f.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Bienvenido. Yo soy Carlos, el jefe del equipo de marketing.": {
+    "filename": "7477c96856d20c8a.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:La reunión de equipo empieza en 10 minutos en la sala de conferencias.": {
+    "filename": "bb8c4ab61965802a.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Al final del pasillo a la izquierda. Le presento al resto del equipo allí.": {
+    "filename": "00d0f8bbe5bfc336.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Bien, el siguiente punto del orden del día es tu proyecto. ¿Puedes ponernos al día?": {
+    "filename": "59212b3fe5273edd.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Cuál es el estado actual del proyecto?": {
+    "filename": "e558a7a1fb239217.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Necesitas más recursos o tienes algún problema?": {
+    "filename": "af259e099ebeae0c.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Lo tendremos en cuenta. Buen trabajo. ¿Alguna pregunta para el equipo?": {
+    "filename": "35e23bdee8b0fad0.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Bien, vamos a empezar. El objetivo de esta reunión es definir los plazos del nuevo proyecto. ¿Alguna sugerencia?": {
+    "filename": "3b679e73a5918715.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Buena idea. ¿Quién se encarga de cada parte?": {
+    "filename": "e05c7d245350a3ef.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Perfecto. ¿Cómo gestionamos la comunicación? ¿Reuniones semanales?": {
+    "filename": "504835d15e50f55f.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:De acuerdo. Envío el acta de la reunión esta tarde. Si no hay nada más, damos por terminada la reunión.": {
+    "filename": "c05ba4a7ab109eaa.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Tengo experiencia en marketing digital.": {
+    "filename": "15e1d02a6e9f9791.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Valoro mucho el trabajo en equipo.": {
+    "filename": "5f88894fb50b988d.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Me gustaría formar parte de su equipo.": {
+    "filename": "c02b74464b9c6802.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Mi punto fuerte es la resolución de problemas.": {
+    "filename": "5896c13b53c39186.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:No dude en preguntarme lo que quiera.": {
+    "filename": "be9523f2849947af.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Buenos días, siéntese por favor. Cuénteme un poco sobre usted.": {
+    "filename": "072973a363e5c2a0.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Por qué le interesa este puesto?": {
+    "filename": "53abc2a88bf2e637.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Tiene alguna experiencia previa?": {
+    "filename": "2d5a47d6f7eff9d3.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Muy bien. ¿Tiene alguna pregunta para nosotros?": {
+    "filename": "d74b3e6511547bea.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Veo en su currículum que ha trabajado en varias empresas. ¿Qué aprendió en su último puesto?": {
+    "filename": "d01331d0a1be5cb1.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Puede darme un ejemplo de un proyecto exitoso que haya liderado?": {
+    "filename": "d99b4b9618b6452b.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Impresionante. ¿Cómo maneja los plazos ajustados y la presión?": {
+    "filename": "dc5cb06a29c3868d.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Dónde se ve profesionalmente dentro de cinco años?": {
+    "filename": "27e9542e036ea7f2.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:Gracias por venir. Este puesto es de dirección. ¿Cuál es su filosofía de liderazgo?": {
+    "filename": "bd6fe9e9ce63854a.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Cómo manejaría un conflicto entre dos miembros de su equipo?": {
+    "filename": "4abfbc46e1dc4f37.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Qué es lo que más le motiva en el trabajo?": {
+    "filename": "e8fe67e9a18fded0.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  },
+  "es:¿Cuáles son sus expectativas salariales para este puesto?": {
+    "filename": "d0a780f679cbfd77.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9"
+  }
+}

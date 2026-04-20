@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "test": "vitest run",
     "test:watch": "vitest",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "generate-audio": "node scripts/generate-audio.mjs"
   },
   "dependencies": {
     "prop-types": "^15.8.1",

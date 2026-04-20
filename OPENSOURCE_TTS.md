@@ -1,5 +1,7 @@
 # Open-Source TTS Solutions for SpeakOut
 
+> **Status: Archived.** This approach was replaced by pre-generated CDN audio (`cdnProvider`). The OpenTTS provider and Piper server are kept for reference and local development, but are no longer the recommended setup. See `scripts/generate-audio.mjs` for the current approach.
+
 SpeakOut now supports **OpenTTS**, a lightweight HTTP wrapper around popular open-source TTS engines. This guide shows how to set up and use each option for Korean speech practice.
 
 ## Quick Start

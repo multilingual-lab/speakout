@@ -4,6 +4,7 @@
  * Manages available TTS providers, persists the user's preferred provider,
  * and exposes a fallback-aware synthesis function.
  */
+import cdnProvider from './cdnProvider.js';
 import azureProvider from './azureProvider.js';
 import openTtsProvider from './openTtsProvider.js';
 import browserProvider from './browserProvider.js';
@@ -11,7 +12,7 @@ import browserProvider from './browserProvider.js';
 const STORAGE_PROVIDER_KEY = 'tts_provider';
 
 // Ordered list — first match wins during fallback.
-const providers = [azureProvider, openTtsProvider, browserProvider];
+const providers = [cdnProvider, azureProvider, openTtsProvider, browserProvider];
 
 /**
  * Return all registered providers.
@@ -32,7 +33,7 @@ export function getProviderById(id) {
  * Defaults to 'azure' for backward compatibility.
  */
 export function getPreferredProviderId() {
-  return localStorage.getItem(STORAGE_PROVIDER_KEY) || 'azure';
+  return localStorage.getItem(STORAGE_PROVIDER_KEY) || 'cdn';
 }
 
 /**
