@@ -33,7 +33,13 @@ const cdnProvider = {
     // Resolve languageId from ssmlLang (e.g. "ko-KR" → "ko", "es-ES" → "es")
     const langId = ssmlLang.split('-')[0];
     const manifestKey = `${langId}:${text}`;
-    const entry = audioManifest[manifestKey];
+    // Try exact match first, then with/without trailing punctuation
+    const stripped = text.replace(/[.!?。！？]+$/, '');
+    const entry = audioManifest[manifestKey]
+      || audioManifest[`${langId}:${stripped}`]
+      || audioManifest[`${langId}:${stripped}.`]
+      || audioManifest[`${langId}:${stripped}!`]
+      || audioManifest[`${langId}:${stripped}?`];
 
     if (!entry) {
       throw new Error(`CDN audio not found for [${langId}]: "${text.slice(0, 50)}..."`);
