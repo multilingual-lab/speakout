@@ -2,13 +2,14 @@ import { useState, useEffect, useRef } from 'react';
 import { useSpeech } from '../hooks/useSpeech';
 import { getLanguageField, getEnglishField } from '../utils/getLanguageField.js';
 
-export default function PracticeMode({ exchanges, language = 'ko', onNext, nextSessionTitle }) {
+export default function PracticeMode({ exchanges, language = 'ko', onNext, nextSessionTitle, onComplete }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [phase, setPhase] = useState('listen'); // listen | respond | processing | feedback
   const [showModel, setShowModel] = useState(false);
   const [speakingIdx, setSpeakingIdx] = useState(null);
   const [history, setHistory] = useState([]); // past chat bubbles
   const [pendingAutoRecord, setPendingAutoRecord] = useState(false);
+  const completedRef = useRef(false);
   const chatEndRef = useRef(null);
   const wasListeningRef = useRef(false);
   const { isListening, transcript, isSpeaking, error, startListening, stopListening, speak, stopSpeaking, setTranscript, setError } =
@@ -18,6 +19,13 @@ export default function PracticeMode({ exchanges, language = 'ko', onNext, nextS
   const isFinished = currentIndex >= exchanges.length;
   const isYouInitiate = exchange?.speaker === 'you-initiate';
   const exchangeText = getLanguageField(exchange, 'text', language);
+
+  useEffect(() => {
+    if (isFinished && !completedRef.current) {
+      completedRef.current = true;
+      onComplete?.(null);
+    }
+  }, [isFinished, onComplete]);
   const exchangePrompt = getEnglishField(exchange, 'text');
 
   // Auto-scroll to bottom on history change

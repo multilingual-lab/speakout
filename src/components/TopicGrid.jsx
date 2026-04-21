@@ -1,11 +1,32 @@
-export default function TopicGrid({ sections, language, languageOptions, onLanguageChange, onSelect, onOpenSettings }) {
+export default function TopicGrid({ sections, language, languageOptions, onLanguageChange, onSelect, onOpenSettings, progressData = {}, totalCompletions = 0, user, authAvailable, onOpenAuth, onSignOut }) {
   const selectedLanguage = languageOptions.find((option) => option.id === language) || languageOptions[0];
+
+  const getScenarioCompletionCount = (scenarioId) => {
+    const prefix = `${language}:${scenarioId}:`;
+    let count = 0;
+    for (const key of Object.keys(progressData)) {
+      if (key.startsWith(prefix) && progressData[key].completions > 0) count++;
+    }
+    return count;
+  };
 
   return (
     <div className="topic-grid-container">
       <div className="app-header-row">
         <h1 className="app-title">SpeakOut <span className="app-title-slogan">Immersive Practice</span></h1>
         <div className="app-header-right">
+          {totalCompletions > 0 && (
+            <span className="total-completions-badge">🔥 {totalCompletions}</span>
+          )}
+          {authAvailable && !user && (
+            <button className="auth-signin-btn" onClick={onOpenAuth}>Sign in</button>
+          )}
+          {user && (
+            <span className="auth-user-bar">
+              {user.email?.split('@')[0]}
+              <button className="auth-signout-btn" onClick={onSignOut}>Sign out</button>
+            </span>
+          )}
           <select
             className="language-quick-select"
             value={language}
@@ -31,10 +52,11 @@ export default function TopicGrid({ sections, language, languageOptions, onLangu
           <div className="topic-grid">
             {section.scenarios.map((s) => {
               const isMonologue = !!s.monologues;
+              const completedSessions = getScenarioCompletionCount(s.id);
               return (
               <div
                 key={s.id}
-                className="topic-card"
+                className={`topic-card${completedSessions > 0 ? ' topic-practiced' : ''}`}
                 style={{ '--card-color': s.color }}
                 role="button"
                 tabIndex={0}
@@ -43,6 +65,9 @@ export default function TopicGrid({ sections, language, languageOptions, onLangu
               >
                 <span className="topic-emoji">{s.emoji}</span>
                 <span className="topic-title">{s.title}</span>
+                {completedSessions > 0 && (
+                  <span className="topic-progress-badge">✓ {completedSessions} done</span>
+                )}
                 <span className="topic-title-en">
                   {s.titleEn} · <span className="topic-dialog-badge">{isMonologue ? `🎤 ${s.monologues.length}` : `🗨 ${s.sessions.length}`}</span>
                 </span>

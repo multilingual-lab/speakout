@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSpeech } from '../hooks/useSpeech';
 import { computeSimilarity, matchKeywords } from '../utils/scoring';
@@ -37,12 +37,12 @@ const monologueShape = PropTypes.shape({
  * 2. Composition (monologue scenarios): receives `monologue` prop.
  *    See prompt → write response → keyword match + model answer.
  */
-export default function WritingMode({ phrases, monologue, language = 'ko', onNext, nextTitle, onSpeakMode }) {
+export default function WritingMode({ phrases, monologue, language = 'ko', onNext, nextTitle, onSpeakMode, onComplete }) {
   const isPhraseMode = !!phrases;
   const langConfig = getLanguageConfig(language);
   return isPhraseMode
-    ? <PhraseDictation phrases={phrases} language={language} showKeyboard={langConfig.features.virtualKeyboard} onNext={onNext} nextTitle={nextTitle} />
-    : <CompositionWriting monologue={monologue} language={language} showKeyboard={langConfig.features.virtualKeyboard} onNext={onNext} nextTitle={nextTitle} onSpeakMode={onSpeakMode} />;
+    ? <PhraseDictation phrases={phrases} language={language} showKeyboard={langConfig.features.virtualKeyboard} onNext={onNext} nextTitle={nextTitle} onComplete={onComplete} />
+    : <CompositionWriting monologue={monologue} language={language} showKeyboard={langConfig.features.virtualKeyboard} onNext={onNext} nextTitle={nextTitle} onSpeakMode={onSpeakMode} onComplete={onComplete} />;
 }
 
 WritingMode.propTypes = {
@@ -55,10 +55,12 @@ WritingMode.propTypes = {
 };
 
 /* ── Phrase Dictation ──────────────────────────────────────────────── */
-function PhraseDictation({ phrases, language = 'ko', showKeyboard, onNext, nextTitle }) {
+function PhraseDictation({ phrases, language = 'ko', showKeyboard, onNext, nextTitle, onComplete }) {
   const [index, setIndex] = useState(0);
   const [input, setInput] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const scoresRef = useRef([]);
+  const completedRef = useRef(false);
   const { isSpeaking, speak } = useSpeech();
 
   const phrase = phrases[index];
@@ -68,6 +70,18 @@ function PhraseDictation({ phrases, language = 'ko', showKeyboard, onNext, nextT
   const score = submitted ? computeSimilarity(phraseText, input, language) : null;
   const scoreEmoji = score >= 80 ? '🎉' : score >= 50 ? '👍' : '💪';
   const scoreClass = score >= 80 ? 'high' : score >= 50 ? 'mid' : 'low';
+
+  useEffect(() => {
+    if (score != null) {
+      scoresRef.current[index] = score;
+    }
+    if (index >= phrases.length - 1 && submitted && !completedRef.current) {
+      completedRef.current = true;
+      const scores = scoresRef.current.filter((s) => s != null);
+      const avg = scores.length > 0 ? scores.reduce((a, b) => a + b, 0) / scores.length : null;
+      onComplete?.(avg);
+    }
+  }, [score, index, phrases.length, submitted, onComplete]);
 
   const handleSubmit = () => {
     if (input.trim()) setSubmitted(true);
@@ -200,12 +214,13 @@ PhraseDictation.propTypes = {
 };
 
 /* ── Composition Writing ───────────────────────────────────────────── */
-function CompositionWriting({ monologue, language = 'ko', showKeyboard, onNext, nextTitle, onSpeakMode }) {
+function CompositionWriting({ monologue, language = 'ko', showKeyboard, onNext, nextTitle, onSpeakMode, onComplete }) {
   const [phase, setPhase] = useState('writing'); // writing | reviewing
   const [input, setInput] = useState('');
   const [showModel, setShowModel] = useState(false);
   const [showPromptEnglish, setShowPromptEnglish] = useState(false);
   const [showModelEnglish, setShowModelEnglish] = useState(false);
+  const completedRef = useRef(false);
   const { isSpeaking, speak } = useSpeech();
 
   const matchedKeywords = monologue.keywords ? matchKeywords(monologue.keywords, input, language) : [];
@@ -214,6 +229,17 @@ function CompositionWriting({ monologue, language = 'ko', showKeyboard, onNext, 
   const modelText = getLanguageField(monologue, 'modelAnswer', language) || monologue.modelAnswer;
   const modelEnglish = getEnglishField(monologue, 'modelAnswer') || monologue.modelAnswerEn;
   const ChartComponent = monologue.chartId ? topikCharts[monologue.chartId] : null;
+
+  useEffect(() => {
+    if (phase === 'reviewing' && !completedRef.current) {
+      const total = monologue.keywords?.length || 0;
+      const score = total > 0 ? matchedKeywords.length / total : null;
+      if (total === 0 || score >= 0.5) {
+        completedRef.current = true;
+        onComplete?.(score);
+      }
+    }
+  }, [phase, matchedKeywords.length, monologue.keywords, onComplete]);
 
   const handleRetry = () => {
     setInput('');

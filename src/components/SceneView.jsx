@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import ShadowMode from './ShadowMode';
 import PracticeMode from './PracticeMode';
 import MonologueMode from './MonologueMode';
 import WritingMode from './WritingMode';
 import { getLanguageConfig } from '../config/languages.js';
+import { useProgress, makeProgressKey } from '../hooks/useProgress.js';
 
 const LEVEL_LABELS = { beginner: 'Beginner', intermediate: 'Intermediate', advanced: 'Advanced' };
 const LEVEL_ORDER = { beginner: 0, intermediate: 1, advanced: 2 };
@@ -13,6 +14,13 @@ export default function SceneView({ scenario, initialMode, language = 'ko', onBa
   const isMonologue = !!scenario.monologues;
   const [mode, setMode] = useState(isMonologue ? 'monologue' : initialMode);
   const [sessionId, setSessionId] = useState(null);
+  const { recordCompletion, getProgress } = useProgress();
+
+  const handleComplete = useCallback((score) => {
+    if (!sessionId) return;
+    const key = makeProgressKey(language, scenario.id, sessionId, mode);
+    recordCompletion(key, score);
+  }, [language, scenario.id, sessionId, mode, recordCompletion]);
 
   const sortedSessions = scenario.sessions ? sortByLevel(scenario.sessions) : [];
   const session = scenario.sessions?.find((s) => s.id === sessionId);
@@ -52,6 +60,11 @@ export default function SceneView({ scenario, initialMode, language = 'ko', onBa
     } else {
       onBack();
     }
+  };
+
+  const getSessionProgress = (sid, m) => {
+    const key = makeProgressKey(language, scenario.id, sid, m);
+    return getProgress(key);
   };
 
   const backLabel = 'Back';
@@ -100,25 +113,29 @@ export default function SceneView({ scenario, initialMode, language = 'ko', onBa
             </button>
           </div>
           <div className="session-list">
-            {sortByLevel(scenario.sessions).map((s) => (
+            {sortByLevel(scenario.sessions).map((s) => {
+              const prog = getSessionProgress(s.id, 'practice');
+              return (
               <button
                 key={s.id}
-                className="session-card"
+                className={`session-card${prog ? ' session-done' : ''}`}
                 onClick={() => setSessionId(s.id)}
               >
                 <span className="session-title">{s.title}</span>
                 <span className="session-title-en">{s.titleEn}</span>
                 {s.level && <span className={`level-badge level-${s.level}`}>{LEVEL_LABELS[s.level]}</span>}
                 <span className="session-count">{s.exchanges.length} turns</span>
+                {prog && <span className="session-progress-badge">✓ {prog.completions}×</span>}
               </button>
-            ))}
+              );
+            })}
           </div>
         </div>
       )}
 
       {/* Active practice session */}
       {mode === 'practice' && session && (
-        <PracticeMode key={sessionId} exchanges={session.exchanges} language={language} onNext={nextSessionId ? handleNextSession : null} nextSessionTitle={nextSession?.title} />
+        <PracticeMode key={sessionId} exchanges={session.exchanges} language={language} onNext={nextSessionId ? handleNextSession : null} nextSessionTitle={nextSession?.title} onComplete={handleComplete} />
       )}
 
       {/* Session picker for shadow */}
@@ -139,30 +156,34 @@ export default function SceneView({ scenario, initialMode, language = 'ko', onBa
               <span className="session-title-en">Quick Phrases</span>
               <span className="session-count">{scenario.shadow.length} phrases</span>
             </button>
-            {sortByLevel(scenario.sessions).map((s) => (
+            {sortByLevel(scenario.sessions).map((s) => {
+              const prog = getSessionProgress(s.id, 'shadow');
+              return (
               <button
                 key={s.id}
-                className="session-card"
+                className={`session-card${prog ? ' session-done' : ''}`}
                 onClick={() => setSessionId(s.id)}
               >
                 <span className="session-title">{s.title}</span>
                 <span className="session-title-en">{s.titleEn}</span>
                 {s.level && <span className={`level-badge level-${s.level}`}>{LEVEL_LABELS[s.level]}</span>}
                 <span className="session-count">{s.exchanges.length} turns</span>
+                {prog && <span className="session-progress-badge">{prog.bestScore != null ? `Best: ${Math.round(prog.bestScore)}%` : `✓ ${prog.completions}×`}</span>}
               </button>
-            ))}
+              );
+            })}
           </div>
         </div>
       )}
 
       {/* Quick phrases shadow */}
       {mode === 'shadow' && sessionId === '__quick__' && (
-        <ShadowMode key={sessionId} phrases={scenario.shadow} language={language} onNext={nextSessionId ? handleNextSession : null} nextSessionTitle={nextSession?.title} />
+        <ShadowMode key={sessionId} phrases={scenario.shadow} language={language} onNext={nextSessionId ? handleNextSession : null} nextSessionTitle={nextSession?.title} onComplete={handleComplete} />
       )}
 
       {/* Dialog shadow */}
       {mode === 'shadow' && session && (
-        <ShadowMode key={sessionId} exchanges={session.exchanges} language={language} onNext={nextSessionId ? handleNextSession : null} nextSessionTitle={nextSession?.title} />
+        <ShadowMode key={sessionId} exchanges={session.exchanges} language={language} onNext={nextSessionId ? handleNextSession : null} nextSessionTitle={nextSession?.title} onComplete={handleComplete} />
       )}
 
       {/* Monologue picker */}
@@ -170,35 +191,39 @@ export default function SceneView({ scenario, initialMode, language = 'ko', onBa
         <div className="session-picker">
           <p className="session-picker-label">Choose a topic</p>
           <div className="session-list">
-            {sortByLevel(scenario.monologues).map((m) => (
+            {sortByLevel(scenario.monologues).map((m) => {
+              const prog = getSessionProgress(m.id, 'monologue');
+              return (
               <button
                 key={m.id}
-                className="session-card"
+                className={`session-card${prog ? ' session-done' : ''}`}
                 onClick={() => setSessionId(m.id)}
               >
                 <span className="session-title">{m.title}</span>
                 <span className="session-title-en">{m.titleEn}</span>
                 {m.level && <span className={`level-badge level-${m.level}`}>{LEVEL_LABELS[m.level]}</span>}
                 <span className="session-count">⏱ {Math.floor(m.duration / 60)}:{String(m.duration % 60).padStart(2, '0')}</span>
+                {prog && <span className="session-progress-badge">{prog.bestScore != null ? `Best: ${Math.round(prog.bestScore * 100)}%` : `✓ ${prog.completions}×`}</span>}
               </button>
-            ))}
+              );
+            })}
           </div>
         </div>
       )}
 
       {/* Active monologue (speaking) */}
       {mode === 'monologue' && monologue && (
-        <MonologueMode key={sessionId} monologue={monologue} language={language} onNext={nextSessionId ? handleNextSession : null} nextTitle={nextSession?.title} onWriteMode={() => setMode('write')} />
+        <MonologueMode key={sessionId} monologue={monologue} language={language} onNext={nextSessionId ? handleNextSession : null} nextTitle={nextSession?.title} onWriteMode={() => setMode('write')} onComplete={handleComplete} />
       )}
 
       {/* Writing — phrase dictation (dialog scenarios) */}
       {mode === 'write' && !isMonologue && (
-        <WritingMode key="phrases" phrases={scenario.shadow} language={language} />
+        <WritingMode key="phrases" phrases={scenario.shadow} language={language} onComplete={handleComplete} />
       )}
 
       {/* Writing — composition (monologue scenarios, after topic picked) */}
       {mode === 'write' && isMonologue && monologue && (
-        <WritingMode key={sessionId} monologue={monologue} language={language} onNext={nextSessionId ? handleNextSession : null} nextTitle={nextSession?.title} onSpeakMode={() => setMode('monologue')} />
+        <WritingMode key={sessionId} monologue={monologue} language={language} onNext={nextSessionId ? handleNextSession : null} nextTitle={nextSession?.title} onSpeakMode={() => setMode('monologue')} onComplete={handleComplete} />
       )}
     </div>
   );

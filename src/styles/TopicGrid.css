@@ -183,6 +183,27 @@
 .topic-actions-divider {
   width: 1px;
   height: 0.85em;
+}
+
+.topic-practiced {
+  border-color: rgba(74, 222, 128, 0.2);
+}
+
+.topic-progress-badge {
+  font-size: 0.65rem;
+  color: #4ade80;
+  font-weight: 600;
+}
+
+.total-completions-badge {
+  font-size: 0.85rem;
+  color: #fb923c;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  background: rgba(251, 146, 60, 0.1);
+  border-radius: 10px;
+  white-space: nowrap;
+}
   background: rgba(255, 255, 255, 0.15);
   flex-shrink: 0;
 }

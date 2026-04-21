@@ -25,7 +25,7 @@ function isLaptopRecordingMode() {
   return !isLikelyMobileUa && (hasFinePointer || hasHover);
 }
 
-export default function MonologueMode({ monologue, language = 'ko', onNext, nextTitle, onWriteMode }) {
+export default function MonologueMode({ monologue, language = 'ko', onNext, nextTitle, onWriteMode, onComplete }) {
   const [phase, setPhase] = useState('prompt'); // prompt | drill | recording | reviewing
   const [elapsed, setElapsed] = useState(0);
   const [showModel, setShowModel] = useState(false);
@@ -34,6 +34,7 @@ export default function MonologueMode({ monologue, language = 'ko', onNext, next
   const [pendingAutoRecord, setPendingAutoRecord] = useState(false);
   const timerRef = useRef(null);
   const wasListeningRef = useRef(false);
+  const completedRef = useRef(false);
   const useContinuousRecording = isLaptopRecordingMode();
   const { isListening, transcript, isSpeaking, error, startListening, stopListening, speak, setTranscript, setError } =
     useSpeech();
@@ -102,6 +103,17 @@ export default function MonologueMode({ monologue, language = 'ko', onNext, next
 
   // Check which keywords appear in transcript
   const matchedKeywords = monologue.keywords ? matchKeywords(monologue.keywords, transcript, language) : [];
+
+  useEffect(() => {
+    if (phase === 'reviewing' && !completedRef.current) {
+      const total = monologue.keywords?.length || 0;
+      const score = total > 0 ? matchedKeywords.length / total : null;
+      if (total === 0 || score >= 0.5) {
+        completedRef.current = true;
+        onComplete?.(score);
+      }
+    }
+  }, [phase, matchedKeywords.length, monologue.keywords, onComplete]);
 
   const ChartComponent = monologue.chartId ? topikCharts[monologue.chartId] : null;
 
