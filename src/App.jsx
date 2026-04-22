@@ -78,18 +78,17 @@ export default function App() {
           onUseCloud={() => syncProgress('cloud')}
         />
       )}
-      {showMyPage && (
+      {showMyPage ? (
         <MyPage
           user={user}
           authAvailable={authAvailable}
-          onOpenAuth={() => { setShowMyPage(false); setShowAuth(true); }}
+          onOpenAuth={() => setShowAuth(true)}
           onSignOut={() => { setShowMyPage(false); clearProgress(); signOut(); }}
-          onClose={() => setShowMyPage(false)}
+          onBack={() => setShowMyPage(false)}
           userId={user?.id}
           onClearProgress={clearProgress}
         />
-      )}
-      {!scenario ? (
+      ) : !scenario ? (
         <TopicGrid
           sections={activeSections}
           language={language}

@@ -5,9 +5,12 @@ import {
   getPreferredProviderId,
   setPreferredProviderId,
   getProviderById,
+  getPreferredRate,
+  setPreferredRate,
+  getRateOptions,
 } from '../services/tts/index.js';
 
-export default function MyPage({ user, authAvailable, onOpenAuth, onSignOut, onClose, userId, onClearProgress }) {
+export default function MyPage({ user, authAvailable, onOpenAuth, onSignOut, onBack, userId, onClearProgress }) {
   const { data: progressData, totalCompletions } = useProgress(userId);
   const [confirmClear, setConfirmClear] = useState(false);
 
@@ -17,6 +20,13 @@ export default function MyPage({ user, authAvailable, onOpenAuth, onSignOut, onC
   const selectedProvider = getProviderById(selectedProviderId) || providers[0];
   const [configValues, setConfigValues] = useState(() => selectedProvider.getConfig());
   const [saved, setSaved] = useState(false);
+  const rateOptions = getRateOptions();
+  const [selectedRate, setSelectedRate] = useState(getPreferredRate);
+
+  const handleRateChange = (value) => {
+    setSelectedRate(value);
+    setPreferredRate(value);
+  };
 
   const handleProviderChange = (e) => {
     const id = e.target.value;
@@ -47,11 +57,11 @@ export default function MyPage({ user, authAvailable, onOpenAuth, onSignOut, onC
   }
 
   return (
-    <div className="settings-overlay" onClick={onClose}>
-      <div className="mypage-panel" onClick={(e) => e.stopPropagation()}>
-        <button className="settings-close" onClick={onClose}>×</button>
-
-        <h2 className="mypage-title">My Page</h2>
+    <div className="scene-container">
+      <header className="scene-header">
+        <button className="back-btn" onClick={onBack}>← Back</button>
+      </header>
+      <div className="mypage-panel">
 
         {user ? (
           <div className="mypage-profile">
@@ -62,7 +72,7 @@ export default function MyPage({ user, authAvailable, onOpenAuth, onSignOut, onC
           authAvailable && (
             <div className="mypage-signin-section">
               <p className="mypage-signin-text">Sign in to save progress across devices</p>
-              <button className="mypage-signin-btn" onClick={() => { onClose(); onOpenAuth(); }}>
+              <button className="mypage-signin-btn" onClick={onOpenAuth}>
                 Sign in
               </button>
             </div>
@@ -108,9 +118,9 @@ export default function MyPage({ user, authAvailable, onOpenAuth, onSignOut, onC
         </select>
 
         {selectedProvider.configFields.length > 0 ? (
-          <>
+          <div className="settings-config-card">
             <p className="settings-note">
-              {selectedProvider.label} improves TTS voice quality. Without credentials, the app falls back to the next available provider.
+              Optional — for advanced real-time TTS.
             </p>
             {selectedProvider.configFields.map((field) => (
               <div key={field.key}>
@@ -127,13 +137,30 @@ export default function MyPage({ user, authAvailable, onOpenAuth, onSignOut, onC
             <button className="settings-save" onClick={handleSave}>
               {saved ? '✓ Saved' : 'Save'}
             </button>
-          </>
+          </div>
         ) : (
           <p className="settings-note">
             {selectedProvider.id === 'cdn'
-              ? `${selectedProvider.label} requires no configuration — it plays pre-generated Azure TTS audio from a CDN.`
-              : `${selectedProvider.label} requires no configuration — it uses your browser's built-in speech engine.`}
+              ? 'Plays pre-generated audio from CDN.'
+              : 'Uses your browser\'s built-in speech engine.'}
           </p>
+        )}
+
+        {selectedProviderId === 'azure' && (
+          <>
+            <label className="settings-label">Speech Speed</label>
+            <div className="tts-rate-options">
+              {rateOptions.map((opt) => (
+                <button
+                  key={opt.value}
+                  className={`tts-rate-btn${selectedRate === opt.value ? ' tts-rate-active' : ''}`}
+                  onClick={() => handleRateChange(opt.value)}
+                >
+                  {opt.label}
+                </button>
+              ))}
+            </div>
+          </>
         )}
 
         <div className="mypage-footer">

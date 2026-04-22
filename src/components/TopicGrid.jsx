@@ -31,7 +31,7 @@ export default function TopicGrid({ sections, language, languageOptions, onLangu
             {totalCompletions > 0 && (
               <span className="avatar-streak-inline">🔥{totalCompletions}</span>
             )}
-            <span className="avatar-letter">{user ? user.email?.[0]?.toUpperCase() || '?' : '👤'}</span>
+            <span className={`avatar-letter${user ? '' : ' avatar-guest'}`}>{user ? user.email?.[0]?.toUpperCase() || '?' : '👤'}</span>
           </button>
         </div>
       </div>

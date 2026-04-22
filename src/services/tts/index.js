@@ -9,6 +9,13 @@ import azureProvider from './azureProvider.js';
 import browserProvider from './browserProvider.js';
 
 const STORAGE_PROVIDER_KEY = 'tts_provider';
+const STORAGE_RATE_KEY = 'tts_rate';
+const DEFAULT_RATE = '0.9';
+const RATE_OPTIONS = [
+  { value: '0.7', label: 'Slow' },
+  { value: '0.9', label: 'Normal' },
+  { value: '1.1', label: 'Fast' },
+];
 
 // Ordered list — first match wins during fallback.
 const providers = [cdnProvider, azureProvider, browserProvider];
@@ -40,6 +47,27 @@ export function getPreferredProviderId() {
  */
 export function setPreferredProviderId(id) {
   localStorage.setItem(STORAGE_PROVIDER_KEY, id);
+}
+
+/**
+ * Return the user's preferred TTS rate.
+ */
+export function getPreferredRate() {
+  return localStorage.getItem(STORAGE_RATE_KEY) || DEFAULT_RATE;
+}
+
+/**
+ * Persist the user's preferred TTS rate.
+ */
+export function setPreferredRate(rate) {
+  localStorage.setItem(STORAGE_RATE_KEY, rate);
+}
+
+/**
+ * Return available rate options.
+ */
+export function getRateOptions() {
+  return RATE_OPTIONS;
 }
 
 /**
