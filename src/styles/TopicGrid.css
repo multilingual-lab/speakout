@@ -204,9 +204,6 @@
   border-radius: 10px;
   white-space: nowrap;
 }
-  background: rgba(255, 255, 255, 0.15);
-  flex-shrink: 0;
-}
 
 .topic-emoji {
   font-size: 2.5rem;
