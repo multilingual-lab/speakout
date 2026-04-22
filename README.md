@@ -100,3 +100,18 @@ npx vitest run src/components/AuthModal.test.jsx
 ```
 
 For a complete overview of the test suite, CI gates, and contributing guidelines, see [ARCHITECTURE.md](./ARCHITECTURE.md#testing--ci).
+
+## Deployment
+
+The app deploys to **GitHub Pages** via the `.github/workflows/deploy.yml` workflow on every push to `main`.
+
+### Required GitHub Secrets
+
+Add these as **environment secrets** under **Settings → Environments → `github-pages`**:
+
+| Secret | Description |
+| ------ | ----------- |
+| `VITE_SUPABASE_URL` | Supabase project URL (e.g. `https://xxx.supabase.co`) |
+| `VITE_SUPABASE_ANON_KEY` | Supabase anonymous/public key |
+
+These are injected at build time via Vite's `import.meta.env`. Without them, auth features (sign-in, progress sync) are disabled — the app still works but in local-only mode.
