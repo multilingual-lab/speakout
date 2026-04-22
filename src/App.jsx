@@ -30,7 +30,7 @@ export default function App() {
   });
   const scrollYRef = useRef(0);
   const { user, isRecovery, signInWithGoogle, signInWithPassword, signUp, resetPassword, updatePassword, signOut, available: authAvailable } = useAuth();
-  const { data: progressData, totalCompletions } = useProgress(user?.id);
+  const { data: progressData, totalCompletions, recordCompletion, getProgress } = useProgress(user?.id);
 
   const handleLanguageChange = useCallback((newLanguage) => {
     setLanguage(newLanguage);
@@ -99,7 +99,8 @@ export default function App() {
           initialMode={selection.mode}
           language={language}
           onBack={handleBack}
-          userId={user?.id}
+          recordCompletion={recordCompletion}
+          getProgress={getProgress}
         />
       )}
     </>
