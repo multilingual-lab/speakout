@@ -7,8 +7,9 @@ import {
   getProviderById,
 } from '../services/tts/index.js';
 
-export default function MyPage({ user, authAvailable, onOpenAuth, onSignOut, onClose, userId }) {
+export default function MyPage({ user, authAvailable, onOpenAuth, onSignOut, onClose, userId, onClearProgress }) {
   const { data: progressData, totalCompletions } = useProgress(userId);
+  const [confirmClear, setConfirmClear] = useState(false);
 
   // TTS settings state
   const providers = getProviders();
@@ -70,23 +71,23 @@ export default function MyPage({ user, authAvailable, onOpenAuth, onSignOut, onC
 
         <div className="mypage-stats">
           <div className="mypage-stat-row mypage-stat-total">
-            <span>🔥 Total completions</span>
+            <span><span className="mypage-stat-icon">🔥</span> Total completions</span>
             <span className="mypage-stat-value">{totalCompletions}</span>
           </div>
-          <div className="mypage-stat-row">
-            <span>🗨 Practice</span>
+          <div className={`mypage-stat-row${stats.practice === 0 ? ' mypage-stat-zero' : ''}`}>
+            <span><span className="mypage-stat-icon">🗨</span> Practice</span>
             <span className="mypage-stat-value">{stats.practice}</span>
           </div>
-          <div className="mypage-stat-row">
-            <span>🔁 Shadowing</span>
+          <div className={`mypage-stat-row${stats.shadow === 0 ? ' mypage-stat-zero' : ''}`}>
+            <span><span className="mypage-stat-icon">🔁</span> Shadowing</span>
             <span className="mypage-stat-value">{stats.shadow}</span>
           </div>
-          <div className="mypage-stat-row">
-            <span>🎤 Monologue</span>
+          <div className={`mypage-stat-row${stats.monologue === 0 ? ' mypage-stat-zero' : ''}`}>
+            <span><span className="mypage-stat-icon">🎤</span> Monologue</span>
             <span className="mypage-stat-value">{stats.monologue}</span>
           </div>
-          <div className="mypage-stat-row">
-            <span>✍️ Writing</span>
+          <div className={`mypage-stat-row${stats.write === 0 ? ' mypage-stat-zero' : ''}`}>
+            <span><span className="mypage-stat-icon">✍️</span> Writing</span>
             <span className="mypage-stat-value">{stats.write}</span>
           </div>
         </div>
@@ -144,10 +145,25 @@ export default function MyPage({ user, authAvailable, onOpenAuth, onSignOut, onC
           >
             GitHub
           </a>
-          {user && (
-            <button className="mypage-signout-btn" onClick={onSignOut}>Sign out</button>
-          )}
+          <div className="mypage-footer-right">
+            {totalCompletions > 0 && !confirmClear && (
+              <button className="mypage-clear-btn" onClick={() => setConfirmClear(true)}>Clear progress</button>
+            )}
+            {user && (
+              <button className="mypage-signout-btn" onClick={onSignOut}>Sign out</button>
+            )}
+          </div>
         </div>
+
+        {confirmClear && (
+          <div className="mypage-clear-confirm">
+            <span className="mypage-clear-warn">Clear all practice history on this device?</span>
+            <div className="mypage-clear-btns">
+              <button className="mypage-clear-yes" onClick={() => { onClearProgress(); setConfirmClear(false); }}>Clear</button>
+              <button className="mypage-clear-no" onClick={() => setConfirmClear(false)}>Cancel</button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo, useEffect, useRef } from 'react';
+import { useState, useCallback, useMemo, useEffect } from 'react';
 import { supabase } from '../services/supabase';
 
 const STORAGE_KEY = 'speakout_progress';
@@ -78,14 +78,23 @@ export function makeProgressKey(language, scenarioId, sessionId, mode) {
 
 export function useProgress(userId) {
   const [data, setData] = useState(loadProgress);
-  const syncedRef = useRef(false);
+  const [synced, setSynced] = useState(false);
 
-  // Sync on login: merge local + remote, persist both
+  // Reset sync flag on logout
   useEffect(() => {
-    if (!userId || syncedRef.current) return;
-    syncedRef.current = true;
-    (async () => {
-      const remote = await fetchRemoteProgress(userId);
+    if (!userId) setSynced(false);
+  }, [userId]);
+
+  const hasLocalData = useMemo(() => Object.keys(data).length > 0, [data]);
+
+  const needsSyncPrompt = !!userId && !synced && hasLocalData;
+
+  // Sync with a chosen strategy: 'merge' | 'cloud'
+  const syncProgress = useCallback(async (strategy) => {
+    if (!userId || synced) return;
+    setSynced(true);
+    const remote = await fetchRemoteProgress(userId);
+    if (strategy === 'merge') {
       setData((local) => {
         const allKeys = new Set([...Object.keys(local), ...Object.keys(remote)]);
         const merged = {};
@@ -93,19 +102,29 @@ export function useProgress(userId) {
           merged[key] = mergeEntry(local[key], remote[key]);
         }
         saveProgress(merged);
-        // Push merged data back to remote
         for (const key of allKeys) {
           upsertRemoteProgress(userId, key, merged[key]);
         }
         return merged;
       });
-    })();
-  }, [userId]);
+    } else {
+      // 'cloud' — replace local with remote
+      saveProgress(remote);
+      setData(remote);
+    }
+  }, [userId, synced]);
 
-  // Reset sync flag on logout
+  // Auto-sync when local storage is empty (no prompt needed)
   useEffect(() => {
-    if (!userId) syncedRef.current = false;
-  }, [userId]);
+    if (userId && !synced && !hasLocalData) {
+      syncProgress('cloud');
+    }
+  }, [userId, synced, hasLocalData, syncProgress]);
+
+  const clearProgress = useCallback(() => {
+    saveProgress({});
+    setData({});
+  }, []);
 
   const recordCompletion = useCallback((key, score) => {
     setData((prev) => {
@@ -149,5 +168,5 @@ export function useProgress(userId) {
     return Object.values(data).reduce((sum, e) => sum + e.completions, 0);
   }, [data]);
 
-  return { data, recordCompletion, getProgress, getScenarioProgress, totalCompletions };
+  return { data, recordCompletion, getProgress, getScenarioProgress, totalCompletions, syncProgress, clearProgress, needsSyncPrompt };
 }

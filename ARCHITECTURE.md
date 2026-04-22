@@ -14,7 +14,7 @@ Supported target languages: Korean, Spanish (with Chinese planned). Language sel
 | TTS | Provider-based: CDN, Azure, Browser, extensible | Fallback chain: CDN → Azure → browser |
 | STT | Web Speech API | Chrome required; locale resolved from language registry |
 | Styling | Plain CSS + custom properties | Dark slate-blue theme, WCAG AA verified |
-| Storage | `localStorage` | Azure creds, language selection, future: progress tracking |
+| Storage | `localStorage` + Supabase | Progress tracking (local + cloud sync), Azure creds, language selection |
 | Testing | Vitest | `npm test` — schema validation + scoring + adapter unit tests |
 | Content | Pre-authored JSON | No LLM yet (planned Phase 2) |
 | Audio CDN | Cloudflare R2 | Pre-generated Azure TTS audio; CORS configured via `r2-cors.json` |
@@ -41,12 +41,15 @@ src/
 │   ├── Settings.jsx          # Azure key/endpoint config modal
 │   ├── AuthModal.jsx         # Sign-in / sign-up / forgot-password flows
 │   ├── AuthModal.test.jsx    # Auth flow tests (14 tests)
-│   ├── MyPage.jsx            # User profile & saved progress (auth-gated)
+│   ├── SyncPromptModal.jsx   # Post-sign-in prompt: merge local progress or use cloud
+│   ├── SyncPromptModal.test.jsx # Sync prompt tests
+│   ├── MyPage.jsx            # User profile, stats, TTS settings, clear progress
 │   └── charts/
 │       └── TopikCharts.jsx   # TOPIK-style bar/line/pie SVG charts for monologue prompts
 ├── hooks/
 │   ├── useSpeech.js          # TTS + STT (language-aware via registry)
-│   └── useAuth.js            # Auth state & session management (Supabase)
+│   ├── useAuth.js            # Auth state & session management (Supabase)
+│   └── useProgress.js        # Completion tracking: local storage + Supabase sync
 ├── services/
 │   ├── supabase.js           # Supabase client initialization
 │   └── tts/                  # Provider-based TTS abstraction
@@ -246,6 +249,15 @@ TopicGrid (home)              ⚙️ Settings (always visible, top-right)
 ```
 
 ## Behavioral Specifications
+
+### Progress Tracking & Sync
+
+- **Local storage:** completions saved to `localStorage` key `speakout_progress` on every `recordCompletion()` call
+- **Cloud sync:** when signed in, each completion is also upserted to Supabase `completions` table
+- **Sign-in sync prompt:** if local progress exists when signing in, `SyncPromptModal` asks: merge (combine local + cloud, keep best) or use cloud only (discard local). If local storage is empty, cloud data loads silently.
+- **Sign-up:** local data uploads to cloud silently (new account can't conflict)
+- **Sign-out:** local progress is cleared to prevent cross-contamination on shared devices
+- **Clear progress:** available in MyPage for both guests and signed-in users; requires confirmation
 
 ### Speech Recognition (STT)
 

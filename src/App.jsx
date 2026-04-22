@@ -3,6 +3,7 @@ import scenarios, { sections } from './data/scenarios';
 import TopicGrid from './components/TopicGrid';
 import SceneView from './components/SceneView';
 import AuthModal from './components/AuthModal';
+import SyncPromptModal from './components/SyncPromptModal';
 import ResetPasswordModal from './components/ResetPasswordModal';
 import MyPage from './components/MyPage';
 import { getSupportedLanguages, LANGUAGES } from './config/languages';
@@ -30,7 +31,7 @@ export default function App() {
   });
   const scrollYRef = useRef(0);
   const { user, isRecovery, signInWithGoogle, signInWithPassword, signUp, resetPassword, updatePassword, signOut, available: authAvailable } = useAuth();
-  const { data: progressData, totalCompletions, recordCompletion, getProgress } = useProgress(user?.id);
+  const { data: progressData, totalCompletions, recordCompletion, getProgress, syncProgress, clearProgress, needsSyncPrompt } = useProgress(user?.id);
 
   const handleLanguageChange = useCallback((newLanguage) => {
     setLanguage(newLanguage);
@@ -71,14 +72,21 @@ export default function App() {
       {isRecovery && (
         <ResetPasswordModal onUpdatePassword={updatePassword} />
       )}
+      {needsSyncPrompt && (
+        <SyncPromptModal
+          onMerge={() => syncProgress('merge')}
+          onUseCloud={() => syncProgress('cloud')}
+        />
+      )}
       {showMyPage && (
         <MyPage
           user={user}
           authAvailable={authAvailable}
           onOpenAuth={() => { setShowMyPage(false); setShowAuth(true); }}
-          onSignOut={() => { setShowMyPage(false); signOut(); }}
+          onSignOut={() => { setShowMyPage(false); clearProgress(); signOut(); }}
           onClose={() => setShowMyPage(false)}
           userId={user?.id}
+          onClearProgress={clearProgress}
         />
       )}
       {!scenario ? (
