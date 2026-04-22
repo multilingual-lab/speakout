@@ -92,3 +92,11 @@ npm run build
 ```bash
 npm test
 ```
+
+Quick test of a specific test file (e.g. auth):
+
+```bash
+npx vitest run src/components/AuthModal.test.jsx
+```
+
+For a complete overview of the test suite, CI gates, and contributing guidelines, see [ARCHITECTURE.md](./ARCHITECTURE.md#testing--ci).

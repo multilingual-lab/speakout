@@ -1,4 +1,4 @@
-export default function TopicGrid({ sections, language, languageOptions, onLanguageChange, onSelect, onOpenSettings, progressData = {}, totalCompletions = 0, user, authAvailable, onOpenAuth, onSignOut }) {
+export default function TopicGrid({ sections, language, languageOptions, onLanguageChange, onSelect, progressData = {}, totalCompletions = 0, user, onOpenMyPage }) {
   const selectedLanguage = languageOptions.find((option) => option.id === language) || languageOptions[0];
 
   const getScenarioCompletionCount = (scenarioId) => {
@@ -15,18 +15,6 @@ export default function TopicGrid({ sections, language, languageOptions, onLangu
       <div className="app-header-row">
         <h1 className="app-title">SpeakOut <span className="app-title-slogan">Immersive Practice</span></h1>
         <div className="app-header-right">
-          {totalCompletions > 0 && (
-            <span className="total-completions-badge">🔥 {totalCompletions}</span>
-          )}
-          {authAvailable && !user && (
-            <button className="auth-signin-btn" onClick={onOpenAuth}>Sign in</button>
-          )}
-          {user && (
-            <span className="auth-user-bar">
-              {user.email?.split('@')[0]}
-              <button className="auth-signout-btn" onClick={onSignOut}>Sign out</button>
-            </span>
-          )}
           <select
             className="language-quick-select"
             value={language}
@@ -39,7 +27,12 @@ export default function TopicGrid({ sections, language, languageOptions, onLangu
               </option>
             ))}
           </select>
-          <button className="settings-gear" onClick={onOpenSettings} title="Settings">⚙️</button>
+          <button className="mypage-avatar-btn" onClick={onOpenMyPage} title="My Page">
+            {totalCompletions > 0 && (
+              <span className="avatar-streak-inline">🔥{totalCompletions}</span>
+            )}
+            <span className="avatar-letter">{user ? user.email?.[0]?.toUpperCase() || '?' : '👤'}</span>
+          </button>
         </div>
       </div>
 

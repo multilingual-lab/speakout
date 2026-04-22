@@ -4,6 +4,7 @@ import { supabase } from '../services/supabase';
 export function useAuth() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isRecovery, setIsRecovery] = useState(false);
 
   useEffect(() => {
     if (!supabase) {
@@ -16,8 +17,11 @@ export function useAuth() {
       setLoading(false);
     });
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       setUser(session?.user ?? null);
+      if (event === 'PASSWORD_RECOVERY') {
+        setIsRecovery(true);
+      }
     });
 
     return () => subscription.unsubscribe();
@@ -31,12 +35,30 @@ export function useAuth() {
     });
   }, []);
 
-  const signInWithEmail = useCallback(async (email) => {
+  const signInWithPassword = useCallback(async (email, password) => {
     if (!supabase) return { error: null };
-    const { error } = await supabase.auth.signInWithOtp({
-      email,
-      options: { emailRedirectTo: window.location.origin },
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    return { error };
+  }, []);
+
+  const signUp = useCallback(async (email, password) => {
+    if (!supabase) return { error: null };
+    const { error } = await supabase.auth.signUp({ email, password });
+    return { error };
+  }, []);
+
+  const resetPassword = useCallback(async (email) => {
+    if (!supabase) return { error: null };
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: window.location.origin,
     });
+    return { error };
+  }, []);
+
+  const updatePassword = useCallback(async (newPassword) => {
+    if (!supabase) return { error: null };
+    const { error } = await supabase.auth.updateUser({ password: newPassword });
+    if (!error) setIsRecovery(false);
     return { error };
   }, []);
 
@@ -45,5 +67,5 @@ export function useAuth() {
     await supabase.auth.signOut();
   }, []);
 
-  return { user, loading, signInWithGoogle, signInWithEmail, signOut, available: !!supabase };
+  return { user, loading, isRecovery, signInWithGoogle, signInWithPassword, signUp, resetPassword, updatePassword, signOut, available: !!supabase };
 }

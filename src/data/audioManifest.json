@@ -2002,5 +2002,59 @@
     "voice": "es-ES-ElviraNeural",
     "rate": "0.9",
     "uploaded": true
+  },
+  "ko:평일 하루 일과를 아침부터 저녁까지 설명해 보세요.": {
+    "filename": "a2c75fed37576693.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:주말에 보통 뭐 하는지, 또는 이번 주말 계획을 말해 보세요.": {
+    "filename": "ed71b876702d9221.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:재택근무에 대한 의견을 말해 보세요. 집에서 일하는 것과 사무실에서 일하는 것 중 어느 쪽을 선호하나요? 이유는요?": {
+    "filename": "bdac6000e4394a77.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:SNS가 우리 생활에 미치는 긍정적, 부정적 영향에 대해 말해 보세요.": {
+    "filename": "44745180a47bfc98.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:오늘 왜 지각했는지 상사에게 설명해 보세요. 정중하게 이유를 말해야 해요.": {
+    "filename": "2dc46ad83f9ed46e.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:친구에게 좋아하는 식당을 추천해 보세요. 음식, 분위기, 위치를 설명해요.": {
+    "filename": "37691975ba072fd8.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:막대 그래프를 보고 한국인이 좋아하는 여가 활동 설문 결과를 설명해 보세요.": {
+    "filename": "de60831dee54d266.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:꺾은선 그래프를 보고 한국 1인 가구 수의 변화 추이를 설명해 보세요.": {
+    "filename": "2b97b0754343e89b.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:원 그래프를 보고 직장인 스트레스 원인 조사 결과를 설명해 보세요.": {
+    "filename": "da597a078470d5b6.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
   }
 }

@@ -10,11 +10,11 @@ const LEVEL_LABELS = { beginner: 'Beginner', intermediate: 'Intermediate', advan
 const LEVEL_ORDER = { beginner: 0, intermediate: 1, advanced: 2 };
 const sortByLevel = (sessions) => [...sessions].sort((a, b) => (LEVEL_ORDER[a.level] ?? 99) - (LEVEL_ORDER[b.level] ?? 99));
 
-export default function SceneView({ scenario, initialMode, language = 'ko', onBack }) {
+export default function SceneView({ scenario, initialMode, language = 'ko', onBack, userId }) {
   const isMonologue = !!scenario.monologues;
   const [mode, setMode] = useState(isMonologue ? 'monologue' : initialMode);
   const [sessionId, setSessionId] = useState(null);
-  const { recordCompletion, getProgress } = useProgress();
+  const { recordCompletion, getProgress } = useProgress(userId);
 
   const handleComplete = useCallback((score) => {
     if (!sessionId) return;

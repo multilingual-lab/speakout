@@ -1,0 +1,223 @@
+.mypage-panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 28px 32px;
+  width: 360px;
+  max-width: 92vw;
+  box-sizing: border-box;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  color: var(--color-text);
+  position: relative;
+}
+
+.mypage-title {
+  margin: 0 0 1.25rem;
+  font-size: 1.25rem;
+}
+
+.mypage-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.mypage-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-accent, #6366f1);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.mypage-email {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  word-break: break-all;
+}
+
+.mypage-signin-section {
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+
+.mypage-signin-text {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  margin: 0 0 0.75rem;
+}
+
+.mypage-signin-btn {
+  padding: 0.55rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--color-accent, #6366f1);
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.mypage-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.mypage-stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  padding: 0.4rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.mypage-stat-row:last-child {
+  border-bottom: none;
+}
+
+.mypage-stat-total {
+  font-size: 0.95rem;
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.mypage-stat-value {
+  font-weight: 600;
+  color: var(--color-text);
+  min-width: 2rem;
+  text-align: right;
+}
+
+.mypage-divider {
+  height: 1px;
+  background: var(--color-border);
+  margin: 0.5rem 0 1rem;
+}
+
+.mypage-section-title {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.mypage-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.mypage-github-link {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  text-decoration: none;
+}
+
+.mypage-github-link:hover {
+  color: var(--color-text);
+}
+
+.mypage-signout-btn {
+  padding: 0.45rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: none;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.mypage-signout-btn:hover {
+  border-color: #f87171;
+  color: #f87171;
+}
+
+/* Avatar button in header */
+.mypage-avatar-btn {
+  position: relative;
+  height: 34px;
+  border-radius: 17px;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--color-text);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0;
+  padding: 0;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.mypage-avatar-btn:hover {
+  border-color: var(--color-accent, #6366f1);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.avatar-streak-inline {
+  padding: 0 0.4rem 0 0.5rem;
+  font-size: 0.78rem;
+  color: #fb923c;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.avatar-letter {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--color-accent, #6366f1);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .mypage-panel {
+    width: 100%;
+    max-width: 100vw;
+    border-radius: 0;
+    padding: 24px 20px;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .mypage-panel .settings-close {
+    top: 16px;
+    right: 16px;
+    font-size: 1.5rem;
+    padding: 8px 12px;
+  }
+
+  .mypage-signin-btn {
+    padding: 0.7rem 2rem;
+    font-size: 1rem;
+  }
+
+  .mypage-signout-btn {
+    padding: 0.7rem;
+    font-size: 1rem;
+  }
+}

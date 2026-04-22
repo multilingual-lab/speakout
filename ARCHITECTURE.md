@@ -39,8 +39,23 @@ src/
 │   ├── WritingMode.jsx        # Writing practice: phrase dictation + composition
 │   ├── KoreanKeyboardRef.jsx  # Virtual Korean keyboard (feature-flagged per language)
 │   ├── Settings.jsx          # Azure key/endpoint config modal
+│   ├── AuthModal.jsx         # Sign-in / sign-up / forgot-password flows
+│   ├── AuthModal.test.jsx    # Auth flow tests (14 tests)
+│   ├── MyPage.jsx            # User profile & saved progress (auth-gated)
 │   └── charts/
 │       └── TopikCharts.jsx   # TOPIK-style bar/line/pie SVG charts for monologue prompts
+├── hooks/
+│   ├── useSpeech.js          # TTS + STT (language-aware via registry)
+│   └── useAuth.js            # Auth state & session management (Supabase)
+├── services/
+│   ├── supabase.js           # Supabase client initialization
+│   └── tts/                  # Provider-based TTS abstraction
+│       ├── index.js          # Registry: getProviders, getActiveProvider, synthesize
+│       ├── provider.js       # Interface contract documentation
+│       ├── cdnProvider.js    # CDN adapter: audioManifest lookup → R2 fetch
+│       ├── azureProvider.js  # Azure TTS adapter (SSML builder, fetch, blob → Audio URL)
+│       └── browserProvider.js # Web Speech API adapter (final fallback)
+├── styles/                   # One CSS file per component (incl. Auth.css)
 ├── utils/
 │   ├── scoring.js            # Re-exports from adapter layer
 │   ├── getLanguageField.js   # Language-aware field accessor for content objects
@@ -48,17 +63,7 @@ src/
 │       ├── index.js          # Adapter dispatch + default adapter
 │       ├── korean.js         # Korean: grammar-aware keywords, jamo normalization
 │       └── spanish.js        # Spanish: accent-insensitive normalization
-├── hooks/
-│   └── useSpeech.js          # TTS + STT (language-aware via registry)
-├── services/
-│   ├── azureTts.js           # (legacy — kept for reference, no longer imported)
-│   └── tts/                  # Provider-based TTS abstraction
-│       ├── index.js          # Registry: getProviders, getActiveProvider, synthesize
-│       ├── provider.js       # Interface contract documentation
-│       ├── cdnProvider.js    # CDN adapter: audioManifest lookup → R2 fetch
-│       ├── azureProvider.js  # Azure TTS adapter (SSML builder, fetch, blob → Audio URL)
-│       └── browserProvider.js # Web Speech API adapter (final fallback)
-├── styles/                   # One CSS file per component (incl. Writing.css)
+├── test-setup.js             # Vitest setup (testing-library DOM assertions)
 scripts/
 ├── generate-audio.mjs       # Azure TTS → MP3 files + audioManifest.json
 └── upload-audio.mjs         # Upload new MP3s to Cloudflare R2
@@ -130,11 +135,47 @@ In-page dropdown in TopicGrid header. Persisted in `localStorage`. Sections filt
 
 Pre-generated Azure TTS audio served from Cloudflare R2 — zero-latency, no API key needed for end users.
 
+#### What Gets CDN Audio
+
+| Source | Gets CDN audio? | Why |
+| ------ | --------------- | --- |
+| Shadow phrases (`shadow[]`) | Yes | Core drill content |
+| NPC dialog lines (`speaker: 'other'`) | Yes | Auto-played in Practice/Shadow modes |
+| Monologue model answers (`modelAnswer`) | Yes | "Listen to model" button |
+| Monologue prompts (`promptKorean` / `promptSpanish`) | Yes | Prompt speaker button |
+| Grammar drill examples (`grammarDrills[].example`) | Yes | Dictation drill speaker button |
+| User model answers (`expectedResponses[]`) | No | Short phrases; browser TTS is fine |
+| `you-initiate` exchange text | No | Never spoken by TTS (user speaks first) |
+
 #### Workflow
 
-1. **Generate:** `node scripts/generate-audio.mjs` — reads `scenarios.js`, extracts all TTS-able lines (shadow phrases, NPC exchanges, monologue answers), generates MP3 via Azure Speech at 0.9× speed, deduplicates by `lang:text` key, writes files to `public/audio/` with content-hash filenames, updates `src/data/audioManifest.json`
-2. **Upload:** `node scripts/upload-audio.mjs` — uploads files where `uploaded: false` to R2 via `wrangler r2 object put`, marks them `uploaded: true` in manifest
+1. **Generate:** `node scripts/generate-audio.mjs` — reads `scenarios.js`, extracts all TTS-able lines (see table above), generates MP3 via Azure Speech at 0.9× speed, deduplicates by `lang:text` key, writes files to `public/audio/` with content-hash filenames, updates `src/data/audioManifest.json`
+2. **Upload:** `node scripts/upload-audio.mjs` — uploads files where `uploaded: false` to R2 via S3 API, marks them `uploaded: true` in manifest
 3. **Commit:** updated `audioManifest.json` is committed to git (tracks upload status across machines)
+
+#### Adding a New Language
+
+1. Add voice mapping in `scripts/generate-audio.mjs` `VOICE_MAP` (e.g. `zh: { voice: 'zh-CN-XiaoxiaoNeural', ssmlLang: 'zh-CN' }`)
+2. Add language config in `src/config/languages.js`
+3. Add scenarios with the new `languageId` and language-specific fields (e.g. `chinese`)
+4. Run generate → upload → commit
+
+#### Adding New Topics / Scenarios
+
+1. Add scenario data in `src/data/scenarios.js`
+2. Run `node scripts/generate-audio.mjs --dry-run` to preview new entries
+3. Run `node scripts/generate-audio.mjs` (requires `AZURE_SPEECH_KEY` and `AZURE_SPEECH_ENDPOINT` env vars)
+4. Run `node scripts/upload-audio.mjs` (requires `CLOUDFLARE_API_TOKEN` in `.env`)
+5. Commit updated `audioManifest.json` and `public/audio/` files
+6. Run `npm test` to validate scenario schema
+
+#### Keeping Audio and Text Aligned
+
+- The manifest key is `"lang:exactText"` — any text change (even punctuation) creates a new entry
+- `generate-audio.mjs` is incremental: only generates files not already in the manifest
+- `--dry-run` shows the full list without calling Azure; compare count vs manifest to spot gaps
+- CDN provider does fuzzy punctuation matching at runtime (strips trailing `.!?` for lookup)
+- If you rename/edit scenario text, old manifest entries become orphans (harmless but wasteful); periodically prune by re-generating with `--force`
 
 #### Options
 
@@ -332,6 +373,120 @@ All `.md` files must pass **markdownlint** with zero warnings. Key rules:
 - Blank lines around headings (MD022), lists (MD032), tables (MD058), fenced code blocks (MD031)
 - Fenced code blocks must have a language tag (MD040) — use `text` for plain diagrams/trees
 - Table separator rows need spaces: `| ----- |` not `|-------|` (MD060)
+
+## Authentication (Supabase)
+
+SpeakOut integrates optional user authentication via Supabase for progress tracking across devices.
+
+**Architecture:**
+
+| Component | Location | Purpose |
+| --------- | -------- | ------- |
+| Supabase client | `src/services/supabase.js` | Initialized with `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` |
+| Auth hook | `src/hooks/useAuth.js` | Manages session state, sign-in/sign-up/reset operations, auth state listener |
+| Auth modal | `src/components/AuthModal.jsx` | UI for password sign-in, sign-up, forgot password flow (tests: [AuthModal.test.jsx](./src/components/AuthModal.test.jsx)) |
+| MyPage component | `src/components/MyPage.jsx` | User profile & saved progress (visible only when authenticated) |
+
+**Auth flow:**
+
+1. User clicks profile icon → `showAuth` state toggles AuthModal
+2. AuthModal calls `useAuth` hook functions: `signInWithPassword`, `signUp`, `signInWithGoogle`, `resetPassword`
+3. On success, modal closes and `user` state updates (triggers re-render in App.jsx)
+4. Authenticated user sees MyPage; unauthenticated sees login prompt
+
+**Environment variables:**
+
+```bash
+VITE_SUPABASE_URL=https://your-project.supabase.co
+VITE_SUPABASE_ANON_KEY=your-anon-key
+```
+
+If either is missing, `supabase` client is `null` and all auth operations become no-ops (graceful degradation).
+
+## Testing & CI
+
+### Test Suite
+
+**Test runner:** Vitest (configured in `vite.config.js` with `happy-dom` environment)
+
+**Current test coverage:**
+
+- **Auth flow** (`src/components/AuthModal.test.jsx`): 14 tests
+  - Password sign-in success/failure, input validation, modal close on success
+  - Sign-up success/failure, whitespace trimming
+  - Forgot-password flow and error handling
+  - Google sign-in integration
+  - Modal overlay and close button behavior
+
+- **Data validation** (`src/data/scenarios.test.js`): schema validation for scenarios, dialogs, exchanges
+- **Scoring** (`src/utils/scoring.test.js`): Levenshtein similarity, adapter-based scoring
+- **Adapters** (`src/utils/adapters/adapters.test.js`): language-specific normalization (Korean jamo, Spanish accents)
+
+**Run all tests:**
+
+```bash
+npm test
+```
+
+**Run a specific test file:**
+
+```bash
+npx vitest run src/components/AuthModal.test.jsx
+```
+
+**Watch mode (for development):**
+
+```bash
+npm run test:watch
+```
+
+### CI/CD Pipeline
+
+**Local gate:** Pre-push hook at `.githooks/pre-push`
+
+Runs before every `git push`:
+- `npm test` — all tests must pass
+- `npm run build` — build must succeed
+
+If either command fails, push is aborted.
+
+**Server gate:** GitHub Actions workflow at `.github/workflows/test.yml`
+
+Runs on:
+- Every push to `main`
+- Every pull request to `main`
+
+Job steps:
+1. Checkout code
+2. Setup Node.js (v22)
+3. `npm ci` — install dependencies
+4. `npm test` — run all tests
+5. `npm run build` — build for production
+
+**Branch protection (GitHub):**
+
+To enforce that PRs cannot merge without passing CI:
+
+1. Go to repo Settings → Branches
+2. Add a rule for `main`:
+   - Enable "Require pull request before merging"
+   - Enable "Require status checks to pass before merging"
+   - Select the `test` job as a required check
+
+### Contributing
+
+Before pushing, ensure:
+
+```bash
+npm test          # All tests pass
+npm run build     # Build succeeds
+```
+
+The pre-push hook enforces this automatically. If you need to force-push (not recommended), use:
+
+```bash
+git push --no-verify
+```
 
 ## Known Issues
 

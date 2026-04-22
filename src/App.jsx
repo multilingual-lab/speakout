@@ -2,8 +2,9 @@ import { useState, useRef, useCallback } from 'react';
 import scenarios, { sections } from './data/scenarios';
 import TopicGrid from './components/TopicGrid';
 import SceneView from './components/SceneView';
-import Settings from './components/Settings';
 import AuthModal from './components/AuthModal';
+import ResetPasswordModal from './components/ResetPasswordModal';
+import MyPage from './components/MyPage';
 import { getSupportedLanguages, LANGUAGES } from './config/languages';
 import { useProgress } from './hooks/useProgress';
 import { useAuth } from './hooks/useAuth';
@@ -14,20 +15,21 @@ import './styles/Practice.css';
 import './styles/Settings.css';
 import './styles/Monologue.css';
 import './styles/Auth.css';
+import './styles/MyPage.css';
 
 const LANGUAGE_STORAGE_KEY = 'speakout_language';
 
 export default function App() {
   const supportedLanguages = getSupportedLanguages();
   const [selection, setSelection] = useState(null); // { topicId, mode }
-  const [showSettings, setShowSettings] = useState(false);
   const [showAuth, setShowAuth] = useState(false);
+  const [showMyPage, setShowMyPage] = useState(false);
   const [language, setLanguage] = useState(() => {
     const stored = localStorage.getItem(LANGUAGE_STORAGE_KEY) || 'ko';
     return supportedLanguages.includes(stored) ? stored : 'ko';
   });
   const scrollYRef = useRef(0);
-  const { user, signInWithGoogle, signInWithEmail, signOut, available: authAvailable } = useAuth();
+  const { user, isRecovery, signInWithGoogle, signInWithPassword, signUp, resetPassword, updatePassword, signOut, available: authAvailable } = useAuth();
   const { data: progressData, totalCompletions } = useProgress(user?.id);
 
   const handleLanguageChange = useCallback((newLanguage) => {
@@ -57,18 +59,26 @@ export default function App() {
 
   return (
     <>
-      {showSettings && (
-        <Settings
-          language={language}
-          onLanguageChange={handleLanguageChange}
-          onClose={() => setShowSettings(false)}
-        />
-      )}
       {showAuth && (
         <AuthModal
           onClose={() => setShowAuth(false)}
           onSignInWithGoogle={() => { setShowAuth(false); signInWithGoogle(); }}
-          onSignInWithEmail={signInWithEmail}
+          onSignInWithPassword={signInWithPassword}
+          onSignUp={signUp}
+          onResetPassword={resetPassword}
+        />
+      )}
+      {isRecovery && (
+        <ResetPasswordModal onUpdatePassword={updatePassword} />
+      )}
+      {showMyPage && (
+        <MyPage
+          user={user}
+          authAvailable={authAvailable}
+          onOpenAuth={() => { setShowMyPage(false); setShowAuth(true); }}
+          onSignOut={() => { setShowMyPage(false); signOut(); }}
+          onClose={() => setShowMyPage(false)}
+          userId={user?.id}
         />
       )}
       {!scenario ? (
@@ -78,13 +88,10 @@ export default function App() {
           languageOptions={languageToggleOptions}
           onLanguageChange={handleLanguageChange}
           onSelect={handleSelect}
-          onOpenSettings={() => setShowSettings(true)}
           progressData={progressData}
           totalCompletions={totalCompletions}
           user={user}
-          authAvailable={authAvailable}
-          onOpenAuth={() => setShowAuth(true)}
-          onSignOut={signOut}
+          onOpenMyPage={() => setShowMyPage(true)}
         />
       ) : (
         <SceneView
@@ -92,6 +99,7 @@ export default function App() {
           initialMode={selection.mode}
           language={language}
           onBack={handleBack}
+          userId={user?.id}
         />
       )}
     </>

@@ -145,6 +145,25 @@ function extractLines(sections) {
           if (m.modelAnswer) {
             add(m.modelAnswer, langId, `monologue:${m.id}`);
           }
+
+          // Monologue prompts (used by prompt speaker button)
+          const promptText = getTargetText(m, langId)
+            || (langId === 'ko' ? m.promptKorean : undefined)
+            || (langId === 'es' ? m.promptSpanish : undefined)
+            || m.promptKorean
+            || m.promptSpanish;
+          if (promptText) {
+            add(promptText, langId, `monologue:${m.id}`);
+          }
+
+          // Grammar drill examples (used by dictation drill speaker button)
+          if (m.grammarDrills) {
+            for (const drill of m.grammarDrills) {
+              if (drill.example) {
+                add(drill.example, langId, `monologue:${m.id}`);
+              }
+            }
+          }
         }
       }
     }

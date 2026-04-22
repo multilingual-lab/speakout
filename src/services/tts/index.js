@@ -81,3 +81,18 @@ export async function synthesize(text, opts) {
   const audioUrl = await browserProvider.speak(text, opts);
   return { audioUrl, providerId: 'browser' };
 }
+
+/**
+ * Synthesize speech using a specific provider (no fallback).
+ * Used for user model answers where browser TTS is preferred.
+ */
+export async function synthesizeWithProvider(text, providerId, opts) {
+  const provider = getProviderById(providerId);
+  if (!provider) {
+    console.warn(`Provider "${providerId}" not found, falling back to browser`);
+    const audioUrl = await browserProvider.speak(text, opts);
+    return { audioUrl, providerId: 'browser' };
+  }
+  const audioUrl = await provider.speak(text, opts);
+  return { audioUrl, providerId };
+}
