@@ -44,6 +44,7 @@ src/
 │   ├── SyncPromptModal.jsx   # Post-sign-in prompt: merge local progress or use cloud
 │   ├── SyncPromptModal.test.jsx # Sync prompt tests
 │   ├── MyPage.jsx            # User profile, stats, TTS settings, clear progress
+│   ├── BrowserCompatBanner.jsx # STT feature-detection banner for unsupported browsers
 │   └── charts/
 │       └── TopikCharts.jsx   # TOPIK-style bar/line/pie SVG charts for monologue prompts
 ├── hooks/
@@ -282,6 +283,7 @@ TopicGrid (home)              ⚙️ Settings (always visible, top-right)
 - Azure provider returns audio blob URL played via `new Audio(url)`
 - Browser provider plays inline via `speechSynthesis.speak()` (returns null URL)
 - Feedback phase: per-answer 🔊 buttons. Only clicked button pulses; others idle. Clicks are no-op while audio plays.
+- **In-app browser compatibility:** `speechSynthesis` calls are guarded (`if (window.speechSynthesis)`) so LINE, KakaoTalk, Facebook, and other WebView browsers don't crash before CDN fetch runs. `audio.play()` rejections (autoplay blocked) are caught and surface `error='tts-failed'` with a user-visible message ("try opening in Chrome or Safari"). A `BrowserCompatBanner` component uses feature detection (`SpeechRecognition` API availability) to show a dismissible banner prompting users to open in Chrome/Safari when voice recording is unavailable. CDN-based TTS still works in these browsers.
 
 #### Adding a New TTS Provider
 

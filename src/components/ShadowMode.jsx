@@ -148,6 +148,9 @@ function DialogShadow({ exchanges, language = 'ko', onNext, nextSessionTitle, on
       </div>
 
       <div className="shadow-bottom-bar">
+        {error === 'tts-failed' && (
+          <div className="error-bar">⚠️ Text-to-speech failed — try opening in your system browser</div>
+        )}
         {currentIndex >= lines.length - 1 && (
           onNext ? (
             <button className="next-dialog-link" onClick={onNext}>
@@ -231,7 +234,7 @@ function PhraseShadow({ phrases, language = 'ko', onNext, nextSessionTitle, onCo
   const wasListeningRef = useRef(false);
   const scoresRef = useRef([]);
   const completedRef = useRef(false);
-  const { isListening, transcript, isSpeaking, startListening, stopListening, speak, setTranscript } =
+  const { isListening, transcript, isSpeaking, error, startListening, stopListening, speak, setTranscript } =
     useSpeech();
 
   const phrase = phrases[currentIndex];
@@ -329,6 +332,9 @@ function PhraseShadow({ phrases, language = 'ko', onNext, nextSessionTitle, onCo
       </div>
 
       <div className="shadow-bottom-bar">
+        {error === 'tts-failed' && (
+          <div className="error-bar">⚠️ Text-to-speech failed — try opening in your system browser</div>
+        )}
         {currentIndex >= phrases.length - 1 && (
           onNext ? (
             <button className="next-dialog-link" onClick={onNext}>

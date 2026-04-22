@@ -221,6 +221,7 @@ export default function PracticeMode({ exchanges, language = 'ko', onNext, nextS
             <div className="error-bar">
               {error === 'mic-denied' && '⚠️ Microphone access denied — check browser permissions'}
               {error === 'no-speech' && '⚠️ No speech detected — try again'}
+              {error === 'tts-failed' && '⚠️ Text-to-speech failed — try opening in your system browser'}
             </div>
           )}
           <div className="respond-actions">

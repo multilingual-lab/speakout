@@ -6,6 +6,7 @@ import AuthModal from './components/AuthModal';
 import SyncPromptModal from './components/SyncPromptModal';
 import ResetPasswordModal from './components/ResetPasswordModal';
 import MyPage from './components/MyPage';
+import BrowserCompatBanner from './components/BrowserCompatBanner';
 import { getSupportedLanguages, LANGUAGES } from './config/languages';
 import { useProgress } from './hooks/useProgress';
 import { useAuth } from './hooks/useAuth';
@@ -60,6 +61,7 @@ export default function App() {
 
   return (
     <>
+      <BrowserCompatBanner />
       {showAuth && (
         <AuthModal
           onClose={() => setShowAuth(false)}

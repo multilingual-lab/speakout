@@ -267,6 +267,7 @@ export default function MonologueMode({ monologue, language = 'ko', onNext, next
             <div className="error-bar">
               {error === 'mic-denied' && '⚠️ Microphone access denied — check browser permissions'}
               {error === 'no-speech' && '⚠️ No speech detected — try again'}
+              {error === 'tts-failed' && '⚠️ Text-to-speech failed — try opening in your system browser'}
             </div>
           )}
           <button className="action-btn record-btn large recording" onClick={handleStop}>

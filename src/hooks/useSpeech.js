@@ -111,7 +111,7 @@ export function useSpeech() {
       audioRef.current.currentTime = 0;
       audioRef.current = null;
     }
-    window.speechSynthesis.cancel();
+    if (window.speechSynthesis) window.speechSynthesis.cancel();
     setIsSpeaking(false);
   }, []);
 
@@ -122,7 +122,7 @@ export function useSpeech() {
       audioRef.current.currentTime = 0;
       audioRef.current = null;
     }
-    window.speechSynthesis.cancel();
+    if (window.speechSynthesis) window.speechSynthesis.cancel();
 
     // Resolve language config for TTS voice and SSML lang
     const langConfig = getLanguageConfig(languageId);
@@ -151,9 +151,15 @@ export function useSpeech() {
           audio.onerror = () => {
             URL.revokeObjectURL(audioUrl);
             setIsSpeaking(false);
+            setError('tts-failed');
             resolve();
           };
-          audio.play();
+          audio.play().catch(() => {
+            URL.revokeObjectURL(audioUrl);
+            setIsSpeaking(false);
+            setError('tts-failed');
+            resolve();
+          });
         });
         return;
       }
