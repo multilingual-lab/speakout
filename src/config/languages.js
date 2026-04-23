@@ -6,7 +6,7 @@
 export const LANGUAGES = {
   ko: {
     id: 'ko',
-    label: 'Korean',
+    label: '한국어',
     shortLabel: 'KR',
     flag: '🇰🇷',
     sttLang: 'ko-KR',
@@ -25,7 +25,7 @@ export const LANGUAGES = {
   },
   es: {
     id: 'es',
-    label: 'Spanish',
+    label: 'Español',
     shortLabel: 'ES',
     flag: '🇪🇸',
     sttLang: 'es-ES',
@@ -63,7 +63,7 @@ export const LANGUAGES = {
   },
   zh: {
     id: 'zh',
-    label: 'Chinese (Mandarin)',
+    label: '中文',
     shortLabel: 'ZH',
     flag: '🇨🇳',
     sttLang: 'zh-CN',

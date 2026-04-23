@@ -4,10 +4,11 @@ Multi-language speaking practice app focused on immersive, scenario-based dialog
 
 ## Supported Languages
 
-- **Korean** — full content (travel, casual, work, monologues)
-- **Spanish** — full dialog content (travel, casual, work)
+- **한국어 (Korean)** — full content (travel, casual, work, monologues)
+- **Español (Spanish)** — full dialog content (travel, casual, work)
+- **中文 (Chinese)** — full dialog content (travel, casual, work)
 
-Switch languages using the dropdown in the top-right of the topic grid.
+Switch languages using the dropdown in the top-right of the topic grid. Languages are displayed in their native names with country flags.
 
 ## Core Experience
 

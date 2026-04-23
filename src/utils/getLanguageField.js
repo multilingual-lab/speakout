@@ -1,6 +1,7 @@
 const languageAliases = {
   ko: 'korean',
   es: 'spanish',
+  zh: 'chinese',
 };
 
 /**
@@ -26,12 +27,18 @@ export function getLanguageField(obj, baseFieldName, languageId = 'ko') {
     if (languageId === 'es') {
       return obj.promptSpanish || obj.promptKorean || obj.prompt || null;
     }
+    if (languageId === 'zh') {
+      return obj.promptChinese || obj.promptKorean || obj.prompt || null;
+    }
     return obj.promptKorean || obj.prompt || null;
   }
 
   if (baseFieldName === 'modelAnswer') {
     if (languageId === 'es') {
       return obj.modelAnswerEs || obj.modelAnswer || null;
+    }
+    if (languageId === 'zh') {
+      return obj.modelAnswerZh || obj.modelAnswer || null;
     }
     return obj.modelAnswer || obj.modelAnswerEs || null;
   }

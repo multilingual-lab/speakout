@@ -23,7 +23,7 @@ export default function TopicGrid({ sections, language, languageOptions, onLangu
           >
             {languageOptions.map((option) => (
               <option key={option.id} value={option.id}>
-                {option.label}
+                {option.flag} {option.label}
               </option>
             ))}
           </select>

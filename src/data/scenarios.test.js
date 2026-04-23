@@ -7,6 +7,20 @@ const monologueScenarios = scenarios.filter((s) => s.monologues);
 const VALID_LEVELS = ['beginner', 'intermediate', 'advanced'];
 const VALID_SPEAKERS = ['other', 'you-initiate'];
 
+const sectionLanguageMap = new Map();
+for (const section of sections) {
+  const lang = section.languageId || 'ko';
+  for (const scenario of section.scenarios) {
+    sectionLanguageMap.set(scenario.id, lang);
+  }
+}
+
+function getLangField(langId) {
+  if (langId === 'es') return 'spanish';
+  if (langId === 'zh') return 'chinese';
+  return 'korean';
+}
+
 describe('scenarios.js — schema validation', () => {
   // ── Section-level ──
 
@@ -64,12 +78,14 @@ describe('scenarios.js — schema validation', () => {
 
   // ── Shadow phrases ──
 
-  it('every shadow phrase has korean and english', () => {
+  it('every shadow phrase has target language field and english', () => {
     for (const scenario of dialogScenarios) {
+      const lang = sectionLanguageMap.get(scenario.id) || 'ko';
+      const field = getLangField(lang);
       for (const phrase of scenario.shadow) {
-        expect(phrase, `${scenario.id} shadow phrase missing korean`).toHaveProperty('korean');
+        expect(phrase, `${scenario.id} shadow phrase missing ${field}`).toHaveProperty(field);
         expect(phrase, `${scenario.id} shadow phrase missing english`).toHaveProperty('english');
-        expect(phrase.korean.length, `${scenario.id} empty korean`).toBeGreaterThan(0);
+        expect(phrase[field].length, `${scenario.id} empty ${field}`).toBeGreaterThan(0);
         expect(phrase.english.length, `${scenario.id} empty english`).toBeGreaterThan(0);
       }
     }
@@ -109,7 +125,9 @@ describe('scenarios.js — schema validation', () => {
           const label = `${session.id}[${i}]`;
           expect(ex, `${label} missing speaker`).toHaveProperty('speaker');
           expect(VALID_SPEAKERS, `${label} invalid speaker "${ex.speaker}"`).toContain(ex.speaker);
-          expect(ex, `${label} missing korean`).toHaveProperty('korean');
+          const lang = sectionLanguageMap.get(scenario.id) || 'ko';
+          const field = getLangField(lang);
+          expect(ex, `${label} missing ${field}`).toHaveProperty(field);
           expect(ex, `${label} missing english`).toHaveProperty('english');
           expect(ex, `${label} missing expectedResponses`).toHaveProperty('expectedResponses');
           expect(ex, `${label} missing hint`).toHaveProperty('hint');
@@ -195,17 +213,6 @@ describe('scenarios.js — schema validation', () => {
 
 describe('scenarios.js — language consistency', () => {
   const KOREAN_RE = /[\uac00-\ud7a3]/;
-  const sectionLanguageMap = new Map();
-  for (const section of sections) {
-    const lang = section.languageId || 'ko';
-    for (const scenario of section.scenarios) {
-      sectionLanguageMap.set(scenario.id, lang);
-    }
-  }
-
-  function getLangField(langId) {
-    return langId === 'es' ? 'spanish' : 'korean';
-  }
 
   it('every Spanish scenario exchange has a spanish field', () => {
     for (const scenario of dialogScenarios) {

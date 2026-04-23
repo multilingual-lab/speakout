@@ -4,7 +4,7 @@
 
 Multi-language speaking practice app. Solves the "freeze-up" problem — without immersion, learners can't produce spoken language in real time. Uses scenario-based forced production drills.
 
-Supported target languages: Korean, Spanish (with Chinese planned). Language selection via in-page dropdown; all speech, scoring, and content are language-aware.
+Supported target languages: Korean, Spanish, Chinese (Simplified). Language selection via in-page dropdown; all speech, scoring, and content are language-aware.
 
 ## Tech Stack
 
@@ -66,7 +66,8 @@ src/
 │   └── adapters/             # Language-specific text processing
 │       ├── index.js          # Adapter dispatch + default adapter
 │       ├── korean.js         # Korean: grammar-aware keywords, jamo normalization
-│       └── spanish.js        # Spanish: accent-insensitive normalization
+│       ├── spanish.js        # Spanish: accent-insensitive normalization
+│       └── chinese.js        # Chinese: full-width punctuation normalization
 ├── test-setup.js             # Vitest setup (testing-library DOM assertions)
 scripts/
 ├── generate-audio.mjs       # Azure TTS → MP3 files + audioManifest.json
@@ -120,6 +121,7 @@ Language-sensitive text processing behind a dispatch layer:
 - **Default adapter:** Unicode punctuation/whitespace strip + plain substring keyword match
 - **Korean adapter:** grammar-aware patterns (`(으)ㄹ`, `(으)`, `(이)`, `/` alternatives)
 - **Spanish adapter:** accent-insensitive normalization
+- **Chinese adapter:** full-width punctuation stripping + substring keyword matching
 
 Adapter interface per language:
 
@@ -502,13 +504,183 @@ The pre-push hook enforces this automatically. If you need to force-push (not re
 git push --no-verify
 ```
 
+## Adding a New Language — Standardized Checklist
+
+Follow these steps to add full support for a new target language. Use existing languages (Korean `ko`, Spanish `es`) as reference implementations.
+
+### Step 1: Language Registry (`src/config/languages.js`)
+
+Add an entry to the `LANGUAGES` object:
+
+```js
+xx: {
+  id: 'xx',
+  label: 'Language Name',
+  shortLabel: 'XX',
+  flag: '🏳️',
+  sttLang: 'xx-XX',                    // Web Speech API BCP-47 locale
+  tts: {
+    azureVoice: 'xx-XX-VoiceNeural',   // Azure Cognitive Services neural voice name
+    ssmlLang: 'xx-XX',                 // SSML xml:lang
+    fallbackLang: 'xx-XX'              // Browser SpeechSynthesis fallback lang
+  },
+  features: {
+    virtualKeyboard: false,            // true only for non-Latin scripts
+    grammarAwareKeywords: false        // true only if adapter handles inflection
+  },
+  ui: { quickPhrases: 'Localized label' }
+}
+```
+
+### Step 2: Language Field Resolver (`src/utils/getLanguageField.js`)
+
+Add the language alias so content fields resolve correctly:
+
+```js
+const languageAliases = {
+  ko: 'korean',
+  es: 'spanish',
+  xx: 'languagename',   // must match the field name used in scenarios.js
+};
+```
+
+Also update the `prompt` and `modelAnswer` branches if monologues are supported.
+
+### Step 3: Text Adapter (`src/utils/adapters/`)
+
+Create `src/utils/adapters/languagename.js` with two exports:
+
+```js
+export function normalize(s) { /* strip punctuation, lowercase, language-specific rules */ }
+export function matchKeyword(keyword, text) { /* normalized substring or grammar-aware match */ }
+```
+
+Register it in `src/utils/adapters/index.js`:
+
+```js
+import * as languagename from './languagename.js';
+const adapters = { ko: korean, es: spanish, xx: languagename };
+```
+
+**Adapter design guidance:**
+| Language trait | Adapter approach |
+|---|---|
+| Accent marks (Spanish, French) | Strip diacritics in `normalize()` |
+| Full-width punctuation (Chinese, Japanese) | Map to ASCII equivalents |
+| Agglutinative grammar (Korean, Turkish) | Grammar-aware `matchKeyword()` with pattern syntax |
+| No word boundaries (Chinese, Japanese) | Substring match (no tokenization needed for keyword matching) |
+| Isolating / simple (English, Chinese) | Default adapter may suffice |
+
+### Step 4: Content Sections (`src/data/scenarios.js`)
+
+Add one or more sections with `languageId: 'xx'`. Follow the existing section structure:
+
+```js
+{
+  id: 'topic-language',           // e.g., 'travel-chinese'
+  languageId: 'xx',
+  title: 'Localized Title',
+  titleEn: 'English Title',
+  scenarios: [
+    {
+      id: 'scenario-language',
+      title: 'Localized Scenario Title',
+      titleEn: 'English Scenario Title',
+      emoji: '☕',
+      color: '#hex',
+      ambientDesc: 'Ambient description',
+      shadow: [
+        { languagename: '...', english: '...' },
+      ],
+      sessions: [
+        {
+          id: 'scenario-language-session',
+          title: '...', titleEn: '...', level: 'beginner|intermediate|advanced',
+          exchanges: [
+            {
+              speaker: 'other',
+              languagename: '...',     // NPC line in target language
+              english: '...',
+              expectedResponses: ['...'],  // acceptable user responses in target language
+              hint: '...',
+              englishResponse: '...'
+            },
+          ],
+        },
+      ],
+    },
+  ],
+}
+```
+
+**Content field naming convention:** The target language field name must match the alias registered in Step 2 (e.g., `chinese`, `french`, `japanese`).
+
+### Step 5: Audio Generation Script (`scripts/generate-audio.mjs`)
+
+Add the voice mapping:
+
+```js
+const VOICE_MAP = {
+  // ...existing
+  xx: { voice: 'xx-XX-VoiceNeural', ssmlLang: 'xx-XX' },
+};
+```
+
+Also update `getTargetText()` to read `obj.languagename`.
+
+### Step 6: Generate & Upload Audio
+
+```bash
+# Set Azure Speech credentials
+export AZURE_SPEECH_KEY="..."
+export AZURE_SPEECH_ENDPOINT="https://region.api.cognitive.microsoft.com"
+
+# Preview what will be generated
+node scripts/generate-audio.mjs --dry-run
+
+# Generate MP3 files → public/audio/ + updates src/data/audioManifest.json
+node scripts/generate-audio.mjs
+
+# Upload to Cloudflare R2 CDN
+node scripts/upload-audio.mjs
+```
+
+### Step 7: Verification
+
+| Check | How |
+|---|---|
+| Language appears in dropdown | `npm run dev` → TopicGrid language selector |
+| Topics load for new language | Switch language → verify section cards appear |
+| Shadow mode plays audio | Open scenario → Shadow → listen to phrase |
+| Practice mode NPC speaks | Open scenario → Practice → NPC turn speaks target language |
+| STT recognizes speech | Speak in target language → verify transcript |
+| Similarity scoring works | Shadow mode → repeat phrase → verify score |
+| Keyword matching works | Monologue mode (if applicable) → check keyword detection |
+| Writing mode works | Open Writing → verify dictation shows target language |
+| Tests pass | `npm test` |
+| Build succeeds | `npm run build` |
+
+### Summary: Files to Touch
+
+| # | File | Action |
+|---|---|---|
+| 1 | `src/config/languages.js` | Add language config entry |
+| 2 | `src/utils/getLanguageField.js` | Add alias + prompt/modelAnswer branches |
+| 3 | `src/utils/adapters/{lang}.js` | Create adapter (or use default) |
+| 4 | `src/utils/adapters/index.js` | Register adapter |
+| 5 | `src/data/scenarios.js` | Add content sections |
+| 6 | `scripts/generate-audio.mjs` | Add voice map + field reader |
+| 7 | `src/data/audioManifest.json` | Auto-generated by script |
+
+---
+
 ## Known Issues
 
 - **Mobile Chrome STT duplication:** `continuous: true` mode re-delivers finalized results → duplicate words. Workaround: mobile uses `continuous: false`.
 
 ## Roadmap
 
-- [ ] Chinese content (travel, casual, work — matching Spanish parity)
+- [x] Chinese content (travel, casual, work — matching Spanish parity)
 - [ ] Schema v2: language-neutral content fields (`targetText`, `supportTextByLocale`)
 - [ ] Ambient audio per scene (café sounds, street sounds)
 - [ ] Dialog progress tracking / history (localStorage)
@@ -516,3 +688,4 @@ git push --no-verify
 - [ ] Mobile layout improvements
 - [ ] Azure Pronunciation Assessment API for phoneme feedback
 - [ ] UI shell i18n (deferred — English labels sufficient for now)
+- [ ] Migrate hosting from GitHub Pages to Cloudflare Pages (dev/prod envs, private repo support, unlimited BW)

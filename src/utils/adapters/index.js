@@ -7,6 +7,7 @@
 
 import * as korean from './korean.js';
 import * as spanish from './spanish.js';
+import * as chinese from './chinese.js';
 
 /* ── Default adapter ─────────────────────────────────────────────── */
 
@@ -33,6 +34,7 @@ const defaultAdapter = {
 const adapters = {
   ko: korean,
   es: spanish,
+  zh: chinese,
 };
 
 /**

@@ -2056,5 +2056,959 @@
     "voice": "ko-KR-SunHiNeural",
     "rate": "0.9",
     "uploaded": true
+  },
+  "zh:请给我一杯冰美式。": {
+    "filename": "e53d16886b693797.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:请给我一杯热拿铁。": {
+    "filename": "20603c20dab38cee.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:我刷卡。": {
+    "filename": "d73e6bd78a899e4c.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:我在这儿喝。": {
+    "filename": "629528d8bc2e7e9a.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:打包带走。": {
+    "filename": "cb94ff5be5e71ed7.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:可以看一下菜单吗？": {
+    "filename": "3e4b9993ce207150.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:欢迎光临！请问您要喝点什么？": {
+    "filename": "4f76dbb545ec466f.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:您要什么杯型？大杯还是中杯？": {
+    "filename": "eb254dc9b88845ce.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:还需要别的吗？": {
+    "filename": "d4859dacc8b3f412.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:在这儿喝还是带走？": {
+    "filename": "33aac98bc985071f.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:一共25块。怎么付款？": {
+    "filename": "21dcd2cf521e0471.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:好的，请稍等。": {
+    "filename": "4727d45413b07a44.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:您的冰美式好了。": {
+    "filename": "8144d6b552db8b2c.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:没问题，稍等一下，我重新做。": {
+    "filename": "b81729b5d89e30d9.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:热美式好了，请慢用！": {
+    "filename": "42ae8e9805a9feda.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:两位，谢谢。": {
+    "filename": "81099b28d7121663.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:有什么推荐的吗？": {
+    "filename": "538c9bfa593d0258.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:买单。": {
+    "filename": "743f350a8aea72f9.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:您好！请问几位？": {
+    "filename": "abe3f6668984cbfa.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:好的，请跟我来。这是菜单。": {
+    "filename": "e8f5fbe31d9b295f.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:请问要点什么？": {
+    "filename": "e984dab26cb6d1f9.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:喝点什么？": {
+    "filename": "4fb5a0d7d5bcad04.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:好的，请稍等！": {
+    "filename": "2d733b2742b5abdf.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:我帮您问一下厨师。您具体对什么过敏？": {
+    "filename": "21b29c5e944c0ad2.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:这道菜里有花生。我推荐清蒸鱼，不含花生。": {
+    "filename": "40f2630cbf9d23e6.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:好的！还需要其他的吗？": {
+    "filename": "7635b9ff57e1c982.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:真不好意思！您点的是什么？": {
+    "filename": "58592f7be0522941.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:对不起，是我们搞错了。马上给您换，甜点免费。": {
+    "filename": "c4b13fed3be46dbb.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:您的宫保鸡丁来了，不好意思让您久等了。": {
+    "filename": "e605588f43e9aff7.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:请问地铁站在哪儿？": {
+    "filename": "240adea5f99998b9.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:走路能到吗？": {
+    "filename": "2d82b5d0a222beb5.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:一直往前走，到红绿灯右转。": {
+    "filename": "d590936112d5043c.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:对，走路大概五分钟。": {
+    "filename": "76090b84bc287e9c.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:坐25路。不过站牌在马路对面。": {
+    "filename": "7f7fcdc6f2e41e60.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:对，走人行横道过去。大概二十分钟到。": {
+    "filename": "bdc842be3daa003d.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:可以刷公交卡或者手机支付。十分钟一趟。": {
+    "filename": "7e11298d22c63a99.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:没问题！您要去哪儿？": {
+    "filename": "f8191f3a18bd2354.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:那边比较远，走路要半个多小时。建议您打个车。": {
+    "filename": "d076f48f9e08fdbc.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:大马路上有出租车站，也可以用手机叫车。把地址给司机看就行。": {
+    "filename": "46ad9665b93b8812.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:我有预订，名字是……": {
+    "filename": "4368d0243b170596.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:WiFi密码是什么？": {
+    "filename": "5f76df022ad9d848.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:早餐几点开始？": {
+    "filename": "55810ec35dc14562.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:我的房卡丢了。": {
+    "filename": "ebd3504902399b90.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:几点退房？": {
+    "filename": "b0b777090de4320e.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:密码是hotel2024。还需要什么吗？": {
+    "filename": "94013796fb2b1893.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:早餐是早上七点到十点，在一楼。": {
+    "filename": "f7181e340c8ad488.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:不客气。有什么需要随时联系前台。": {
+    "filename": "b839e0911597de60.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:您好，欢迎入住。请问有预订吗？": {
+    "filename": "ac33416bf33cc74e.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:好的，找到了。请出示一下护照。": {
+    "filename": "6a223a25a5b9aaa8.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:您的房间是405，在四楼。大床房还是双床房？": {
+    "filename": "462878b138d9567e.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:这是您的房卡。电梯在右边。祝您住得愉快！": {
+    "filename": "3456ba8e0d096048.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:非常抱歉！请问您是哪个房间？": {
+    "filename": "115bcd8c6e4235e6.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:我马上安排人去修。如果修不好，给您换房间。": {
+    "filename": "f2533f05a96e926a.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:大概十五分钟。非常抱歉，明天早餐我们免费提供。": {
+    "filename": "46f637c1873099be.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:这个多少钱？": {
+    "filename": "de7f16caa145a45a.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:有没有便宜一点的？": {
+    "filename": "cd54c78641620640.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:你好！需要帮忙吗？": {
+    "filename": "3db208177d638ee2.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:您穿多大号的？": {
+    "filename": "eb30bb74177e8d82.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:这几件您看看？要不要试试？": {
+    "filename": "17aa9ad09d24e23a.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:试衣间在那边，往里走右手边。": {
+    "filename": "5043fb624c76042c.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:这条围巾280块。今天打八折。": {
+    "filename": "39c4b4a036289576.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:打完折224块。要吗？": {
+    "filename": "391aa1fb7685d6dd.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:好的！要包装成礼物吗？": {
+    "filename": "9ef70e73d3afa05f.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:有小票吗？": {
+    "filename": "f76f013332f0b676.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:好的。您需要什么号的？": {
+    "filename": "7dcd61f914a1f28f.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:我看看有没有……有的。要不要试一下？": {
+    "filename": "99d56c9cedc7d499.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:最近怎么样？": {
+    "filename": "af2bbfa01eece2b5.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:好久不见！": {
+    "filename": "588e0bd45bf767cc.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:没什么特别的，老样子。": {
+    "filename": "dc899da6aca771eb.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:周末你干什么了？": {
+    "filename": "149cb4f761e2b14b.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:你今天下午有空吗？": {
+    "filename": "16f00b77111a661e.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:嘿！好久不见！最近怎么样？": {
+    "filename": "44ab43e6a24a1a8b.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:还行。你最近在忙什么？": {
+    "filename": "2dd4ae1069a2bb85.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:你还住在老地方吗？": {
+    "filename": "30fb1ac466dba5db.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:改天我们出来吃个饭吧。": {
+    "filename": "f58f6f0794d8a7cd.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:周末过得怎么样？": {
+    "filename": "49893340c4a1a0d9.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:做什么好玩的了吗？": {
+    "filename": "da51b6488546b8e3.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:看的什么电影？": {
+    "filename": "0ec679b011bf3637.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:不错！我周末在家休息了。": {
+    "filename": "5ffec064362caf8b.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:你好！我们没见过吧？我叫小红。": {
+    "filename": "a44c5922e1770565.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:你是哪里人？": {
+    "filename": "12d3d41ed049299a.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:很有意思！你来这里做什么呢？": {
+    "filename": "eb292d29ce761c01.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:太好了！有什么想了解的随时问我。": {
+    "filename": "89664a25654a46fd.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:早上好。您就是新来的同事吧？请问您怎么称呼？": {
+    "filename": "ad48a9288cf07b80.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:欢迎！路上顺利吗？": {
+    "filename": "d24a6804a239ff6f.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:那就好。上午开会的时候给您介绍团队。": {
+    "filename": "e51a6d7381631346.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:先喝杯咖啡吧？": {
+    "filename": "58bfe6b6faa54cb1.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:你周六有空吗？": {
+    "filename": "e8a1a808ae657d08.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:我们一起去看电影吧？": {
+    "filename": "223b4e8ee40ca159.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:几点见？": {
+    "filename": "da9c05233b9cde84.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:在哪儿碰面？": {
+    "filename": "6a6fa527bb2342d1.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:这周我特别忙。": {
+    "filename": "c53f9da353b31b68.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:好啊！你想看什么？": {
+    "filename": "ecf7b5f7b5b1fd64.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:可以啊。几点？": {
+    "filename": "3856572da4553825.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:行。电影院门口见？": {
+    "filename": "bcc6f4617cfca5e9.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:那周六见！": {
+    "filename": "2bb733273f2f173d.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:怎么了？": {
+    "filename": "c254d4cf2730faff.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:没事，改天再约？": {
+    "filename": "c9c8dc246fa12d50.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:行，到时候再说。": {
+    "filename": "d5350f1327583597.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:我们要给小红办个生日聚会，你来吗？": {
+    "filename": "5d9df76d942a81ba.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:周五晚上。想去一家意大利餐厅，怎么样？": {
+    "filename": "8762d2db2965e792.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:你能帮忙订位吗？大概十个人。": {
+    "filename": "96b16bf64ccd33ee.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:太好了！大家一起凑钱买个礼物吧？": {
+    "filename": "d0391cc3d746cec6.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:每人100块。给她买那个她一直想要的包。": {
+    "filename": "30ddd33d2ce80b1a.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:我今天心情特别好。": {
+    "filename": "b0912a201f9b3649.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:有点累了。": {
+    "filename": "bc8bd5d628211951.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:太好吃了！": {
+    "filename": "545749ba3f64acbb.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:压力好大。": {
+    "filename": "213c8be951ecb705.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:太有意思了！": {
+    "filename": "3150a2a945152240.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:你今天看起来很高兴啊！怎么了？": {
+    "filename": "11c2238e257bdefd.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:恭喜！太棒了！": {
+    "filename": "3e9a554f49c38e55.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:得庆祝一下。出去吃顿好的？": {
+    "filename": "3c28054f3ff5854e.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:今天我请客，你的好日子！": {
+    "filename": "64f3b091bc498cf5.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:你今天看起来不太对劲。没事吧？": {
+    "filename": "fe879f87dae4c781.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:怎么了？我能帮什么忙吗？": {
+    "filename": "54e9644ddddda599.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:要不先休息十分钟？出去走走？": {
+    "filename": "b48ec72e50cfb7e4.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:走吧！休息一下回来就清楚了。": {
+    "filename": "0899ca6b35d90b5b.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:最近大家都在看的那个新剧你看了吗？": {
+    "filename": "832ff9c379b32f41.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:你觉得怎么样？我特别喜欢。": {
+    "filename": "73b562c1f9023853.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:最后那集结尾太意外了！完全没想到。": {
+    "filename": "b92926759ff4af5e.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:你觉得会有第二季吗？": {
+    "filename": "bd8f0caff1880f36.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:说吧。什么事？": {
+    "filename": "766c5b9a494ccd62.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:这确实不好选。有什么好处和坏处？": {
+    "filename": "7ab003cb2fff9e28.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:慢慢想，不用急着决定。": {
+    "filename": "a236b9d2e391e599.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:朋友就是这样的。不管你怎么选，我都支持你。": {
+    "filename": "5561c24ff7b41644.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:我们开始开会吧。": {
+    "filename": "a8846748b03fbdde.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:有人要补充吗？": {
+    "filename": "6594fffd106baa6e.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:你能分享一下屏幕吗？": {
+    "filename": "0c313836e955382d.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:我会后发报告。": {
+    "filename": "75b414d787c19697.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:我来分享会议纪要。": {
+    "filename": "4bf65e030c6115a5.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:早上好！你就是新来的同事吧？": {
+    "filename": "2c6c5db977d70f29.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:欢迎！我是张经理，市场部的。": {
+    "filename": "6b4e03f1ac6f1ad3.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:十分钟后在会议室开团队会。": {
+    "filename": "06fa5a8ac8c5ec88.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:走廊尽头左转。到时候给你介绍大家。": {
+    "filename": "3e02a90fa9339a53.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:下一个议程是你的项目。给大家汇报一下？": {
+    "filename": "e871cf193cc7a801.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:目前项目进展怎么样？": {
+    "filename": "e757e4abd4518b33.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:还需要什么支持吗？有没有什么问题？": {
+    "filename": "d3649830a51e2022.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:好的我们考虑一下。做得不错。还有什么要说的吗？": {
+    "filename": "6c84de544b8a4feb.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:好，我们开始。今天主要讨论新项目的时间表。大家有什么想法？": {
+    "filename": "22110503378c8706.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:好主意。谁负责哪一块？": {
+    "filename": "2c64d2825cf02e27.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:那沟通怎么安排？每周开一次会？": {
+    "filename": "51210a77a0e4cf1f.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:好，下午我发会议纪要。没别的事就散了。": {
+    "filename": "af39285e01cda189.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:我有数字营销的经验。": {
+    "filename": "b3d58da8d934b6be.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:我很看重团队合作。": {
+    "filename": "5a78db8472f14144.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:希望能加入你们的团队。": {
+    "filename": "6f9e9c6c072b225c.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:我的优势是解决问题的能力。": {
+    "filename": "a881e8fada6d668f.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:有什么问题尽管问。": {
+    "filename": "c3e26dfe527bef10.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:你好，请坐。先做个自我介绍吧。": {
+    "filename": "a7c28ecc0cf29ec1.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:你为什么对这个职位感兴趣？": {
+    "filename": "c3301cafa077946b.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:你之前有什么相关经验？": {
+    "filename": "aedc630d583e6061.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:好的。你有什么想问我们的吗？": {
+    "filename": "9bb863f3935fe45d.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:看你简历上在好几家公司工作过。上一份工作学到了什么？": {
+    "filename": "7aa3f981af40bdbd.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:能举一个你主导过的成功项目的例子吗？": {
+    "filename": "851362f62c8ace41.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:不错。你怎么应对紧急的截止日期和压力？": {
+    "filename": "3b252cc962f258c4.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:五年后你希望自己在哪个位置？": {
+    "filename": "56c50791917cdd6b.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:感谢您来面试。这是管理岗位。您的领导理念是什么？": {
+    "filename": "112aa12df15f7b11.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:如果团队成员之间有冲突，您会怎么处理？": {
+    "filename": "606a3aca29609430.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:工作中什么最能激励您？": {
+    "filename": "193b83522255a57e.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "zh:您对这个职位的薪资期望是多少？": {
+    "filename": "474cdf8db137b2d6.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": true
   }
 }
