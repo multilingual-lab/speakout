@@ -1,13 +1,13 @@
 export default function TopicGrid({ sections, language, languageOptions, onLanguageChange, onSelect, progressData = {}, totalCompletions = 0, user, onOpenMyPage }) {
   const selectedLanguage = languageOptions.find((option) => option.id === language) || languageOptions[0];
 
-  const getScenarioCompletionCount = (scenarioId) => {
+  const getScenarioTotalReps = (scenarioId) => {
     const prefix = `${language}:${scenarioId}:`;
-    let count = 0;
+    let total = 0;
     for (const key of Object.keys(progressData)) {
-      if (key.startsWith(prefix) && progressData[key].completions > 0) count++;
+      if (key.startsWith(prefix)) total += progressData[key].completions || 0;
     }
-    return count;
+    return total;
   };
 
   return (
@@ -45,11 +45,11 @@ export default function TopicGrid({ sections, language, languageOptions, onLangu
           <div className="topic-grid">
             {section.scenarios.map((s) => {
               const isMonologue = !!s.monologues;
-              const completedSessions = getScenarioCompletionCount(s.id);
+              const totalReps = getScenarioTotalReps(s.id);
               return (
               <div
                 key={s.id}
-                className={`topic-card${completedSessions > 0 ? ' topic-practiced' : ''}`}
+                className={`topic-card${totalReps > 0 ? ' topic-practiced' : ''}`}
                 style={{ '--card-color': s.color }}
                 role="button"
                 tabIndex={0}
@@ -58,8 +58,8 @@ export default function TopicGrid({ sections, language, languageOptions, onLangu
               >
                 <span className="topic-emoji">{s.emoji}</span>
                 <span className="topic-title">{s.title}</span>
-                {completedSessions > 0 && (
-                  <span className="topic-progress-badge">✓ {completedSessions} done</span>
+                {totalReps > 0 && (
+                  <span className="topic-progress-badge">{totalReps}x practiced</span>
                 )}
                 <span className="topic-title-en">
                   {s.titleEn} · <span className="topic-dialog-badge">{isMonologue ? `🎤 ${s.monologues.length}` : `🗨 ${s.sessions.length}`}</span>

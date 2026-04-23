@@ -300,6 +300,7 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 1rem;
+  padding: 0 1.25rem;
 }
 
 .session-picker-header .session-picker-label {

@@ -108,8 +108,8 @@ export default function SceneView({ scenario, initialMode, language = 'ko', onBa
           <div className="session-picker-header">
             <p className="session-picker-label">Choose a dialog</p>
             {(() => { const wp = getSessionProgress('__write__', 'write'); return (
-              <button className={`warmup-link${wp ? ' has-progress' : ''}`} onClick={() => { setMode('write'); setSessionId('__write__'); }}>
-                ✍️ practice writing{wp ? ` · ${wp.completions}×` : ''}
+              <button className="warmup-link" onClick={() => { setMode('write'); setSessionId('__write__'); }}>
+                ✍️ practice writing{wp ? <span className="warmup-count"> · {wp.completions}×</span> : ''}
               </button>
             ); })()}
           </div>
@@ -145,8 +145,8 @@ export default function SceneView({ scenario, initialMode, language = 'ko', onBa
           <div className="session-picker-header">
             <p className="session-picker-label">Choose what to shadow</p>
             {(() => { const wp = getSessionProgress('__write__', 'write'); return (
-              <button className={`warmup-link${wp ? ' has-progress' : ''}`} onClick={() => { setMode('write'); setSessionId('__write__'); }}>
-                ✍️ practice writing{wp ? ` · ${wp.completions}×` : ''}
+              <button className="warmup-link" onClick={() => { setMode('write'); setSessionId('__write__'); }}>
+                ✍️ practice writing{wp ? <span className="warmup-count"> · {wp.completions}×</span> : ''}
               </button>
             ); })()}
           </div>
