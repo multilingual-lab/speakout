@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import scenarios, { sections } from './data/scenarios';
 import TopicGrid from './components/TopicGrid';
 import SceneView from './components/SceneView';
@@ -33,6 +33,10 @@ export default function App() {
   const scrollYRef = useRef(0);
   const { user, isRecovery, signInWithGoogle, signInWithPassword, signUp, resetPassword, updatePassword, signOut, available: authAvailable } = useAuth();
   const { data: progressData, totalCompletions, recordCompletion, getProgress, syncProgress, clearProgress, needsSyncPrompt } = useProgress(user?.id);
+
+  useEffect(() => {
+    document.documentElement.lang = language;
+  }, [language]);
 
   const handleLanguageChange = useCallback((newLanguage) => {
     setLanguage(newLanguage);

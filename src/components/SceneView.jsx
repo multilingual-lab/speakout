@@ -55,7 +55,7 @@ export default function SceneView({ scenario, initialMode, language = 'ko', onBa
   const handleBack = () => {
     if (sessionId) {
       setSessionId(null);
-      if (isMonologue && mode === 'write') setMode('monologue');
+      if (mode === 'write') setMode(isMonologue ? 'monologue' : 'practice');
     } else {
       onBack();
     }
@@ -107,9 +107,11 @@ export default function SceneView({ scenario, initialMode, language = 'ko', onBa
         <div className="session-picker">
           <div className="session-picker-header">
             <p className="session-picker-label">Choose a dialog</p>
-            <button className="warmup-link" onClick={() => { setMode('write'); setSessionId(null); }}>
-              ✍️ practice writing
-            </button>
+            {(() => { const wp = getSessionProgress('__write__', 'write'); return (
+              <button className={`warmup-link${wp ? ' has-progress' : ''}`} onClick={() => { setMode('write'); setSessionId('__write__'); }}>
+                ✍️ practice writing{wp ? ` · ${wp.completions}×` : ''}
+              </button>
+            ); })()}
           </div>
           <div className="session-list">
             {sortByLevel(scenario.sessions).map((s) => {
@@ -142,9 +144,11 @@ export default function SceneView({ scenario, initialMode, language = 'ko', onBa
         <div className="session-picker">
           <div className="session-picker-header">
             <p className="session-picker-label">Choose what to shadow</p>
-            <button className="warmup-link" onClick={() => { setMode('write'); setSessionId(null); }}>
-              ✍️ practice writing
-            </button>
+            {(() => { const wp = getSessionProgress('__write__', 'write'); return (
+              <button className={`warmup-link${wp ? ' has-progress' : ''}`} onClick={() => { setMode('write'); setSessionId('__write__'); }}>
+                ✍️ practice writing{wp ? ` · ${wp.completions}×` : ''}
+              </button>
+            ); })()}
           </div>
           <div className="session-list">
             <button
@@ -192,10 +196,11 @@ export default function SceneView({ scenario, initialMode, language = 'ko', onBa
           <div className="session-list">
             {sortByLevel(scenario.monologues).map((m) => {
               const prog = getSessionProgress(m.id, 'monologue');
+              const writeProg = getSessionProgress(m.id, 'write');
               return (
               <button
                 key={m.id}
-                className={`session-card${prog ? ' session-done' : ''}`}
+                className={`session-card${(prog || writeProg) ? ' session-done' : ''}`}
                 onClick={() => setSessionId(m.id)}
               >
                 <span className="session-title">{m.title}</span>
@@ -203,6 +208,7 @@ export default function SceneView({ scenario, initialMode, language = 'ko', onBa
                 {m.level && <span className={`level-badge level-${m.level}`}>{LEVEL_LABELS[m.level]}</span>}
                 <span className="session-count">⏱ {Math.floor(m.duration / 60)}:{String(m.duration % 60).padStart(2, '0')}</span>
                 {prog && <span className="session-progress-badge">{prog.bestScore != null ? `Best: ${Math.round(prog.bestScore * 100)}%` : `✓ ${prog.completions}×`}</span>}
+                {writeProg && <span className="session-progress-badge">✍️ {writeProg.completions}×</span>}
               </button>
               );
             })}

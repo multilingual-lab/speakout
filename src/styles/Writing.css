@@ -183,6 +183,16 @@
   gap: 0.75rem;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
+}
+
+.writing-done-hint {
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #4ade80;
+  margin: 0 0 0.5rem;
+  opacity: 0.9;
 }
 
 /* ── Mobile ────────────────────────────────────────────────────────── */

@@ -173,6 +173,9 @@ function PhraseDictation({ phrases, language = 'ko', showKeyboard, onNext, nextT
       </div>
 
       <div className="writing-bottom-bar">
+        {submitted && index >= phrases.length - 1 && !hasNextAction && (
+          <p className="writing-done-hint">🎉 All done! Tap Prev or Retry to review.</p>
+        )}
         <div className="writing-actions">
           {!submitted && index > 0 && (
             <button className="action-btn retry-btn" onClick={handlePrev}>

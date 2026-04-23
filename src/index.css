@@ -3,7 +3,7 @@
 }
 
 :root {
-  font-family: 'Noto Sans KR', Inter, system-ui, sans-serif;
+  font-family: Inter, system-ui, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color: #e0e0e0;
@@ -24,6 +24,14 @@
   --color-text: #e0e0e0;
   --color-text-muted: #8a9abc;
   --color-border: #2a3550;
+}
+
+:root:lang(ko) {
+  font-family: 'Noto Sans KR', Inter, system-ui, sans-serif;
+}
+
+:root:lang(zh) {
+  font-family: 'Noto Sans SC', Inter, system-ui, sans-serif;
 }
 
 body {

@@ -176,13 +176,19 @@
   color: var(--color-text-muted);
   font-size: 0.8rem;
   cursor: pointer;
-  padding: 0.2rem 0.4rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 10px;
   opacity: 0.7;
-  transition: opacity 0.15s, color 0.15s;
+  transition: opacity 0.15s, color 0.15s, background 0.15s;
 }
 .warmup-link:hover {
   opacity: 1;
   color: #e0e0e0;
+}
+.warmup-link.has-progress {
+  opacity: 1;
+  color: #4ade80;
+  background: rgba(74, 222, 128, 0.1);
 }
 
 .monologue-keyword {

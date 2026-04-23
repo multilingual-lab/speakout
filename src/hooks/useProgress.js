@@ -1,7 +1,8 @@
-import { useState, useCallback, useMemo, useEffect } from 'react';
+import { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import { supabase } from '../services/supabase';
 
 const STORAGE_KEY = 'speakout_progress';
+const SYNCED_KEY = 'speakout_synced';
 
 function loadProgress() {
   try {
@@ -78,11 +79,19 @@ export function makeProgressKey(language, scenarioId, sessionId, mode) {
 
 export function useProgress(userId) {
   const [data, setData] = useState(loadProgress);
-  const [synced, setSynced] = useState(false);
+  const [synced, setSynced] = useState(() => {
+    try { return localStorage.getItem(SYNCED_KEY) === 'true'; } catch { return false; }
+  });
+  const prevUserIdRef = useRef(userId);
 
-  // Reset sync flag on logout
+  // Reset sync flag only on actual logout (userId goes from truthy to falsy)
   useEffect(() => {
-    if (!userId) setSynced(false);
+    const prev = prevUserIdRef.current;
+    prevUserIdRef.current = userId;
+    if (prev && !userId) {
+      setSynced(false);
+      try { localStorage.removeItem(SYNCED_KEY); } catch {}
+    }
   }, [userId]);
 
   const hasLocalData = useMemo(() => Object.keys(data).length > 0, [data]);
@@ -93,6 +102,7 @@ export function useProgress(userId) {
   const syncProgress = useCallback(async (strategy) => {
     if (!userId || synced) return;
     setSynced(true);
+    try { localStorage.setItem(SYNCED_KEY, 'true'); } catch {}
     const remote = await fetchRemoteProgress(userId);
     if (strategy === 'merge') {
       setData((local) => {
