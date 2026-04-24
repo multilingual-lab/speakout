@@ -127,6 +127,8 @@
   margin-top: 1.25rem;
   padding-top: 1rem;
   border-top: 1px solid var(--color-border);
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .mypage-github-link {
@@ -156,10 +158,13 @@
 }
 
 /* Clear progress */
-.mypage-footer-right {
+.mypage-danger-row {
   display: flex;
+  justify-content: flex-end;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1rem;
+  margin-top: 0.75rem;
+  padding-top: 0.5rem;
 }
 
 .mypage-clear-btn {
@@ -221,6 +226,46 @@
   color: var(--color-text-muted);
   font-size: 0.8rem;
   cursor: pointer;
+}
+
+.mypage-delete-btn {
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: 0.82rem;
+  cursor: pointer;
+  padding: 0;
+  opacity: 0.7;
+}
+
+.mypage-delete-btn:hover {
+  color: #f87171;
+  opacity: 1;
+}
+
+.mypage-delete-confirm {
+  border-color: rgba(239, 68, 68, 0.35);
+  background: rgba(239, 68, 68, 0.06);
+}
+
+.mypage-delete-final-btn {
+  padding: 0.35rem 1rem;
+  border: 1px solid #ef4444;
+  border-radius: 6px;
+  background: #ef4444;
+  color: white;
+  font-size: 0.8rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.mypage-delete-final-btn:hover {
+  background: #dc2626;
+}
+
+.mypage-delete-final-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
 }
 
 /* Avatar button in header */

@@ -67,5 +67,13 @@ export function useAuth() {
     await supabase.auth.signOut();
   }, []);
 
-  return { user, loading, isRecovery, signInWithGoogle, signInWithPassword, signUp, resetPassword, updatePassword, signOut, available: !!supabase };
+  const deleteAccount = useCallback(async () => {
+    if (!supabase) return { error: null };
+    const { error: deleteError } = await supabase.rpc('delete_own_account');
+    if (deleteError) return { error: deleteError };
+    await supabase.auth.signOut();
+    return { error: null };
+  }, []);
+
+  return { user, loading, isRecovery, signInWithGoogle, signInWithPassword, signUp, resetPassword, updatePassword, signOut, deleteAccount, available: !!supabase };
 }

@@ -92,7 +92,11 @@ describe('AuthModal — sign-in / sign-up flow', () => {
 
     await user.type(screen.getByPlaceholderText('Email address'), 'new@example.com');
     await user.type(screen.getByPlaceholderText('Password'), 'newpass123');
+    // Click Sign up to reveal confirm email field
     await user.click(screen.getByRole('button', { name: 'Sign up' }));
+    await user.type(screen.getByPlaceholderText('Confirm email address'), 'new@example.com');
+    // Click Sign up again to submit
+    await user.click(screen.getByRole('button', { name: /Sign up/ }));
 
     expect(props.onSignUp).toHaveBeenCalledWith('new@example.com', 'newpass123');
     await waitFor(() => expect(props.onClose).toHaveBeenCalled());
@@ -106,7 +110,11 @@ describe('AuthModal — sign-in / sign-up flow', () => {
 
     await user.type(screen.getByPlaceholderText('Email address'), 'existing@example.com');
     await user.type(screen.getByPlaceholderText('Password'), 'pass123');
+    // Click Sign up to reveal confirm email field
     await user.click(screen.getByRole('button', { name: 'Sign up' }));
+    await user.type(screen.getByPlaceholderText('Confirm email address'), 'existing@example.com');
+    // Click Sign up again to submit
+    await user.click(screen.getByRole('button', { name: /Sign up/ }));
 
     await waitFor(() => expect(screen.getByText('Email already registered')).toBeInTheDocument());
     expect(props.onClose).not.toHaveBeenCalled();

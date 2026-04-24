@@ -34,3 +34,14 @@ create policy "Users update own completions"
 
 -- Index for fast lookups
 create index if not exists idx_completions_user on completions(user_id);
+
+-- Function for users to delete their own account
+-- Must be run as a Supabase RPC with service_role or via edge function
+create or replace function delete_own_account()
+returns void
+language sql
+security definer
+as $$
+  delete from completions where user_id = auth.uid();
+  delete from auth.users where id = auth.uid();
+$$;

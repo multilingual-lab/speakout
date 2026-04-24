@@ -10,9 +10,20 @@ import {
   getRateOptions,
 } from '../services/tts/index.js';
 
-export default function MyPage({ user, authAvailable, onOpenAuth, onSignOut, onBack, userId, onClearProgress }) {
+export default function MyPage({ user, authAvailable, onOpenAuth, onSignOut, onDeleteAccount, onBack, userId, onClearProgress }) {
   const { data: progressData, totalCompletions } = useProgress(userId);
   const [confirmClear, setConfirmClear] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  const [deleteError, setDeleteError] = useState(null);
+  const [deleting, setDeleting] = useState(false);
+
+  const handleDeleteAccount = async () => {
+    setDeleting(true);
+    setDeleteError(null);
+    const { error } = await onDeleteAccount();
+    setDeleting(false);
+    if (error) setDeleteError(error.message || 'Failed to delete account');
+  };
 
   // TTS settings state
   const providers = getProviders();
@@ -172,15 +183,19 @@ export default function MyPage({ user, authAvailable, onOpenAuth, onSignOut, onB
           >
             GitHub
           </a>
-          <div className="mypage-footer-right">
+          {user && (
+            <button className="mypage-signout-btn" onClick={onSignOut}>Sign out</button>
+          )}
+        </div>
+
+        {user && (
+          <div className="mypage-danger-row">
             {totalCompletions > 0 && !confirmClear && (
               <button className="mypage-clear-btn" onClick={() => setConfirmClear(true)}>Clear progress</button>
             )}
-            {user && (
-              <button className="mypage-signout-btn" onClick={onSignOut}>Sign out</button>
-            )}
+            <button className="mypage-delete-btn" onClick={() => setConfirmDelete(true)}>Delete account</button>
           </div>
-        </div>
+        )}
 
         {confirmClear && (
           <div className="mypage-clear-confirm">
@@ -189,6 +204,19 @@ export default function MyPage({ user, authAvailable, onOpenAuth, onSignOut, onB
               <button className="mypage-clear-yes" onClick={() => { onClearProgress(); setConfirmClear(false); }}>Clear</button>
               <button className="mypage-clear-no" onClick={() => setConfirmClear(false)}>Cancel</button>
             </div>
+          </div>
+        )}
+
+        {confirmDelete && (
+          <div className="mypage-clear-confirm mypage-delete-confirm">
+            <span className="mypage-clear-warn">This is irreversible. Your account and all progress will be deleted forever. Are you absolutely sure?</span>
+            <div className="mypage-clear-btns">
+              <button className="mypage-clear-yes" onClick={handleDeleteAccount} disabled={deleting}>
+                {deleting ? 'Deleting…' : 'Yes, delete'}
+              </button>
+              <button className="mypage-clear-no" onClick={() => setConfirmDelete(false)}>Cancel</button>
+            </div>
+            {deleteError && <p className="auth-error" style={{ marginTop: '0.5rem' }}>{deleteError}</p>}
           </div>
         )}
       </div>

@@ -2,7 +2,9 @@ import { useState } from 'react';
 
 export default function AuthModal({ onClose, onSignInWithGoogle, onSignInWithPassword, onSignUp, onResetPassword }) {
   const [email, setEmail] = useState('');
+  const [confirmEmail, setConfirmEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isSignUp, setIsSignUp] = useState(false);
   const [step, setStep] = useState('form'); // 'form' | 'forgotPassword' | 'resetSent'
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -20,6 +22,10 @@ export default function AuthModal({ onClose, onSignInWithGoogle, onSignInWithPas
 
   const handleSignUp = async () => {
     if (!email.trim() || !password) return;
+    if (email.trim().toLowerCase() !== confirmEmail.trim().toLowerCase()) {
+      setError('Email addresses do not match');
+      return;
+    }
     setError(null);
     setLoading(true);
     const { error: err } = await onSignUp(email.trim(), password);
@@ -44,6 +50,7 @@ export default function AuthModal({ onClose, onSignInWithGoogle, onSignInWithPas
 
   const linkStyle = { background: 'none', border: 'none', color: '#7c6bff', cursor: 'pointer', fontSize: '0.85rem', padding: 0 };
   const disabled = !email.trim() || !password || loading;
+  const signUpDisabled = disabled || (isSignUp && email.trim().toLowerCase() !== confirmEmail.trim().toLowerCase());
 
   return (
     <div className="settings-overlay" onClick={onClose}>
@@ -70,6 +77,15 @@ export default function AuthModal({ onClose, onSignInWithGoogle, onSignInWithPas
                 onChange={(e) => setEmail(e.target.value)}
                 autoFocus
               />
+              {isSignUp && (
+                <input
+                  type="email"
+                  className="auth-email-input"
+                  placeholder="Confirm email address"
+                  value={confirmEmail}
+                  onChange={(e) => setConfirmEmail(e.target.value)}
+                />
+              )}
               <input
                 type="password"
                 className="auth-email-input"
@@ -78,12 +94,25 @@ export default function AuthModal({ onClose, onSignInWithGoogle, onSignInWithPas
                 onChange={(e) => setPassword(e.target.value)}
               />
               <div className="auth-btn-row">
-                <button type="submit" className="auth-email-btn" disabled={disabled}>
-                  Sign in
-                </button>
-                <button type="button" className="auth-email-btn auth-email-btn-secondary" onClick={handleSignUp} disabled={disabled}>
-                  Sign up
-                </button>
+                {isSignUp ? (
+                  <>
+                    <button type="button" className="auth-email-btn" onClick={handleSignUp} disabled={signUpDisabled}>
+                      {loading ? 'Signing up…' : 'Sign up'}
+                    </button>
+                    <button type="button" className="auth-email-btn auth-email-btn-secondary" onClick={() => { setIsSignUp(false); setConfirmEmail(''); setError(null); }}>
+                      Back to sign in
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button type="submit" className="auth-email-btn" disabled={disabled}>
+                      {loading ? 'Signing in…' : 'Sign in'}
+                    </button>
+                    <button type="button" className="auth-email-btn auth-email-btn-secondary" onClick={() => { setIsSignUp(true); setError(null); }} disabled={!email.trim() || loading}>
+                      Sign up
+                    </button>
+                  </>
+                )}
               </div>
               {error && <p className="auth-error">{error}</p>}
             </form>

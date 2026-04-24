@@ -31,7 +31,7 @@ export default function App() {
     return supportedLanguages.includes(stored) ? stored : 'ko';
   });
   const scrollYRef = useRef(0);
-  const { user, isRecovery, signInWithGoogle, signInWithPassword, signUp, resetPassword, updatePassword, signOut, available: authAvailable } = useAuth();
+  const { user, isRecovery, signInWithGoogle, signInWithPassword, signUp, resetPassword, updatePassword, signOut, deleteAccount, available: authAvailable } = useAuth();
   const { data: progressData, totalCompletions, recordCompletion, getProgress, syncProgress, clearProgress, needsSyncPrompt } = useProgress(user?.id);
 
   useEffect(() => {
@@ -90,6 +90,11 @@ export default function App() {
           authAvailable={authAvailable}
           onOpenAuth={() => setShowAuth(true)}
           onSignOut={() => { setShowMyPage(false); clearProgress(); signOut(); }}
+          onDeleteAccount={async () => {
+            const { error } = await deleteAccount();
+            if (!error) { setShowMyPage(false); clearProgress(); }
+            return { error };
+          }}
           onBack={() => setShowMyPage(false)}
           userId={user?.id}
           onClearProgress={clearProgress}
