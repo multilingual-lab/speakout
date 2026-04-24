@@ -3,15 +3,15 @@ import { useSpeech } from '../hooks/useSpeech';
 import { computeSimilarity } from '../utils/scoring';
 import { getLanguageField, getEnglishField } from '../utils/getLanguageField.js';
 
-export default function ShadowMode({ phrases, exchanges, language = 'ko', onNext, nextSessionTitle, onComplete }) {
+export default function ShadowMode({ phrases, exchanges, language = 'ko', onNext, nextSessionTitle }) {
   if (exchanges) {
-    return <DialogShadow exchanges={exchanges} language={language} onNext={onNext} nextSessionTitle={nextSessionTitle} onComplete={onComplete} />;
+    return <DialogShadow exchanges={exchanges} language={language} onNext={onNext} nextSessionTitle={nextSessionTitle} />;
   }
-  return <PhraseShadow phrases={phrases} language={language} onNext={onNext} nextSessionTitle={nextSessionTitle} onComplete={onComplete} />;
+  return <PhraseShadow phrases={phrases} language={language} onNext={onNext} nextSessionTitle={nextSessionTitle} />;
 }
 
 /* ── Dialog-based shadowing ───────────────────────────────────────────────────────────── */
-function DialogShadow({ exchanges, language = 'ko', onNext, nextSessionTitle, onComplete }) {
+function DialogShadow({ exchanges, language = 'ko', onNext, nextSessionTitle }) {
   // Flatten exchanges into shadow-able lines:
   // "other" → shadow their korean line
   // "you-initiate" → shadow each expectedResponse
@@ -21,11 +21,9 @@ function DialogShadow({ exchanges, language = 'ko', onNext, nextSessionTitle, on
   const [showResult, setShowResult] = useState(false);
   const [showEnglish, setShowEnglish] = useState(false);
   const wasListeningRef = useRef(false);
-  const scoresRef = useRef([]);
-  const completedRef = useRef(false);
   const chatEndRef = useRef(null);
   const historyEndRef = useRef(null);
-  const { isListening, transcript, isSpeaking, startListening, stopListening, speak, setTranscript } =
+  const { isListening, transcript, isSpeaking, error, startListening, stopListening, speak, setTranscript } =
     useSpeech();
 
   const line = lines[currentIndex];
@@ -76,18 +74,6 @@ function DialogShadow({ exchanges, language = 'ko', onNext, nextSessionTitle, on
   const similarity = showResult && transcript
     ? computeSimilarity(line.text, transcript, language)
     : null;
-
-  useEffect(() => {
-    if (similarity != null) {
-      scoresRef.current[currentIndex] = similarity;
-    }
-    if (currentIndex >= lines.length - 1 && showResult && !completedRef.current) {
-      completedRef.current = true;
-      const scores = scoresRef.current.filter((s) => s != null);
-      const avg = scores.length > 0 ? scores.reduce((a, b) => a + b, 0) / scores.length : null;
-      onComplete?.(avg);
-    }
-  }, [similarity, currentIndex, lines.length, showResult, onComplete]);
 
   // Conversation context: all lines before current
   const past = lines.slice(0, currentIndex);
@@ -227,13 +213,11 @@ function buildDialogLines(exchanges, language = 'ko') {
 }
 
 /* ── Original phrase-based shadowing ────────────────────────────────── */
-function PhraseShadow({ phrases, language = 'ko', onNext, nextSessionTitle, onComplete }) {
+function PhraseShadow({ phrases, language = 'ko', onNext, nextSessionTitle }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showResult, setShowResult] = useState(false);
   const [showEnglish, setShowEnglish] = useState(false);
   const wasListeningRef = useRef(false);
-  const scoresRef = useRef([]);
-  const completedRef = useRef(false);
   const { isListening, transcript, isSpeaking, error, startListening, stopListening, speak, setTranscript } =
     useSpeech();
 
@@ -282,18 +266,6 @@ function PhraseShadow({ phrases, language = 'ko', onNext, nextSessionTitle, onCo
   const similarity = showResult && transcript
     ? computeSimilarity(phraseText, transcript, language)
     : null;
-
-  useEffect(() => {
-    if (similarity != null) {
-      scoresRef.current[currentIndex] = similarity;
-    }
-    if (currentIndex >= phrases.length - 1 && showResult && !completedRef.current) {
-      completedRef.current = true;
-      const scores = scoresRef.current.filter((s) => s != null);
-      const avg = scores.length > 0 ? scores.reduce((a, b) => a + b, 0) / scores.length : null;
-      onComplete?.(avg);
-    }
-  }, [similarity, currentIndex, phrases.length, showResult, onComplete]);
 
   return (
     <div className="shadow-container">

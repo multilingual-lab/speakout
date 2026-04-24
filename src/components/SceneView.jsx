@@ -160,18 +160,16 @@ export default function SceneView({ scenario, initialMode, language = 'ko', onBa
               <span className="session-count">{scenario.shadow.length} phrases</span>
             </button>
             {sortByLevel(scenario.sessions).map((s) => {
-              const prog = getSessionProgress(s.id, 'shadow');
               return (
               <button
                 key={s.id}
-                className={`session-card${prog ? ' session-done' : ''}`}
+                className="session-card"
                 onClick={() => setSessionId(s.id)}
               >
                 <span className="session-title">{s.title}</span>
                 <span className="session-title-en">{s.titleEn}</span>
                 {s.level && <span className={`level-badge level-${s.level}`}>{LEVEL_LABELS[s.level]}</span>}
                 <span className="session-count">{s.exchanges.length} turns</span>
-                {prog && <span className="session-progress-badge">{prog.bestScore != null ? `Best: ${Math.round(prog.bestScore)}%` : `✓ ${prog.completions}×`}</span>}
               </button>
               );
             })}
@@ -181,12 +179,12 @@ export default function SceneView({ scenario, initialMode, language = 'ko', onBa
 
       {/* Quick phrases shadow */}
       {mode === 'shadow' && sessionId === '__quick__' && (
-        <ShadowMode key={sessionId} phrases={scenario.shadow} language={language} onNext={nextSessionId ? handleNextSession : null} nextSessionTitle={nextSession?.title} onComplete={handleComplete} />
+        <ShadowMode key={sessionId} phrases={scenario.shadow} language={language} onNext={nextSessionId ? handleNextSession : null} nextSessionTitle={nextSession?.title} />
       )}
 
       {/* Dialog shadow */}
       {mode === 'shadow' && session && (
-        <ShadowMode key={sessionId} exchanges={session.exchanges} language={language} onNext={nextSessionId ? handleNextSession : null} nextSessionTitle={nextSession?.title} onComplete={handleComplete} />
+        <ShadowMode key={sessionId} exchanges={session.exchanges} language={language} onNext={nextSessionId ? handleNextSession : null} nextSessionTitle={nextSession?.title} />
       )}
 
       {/* Monologue picker */}
@@ -206,7 +204,6 @@ export default function SceneView({ scenario, initialMode, language = 'ko', onBa
                 <span className="session-title">{m.title}</span>
                 <span className="session-title-en">{m.titleEn}</span>
                 {m.level && <span className={`level-badge level-${m.level}`}>{LEVEL_LABELS[m.level]}</span>}
-                <span className="session-count">⏱ {Math.floor(m.duration / 60)}:{String(m.duration % 60).padStart(2, '0')}</span>
                 {prog && <span className="session-progress-badge">{prog.bestScore != null ? `Best: ${Math.round(prog.bestScore * 100)}%` : `✓ ${prog.completions}×`}</span>}
                 {writeProg && <span className="session-progress-badge">✍️ {writeProg.completions}×</span>}
               </button>

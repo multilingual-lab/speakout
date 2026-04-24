@@ -15,7 +15,7 @@ Switch languages using the dropdown in the top-right of the topic grid. Language
 - Topic-based practice (Travel, Casual, Work)
 - Two modes per topic:
 	- **Practice** — multi-turn dialogs with voice input; model answers include individual 🔊 TTS playback buttons
-	- **Shadowing** — listen-and-repeat drills with pronunciation scoring
+	- **Shadowing** — listen-and-repeat drills with real-time pronunciation feedback
 - English UI, target-language content
 - Monologue mode (Korean only, for now) — timed speaking with keyword tracking
 

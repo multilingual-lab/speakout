@@ -59,7 +59,7 @@ export default function MyPage({ user, authAvailable, onOpenAuth, onSignOut, onD
   };
 
   // Compute per-mode stats
-  const stats = { shadow: 0, practice: 0, monologue: 0, write: 0 };
+  const stats = { practice: 0, monologue: 0, write: 0 };
   for (const [key, entry] of Object.entries(progressData)) {
     const mode = key.split(':')[3];
     if (mode && stats[mode] !== undefined) {
@@ -98,10 +98,6 @@ export default function MyPage({ user, authAvailable, onOpenAuth, onSignOut, onD
           <div className={`mypage-stat-row${stats.practice === 0 ? ' mypage-stat-zero' : ''}`}>
             <span><span className="mypage-stat-icon">🗨</span> Practice</span>
             <span className="mypage-stat-value">{stats.practice}</span>
-          </div>
-          <div className={`mypage-stat-row${stats.shadow === 0 ? ' mypage-stat-zero' : ''}`}>
-            <span><span className="mypage-stat-icon">🔁</span> Shadowing</span>
-            <span className="mypage-stat-value">{stats.shadow}</span>
           </div>
           <div className={`mypage-stat-row${stats.monologue === 0 ? ' mypage-stat-zero' : ''}`}>
             <span><span className="mypage-stat-icon">🎤</span> Monologue</span>

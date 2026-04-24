@@ -100,8 +100,8 @@ export async function synthesize(text, opts) {
     try {
       const audioUrl = await active.speak(text, opts);
       return { audioUrl, providerId: active.id };
-    } catch (err) {
-      console.error(`TTS provider "${active.id}" failed, falling back to browser:`, err);
+    } catch {
+      // CDN/Azure miss — silently fall back to browser TTS
     }
   }
 

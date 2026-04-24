@@ -34,7 +34,7 @@ src/
 │   ├── TopicGrid.jsx         # Home: language selector + section headers + topic cards
 │   ├── SceneView.jsx         # Per-topic wrapper: mode toggle + dialog/monologue picker
 │   ├── PracticeMode.jsx      # Dialog practice with scrolling chat history
-│   ├── ShadowMode.jsx        # Listen & repeat with Levenshtein match scoring
+│   ├── ShadowMode.jsx        # Listen & repeat with real-time similarity feedback (no completion tracking)
 │   ├── MonologueMode.jsx     # Extended speaking: prompt → record → review
 │   ├── WritingMode.jsx        # Writing practice: phrase dictation + composition
 │   ├── KoreanKeyboardRef.jsx  # Virtual Korean keyboard (feature-flagged per language)
@@ -261,6 +261,8 @@ TopicGrid (home)              ⚙️ Settings (always visible, top-right)
 - **Sign-up:** local data uploads to cloud silently (new account can't conflict)
 - **Sign-out:** local progress is cleared to prevent cross-contamination on shared devices
 - **Clear progress:** available in MyPage for both guests and signed-in users; requires confirmation
+- **Tracked modes:** Practice, Monologue, Writing. Shadow mode shows real-time similarity feedback but does **not** record completions.
+- **⚠️ ID stability:** The progress key format is `{language}:{scenarioId}:{sessionId}:{mode}`. Renaming a scenario `id` or session `id` in the data files will orphan existing completion records in both localStorage and Supabase. If an ID must change, a data migration is required.
 
 ### Speech Recognition (STT)
 
@@ -687,7 +689,7 @@ node scripts/upload-audio.mjs
 | Shadow mode plays audio | Open scenario → Shadow → listen to phrase |
 | Practice mode NPC speaks | Open scenario → Practice → NPC turn speaks target language |
 | STT recognizes speech | Speak in target language → verify transcript |
-| Similarity scoring works | Shadow mode → repeat phrase → verify score |
+| Similarity feedback works | Shadow mode → repeat phrase → verify real-time score (not saved) |
 | Keyword matching works | Monologue mode (if applicable) → check keyword detection |
 | Writing mode works | Open Writing → verify dictation shows target language |
 | Tests pass | `npm test` |
