@@ -116,6 +116,12 @@ export function useSpeech() {
   }, []);
 
   const speak = useCallback(async (text, languageId = 'ko') => {
+    // Stop any active recognition first to avoid audio session conflicts
+    if (recognitionRef.current) {
+      recognitionRef.current.abort();
+      recognitionRef.current = null;
+      setIsListening(false);
+    }
     // Stop any in-progress speech first
     if (audioRef.current) {
       audioRef.current.pause();
@@ -145,11 +151,13 @@ export function useSpeech() {
           audioRef.current = audio;
           audio.onended = () => {
             URL.revokeObjectURL(audioUrl);
+            audioRef.current = null;
             setIsSpeaking(false);
             resolve();
           };
           audio.onerror = () => {
             URL.revokeObjectURL(audioUrl);
+            audioRef.current = null;
             setIsSpeaking(false);
             setError('tts-failed');
             resolve();

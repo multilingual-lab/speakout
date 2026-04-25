@@ -173,7 +173,7 @@ export default function PracticeMode({ exchanges, language = 'ko', onNext, nextS
           <div className="chat-bubble other-bubble">
             <div className="bubble-speaker">Other</div>
             <p className="bubble-korean">{exchangeText}</p>
-            <button className="replay-btn" onClick={handleReplay} disabled={isSpeaking}>
+            <button className="replay-btn" onClick={handleReplay} disabled={isSpeaking || isListening}>
               🔊
             </button>
           </div>

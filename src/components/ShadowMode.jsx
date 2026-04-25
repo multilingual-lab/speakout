@@ -21,6 +21,7 @@ function DialogShadow({ exchanges, language = 'ko', onNext, nextSessionTitle }) 
   const [showResult, setShowResult] = useState(false);
   const [showEnglish, setShowEnglish] = useState(false);
   const wasListeningRef = useRef(false);
+  const resultTimerRef = useRef(null);
   const chatEndRef = useRef(null);
   const historyEndRef = useRef(null);
   const { isListening, transcript, isSpeaking, error, startListening, stopListening, speak, setTranscript } =
@@ -36,14 +37,14 @@ function DialogShadow({ exchanges, language = 'ko', onNext, nextSessionTitle }) 
 
   useEffect(() => {
     if (wasListeningRef.current && !isListening && !showResult) {
-      setTimeout(() => setShowResult(true), 500);
+      resultTimerRef.current = setTimeout(() => setShowResult(true), 500);
     }
     wasListeningRef.current = isListening;
   }, [isListening, showResult]);
 
   const handleListen = async () => {
+    clearTimeout(resultTimerRef.current);
     setShowResult(false);
-    setTranscript('');
     await speak(line.text, language);
   };
 
@@ -218,6 +219,7 @@ function PhraseShadow({ phrases, language = 'ko', onNext, nextSessionTitle }) {
   const [showResult, setShowResult] = useState(false);
   const [showEnglish, setShowEnglish] = useState(false);
   const wasListeningRef = useRef(false);
+  const resultTimerRef = useRef(null);
   const { isListening, transcript, isSpeaking, error, startListening, stopListening, speak, setTranscript } =
     useSpeech();
 
@@ -228,14 +230,14 @@ function PhraseShadow({ phrases, language = 'ko', onNext, nextSessionTitle }) {
   // Auto-transition when speech recognition stops on its own
   useEffect(() => {
     if (wasListeningRef.current && !isListening && !showResult) {
-      setTimeout(() => setShowResult(true), 500);
+      resultTimerRef.current = setTimeout(() => setShowResult(true), 500);
     }
     wasListeningRef.current = isListening;
   }, [isListening, showResult]);
 
   const handleListen = async () => {
+    clearTimeout(resultTimerRef.current);
     setShowResult(false);
-    setTranscript('');
     await speak(phraseText, language);
   };
 
