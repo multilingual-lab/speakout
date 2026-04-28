@@ -126,7 +126,7 @@ function DialogShadow({ exchanges, language = 'ko', onNext, nextSessionTitle }) 
                 <p className="result-bar-capture">{transcript}</p>
               </>
             ) : (
-              <span className="result-bar-text">No speech detected — try again</span>
+              <span className="result-bar-text">{(error === 'stt-network' || error === 'stt-network-brave') ? 'Speech recognition failed — see error below' : 'No speech detected — try again'}</span>
             )}
           </div>
         )}
@@ -137,6 +137,12 @@ function DialogShadow({ exchanges, language = 'ko', onNext, nextSessionTitle }) 
       <div className="shadow-bottom-bar">
         {error === 'tts-failed' && (
           <div className="error-bar">⚠️ Text-to-speech failed — try opening in your system browser</div>
+        )}
+        {error === 'stt-network' && (
+          <div className="error-bar">⚠️ Speech recognition failed — try Chrome or Safari, or disable ad/tracker blockers for this site.</div>
+        )}
+        {error === 'stt-network-brave' && (
+          <div className="error-bar">⚠️ Brave does not support speech recognition. Please open this page in Chrome, Edge, or Safari.</div>
         )}
         {currentIndex >= lines.length - 1 && (
           onNext ? (
@@ -299,7 +305,7 @@ function PhraseShadow({ phrases, language = 'ko', onNext, nextSessionTitle }) {
                 <p className="result-bar-capture">{transcript}</p>
               </>
             ) : (
-              <span className="result-bar-text">No speech detected — try again</span>
+              <span className="result-bar-text">{(error === 'stt-network' || error === 'stt-network-brave') ? 'Speech recognition failed — see error below' : 'No speech detected — try again'}</span>
             )}
           </div>
         )}
@@ -308,6 +314,12 @@ function PhraseShadow({ phrases, language = 'ko', onNext, nextSessionTitle }) {
       <div className="shadow-bottom-bar">
         {error === 'tts-failed' && (
           <div className="error-bar">⚠️ Text-to-speech failed — try opening in your system browser</div>
+        )}
+        {error === 'stt-network' && (
+          <div className="error-bar">⚠️ Speech recognition failed — try Chrome or Safari, or disable ad/tracker blockers for this site.</div>
+        )}
+        {error === 'stt-network-brave' && (
+          <div className="error-bar">⚠️ Brave does not support speech recognition. Please open this page in Chrome, Edge, or Safari.</div>
         )}
         {currentIndex >= phrases.length - 1 && (
           onNext ? (

@@ -5,11 +5,13 @@ import { getLanguageConfig } from '../config/languages';
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
 
+const isBrave = !!(navigator.brave && navigator.brave.isBrave);
+
 export function useSpeech() {
   const [isListening, setIsListening] = useState(false);
   const [transcript, setTranscript] = useState('');
   const [isSpeaking, setIsSpeaking] = useState(false);
-  const [error, setError] = useState(null); // 'mic-denied' | 'no-speech' | 'tts-failed' | 'stt-network' | null
+  const [error, setError] = useState(null); // 'mic-denied' | 'no-speech' | 'tts-failed' | 'stt-network' | 'stt-network-brave' | null
   const recognitionRef = useRef(null);
   const audioRef = useRef(null);
   const timeoutRef = useRef(null);
@@ -80,7 +82,7 @@ export function useSpeech() {
         stop();
         setIsListening(false);
       } else if (event.error === 'network') {
-        setError('stt-network');
+        setError(isBrave ? 'stt-network-brave' : 'stt-network');
         stop();
         setIsListening(false);
       }
@@ -91,7 +93,16 @@ export function useSpeech() {
     setTranscript('');
     setError(null);
     setIsListening(true);
-    recognition.start();
+
+    try {
+      recognition.start();
+    } catch (e) {
+      console.error('STT start() failed:', e);
+      setError(isBrave ? 'stt-network-brave' : 'stt-network');
+      setIsListening(false);
+      recognitionRef.current = null;
+      return;
+    }
 
     // Silence timeout: reset on every result (interim or final)
     timeoutRef.current = setTimeout(stop, silenceTimeoutMs);

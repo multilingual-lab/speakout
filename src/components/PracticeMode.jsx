@@ -222,7 +222,8 @@ export default function PracticeMode({ exchanges, language = 'ko', onNext, nextS
               {error === 'mic-denied' && '⚠️ Microphone access denied — check browser permissions'}
               {error === 'no-speech' && '⚠️ No speech detected — try again'}
               {error === 'tts-failed' && '⚠️ Text-to-speech failed — try opening in your system browser'}
-              {error === 'stt-network' && '⚠️ Speech recognition unavailable — your browser may be blocking it. Try Chrome or Safari, or disable ad/tracker blockers for this site.'}
+              {error === 'stt-network' && '⚠️ Speech recognition failed — try Chrome or Safari, or disable ad/tracker blockers for this site.'}
+              {error === 'stt-network-brave' && '⚠️ Brave does not support speech recognition. Please open this page in Chrome, Edge, or Safari.'}
             </div>
           )}
           <div className="respond-actions">
