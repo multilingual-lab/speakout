@@ -3010,5 +3010,2027 @@
     "voice": "zh-CN-XiaoxiaoNeural",
     "rate": "0.9",
     "uploaded": true
+  },
+  "ko:아이스 아메리카노 한 잔 주세요": {
+    "filename": "8ddb7959647de1fe.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:톨 사이즈로 주세요": {
+    "filename": "e5939010724901ba.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:아니요, 괜찮아요": {
+    "filename": "6ccf2d0516601318.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:여기서 먹고 갈게요": {
+    "filename": "0ef152b0d451a42c.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:카드로 계산할게요": {
+    "filename": "454ccec94bd70a15.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:네, 감사합니다": {
+    "filename": "d32bbd48476c7b57.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:감사합니다": {
+    "filename": "aa481646f42bd2d5.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:저기요, 뜨거운 걸로 바꿀 수 있을까요?": {
+    "filename": "38c10a336372bddc.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:감사합니다, 죄송해요": {
+    "filename": "05b2539ef44c1656.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:감사합니다! 좋은 하루 보내세요": {
+    "filename": "ed66f49e1be605d9.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:저기요, 이 음료가 좀 이상한 것 같은데요.": {
+    "filename": "840350bdba5bbf43.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:원래보다 훨씬 쓴 것 같아요": {
+    "filename": "b547d02dcabccd39.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:다시 만들어 주시면 감사하겠습니다": {
+    "filename": "4c2be729c7222a0f.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:아니에요, 감사합니다. 이런 일 있을 수 있죠": {
+    "filename": "742fc430beba82c9.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:두 명이요": {
+    "filename": "347295c0504f8782.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:네, 비빔밥 하나 주세요": {
+    "filename": "c3edb37c8251ba9e.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:물이면 돼요": {
+    "filename": "32e6f891c69b7208.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:감사합니다! 잘 먹겠습니다": {
+    "filename": "f662af786a020d07.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:저기요, 계산해 주세요.": {
+    "filename": "05d61622024ada6c.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:카드로 할게요": {
+    "filename": "64dec53fe65c712c.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:네, 그런데 알레르기가 있어서 먼저 여쭤볼게요": {
+    "filename": "b980bbf19b859f7f.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:땅콩 알레르기가 있어요": {
+    "filename": "2fb50c19551e1a1e.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:그럼 그걸로 할게요": {
+    "filename": "f7955a8ee5d4e1b8.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:아니요, 이거면 충분해요. 감사합니다": {
+    "filename": "c25330c98d0ba732.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:저기요, 제가 주문한 것과 다른 음식이 나온 것 같은데요.": {
+    "filename": "8294a20d2a362c81.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:비빔밥을 주문했는데 김치찌개가 나왔어요": {
+    "filename": "abce3f9c9b2e6bd5.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:아, 감사합니다. 그럴 수 있죠": {
+    "filename": "301f397606043c47.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:괜찮아요, 빠르게 해결해 주셔서 감사합니다": {
+    "filename": "a155316b16f5baf8.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:저기요, 지하철역이 어디에 있어요?": {
+    "filename": "8528499f8b9e51c5.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:직진하고 오른쪽이요?": {
+    "filename": "266add6a61442920.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:감사합니다! 도움이 됐어요": {
+    "filename": "79d3f89e86c2f66b.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:실례합니다, 강남 가는 버스가 여기서 타면 되나요?": {
+    "filename": "1411c2b62b805469.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:아, 반대편이요? 감사합니다": {
+    "filename": "470c953a4d7763bc.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:카드로도 탈 수 있죠?": {
+    "filename": "1122987f3946caf9.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:알겠습니다, 정말 감사합니다!": {
+    "filename": "e81bc9e4bd8d1ab9.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:실례합니다, 이 근처를 잘 몰라서 그런데 도움을 좀 받을 수 있을까요?": {
+    "filename": "bd8638638d74cd7c.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:이 주소로 가야 하는데 어떻게 가는지 모르겠어요": {
+    "filename": "815945f01d9fdb95.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:택시 타는 곳이 어디에 있어요?": {
+    "filename": "f0fea2912ac99603.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:정말 감사합니다, 큰 도움이 됐어요": {
+    "filename": "d8d93be1441675c2.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:선물 살 거 찾고 있어요": {
+    "filename": "559587c20f5186e0.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:어, 괜찮네요. 입어 봐도 돼요?": {
+    "filename": "62372292d7b4da44.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:네, 잘 맞아요. 이거 살게요": {
+    "filename": "a51bef7ca199e7a5.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:좋아요, 이걸로 할게요": {
+    "filename": "e5e9c1ad5843e052.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:좀 비싸네요": {
+    "filename": "5b1420c1ecddb690.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:아, 이게 더 괜찮네요. 이거 주세요": {
+    "filename": "f2f7252b01d4418a.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:네, 카드로 할게요": {
+    "filename": "f22a631efc950108.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:안녕하세요, 어제 여기서 산 건데 교환이 가능한지 여쭤보려고요.": {
+    "filename": "6a525d74d8f6ca80.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:네, 영수증 여기 있어요. 사이즈가 너무 작아서요": {
+    "filename": "f6fa4357095e42eb.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:한 사이즈 큰 걸로 바꿔 주세요": {
+    "filename": "e277d6a4f1894271.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:네, 카드로 추가 결제할게요": {
+    "filename": "005a4e2655834c9a.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:네, 예약했어요": {
+    "filename": "9a38cbeaace3366f.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:네, 여기 있어요": {
+    "filename": "b294bd529a5d01be.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:네, 맞아요. 카드로 계산할게요": {
+    "filename": "4971a53bbbb60083.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:아침 식사 몇 시예요?": {
+    "filename": "4f6a0770c10cb91f.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:알겠습니다, 감사합니다": {
+    "filename": "7d45cc1a6c4a985e.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:여보세요, 507호 투숙객인데요. 에어컨이 고장 난 것 같아서 전화드렸어요.": {
+    "filename": "07629a361bd9a6f6.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:가능하시면 다른 방으로 옮기고 싶은데요": {
+    "filename": "6f478495b9952ab5.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:감사합니다, 짐은 많지 않아서 괜찮아요. 조식 쿠폰 감사합니다": {
+    "filename": "6350b386c62a0afd.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:정말 감사합니다. 빠르게 대응해 주셔서 좋았어요": {
+    "filename": "34b401d6fe542560.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:응, 잘 지냈어! 너는?": {
+    "filename": "05dc431d7d200453.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:한국어 공부하고 있어": {
+    "filename": "68500723e95b49d0.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:고마워! 아직 많이 부족해": {
+    "filename": "50ab588149813e94.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:좋아! 어디서 먹을까?": {
+    "filename": "53083b130f0a251d.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:삼겹살 좋지!": {
+    "filename": "295393b2c0409728.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:좋아, 그때 보자!": {
+    "filename": "0333a5815940c66d.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:집에서 쉬었어": {
+    "filename": "e2ecac1d2e248613.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:오~ 어디 갔어?": {
+    "filename": "c471f9cf3e2ea0a8.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:사진 찍었어?": {
+    "filename": "38031dca97e36f34.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:응, 보여줘!": {
+    "filename": "872c4b273f14f532.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:안녕, 나는 민준이야. 만나서 반가워!": {
+    "filename": "d13bf0bbb500c482.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:한 6개월 됐어": {
+    "filename": "80741189c159744e.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:독학으로 했어": {
+    "filename": "26cd368b41ac4229.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:좋아! 카톡 아이디 알려줘": {
+    "filename": "925598498502b6b2.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:안녕하세요, 이모! 오래간만이에요. 잘 지내셨어요?": {
+    "filename": "30de75e3ff234361.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:네, 덕분에 잘 지내고 있어요. 부모님도 건강하세요": {
+    "filename": "dee259a5b10bfd84.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:감사해요, 이모. 아까 먹고 왔어요": {
+    "filename": "94392811aafed9a0.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:네, 자주 올게요! 감사합니다, 이모": {
+    "filename": "a3eb7fb05ab623c0.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:이번 주말에 영화 보러 갈래?": {
+    "filename": "7e895a4f10178434.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:액션 영화 보고 싶어": {
+    "filename": "897e2fa38629a90f.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:오후 3시 어때?": {
+    "filename": "ec914b181129e023.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:CGV 강남 어때?": {
+    "filename": "305771dde2791436.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:ㅋㅋ 고마워! 그때 보자!": {
+    "filename": "7ecfa503fb46b3d9.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:아... 그거 얘기하려고 했는데": {
+    "filename": "a433865089e97ad4.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:갑자기 야근해야 돼": {
+    "filename": "bdc3e54052a2f086.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:미안해, 다음 주에 꼭 만나자": {
+    "filename": "63236c47e32dab6f.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:토요일 좋아!": {
+    "filename": "ef4516313dc53f94.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:응, 내가 단톡방에 투표 올릴게": {
+    "filename": "1c5993563f30bba3.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:그럼 금요일 저녁이나 토요일로 잡는 게 나을 것 같아": {
+    "filename": "0609e975b70b232b.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:그럼 홍대는 어때? 접근성도 좋고 맛집도 많잖아": {
+    "filename": "5090050b3a37e80b.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:응, 내가 알아보고 예약할게. 한식이 나을까, 고기집이 나을까?": {
+    "filename": "4bd89ab7b2a26926.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:ㅋㅋ 알겠어! 예약하고 단톡에 올릴게. 다들 꼭 와야 해!": {
+    "filename": "3edb2324fb020b7a.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:오늘 시험 끝났어!": {
+    "filename": "a6a6e445867f90c0.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:사실 승진했어!": {
+    "filename": "c583d7df92a65a36.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:ㅋㅋ 알겠어, 오늘 내가 쏠게!": {
+    "filename": "025f781127d9b936.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:고마워! 너도 좋은 일만 있을 거야": {
+    "filename": "2b6b42b547ddd641.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:좀 피곤해서 그래": {
+    "filename": "9e6f3dd2da565775.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:일이 너무 많아": {
+    "filename": "d7387161153ff670.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:진짜? 고마워...": {
+    "filename": "13be5206dd2d7d21.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:맞아! 고마워 진짜": {
+    "filename": "ea256b0d2abde1cb.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:요즘 새로운 드라마 보고 있어!": {
+    "filename": "475e6cb57ec38bc6.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:응, 진짜 재밌어! 추천해": {
+    "filename": "62e6efb0a72eb099.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:16회인데 빨리 끝나": {
+    "filename": "d9b76e4a155cbd2a.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:좋아! 스포 주의해~": {
+    "filename": "2c6014883321284c.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:나 요즘 고민이 있는데 좀 들어줄 수 있어?": {
+    "filename": "fa95590cd9fcd24d.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:사실 이직을 고민하고 있어. 지금 회사도 나쁘지 않은데 새로운 기회가 생겨서": {
+    "filename": "32361d9e4fd6e199.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:새로운 데는 연봉도 높고 성장할 수 있을 것 같은데, 지금 회사 사람들이 좋거든": {
+    "filename": "5348a1a8baa35884.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:음... 아마 도전 안 한 걸 더 후회할 것 같아": {
+    "filename": "68bbe17b6b860c9b.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:고마워, 진짜. 이렇게 들어줘서 마음이 한결 편해졌어": {
+    "filename": "dc46cc33e7d4fe93.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:네, 시작하죠": {
+    "filename": "0497337b9ca18a1b.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:네, 좋습니다": {
+    "filename": "76a9dc86a92f727e.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:저는 이 방향이 좋을 것 같습니다": {
+    "filename": "665b116f5966ecb8.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:네, 그렇게 하겠습니다": {
+    "filename": "da266740ec4d292c.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:안녕하세요, 감사합니다": {
+    "filename": "b98dd02be0815651.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:네, 받았습니다": {
+    "filename": "5571072bc03040fa.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:수고하셨습니다": {
+    "filename": "63f0df39ea64ba83.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:네, 시작하겠습니다. 자료를 화면에 띄우겠습니다": {
+    "filename": "5889fa8d769ee54d.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:네, 이건 지난달 대비 20% 증가한 수치입니다": {
+    "filename": "1fe79c3031896674.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:다음 주까지 최종 보고서를 작성할 예정입니다": {
+    "filename": "ab9643943120cdc1.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:감사합니다! 질문 있으시면 언제든 말씀해 주세요": {
+    "filename": "7041251e609a509f.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:안녕하세요, 저는 김민준이라고 합니다": {
+    "filename": "a2e845919f5db5c5.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:이 회사의 비전에 공감해서 지원했습니다": {
+    "filename": "033cd871281a7651.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:제 강점은 꼼꼼함이고, 약점은 완벽주의 성향입니다": {
+    "filename": "0f701de50c1de1a2.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:입사 후 교육 프로그램이 있나요?": {
+    "filename": "650ea26690f6d27f.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:저는 김민준입니다": {
+    "filename": "4a2454097f7561f0.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:서울에 살고 있습니다": {
+    "filename": "8e22ef8b5bc41f99.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:감사합니다, 좋은 하루 되세요": {
+    "filename": "e1da62024cb7d1f4.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:마케팅 팀에서 3년간 일했습니다": {
+    "filename": "7e6d1e6baa6e3fd8.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:네, 신제품 출시 프로젝트가 가장 기억에 남아요": {
+    "filename": "353b50c3e703330e.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:먼저 문제를 분석하고 우선순위를 정합니다": {
+    "filename": "0e4ad9aedd9a3646.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "ko:제 경험이 이 직무와 잘 맞는다고 생각합니다": {
+    "filename": "330621f7e39f2118.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:un americano helado": {
+    "filename": "fb17394653529396.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:grande": {
+    "filename": "5b08b359076765ea.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:no": {
+    "filename": "ae6d2eba8c492cf5.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:para aqui": {
+    "filename": "2239555331ce8672.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:con tarjeta": {
+    "filename": "b830a3965ff6d6f0.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:gracias": {
+    "filename": "3bfca5f8a78a0011.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:Disculpa, ¿me lo puedes poner caliente?": {
+    "filename": "f191385244583fdf.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:para dos": {
+    "filename": "8d022e1b15c34ce4.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:quiero la paella": {
+    "filename": "8a10dfcca88cc921.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:agua": {
+    "filename": "5e1501bbc8a95c4f.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:Disculpe, tengo una alergia alimentaria. ¿Este plato tiene frutos secos?": {
+    "filename": "24c93f14aa0473ad.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:a los frutos secos": {
+    "filename": "2dd5e1ae1fc7c307.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:perfecto": {
+    "filename": "b3d782df09238964.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:no nada mas": {
+    "filename": "339c01f97f7ee688.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:Disculpe, creo que esto no es lo que pedí.": {
+    "filename": "0151123572fcdceb.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:pedi la paella": {
+    "filename": "72d758408a921f89.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:no pasa nada": {
+    "filename": "7ddf4e017282ab38.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:Disculpe, ¿dónde está la estación de metro?": {
+    "filename": "cadfe679284b0403.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:todo recto y a la derecha": {
+    "filename": "f347225ac8966ba0.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:muchas gracias": {
+    "filename": "00c9d42a8292252e.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:Disculpe, ¿qué autobús va al centro de la ciudad?": {
+    "filename": "89587417d3c9f4c2.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:al otro lado": {
+    "filename": "5d59a337b344dd9b.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:se puede pagar con tarjeta": {
+    "filename": "a023a6221cb11ddd.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:perfecto muchas gracias": {
+    "filename": "1061f64a2ef7be1b.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:Disculpe, estoy perdido. ¿Podría ayudarme?": {
+    "filename": "c5f4855eef975933.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:tengo que ir a esta direccion": {
+    "filename": "0fb74e08d3f602d4.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:donde puedo coger un taxi": {
+    "filename": "861039710622142a.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:Disculpe, ¿cuál es la clave del wifi?": {
+    "filename": "e23d995ca0aa8ffa.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:a que hora es el desayuno": {
+    "filename": "2ed6ddf4f926f926.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:perfecto gracias": {
+    "filename": "d6987c6d600c75b9.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:si tengo una reserva": {
+    "filename": "1675bf5bb0a05051.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:si aqui tiene": {
+    "filename": "22da3c376a8f2b61.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:cama doble": {
+    "filename": "14c1e6a916603d30.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:Disculpe, el aire acondicionado de mi habitación no funciona.": {
+    "filename": "c15ec1588025ef23.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:la habitacion 405": {
+    "filename": "ffb5501cf9126321.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:si busco una camiseta": {
+    "filename": "f1947246e8916169.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:la mediana": {
+    "filename": "e4210554363827b3.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:si por favor": {
+    "filename": "200d72741b5ab427.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:Disculpe, ¿cuánto cuesta esto?": {
+    "filename": "c104e58b7c6f8010.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:con descuento cuanto seria": {
+    "filename": "82379991b26edee8.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:si me la llevo": {
+    "filename": "80cb858e8a75765c.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:Hola, compré esto ayer pero es la talla equivocada. Me gustaría cambiarlo.": {
+    "filename": "905e54eb875f8b02.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:una talla mas grande": {
+    "filename": "27c817752708089d.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:muy bien": {
+    "filename": "a0aa508b6529f41f.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:trabajando mucho": {
+    "filename": "d96a5d9ad31cf7a9.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:si sigo ahi": {
+    "filename": "dd15e856f7909984.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:si claro": {
+    "filename": "c733bafe5b1f5868.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:genial": {
+    "filename": "99cea7c006ec246b.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:fui al cine": {
+    "filename": "d6929ccf7fe9dc35.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:una de accion": {
+    "filename": "fbcce01b51f30b03.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:a veces eso es lo mejor": {
+    "filename": "eeea438565e70fb6.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:hola soy": {
+    "filename": "b48049552c697f80.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:soy de": {
+    "filename": "08359492a493a6df.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:estoy de vacaciones": {
+    "filename": "4492f0ecdb57770a.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:buenos dias": {
+    "filename": "e6bbf3cb5e7867ef.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:si muy bien": {
+    "filename": "e7c3eb2801e2f4d3.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:Oye, ¿quieres ir al cine el sábado?": {
+    "filename": "971111fc6a4588bd.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:la nueva de accion": {
+    "filename": "c8f81d1a2a235cc8.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:a las siete": {
+    "filename": "1f173d43a1ccba46.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:vale perfecto": {
+    "filename": "61a4948c4e498d82.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:hasta el sabado": {
+    "filename": "164fc17c11f0247a.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:Oye, lo siento mucho pero tengo que cancelar nuestros planes.": {
+    "filename": "affbd22fe2b1e47e.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:me ha surgido algo": {
+    "filename": "28cf166d122231c9.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:perfecto te aviso": {
+    "filename": "9ba820e508a7fa0f.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:me parece genial": {
+    "filename": "e494a23fa8c587d3.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:buena idea": {
+    "filename": "c663598adedb27df.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:me han ascendido": {
+    "filename": "a3d359589558dfa4.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:si vamos": {
+    "filename": "9b9403570fde4ebc.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:no hace falta": {
+    "filename": "9d8d93a84a87d0fd.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:estoy estresado": {
+    "filename": "8d469d5f6f53dad1.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:tengo un proyecto muy dificil": {
+    "filename": "aa04e2718e7737d0.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:si buena idea": {
+    "filename": "5f26fdd670bddfca.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:gracias por estar ahi": {
+    "filename": "0c8d08e036e0cb1f.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:si la he visto": {
+    "filename": "d3f10cace7a502b7.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:a mi tambien": {
+    "filename": "8a505afaaeca4b79.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:ya lo se": {
+    "filename": "9c206a5ab8dbe1fe.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:espero que si": {
+    "filename": "ecb1713ed6be98d3.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:Necesito tu consejo sobre algo importante.": {
+    "filename": "3a2c65962e39d4c1.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:me han ofrecido un trabajo en otra ciudad": {
+    "filename": "0ad1c18e7b267f53.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:el sueldo es mejor": {
+    "filename": "a83dc5785e4571b6.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:tienes razon": {
+    "filename": "392f7b82ab1bdb43.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:muchas gracias de verdad": {
+    "filename": "b9b4f8ad7639fdbf.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:si buenos dias": {
+    "filename": "f9bc4a8ed3e27d09.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:encantado": {
+    "filename": "437f25cba4de1181.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:vamos segun lo previsto": {
+    "filename": "bfa62db0bd7628aa.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:necesitamos una persona mas": {
+    "filename": "ecc86793e9989057.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:no por ahora esta todo claro": {
+    "filename": "42548feefddfc44b.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:creo que necesitamos tres meses": {
+    "filename": "05dcbcb408645d10.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:yo puedo encargarme del diseno": {
+    "filename": "f36c61546e397b72.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:si me parece bien": {
+    "filename": "37567cc7e8628225.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:me llamo": {
+    "filename": "9dd29a9a6844e92b.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:me interesa porque": {
+    "filename": "b0f5be0f19f69a82.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:si trabaje en": {
+    "filename": "4133cb1871a490cc.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:como es el equipo": {
+    "filename": "6ad87c346c58c3f8.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:aprendi a gestionar equipos": {
+    "filename": "0ad0649d50dec1ee.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:lance una campana de marketing": {
+    "filename": "b0eb58337015463f.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:me organizo bien": {
+    "filename": "e19724e23e5169d8.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:me gustaria liderar un equipo": {
+    "filename": "57e170b46ed3e97c.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:creo en liderar con el ejemplo": {
+    "filename": "c92811e95d02ca09.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:hablaria con cada uno por separado": {
+    "filename": "d534066708dec315.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:ver crecer a mi equipo": {
+    "filename": "f4aaffcc7ce79ab1.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "es:depende del paquete completo": {
+    "filename": "b2aeaf21e896cbb8.mp3",
+    "voice": "es-ES-ElviraNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:请给我一杯冰美式": {
+    "filename": "4b7074e84f8242b3.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:大杯": {
+    "filename": "2e8d63eb2b2d899e.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:不用了": {
+    "filename": "b1ed69ba1c50c55c.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:在这儿喝": {
+    "filename": "1de9e5aee8d28361.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:刷卡": {
+    "filename": "2b67d39836c595a1.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:谢谢": {
+    "filename": "2f37e0aaa60ec122.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:不好意思，能换成热的吗？": {
+    "filename": "94a0bb0f90d75840.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:两位": {
+    "filename": "162c779b2e0ee8a4.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:来一份宫保鸡丁": {
+    "filename": "1710c34f8ad83006.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:白水就行": {
+    "filename": "cfe4a9e0e767f210.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:你好，我对花生过敏。这道菜里有花生吗？": {
+    "filename": "f9197eba499affd0.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:花生": {
+    "filename": "93593a007cb98ea1.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:好的那就来清蒸鱼": {
+    "filename": "76aa0211fe3d5679.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:不用了谢谢": {
+    "filename": "04d2fea3dcc37b64.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:你好，这不是我点的菜。": {
+    "filename": "422b492d26276ac2.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:我点的是宫保鸡丁": {
+    "filename": "f25dca8524c8daea.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:没事": {
+    "filename": "e3fd271278af064a.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:你好，请问地铁站怎么走？": {
+    "filename": "2f87dbfce529ed7f.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:一直往前然后右转": {
+    "filename": "4c5c051d80e81c57.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:请问哪路公交车去市中心？": {
+    "filename": "c04e6caeab6f7924.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:在对面啊": {
+    "filename": "ac18eeabb7946af3.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:可以刷卡吗": {
+    "filename": "a2314e687cf063e5.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:太好了谢谢": {
+    "filename": "a1708fc4a5098fa1.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:你好，我迷路了，能帮帮我吗？": {
+    "filename": "fee4d72c5a74deeb.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:我要去这个地址": {
+    "filename": "36a7dad79ff1e13f.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:在哪儿能打车": {
+    "filename": "69276cc0f480011a.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:非常感谢": {
+    "filename": "5234b21e48c50f0f.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:你好，WiFi密码是什么？": {
+    "filename": "606827b21b67b9e6.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:早餐几点": {
+    "filename": "18eaef67b7b8c461.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:好的谢谢": {
+    "filename": "35f11c3d95a613fe.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:好的": {
+    "filename": "61e50368a7f2d3de.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:有预订": {
+    "filename": "0b72bd068d101420.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:给你": {
+    "filename": "c8683ff94d4c5c46.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:大床房": {
+    "filename": "6ccf80125ce694d3.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:你好，我房间的空调坏了。": {
+    "filename": "d47c479674f137fa.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:405房间": {
+    "filename": "ee21e23029685b36.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:我想买一件T恤": {
+    "filename": "738f06c77ea31e7e.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:中号": {
+    "filename": "c2c77de5088d1324.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:好的我试试": {
+    "filename": "f0d453cbd740390b.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:你好，这个多少钱？": {
+    "filename": "3ad434c2a2d344ec.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:打完折多少": {
+    "filename": "a39017bf122de1ca.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:好我要了": {
+    "filename": "ef6e9d45a164060c.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:好的麻烦了": {
+    "filename": "f5165ccf2a7bcea2.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:你好，我昨天买的这件尺码不对，想换一下。": {
+    "filename": "d1e0ea01c0e6ba53.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:有的": {
+    "filename": "4410a7aac236d0ff.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:大一号的": {
+    "filename": "e74984ca668536ae.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:挺好的": {
+    "filename": "d5586e72f4a77d04.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:工作很忙": {
+    "filename": "ad2bbdc0e85936e2.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:对还在那": {
+    "filename": "c37a6c6430098bb8.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:好啊": {
+    "filename": "4aa9cae4a3651a2d.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:去看电影了": {
+    "filename": "9777d7a87e81f11b.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:一部动作片": {
+    "filename": "21927110d4448d2a.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:有时候休息最好了": {
+    "filename": "f3ea534cf9a8da28.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:你好我叫": {
+    "filename": "edf52a3395229280.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:我是美国人": {
+    "filename": "da483882c99eeaa1.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:来旅游的": {
+    "filename": "1481590a598b176b.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:谢谢你": {
+    "filename": "c5904a174148b7b5.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:早上好": {
+    "filename": "b52f50cc3113e6d8.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:还好": {
+    "filename": "4dc6a3d3f70fa07b.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:周六一起去看电影吧？": {
+    "filename": "cc607f32fb3c96f4.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:新出的那部动作片": {
+    "filename": "a421049f81fb481f.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:七点": {
+    "filename": "4eda1e8888d26f00.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:周六见": {
+    "filename": "1ef73ffd56f7af67.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:不好意思，我得取消咱们的约。": {
+    "filename": "dc4393232c7fc6bb.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:临时有事": {
+    "filename": "fc53e2bc71838456.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:好的下周吧": {
+    "filename": "ba24e924ccdbb6b7.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:谢谢你理解": {
+    "filename": "fd1423f97f7e0c36.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:好啊我喜欢意大利菜": {
+    "filename": "bb2d3f4c33611ceb.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:没问题我来订": {
+    "filename": "5948f23490620b1d.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:好主意": {
+    "filename": "1a0c45e919e778df.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:行算我一个": {
+    "filename": "4dd3f6daa5465020.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:我升职了": {
+    "filename": "4ba6c9e508fe980c.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:好啊走": {
+    "filename": "07e74d53053bbf17.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:不用不用": {
+    "filename": "3f9996911bd29fc6.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:压力很大": {
+    "filename": "024cdb5d6842ef8b.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:有个项目很难": {
+    "filename": "0a50b0a118d09761.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:看了": {
+    "filename": "dc11922b47623310.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:我也是": {
+    "filename": "e5c3c03cf0285d06.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:对啊": {
+    "filename": "6e9bd6daf1b6f617.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:希望有": {
+    "filename": "161488592d38e0b2.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:我想跟你聊聊一件重要的事。": {
+    "filename": "b72a9215eb77e1b3.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:有个外地的工作机会": {
+    "filename": "8082caca992f0862.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:工资高一些": {
+    "filename": "b102685e4e7d1543.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:你说得对": {
+    "filename": "2f95a77714d18e6c.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:真的太感谢了": {
+    "filename": "b5b1a988ae2ede63.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:早上好是的": {
+    "filename": "fe92d4ce423c863f.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:你好很高兴认识你": {
+    "filename": "f6f44736a6c026e1.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:按计划进行": {
+    "filename": "4b9fc2198b437252.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:再多一个人就好了": {
+    "filename": "c19f3b31f95ae25f.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:暂时没有了": {
+    "filename": "af9b5172e50755f0.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:我觉得需要三个月": {
+    "filename": "ee37ef007290f6bd.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:我可以负责设计": {
+    "filename": "fcffbe7ea316b4b2.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:可以": {
+    "filename": "d8e77116f9166c4a.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:我叫": {
+    "filename": "8456897f7a88129c.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:因为我喜欢这个行业": {
+    "filename": "4d000b3e377ae42e.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:我之前在一家公司实习过": {
+    "filename": "8e3d2a8a59c73ffb.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:团队有多大": {
+    "filename": "506a11b399c59565.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:学会了管理团队": {
+    "filename": "e28ecb95886237fa.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:做过一个营销项目": {
+    "filename": "2813fc1fbeafb218.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:我会做好计划": {
+    "filename": "cbb9323ea739003a.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:希望能带团队": {
+    "filename": "76c9adac8c1ea396.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:以身作则": {
+    "filename": "57b5e8e13e9ff331.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:分别跟每个人谈": {
+    "filename": "93e1986e98e08b11.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:看到团队成长": {
+    "filename": "51f78fde6f63e675.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
+  },
+  "zh:要看整体的待遇": {
+    "filename": "9520780986a98ef0.mp3",
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "0.9",
+    "uploaded": false
   }
 }

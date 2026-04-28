@@ -131,6 +131,23 @@ export function useProgress(userId) {
     }
   }, [userId, synced, hasLocalData, syncProgress]);
 
+  // Background merge on mount when already synced (cross-device sync)
+  useEffect(() => {
+    if (!userId || !synced) return;
+    fetchRemoteProgress(userId).then((remote) => {
+      if (Object.keys(remote).length === 0) return;
+      setData((local) => {
+        const allKeys = new Set([...Object.keys(local), ...Object.keys(remote)]);
+        const merged = {};
+        for (const key of allKeys) {
+          merged[key] = mergeEntry(local[key], remote[key]);
+        }
+        saveProgress(merged);
+        return merged;
+      });
+    });
+  }, [userId, synced]);
+
   const clearProgress = useCallback(() => {
     saveProgress({});
     setData({});

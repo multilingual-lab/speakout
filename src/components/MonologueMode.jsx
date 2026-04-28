@@ -268,6 +268,7 @@ export default function MonologueMode({ monologue, language = 'ko', onNext, next
               {error === 'mic-denied' && '⚠️ Microphone access denied — check browser permissions'}
               {error === 'no-speech' && '⚠️ No speech detected — try again'}
               {error === 'tts-failed' && '⚠️ Text-to-speech failed — try opening in your system browser'}
+              {error === 'stt-network' && '⚠️ Speech recognition unavailable — your browser may be blocking it. Try Chrome or Safari, or disable ad/tracker blockers for this site.'}
             </div>
           )}
           <button className="action-btn record-btn large recording" onClick={handleStop}>

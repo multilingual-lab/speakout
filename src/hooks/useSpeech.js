@@ -9,7 +9,7 @@ export function useSpeech() {
   const [isListening, setIsListening] = useState(false);
   const [transcript, setTranscript] = useState('');
   const [isSpeaking, setIsSpeaking] = useState(false);
-  const [error, setError] = useState(null); // 'mic-denied' | 'no-speech' | 'tts-failed' | null
+  const [error, setError] = useState(null); // 'mic-denied' | 'no-speech' | 'tts-failed' | 'stt-network' | null
   const recognitionRef = useRef(null);
   const audioRef = useRef(null);
   const timeoutRef = useRef(null);
@@ -79,8 +79,12 @@ export function useSpeech() {
         setError('no-speech');
         stop();
         setIsListening(false);
+      } else if (event.error === 'network') {
+        setError('stt-network');
+        stop();
+        setIsListening(false);
       }
-      // Other errors (aborted, network, etc.) — let onend handle cleanup
+      // Other errors (aborted, etc.) — let onend handle cleanup
     };
 
     recognitionRef.current = recognition;

@@ -126,13 +126,21 @@ function extractLines(sections) {
         }
       }
 
-      // Dialog exchanges (NPC lines only)
+      // Dialog exchanges (NPC lines + user shadow responses)
       if (scenario.sessions) {
         for (const session of scenario.sessions) {
           if (session.exchanges) {
             for (const ex of session.exchanges) {
               if (ex.speaker === 'other') {
                 add(getTargetText(ex, langId), langId, `exchange:${session.id}`);
+                // Dialog shadowing also plays expectedResponses[0] as the user's line
+                if (ex.expectedResponses?.length) {
+                  add(ex.expectedResponses[0], langId, `exchange-response:${session.id}`);
+                }
+              } else if (ex.speaker === 'you-initiate') {
+                // User-initiate lines are shadowed via target-language field or first expectedResponse
+                const text = getTargetText(ex, langId) || ex.expectedResponses?.[0];
+                add(text, langId, `exchange-initiate:${session.id}`);
               }
             }
           }

@@ -150,8 +150,8 @@ Pre-generated Azure TTS audio served from Cloudflare R2 — zero-latency, no API
 | Monologue model answers (`modelAnswer`) | Yes | "Listen to model" button |
 | Monologue prompts (`promptKorean` / `promptSpanish`) | Yes | Prompt speaker button |
 | Grammar drill examples (`grammarDrills[].example`) | Yes | Dictation drill speaker button |
-| User model answers (`expectedResponses[]`) | No | Short phrases; browser TTS is fine |
-| `you-initiate` exchange text | No | Never spoken by TTS (user speaks first) |
+| User model answers (`expectedResponses[0]`) | Yes | Played as user line during dialog shadowing |
+| `you-initiate` exchange text | Yes | Shadowed in ShadowMode (target-language text or first expectedResponse) |
 
 #### Workflow
 
@@ -724,3 +724,4 @@ node scripts/upload-audio.mjs
 - [ ] Azure Pronunciation Assessment API for phoneme feedback
 - [ ] UI shell i18n (deferred — English labels sufficient for now)
 - [ ] Migrate hosting from GitHub Pages to Cloudflare Pages (dev/prod envs, private repo support, unlimited BW)
+- [ ] Add user feedback link for unknown STT/TTS errors (currently we show a generic message but can't reliably detect the exact cause, e.g. Brave Shields vs network outage)

@@ -789,6 +789,7 @@ const sections = [
   },
   {
     id: 'casual',
+    languageId: 'ko',
     title: '친구와 대화',
     titleEn: 'Casual with Friends',
     scenarios: [
@@ -1372,6 +1373,7 @@ const sections = [
   },
   {
     id: 'work',
+    languageId: 'ko',
     title: '직장 한국어',
     titleEn: 'Work Korean',
     scenarios: [

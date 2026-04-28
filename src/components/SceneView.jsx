@@ -85,7 +85,7 @@ export default function SceneView({ scenario, initialMode, language = 'ko', onBa
       </header>
 
       {/* Mode toggle — dialog scenarios */}
-      {!isMonologue && (
+      {!isMonologue && mode !== 'write' && (
         <div className="mode-toggle">
           <button
             className={`mode-toggle-btn ${mode === 'practice' ? 'active' : ''}`}
