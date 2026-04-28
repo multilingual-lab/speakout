@@ -193,6 +193,22 @@
   font-size: 0.65rem;
   color: #4ade80;
   font-weight: 600;
+  display: flex;
+  gap: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.mode-count {
+  white-space: nowrap;
+}
+
+.mode-sep {
+  opacity: 0.5;
+}
+.mode-count-write {
+  white-space: nowrap;
+  color: #d4a017;
 }
 
 .total-completions-badge {

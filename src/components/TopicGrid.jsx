@@ -1,13 +1,15 @@
 export default function TopicGrid({ sections, language, languageOptions, onLanguageChange, onSelect, progressData = {}, totalCompletions = 0, user, onOpenMyPage }) {
   const selectedLanguage = languageOptions.find((option) => option.id === language) || languageOptions[0];
 
-  const getScenarioTotalReps = (scenarioId) => {
+  const getScenarioRepsByMode = (scenarioId) => {
     const prefix = `${language}:${scenarioId}:`;
-    let total = 0;
+    const counts = { practice: 0, shadow: 0, write: 0, monologue: 0 };
     for (const key of Object.keys(progressData)) {
-      if (key.startsWith(prefix)) total += progressData[key].completions || 0;
+      if (!key.startsWith(prefix)) continue;
+      const mode = key.split(':')[3];
+      if (mode in counts) counts[mode] += progressData[key].completions || 0;
     }
-    return total;
+    return counts;
   };
 
   return (
@@ -45,7 +47,8 @@ export default function TopicGrid({ sections, language, languageOptions, onLangu
           <div className="topic-grid">
             {section.scenarios.map((s) => {
               const isMonologue = !!s.monologues;
-              const totalReps = getScenarioTotalReps(s.id);
+              const modeCounts = getScenarioRepsByMode(s.id);
+              const totalReps = modeCounts.practice + modeCounts.shadow + modeCounts.write + modeCounts.monologue;
               return (
               <div
                 key={s.id}
@@ -59,7 +62,11 @@ export default function TopicGrid({ sections, language, languageOptions, onLangu
                 <span className="topic-emoji">{s.emoji}</span>
                 <span className="topic-title">{s.title}</span>
                 {totalReps > 0 && (
-                  <span className="topic-progress-badge">{totalReps}x practiced</span>
+                  <span className="topic-progress-badge">
+                    {(modeCounts.practice + modeCounts.shadow + modeCounts.monologue) > 0 && <span className="mode-count">{modeCounts.practice + modeCounts.shadow + modeCounts.monologue}x practiced</span>}
+                    {(modeCounts.practice + modeCounts.shadow + modeCounts.monologue) > 0 && modeCounts.write > 0 && <span className="mode-sep"> · </span>}
+                    {modeCounts.write > 0 && <span className="mode-count-write">{modeCounts.write}x ✍️</span>}
+                  </span>
                 )}
                 <span className="topic-title-en">
                   {s.titleEn} · <span className="topic-dialog-badge">{isMonologue ? `🎤 ${s.monologues.length}` : `🗨 ${s.sessions.length}`}</span>
