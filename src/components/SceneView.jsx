@@ -3,8 +3,10 @@ import ShadowMode from './ShadowMode';
 import PracticeMode from './PracticeMode';
 import MonologueMode from './MonologueMode';
 import WritingMode from './WritingMode';
+import SpeedChip from './SpeedChip';
 import { getLanguageConfig } from '../config/languages.js';
 import { makeProgressKey } from '../hooks/useProgress.js';
+import { getActiveProvider, clearSessionRate } from '../services/tts/index.js';
 
 const LEVEL_LABELS = { beginner: 'Beginner', intermediate: 'Intermediate', advanced: 'Advanced' };
 const LEVEL_ORDER = { beginner: 0, intermediate: 1, advanced: 2 };
@@ -53,6 +55,7 @@ export default function SceneView({ scenario, initialMode, language = 'ko', onBa
   };
 
   const handleBack = () => {
+    clearSessionRate();
     if (sessionId) {
       setSessionId(null);
       if (mode === 'write') setMode(isMonologue ? 'monologue' : 'practice');
@@ -101,6 +104,9 @@ export default function SceneView({ scenario, initialMode, language = 'ko', onBa
           </button>
         </div>
       )}
+
+      {/* Speed control — shown when a session is active and not using CDN */}
+      {sessionId && getActiveProvider().id !== 'cdn' && <SpeedChip />}
 
       {/* Session picker for practice */}
       {mode === 'practice' && !sessionId && (

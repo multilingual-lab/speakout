@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from 'react';
-import { synthesize, getPreferredRate } from '../services/tts/index.js';
+import { synthesize, getEffectiveRate } from '../services/tts/index.js';
 import { getLanguageConfig } from '../config/languages';
 
 const SpeechRecognition =
@@ -156,7 +156,7 @@ export function useSpeech() {
       const { audioUrl, providerId } = await synthesize(text, {
         voice: ttsConfig.azureVoice,
         ssmlLang: ttsConfig.ssmlLang,
-        rate: getPreferredRate(),
+        rate: getEffectiveRate(),
       });
 
       // Browser provider plays inline (audioUrl is null) — already done

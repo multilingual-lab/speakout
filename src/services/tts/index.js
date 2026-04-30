@@ -11,11 +11,14 @@ import browserProvider from './browserProvider.js';
 const STORAGE_PROVIDER_KEY = 'tts_provider';
 const STORAGE_RATE_KEY = 'tts_rate';
 const DEFAULT_RATE = '0.9';
-const RATE_OPTIONS = [
+export const RATE_OPTIONS = [
   { value: '0.7', label: 'Slow' },
   { value: '0.9', label: 'Normal' },
   { value: '1.1', label: 'Fast' },
 ];
+
+// Session-scoped rate override (not persisted — resets on navigation)
+let sessionRateOverride = null;
 
 // Ordered list — first match wins during fallback.
 const providers = [cdnProvider, azureProvider, browserProvider];
@@ -61,6 +64,27 @@ export function getPreferredRate() {
  */
 export function setPreferredRate(rate) {
   localStorage.setItem(STORAGE_RATE_KEY, rate);
+}
+
+/**
+ * Set a session-scoped rate override (temporary, not persisted).
+ */
+export function setSessionRate(rate) {
+  sessionRateOverride = rate;
+}
+
+/**
+ * Clear the session-scoped rate override.
+ */
+export function clearSessionRate() {
+  sessionRateOverride = null;
+}
+
+/**
+ * Return the effective rate: session override if set, otherwise preferred rate.
+ */
+export function getEffectiveRate() {
+  return sessionRateOverride ?? getPreferredRate();
 }
 
 /**

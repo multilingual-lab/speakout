@@ -1,0 +1,49 @@
+.speed-control {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 640px;
+  margin-bottom: 1rem;
+  justify-content: flex-end;
+}
+
+.speed-control-label {
+  font-size: 0.75rem;
+  color: #666;
+  letter-spacing: 0.02em;
+}
+
+.speed-control-options {
+  display: flex;
+  background: var(--color-surface, rgba(255, 255, 255, 0.05));
+  border-radius: 8px;
+  padding: 0.2rem;
+  gap: 0.15rem;
+}
+
+.speed-option {
+  border: none;
+  background: none;
+  color: #777;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  cursor: pointer;
+  min-height: 32px;
+  min-width: 44px;
+  transition: color 0.15s, background 0.15s;
+}
+
+.speed-option:hover {
+  color: #bbb;
+}
+
+.speed-option--active {
+  background: rgba(255, 255, 255, 0.12);
+  color: #e0e0e0;
+  font-weight: 600;
+}
+
+
