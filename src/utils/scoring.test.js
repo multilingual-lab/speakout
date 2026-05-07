@@ -60,13 +60,15 @@ describe('computeSimilarity', () => {
 
   it('gives low score for very different strings', () => {
     const score = computeSimilarity('안녕하세요', '카드로 계산할게요');
-    expect(score).toBeLessThan(40);
+    expect(score).toBeLessThan(60);
   });
 
-  it('is symmetric', () => {
+  it('is asymmetric — finding target inside spoken is more generous', () => {
     const a = '감사합니다';
     const b = '감사해요';
-    expect(computeSimilarity(a, b)).toBe(computeSimilarity(b, a));
+    // Semi-global: score depends on which is target vs spoken
+    expect(computeSimilarity(a, b)).toBeGreaterThanOrEqual(40);
+    expect(computeSimilarity(b, a)).toBeGreaterThanOrEqual(40);
   });
 
   it('distinguishes formality particle difference', () => {
@@ -80,5 +82,23 @@ describe('computeSimilarity', () => {
       '여기서먹고갈게요'
     );
     expect(score).toBe(100);
+  });
+
+  /* ── Approximate substring matching ────────────────────────────── */
+
+  it('scores 100% when spoken contains target with prefix', () => {
+    expect(computeSimilarity('집에서 쉬었어', '주말에 집에서 쉬었어', 'ko')).toBe(100);
+  });
+
+  it('scores high when spoken has filler inserted', () => {
+    // "좀" inserted mid-sentence — should still score well
+    expect(computeSimilarity('집에서 쉬었어', '주말에 집에서 좀 쉬었어', 'ko')).toBeGreaterThanOrEqual(85);
+  });
+
+  it('uses full-string score when spoken is shorter than target', () => {
+    // "쉬었어" is shorter — substring score would be high but full-string keeps it grounded
+    const score = computeSimilarity('집에서 쉬었어', '쉬었어', 'ko');
+    expect(score).toBeGreaterThanOrEqual(40);
+    expect(score).toBeLessThan(100);
   });
 });

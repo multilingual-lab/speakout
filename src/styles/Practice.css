@@ -163,11 +163,42 @@
 /* Status */
 .practice-status {
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 0.5rem;
   color: var(--color-text-muted);
   padding: 0.5rem 0;
   justify-content: center;
+}
+
+.practice-status > span:first-of-type {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Keyword hint tags */
+.practice-keywords {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 0.25rem;
+}
+
+.practice-keyword {
+  background: rgba(99, 102, 241, 0.18);
+  color: #a5b4fc;
+  padding: 0.2rem 0.6rem;
+  border-radius: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.suggested-response {
+  font-size: 1rem;
+  color: #b0c4de;
+  margin: 0.25rem 0 0;
+  opacity: 0.85;
 }
 
 .status-icon {
@@ -307,4 +338,39 @@
 
 .practice-complete p {
   color: #888;
+}
+
+/* Score badge */
+.practice-score-badge {
+  text-align: center;
+  padding: 0.35rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 0.25rem;
+}
+
+.score-great {
+  background: rgba(72, 187, 120, 0.15);
+  color: #48bb78;
+}
+
+.score-ok {
+  background: rgba(237, 182, 72, 0.15);
+  color: #edb648;
+}
+
+.score-low {
+  background: rgba(245, 101, 101, 0.15);
+  color: #f56565;
+}
+
+/* Score summary on completion */
+.practice-score-summary {
+  color: #b0b0b0;
+  font-size: 0.95rem;
+}
+
+.practice-score-summary strong {
+  color: #e0e0e0;
 }

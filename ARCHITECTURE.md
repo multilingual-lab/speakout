@@ -33,7 +33,7 @@ src/
 ├── components/
 │   ├── TopicGrid.jsx         # Home: language selector + section headers + topic cards
 │   ├── SceneView.jsx         # Per-topic wrapper: mode toggle + dialog/monologue picker
-│   ├── PracticeMode.jsx      # Dialog practice with scrolling chat history
+│   ├── PracticeMode.jsx      # Dialog practice with scoring: similarity + engagement gate
 │   ├── ShadowMode.jsx        # Listen & repeat with real-time similarity feedback (no completion tracking)
 │   ├── MonologueMode.jsx     # Extended speaking: prompt → record → review
 │   ├── WritingMode.jsx        # Writing practice: phrase dictation + composition
@@ -126,7 +126,7 @@ Language-sensitive text processing behind a dispatch layer:
 Adapter interface per language:
 
 - `normalize(text)` — strip noise characters, normalize whitespace/punctuation
-- `computeSimilarity(target, spoken)` — Levenshtein or language-appropriate scoring
+- `computeSimilarity(target, spoken)` — semi-global approximate substring matching (tolerates prefixes, suffixes, fillers)
 - `matchKeywords(transcript, keywords)` — grammar-aware keyword detection
 
 #### Language-Aware Content Access (`src/utils/getLanguageField.js`)
@@ -299,9 +299,24 @@ TopicGrid (home)              ⚙️ Settings (always visible, top-right)
 
 Scoring and normalization are routed through the language adapter layer:
 
-- **Default:** Levenshtein character similarity with Unicode punctuation/whitespace strip
+- **Default:** Semi-global Levenshtein — approximate substring matching that finds the best-matching region within spoken text. Extra words (prefixes, suffixes, fillers like 좀/잘/진짜) don't penalize the score. Returns the better of substring score vs full-string score.
 - **Korean:** grammar-aware normalization (jamo handling)
 - **Spanish:** accent-insensitive normalization
+
+### Dialog Completion Scoring (PracticeMode)
+
+PracticeMode gates completion on two criteria:
+
+1. **Engagement:** user must actually speak in ≥ 50% of exchanges (prevents Next-spamming)
+2. **Similarity:** average best-match similarity across all exchanges must be ≥ 30%
+
+Per-exchange flow:
+- User's transcript is compared against **all** `expectedResponses` via `computeSimilarity()`; best match is kept
+- Qualitative feedback shown (no raw %): 🎉 Great (≥80%), 👍 Not bad (≥50%), 💬 Check model answer (<50%)
+- Low scores auto-expand model answers to encourage retry
+- Keyword hints (`extractKeywords()`) available on tap during respond phase — auto-extracted from `expectedResponses[0]`, no manual data needed
+
+`extractKeywords()` filters stop words/particles and returns 1–3 content words sorted by length (most meaningful first). Supports Korean, Spanish, and Chinese via language-specific stop word lists.
 
 ### Keyword Matching (monologue review)
 
@@ -470,7 +485,7 @@ npx supabase db push    # applies pending migrations from supabase/migrations/
   - Modal overlay and close button behavior
 
 - **Data validation** (`src/data/scenarios.test.js`): schema validation for scenarios, dialogs, exchanges
-- **Scoring** (`src/utils/scoring.test.js`): Levenshtein similarity, adapter-based scoring
+- **Scoring** (`src/utils/scoring.test.js`): Semi-global similarity, substring matching, adapter-based scoring
 - **Adapters** (`src/utils/adapters/adapters.test.js`): language-specific normalization (Korean jamo, Spanish accents)
 
 **Run all tests:**

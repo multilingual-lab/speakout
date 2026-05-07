@@ -1,6 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSpeech } from '../hooks/useSpeech';
 import { getLanguageField, getEnglishField } from '../utils/getLanguageField.js';
+import { computeSimilarity, extractKeywords } from '../utils/adapters/index.js';
+
+const COMPLETION_THRESHOLD = 0.3; // 30% average similarity to count as completion
+const ENGAGEMENT_THRESHOLD = 0.5; // must speak in at least 50% of exchanges
 
 export default function PracticeMode({ exchanges, language = 'ko', onNext, nextSessionTitle, onComplete }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -9,6 +13,10 @@ export default function PracticeMode({ exchanges, language = 'ko', onNext, nextS
   const [speakingIdx, setSpeakingIdx] = useState(null);
   const [history, setHistory] = useState([]); // past chat bubbles
   const [pendingAutoRecord, setPendingAutoRecord] = useState(false);
+  const [showHint, setShowHint] = useState(false);
+  const [exchangeScores, setExchangeScores] = useState([]); // similarity score per exchange
+  const [spokenCount, setSpokenCount] = useState(0); // exchanges where user actually spoke
+  const [currentScore, setCurrentScore] = useState(null); // score for current exchange
   const completedRef = useRef(false);
   const chatEndRef = useRef(null);
   const wasListeningRef = useRef(false);
@@ -23,9 +31,16 @@ export default function PracticeMode({ exchanges, language = 'ko', onNext, nextS
   useEffect(() => {
     if (isFinished && !completedRef.current) {
       completedRef.current = true;
-      onComplete?.(null);
+      const avgScore = exchangeScores.length > 0
+        ? exchangeScores.reduce((a, b) => a + b, 0) / exchangeScores.length
+        : 0;
+      const normalizedScore = avgScore / 100; // 0–1 range
+      const engagementRatio = exchanges.length > 0 ? spokenCount / exchanges.length : 0;
+      if (normalizedScore >= COMPLETION_THRESHOLD && engagementRatio >= ENGAGEMENT_THRESHOLD) {
+        onComplete?.(normalizedScore);
+      }
     }
-  }, [isFinished, onComplete]);
+  }, [isFinished, onComplete, exchangeScores, spokenCount, exchanges.length]);
   const exchangePrompt = getEnglishField(exchange, 'text');
 
   // Auto-scroll to bottom on history change
@@ -41,6 +56,21 @@ export default function PracticeMode({ exchanges, language = 'ko', onNext, nextS
     }
     wasListeningRef.current = isListening;
   }, [isListening, phase]);
+
+  // Compute similarity score when entering feedback phase
+  useEffect(() => {
+    if (phase === 'feedback' && exchange && transcript) {
+      const best = Math.max(
+        ...exchange.expectedResponses.map((r) => computeSimilarity(r, transcript, language))
+      );
+      setCurrentScore(best);
+      // Auto-expand model answers for low scores to encourage learning
+      if (best < 50) setShowModel(true);
+    } else if (phase === 'feedback' && !transcript) {
+      setCurrentScore(0);
+      setShowModel(true);
+    }
+  }, [phase, exchange, transcript, language]);
 
   // Auto-record after retry (triggered by pendingAutoRecord flag)
   useEffect(() => {
@@ -80,6 +110,11 @@ export default function PracticeMode({ exchanges, language = 'ko', onNext, nextS
   };
 
   const handleNext = () => {
+    // Record score for this exchange
+    setExchangeScores((prev) => [...prev, currentScore ?? 0]);
+    if (transcript) setSpokenCount((c) => c + 1);
+    setCurrentScore(null);
+
     // Add current exchange to history
     const newHistory = [...history];
 
@@ -93,6 +128,7 @@ export default function PracticeMode({ exchanges, language = 'ko', onNext, nextS
 
     setHistory(newHistory);
     setShowModel(false);
+    setShowHint(false);
     setTranscript('');
     setPhase('listen');
     setCurrentIndex((i) => i + 1);
@@ -108,11 +144,18 @@ export default function PracticeMode({ exchanges, language = 'ko', onNext, nextS
     setTranscript('');
     setShowModel(false);
     setError(null);
+    setCurrentScore(null);
     setPhase('respond');
     setPendingAutoRecord(true);
   };
 
   if (isFinished) {
+    const avgScore = exchangeScores.length > 0
+      ? Math.round(exchangeScores.reduce((a, b) => a + b, 0) / exchangeScores.length)
+      : 0;
+    const engagementRatio = exchanges.length > 0 ? spokenCount / exchanges.length : 0;
+    const passed = avgScore / 100 >= COMPLETION_THRESHOLD && engagementRatio >= ENGAGEMENT_THRESHOLD;
+
     return (
       <div className="practice-container">
         <div className="practice-scroll-area">
@@ -126,9 +169,14 @@ export default function PracticeMode({ exchanges, language = 'ko', onNext, nextS
             ))}
           </div>
           <div className="practice-complete">
-            <span className="complete-emoji">🎉</span>
-            <h3>수고했어요!</h3>
-            <p>Great job! You completed the conversation.</p>
+            <span className="complete-emoji">{passed ? '🎉' : '💪'}</span>
+            <h3>{passed ? '수고했어요!' : '다시 도전해 봐요!'}</h3>
+            <p className="practice-score-summary">
+              You spoke in {spokenCount}/{exchanges.length} exchanges.
+              {passed
+                ? ' Great conversation! Completion recorded.'
+                : ' Try speaking in more exchanges and following the suggested responses.'}
+            </p>
             {onNext ? (
               <button className="next-dialog-link" onClick={onNext}>
                 Next dialog: {nextSessionTitle} →
@@ -191,6 +239,15 @@ export default function PracticeMode({ exchanges, language = 'ko', onNext, nextS
           <div className="practice-status respond-prompt">
             <span className="status-icon">🎤</span>
             <span>{exchange.hint}</span>
+            {!showHint ? (
+              <button className="hint-link" onClick={() => setShowHint(true)}>🏷️ Show keywords</button>
+            ) : (
+              <div className="practice-keywords">
+                {extractKeywords(exchange.expectedResponses[0], language).map((kw, i) => (
+                  <span key={i} className="practice-keyword">{kw}</span>
+                ))}
+              </div>
+            )}
           </div>
         )}
 
@@ -208,6 +265,17 @@ export default function PracticeMode({ exchanges, language = 'ko', onNext, nextS
               <div className="bubble-speaker">나</div>
               <p className="bubble-korean">{transcript || '(no speech detected)'}</p>
             </div>
+
+            {/* Qualitative feedback — no raw score shown */}
+            {currentScore !== null && (
+              <div className={`practice-score-badge ${currentScore >= 80 ? 'score-great' : currentScore >= 50 ? 'score-ok' : 'score-low'}`}>
+                {currentScore >= 80
+                  ? '🎉 Great!'
+                  : currentScore >= 50
+                    ? '👍 Not bad!'
+                    : '💬 Check the model answer and retry!'}
+              </div>
+            )}
 
           </div>
         )}
@@ -244,7 +312,7 @@ export default function PracticeMode({ exchanges, language = 'ko', onNext, nextS
         <div className="practice-bottom-bar respond-bar">
           {!showModel ? (
             <button className="hint-link" onClick={() => setShowModel(true)}>
-              💡 Show model answers
+              {currentScore !== null && currentScore < 50 ? '👉 ' : '💡 '}Show model answers
             </button>
           ) : (
             <div className="model-answers">
