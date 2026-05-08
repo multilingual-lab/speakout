@@ -5032,5 +5032,983 @@
     "voice": "zh-CN-XiaoxiaoNeural",
     "rate": "0.9",
     "uploaded": true
+  },
+  "ko:어~ 오셨어요! 오랜만이에요. 항상 앉으시던 자리 비어 있으니까 그쪽으로 앉으세요.": {
+    "filename": "4bb78bc25d1eb370.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:사장님, 안녕하세요! 네, 오랜만이에요": {
+    "filename": "875b66da0696a422.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:오늘 된장찌개가 진짜 잘 됐어요. 된장을 새로 담갔거든요. 그리고 오늘 제철 나물 반찬도 새로 만들었으니까 한번 드셔 보세요.": {
+    "filename": "0b3dbab3aef60582.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:오~ 그래요? 그럼 된장찌개로 할게요": {
+    "filename": "18cbade72a33b238.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:밥은 공기밥으로 드릴까요, 돌솥밥으로 드릴까요? 돌솥밥이 천 원 더 비싼데 누룽지가 나와서 인기가 많아요.": {
+    "filename": "fb2da82663a20c9a.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:돌솥밥으로 할게요": {
+    "filename": "b1bc1d58bc1c36c6.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:반찬은 셀프예요. 저기 냉장고에서 꺼내서 드시면 돼요. 김치는 제가 직접 담근 거니까 많이 드세요.": {
+    "filename": "942536d47d346f25.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:사장님이 직접 담그신 거예요? 맛있겠다!": {
+    "filename": "a5d6924443d5e7cd.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:여기요~ 된장찌개 나왔습니다. 뜨거우니까 조심하세요. 숟가락이랑 젓가락은 테이블 옆에 있어요.": {
+    "filename": "a0366f19ce14ffc8.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:잘 먹겠습니다! 사장님, 물 좀 더 주시겠어요?": {
+    "filename": "809a06824e3345a9.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:네, 여기요! 맛은 어때요? 간이 괜찮아요? 싱거우면 소금 좀 넣어 드릴게요.": {
+    "filename": "52d0685850ae9218.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:진짜 맛있어요! 된장이 확실히 다르네요": {
+    "filename": "75f15648344fbfd4.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:사장님, 여기 소주 한 병만 더 주시겠어요? 그리고 계산도 같이 부탁드려요.": {
+    "filename": "6b8f2b8e66461483.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:네! 소주 여기요. 총 만이천원이에요. 오늘 반찬 많이 드셨으니까 다음에도 자주 오세요~": {
+    "filename": "bcf49a73ee688ed0.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:맛있게 잘 먹었습니다. 사장님, 다음에 또 올게요!": {
+    "filename": "6568f885dcfbde2f.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:입장료가 얼마예요?": {
+    "filename": "e881ed30be900d68.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:사진 찍어도 돼요?": {
+    "filename": "a557fd52ca7a3645.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:한복 대여하는 데가 어디예요?": {
+    "filename": "598f0952e89d7d6f.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:여기에서 제일 유명한 게 뭐예요?": {
+    "filename": "008b8c59a033d9dd.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:안녕하세요, 입장권 한 장 주세요.": {
+    "filename": "eef167107576b754.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:네, 3,000원입니다. 한복 입고 오시면 무료 입장이에요. 혹시 한복 대여 관심 있으세요?": {
+    "filename": "cf313082da23213b.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:네! 한복 대여는 어디서 해요?": {
+    "filename": "c5b9abd0853f6556.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:나가시면 바로 왼쪽에 한복 가게가 있어요. 한 시간에 만 원 정도 하고, 사진도 예쁘게 나와요.": {
+    "filename": "3cdd2f202915a425.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:감사합니다! 한번 가볼게요": {
+    "filename": "52d7a63b6c5275f3.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:참, 안에 들어가시면 근정전을 꼭 보세요. 제일 크고 유명한 건물이에요.": {
+    "filename": "08b7e9bb0f38eacb.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:근정전이요? 알겠어요, 꼭 볼게요": {
+    "filename": "e55fc2032c075a62.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:저기요, 이 건물이 뭐예요?": {
+    "filename": "11d240b039fdf1d0.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:이건 경회루예요. 조선시대에 왕이 외국 사신을 접대하던 곳이에요. 연못 위에 지어진 게 특징인데, 봄에 벚꽃이 피면 정말 아름다워요.": {
+    "filename": "b34dacbe33c65f79.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:와, 진짜 멋있네요! 사진 찍어도 돼요?": {
+    "filename": "8b3e42ba4ff1bbc1.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:네, 사진 자유롭게 찍으셔도 돼요. 저쪽 연못 앞에서 찍으시면 건물이랑 물이 같이 나와서 제일 예쁘게 나와요.": {
+    "filename": "9b8223e89348bd77.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:좋은 팁 감사합니다! 거기서 찍어 볼게요": {
+    "filename": "2edf80bba8c9c0fe.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:안녕하세요, 여러분! 저는 오늘 가이드를 맡은 김민수입니다. 이 절은 약 600년 전에 지어졌어요. 한국에서 가장 오래된 목조 건물 중 하나인데, 전쟁 중에도 살아남은 귀중한 문화재예요.": {
+    "filename": "c497f54c41c4487d.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:와, 600년이요? 정말 오래됐네요": {
+    "filename": "d1b9fe0be63dfb56.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:이쪽으로 오시면 대웅전이 보이실 거예요. 지붕의 곡선을 잘 보세요. 이게 전통 한국 건축의 특징인데, 비가 올 때 빗물이 자연스럽게 흘러내리도록 설계된 거예요. 옛날 사람들의 지혜가 정말 대단하죠.": {
+    "filename": "0fdac683335ed5ea.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:정말 신기해요! 지붕 모양이 독특하네요": {
+    "filename": "25a4f1ac65b5b85f.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:자, 이제 안으로 들어가 볼게요. 안에서는 신발을 벗으셔야 해요. 그리고 사진은 촬영 금지니까 카메라는 가방에 넣어 주세요. 불상 앞에서는 조용히 해 주시면 감사하겠습니다.": {
+    "filename": "8ec3748a44be1c60.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:네, 알겠습니다. 신발은 어디에 놓으면 돼요?": {
+    "filename": "5147986984c2915e.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:입구 옆에 신발장이 있어요. 거기에 넣으시면 됩니다. 그리고 안에 있는 벽화도 꼭 보세요. 조선시대 최고의 화가가 그린 건데, 색이 아직도 생생해서 많은 전문가들이 놀라는 작품이에요.": {
+    "filename": "b0c8a9a6e4675dec.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:벽화가 그렇게 유명한 줄 몰랐어요. 기대되네요": {
+    "filename": "722c84283dd92653.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:가이드님, 질문이 하나 있는데요.": {
+    "filename": "83d1126e19f6c2d2.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:좋은 질문이에요! 네, 아직도 스님 열 분 정도가 여기서 생활하고 계세요. 매일 새벽 4시에 일어나서 예불을 드리시거든요. 템플스테이 프로그램도 있어서 체험해 보실 수 있어요. 하루 프로그램이 5만원이고, 1박 2일은 8만원이에요.": {
+    "filename": "6ad2220a7dfbe547.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:와, 템플스테이 해보고 싶어요! 어떻게 예약해요?": {
+    "filename": "663d9bb136c93e24.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:홈페이지에서 예약하시거나, 저한테 연락처를 남겨 주시면 제가 안내해 드릴게요. 자, 이제 마지막으로 뒤쪽 정원을 보러 가실까요? 거기가 이 절에서 제일 아름다운 곳이에요.": {
+    "filename": "852768ce54f2b32b.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:네, 가요! 정원이 제일 기대돼요": {
+    "filename": "db0b9a0bf5da522f.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:저기요, 혹시 이 근처에 가볼 만한 데 있을까요?": {
+    "filename": "39e630c6417cb1a6.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:아, 관광이세요? 여기 관광객들은 잘 모르는데, 북촌 한옥마을 뒷골목이 진짜 예뻐요. 큰 길 말고 작은 골목길로 들어가면 조용하고 사진 찍기도 좋거든요. 특히 오후 3시쯤 가면 빛이 예쁘게 들어와요.": {
+    "filename": "12a04ffe3e0e05f4.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:오후 3시요? 지금 가면 딱 좋겠네요!": {
+    "filename": "24a995ff54825321.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:그리고 거기서 조금만 걸어가면 전통 찻집이 하나 있어요. 거기 쌍화차가 유명한데, 한옥 마당에 앉아서 마시면 분위기가 정말 좋아요. 가격도 만원 이하라서 부담 없어요.": {
+    "filename": "2fee18817aede926.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:쌍화차가 뭐예요? 처음 들어봐요": {
+    "filename": "9d393b58b97a363f.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:쌍화차는 한약재로 만든 전통 차예요. 몸에 좋고, 특히 피로할 때 마시면 힘이 나요. 맛은 약간 달콤하면서도 쌉쌀한데, 한국 사람들이 겨울에 많이 마셔요. 처음이시면 대추차나 유자차도 추천드려요. 그게 좀 더 먹기 편하거든요.": {
+    "filename": "f28b92fc3f94a41a.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:재미있네요! 대추차 먼저 마셔 볼게요": {
+    "filename": "0c7729665d5281e1.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:아, 그리고 저녁에 시간 있으시면 남산타워도 가 보세요. 케이블카 타고 올라가면 서울 야경이 정말 끝내줘요. 해 질 때쯤 가시면 노을도 보고 야경도 볼 수 있어서 일석이조예요.": {
+    "filename": "c36d8afd8974a224.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:일석이조! 좋은 표현이네요. 꼭 가볼게요": {
+    "filename": "5eb7fc705e43a232.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:혹시 맛집도 추천해 주실 수 있어요?": {
+    "filename": "2f04614e169481d0.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:그럼요! 이 근처에 광장시장이 있어요. 거기 가시면 빈대떡이랑 마약김밥이 유명해요. 관광객도 많지만 현지인도 많이 가는 곳이라 분위기도 좋고, 가격도 저렴해요. 빈대떡에 막걸리 한 잔 하시면 완벽한 한국 경험이에요!": {
+    "filename": "115ff7abb50c3765.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:마약김밥이요? 이름이 재미있네요! 꼭 가볼게요": {
+    "filename": "3718558412d478dd.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:머리가 아파요.": {
+    "filename": "e9e825d12671efb6.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:약 좀 주시겠어요?": {
+    "filename": "4136e8afac0dcd0c.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:보험 되나요?": {
+    "filename": "fa6accda00e624de.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:하루에 몇 번 먹어야 해요?": {
+    "filename": "f83518ebfdaa72f6.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:안녕하세요, 감기약 좀 주시겠어요?": {
+    "filename": "e58abc600c47b29d.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:네, 어디가 불편하세요? 기침이 나세요, 아니면 콧물이 나세요?": {
+    "filename": "dcd0f9e618f2d86b.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:기침이 나고 목도 아파요": {
+    "filename": "2a14af559325d1d5.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:열은 있으세요? 그리고 혹시 알레르기 있는 약이 있어요?": {
+    "filename": "9693966ed8f7e31c.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:열은 좀 있는 것 같아요. 알레르기는 없어요": {
+    "filename": "25ed42376ec939b7.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:그러시면 이 약 드세요. 하루에 세 번, 식후 30분에 드시면 돼요. 졸릴 수 있으니까 운전은 하지 마세요.": {
+    "filename": "09313c541483b060.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:네, 알겠습니다. 얼마예요?": {
+    "filename": "996b9758caed6652.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:5,500원이에요. 3일 치예요. 3일 지나도 안 나으시면 병원 가 보세요.": {
+    "filename": "8f27d8626e13f813.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:네, 감사합니다. 카드로 할게요": {
+    "filename": "df3e974c011511df.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:안녕하세요, 접수하셨어요? 처음 오시는 분이면 이 양식 먼저 작성해 주세요. 신분증도 필요하고요.": {
+    "filename": "a45cace850ea1650.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:네, 처음이에요. 여권도 괜찮아요?": {
+    "filename": "af70f457fd68aaaa.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:네, 여권 괜찮습니다. 작성 다 하시면 대기실에서 기다려 주세요. 이름 불러 드릴게요. 대기 시간이 한 20분 정도 될 거예요.": {
+    "filename": "d81ed974504be5ac.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:네, 알겠습니다. 감사합니다": {
+    "filename": "3ccc05b762cc03fd.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:어떻게 오셨어요?": {
+    "filename": "a622ae8b5846f745.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:3일 전부터 배가 아프고 설사를 해요": {
+    "filename": "73efb16415231440.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:3일이나요? 좀 오래됐네요. 어디 볼게요. 여기 누워 보세요. 배를 좀 눌러 볼게요. 여기 누르면 아파요?": {
+    "filename": "c42148c9fd9c8092.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:아, 네, 거기 좀 아파요": {
+    "filename": "a643c0b40bc37fb7.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:급성 장염인 것 같아요. 많이 걱정하실 필요는 없는데, 며칠 동안 기름진 음식이랑 매운 음식은 피하세요. 약 처방해 드릴 테니까 하루에 세 번 식후에 드시고, 이틀 지나도 안 나으시면 다시 오세요.": {
+    "filename": "a58b023a21f42adc.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:네, 알겠습니다. 매운 음식 조심할게요": {
+    "filename": "5a7e993434ba1648.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:네, 처방전 가지고 아무 약국이나 가시면 돼요. 그리고 물 많이 드세요. 탈수 되기 쉬우니까요. 진료비는 3만원인데, 밖에 나가셔서 수납하시면 됩니다.": {
+    "filename": "49967a6e0edfbc6c.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:네, 감사합니다, 선생님. 물 많이 마실게요": {
+    "filename": "28acac3407f68875.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:안녕하세요, 어디가 불편하세요?": {
+    "filename": "99ca90ad4fe006b0.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:오른쪽 위 어금니가 며칠째 아파요": {
+    "filename": "ccf8d0d43419cc52.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:그러시군요. 엑스레이 먼저 찍어 볼게요. 여기 물어 보세요. 움직이지 마시고요. 다 됐습니다. 결과 같이 볼까요?": {
+    "filename": "ba0e67a1662673e9.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:네, 결과가 어떤가요?": {
+    "filename": "15d70b50abbaccc3.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:여기 보시면 충치가 꽤 깊어요. 신경 근처까지 갔는데, 아직 신경까지 도달하지는 않았어요. 지금 치료하시면 떼우는 것만으로 괜찮을 것 같은데, 더 방치하시면 신경 치료를 해야 할 수도 있어요.": {
+    "filename": "f32dd93fd19b0bf6.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:지금 바로 치료할 수 있어요?": {
+    "filename": "689b2e0532ad0f78.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:네, 오늘 바로 할 수 있어요. 레진으로 떼우는 건 보험 적용이 돼서 2만원 정도 들고요, 세라믹은 보험이 안 돼서 15만원 정도 해요. 레진은 내구성이 좀 떨어지는데 세라믹은 오래 가요. 어떤 걸로 하시겠어요?": {
+    "filename": "d7e70f381c457f66.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:레진으로 할게요. 보험 되는 걸로 해 주세요": {
+    "filename": "e2caac860f2fbab1.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:네, 알겠습니다. 마취 먼저 할게요. 따끔할 수 있어요. 잠깐만 참아 주세요. 마취가 풀리는 데 2시간 정도 걸리니까 그동안 뜨거운 음식이나 딱딱한 음식은 피하세요.": {
+    "filename": "d4dcbe7a34b5fcff.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:네, 알겠습니다. 시작해 주세요": {
+    "filename": "759896744afe89de.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:다 됐습니다! 잘 참으셨어요. 오늘은 치료한 쪽으로 씹지 마시고, 일주일 후에 한 번 더 오셔서 확인 받으세요. 정기적으로 6개월에 한 번씩 검진 받으시면 이런 충치를 미리 발견할 수 있어요.": {
+    "filename": "4ea0894c47eb297b.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:감사합니다, 선생님. 일주일 후에 올게요": {
+    "filename": "05d5f4cf8036773d.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:강남역까지 가 주세요.": {
+    "filename": "53a1a0d7b870d59c.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:여기서 세워 주세요.": {
+    "filename": "38ff3cddaffe26f2.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:얼마나 걸려요?": {
+    "filename": "6e824db13cce0fa8.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:KTX 표 한 장 주세요.": {
+    "filename": "a3a9f9ce42950231.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:어디 가세요?": {
+    "filename": "8cc017eea800e8f7.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:강남역까지 가 주세요": {
+    "filename": "fe43390163510e87.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:강남역이요? 지금 길이 좀 막히는데, 고속도로 타고 갈까요 아니면 일반 도로로 갈까요?": {
+    "filename": "0be80c9e2bdca21a.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:빠른 길로 가 주세요": {
+    "filename": "11360fa831172e95.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:네, 고속도로 탈게요. 한 30분 정도 걸릴 것 같아요.": {
+    "filename": "1fd2faf6d19b8dd5.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:네, 알겠어요. 감사합니다": {
+    "filename": "aed350596f1bab5a.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:다 왔어요. 강남역 몇 번 출구 쪽으로 내려 드릴까요?": {
+    "filename": "43dba21cfd76c730.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:아무 데나 괜찮아요": {
+    "filename": "24afc4beba679581.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:15,800원이에요.": {
+    "filename": "f62be88f73619af9.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:어디로 가시면 돼요?": {
+    "filename": "daeb316cbf76d1b4.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:역삼동에 있는 카페인데, 주소 알려 드릴게요": {
+    "filename": "e40ad99957386561.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:네, 네비에 찍어 볼게요. 역삼동이면 이쪽으로 가면 되겠다. 혹시 큰 건물 근처예요?": {
+    "filename": "d9c71e2878f2ba7a.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:GS타워 뒤쪽이에요": {
+    "filename": "9986a7a4c19e9021.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:아, 대충 알겠어요. 근처 가면 다시 말씀해 주세요.": {
+    "filename": "798700a06f00cccc.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:네, 가까워지면 말씀드릴게요": {
+    "filename": "6bf166467146a638.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:기사님, 여기서 좌회전하시고, 편의점 앞에서 세워 주시겠어요?": {
+    "filename": "3404447a9c5f41ec.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:이 편의점이요? 여기 맞아요?": {
+    "filename": "9efc66dd9b5e51f0.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:네, 여기예요! 감사합니다": {
+    "filename": "872427de717ce2c9.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:8,200원이에요. 영수증 드릴까요?": {
+    "filename": "f82e052d966603ae.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:네, 영수증 주세요. 카드로 할게요": {
+    "filename": "bb7189ef1bb1f1a9.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:안녕하세요, 부산행 KTX 표 하나 사고 싶은데요.": {
+    "filename": "b77907df7e9d30af.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:네, 오늘 출발이세요? 가장 빠른 시간은 오후 2시 30분이고, 그 다음은 3시 10분이에요. 2시 30분 건 일반실만 남아 있고, 3시 10분은 특실도 있어요.": {
+    "filename": "a2562bdcc458cb57.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:2시 30분 일반실로 할게요": {
+    "filename": "7e4db9f8d470f091.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:2시 30분 일반실이요. 창쪽 자리랑 복도쪽 자리 중에 뭘 선호하세요? 그리고 순방향이랑 역방향이 있는데, 순방향은 기차 가는 방향으로 앉는 거고, 역방향은 반대로 앉는 거예요.": {
+    "filename": "1d3a3d71ad4d17cd.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:창쪽 순방향으로 부탁드려요": {
+    "filename": "d5cfb2c8d45c6c1c.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:창쪽 순방향 자리 있어요. 59,800원입니다. 결제는 어떻게 하시겠어요? 그리고 왕복으로 하시면 5% 할인 돼요. 돌아오시는 날짜가 정해져 있으시면 같이 끊으시는 게 좋아요.": {
+    "filename": "98addb1308aed557.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:왕복으로 할게요. 돌아오는 건 모레 오후로 해 주세요": {
+    "filename": "54830c47a32ce5b3.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:모레 오후면... 3시 KTX 자리가 있어요. 왕복 합쳐서 113,600원인데, 할인 적용하면 107,920원이에요. 여기 표 출력해 드릴게요. 승강장은 3번이고, 출발 10분 전까지 탑승해 주세요.": {
+    "filename": "8c660ca79b030407.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:감사합니다. 3번 승강장이요? 어디로 가면 돼요?": {
+    "filename": "8020d4c393b457df.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:저쪽 에스컬레이터 타고 올라가시면 바로 보여요. 표에 좌석 번호 적혀 있으니까 확인하시고 타세요. 부산까지 2시간 30분 정도 걸리고, 중간에 대전이랑 동대구에서 정차해요. 즐거운 여행 되세요!": {
+    "filename": "770cdf02ba63b884.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:자세히 알려 주셔서 감사합니다! 좋은 하루 되세요": {
+    "filename": "29268c37461cff56.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:이거 어떻게 하는 거예요?": {
+    "filename": "c3ef8961bc34409a.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:처음인데 괜찮을까요?": {
+    "filename": "3d00819440611e85.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:시간 연장할 수 있어요?": {
+    "filename": "c52ace8c337f62db.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:안녕하세요, 찜질방 처음인데 어떻게 하면 돼요?": {
+    "filename": "c16f2d0db1df6a3a.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:어서오세요! 먼저 여기서 입장료 내시고 옷이랑 수건을 받으세요. 입장료는 만이천원이고, 락카 키도 드릴게요. 옷은 남녀 공용 구역에서 입는 거예요.": {
+    "filename": "87558698cc57764f.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:네, 카드로 할게요. 락카는 어디에 있어요?": {
+    "filename": "ff49b88420614464.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:락카실은 왼쪽으로 가시면 있어요. 먼저 신발 벗고 신발 락카에 넣으세요. 그 다음에 안에 들어가시면 탈의실이 있어요. 거기서 옷 갈아입으시고 목욕탕 이용하시면 돼요. 사우나, 찜질방 순서로 이용하시는 분이 많아요.": {
+    "filename": "259cc1e2448be11a.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:신발 락카 따로 있는 거예요? 알겠어요": {
+    "filename": "a5a4f3eb9d944a43.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:맞아요. 그리고 찜질방 구역에 가시면 여러 종류 방이 있어요. 황토방, 소금방, 얼음방도 있어요. 황토방이 제일 인기 있는데 땀이 많이 나서 피부에 좋대요. 거기서 양머리 수건 만들어서 쓰면 더 재미있어요.": {
+    "filename": "74520e1fee034358.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:양머리 수건이 뭐예요? 만들어 보고 싶어요!": {
+    "filename": "7f6f573d536287d1.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:수건을 이렇게 돌돌 말아서 양 모양으로 만드는 거예요! 인스타그램에 많이 올라와요. 나중에 배고프시면 매점에서 식혜랑 구운 달걀도 드셔 보세요. 찜질방에서 먹는 식혜랑 달걀이 제일 맛있거든요.": {
+    "filename": "00423f991bcb8337.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:식혜는 뭐예요?": {
+    "filename": "32fdfbd69f8d40c7.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:식혜는 쌀로 만든 달콤한 전통 음료예요. 차갑게 마시는 건데, 사우나 후에 마시면 정말 시원하고 맛있어요. 한 잔에 천오백원이에요. 자, 이제 들어가셔서 편하게 즐기세요!": {
+    "filename": "a81bcc49b8bab3ed.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:감사합니다! 정말 친절하시네요. 잘 즐길게요": {
+    "filename": "92f7f6ee4849523a.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:안녕하세요, 두 명인데 한 시간 할게요.": {
+    "filename": "6efbd6fbb76f850e.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:네, 한 시간에 만원이에요. 큰 방이랑 작은 방이 있는데, 두 분이시면 작은 방이 딱 좋을 거예요. 3번 방 드릴게요.": {
+    "filename": "52fa86546628d530.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:네, 작은 방으로 할게요": {
+    "filename": "8551483ea93c177f.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:리모컨은 방 안에 있어요. 번호로 검색하셔도 되고, 가수 이름으로도 검색돼요. 탬버린이랑 마라카스도 있으니까 자유롭게 쓰세요!": {
+    "filename": "150f700a37f53fb4.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:감사합니다! 한국 노래 추천해 주실 수 있어요?": {
+    "filename": "d720dd633fd9dde6.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:요즘 인기 있는 노래는 리모컨에 인기 차트 버튼 누르면 나와요! 한국어 초보시면 동요나 트로트가 쉬워서 좋아요.": {
+    "filename": "06d4f3883f14adc1.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:트로트가 뭐예요?": {
+    "filename": "6483d2ad42f3e25c.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:시간 연장하고 싶은데요.": {
+    "filename": "272bcb85bb3125d8.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:네, 30분 연장이면 오천원 추가예요. 결제는 나중에 한꺼번에 하시면 돼요. 재미있게 하세요!": {
+    "filename": "7ff989d741cc76dc.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:네, 연장할게요! 감사합니다": {
+    "filename": "4a148bffeff77cb4.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:어서오세요~ 떡볶이, 순대, 튀김 다 있어요! 뭐 드릴까요?": {
+    "filename": "0e649c3a75544296.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:떡볶이 하나 주시겠어요?": {
+    "filename": "676fdb3452a31f7a.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:떡볶이 4천원, 순대 3천원이에요. 세트로 하시면 6천원에 해 드릴게요. 순대도 같이 드실래요? 여기 순대가 직접 만든 거라 진짜 맛있어요.": {
+    "filename": "f9dfbebc611571dd.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:세트로 할게요! 직접 만든 거예요?": {
+    "filename": "b9741553c1b37a91.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:그럼요! 새벽부터 준비하는 거예요. 우리 엄마 때부터 여기서 장사한 거라 벌써 30년 됐어요. 자, 여기 드셔 보세요. 소스는 더 필요하시면 말씀하세요.": {
+    "filename": "722b5989ae89229e.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:30년이나요? 대단하시네요! 먹어 볼게요": {
+    "filename": "79b12de1801a48c4.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:이모, 이거 진짜 맛있어요! 근데 여기 다른 것도 추천해 주세요.": {
+    "filename": "4696b585b704e7fd.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:맛있죠? 우리 떡볶이 먹어 본 사람들은 다 또 와요! 저쪽으로 가시면 호떡 아저씨가 계시는데, 거기 씨앗호떡이 이 시장에서 제일 유명해요. 줄이 좀 길어도 기다렸다가 드셔 보세요. 그리고 반대쪽 끝에 칼국수집이 있는데 거기도 맛집이에요.": {
+    "filename": "6a00eef9d8d59e21.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:씨앗호떡이 뭐예요?": {
+    "filename": "fbbadf2fc9466292.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:씨앗호떡은 안에 해바라기씨, 호박씨, 견과류가 들어가 있어요. 보통 호떡은 설탕만 들어가잖아요. 씨앗호떡은 고소하면서도 달콤해서 여기서만 먹을 수 있는 특별한 맛이에요. 하나에 2천원밖에 안 해요!": {
+    "filename": "bf0ac6d6b87cd026.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
+  },
+  "ko:고소하면서 달콤하다니 꼭 먹어 봐야겠어요!": {
+    "filename": "d8c28cc30fdfb65b.mp3",
+    "voice": "ko-KR-SunHiNeural",
+    "rate": "0.9",
+    "uploaded": true
   }
 }
